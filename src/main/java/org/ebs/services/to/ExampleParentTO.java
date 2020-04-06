@@ -5,9 +5,17 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * Example of Transfer Object
+ * TOs must implement Serializable and be public
+ */
 public class ExampleParentTO implements Serializable{
     private static final long serialVersionUID = 6741462145350804418L;
-    
+
+    /**
+     * Example of how to change the name of a property for the output.
+     * This affects only Rest Resources, not Graphql Types
+     */
     @JsonProperty("exampleParentDbId")
     private long id;
     private String name;

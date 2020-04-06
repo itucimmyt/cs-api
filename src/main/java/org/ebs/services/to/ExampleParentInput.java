@@ -5,6 +5,10 @@ import java.io.Serializable;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
+/**
+ * Example of Transfer Object for an Input Type
+ * TOs must implement Serializable
+ */
 public class ExampleParentInput implements Serializable{
     private static final long serialVersionUID = -8541028545537524062L;
     

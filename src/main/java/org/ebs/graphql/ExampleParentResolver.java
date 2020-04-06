@@ -10,6 +10,9 @@ import org.ebs.services.to.ExampleParentTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * Example of resolver for a Type
+ */
 @Component
 class ExampleParentResolver implements GraphQLResolver<ExampleParentTO> {
 

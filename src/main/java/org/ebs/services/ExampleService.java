@@ -15,6 +15,9 @@ import org.ebs.util.brapi.BrPagedResponse;
 import org.ebs.util.brapi.BrResponse;
 import org.springframework.data.domain.Pageable;
 
+/**
+ * Service interfaces define centralized access to business logic
+ */
 public interface ExampleService {
 
     Optional<ExampleParentTO> findExample(long exampleId);

@@ -9,6 +9,11 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
+/**
+ * Example conversion of TO (input) -> Model. Converters can invoke other converters directly, 
+ * but services must invoke them through the ConversionService
+ * Converters must use @Component
+ */
 @Component
 class ExampleParentInputConverter implements Converter<ExampleParentInput, ExampleParent> {
 
@@ -17,7 +22,9 @@ class ExampleParentInputConverter implements Converter<ExampleParentInput, Examp
         ExampleParent target = new ExampleParent();
         BeanUtils.copyProperties(source, target);
         target.setChildren(new HashSet<ExampleChild>());
-
+/**
+ * Example of conversion when a simple type (array of integers) is converted to a complex type (set of ExampleChilds)
+ */
         for (int aNumber : source.getChildren()) {
             ExampleChild ec = new ExampleChild();
             ec.setaNumber(aNumber);

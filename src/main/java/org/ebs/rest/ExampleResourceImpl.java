@@ -11,6 +11,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Implementations of a Rest Resource interface must use {@code @RestController}.
+ * Use @GetMapping, @PostMapping, @PutMapping or @DeleteMapping accordingly
+ 
+ * This layer is in charge of:
+ * - Define Rest endpoints, parameters and return types
+ * - Validating inputs
+ * - Invoking Service components to perform actions
+ */
 @RestController
 @RequestMapping("rest")
 class ExampleResourceImpl implements ExampleResource {

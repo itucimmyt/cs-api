@@ -28,6 +28,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * Implementations of Service interfaces must use @Service and @Transactional(readOnly = true).
+ * If some method requires write access to the persistence layer, it can override this annotation
+ * This layer is in charge of:
+ * - Control business logic
+ * - Invoke repositories to interact with the persistence layer
+ * - Cache data for quick access to common used data 
+ * Transform Model entities into Transfer Objects (TO) which can be exposed to Graphql and Rest APIs
+ */
 @Service
 @Transactional(readOnly = true)
 class ExampleServiceimpl implements ExampleService {
@@ -46,6 +55,9 @@ class ExampleServiceimpl implements ExampleService {
         this.converter = converter;
     }
 
+    /**
+     * Example of simple caching
+     */
     @Override
     @Cacheable(cacheNames = "ExampleParentTO", unless = "#result == null")
     public Optional<ExampleParentTO> findExample(long exampleParentId) {

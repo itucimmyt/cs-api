@@ -7,6 +7,9 @@ import org.ebs.services.to.ExampleParentInput;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Example of Custom Validator
+ */
 class ExampleParentInputValidator implements ConstraintValidator<ValidExampleParentInput,ExampleParentInput> {
 
     private static final Logger log = LoggerFactory.getLogger(ExampleParentInputValidator.class);

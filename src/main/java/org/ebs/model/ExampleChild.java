@@ -11,6 +11,9 @@ import javax.persistence.Table;
 
 import org.ebs.util.Auditable;
 
+/**
+ * Class mapping to a DB entity
+ */
 @Entity @Table(name = "child", schema = "ex")
 public class ExampleChild extends Auditable{
     private static final long serialVersionUID = 1L;

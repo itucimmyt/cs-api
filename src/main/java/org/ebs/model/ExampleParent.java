@@ -13,6 +13,9 @@ import javax.persistence.Table;
 
 import org.ebs.util.Auditable;
 
+/**
+ * Class mapping to a DB entity
+ */
 @Entity @Table(name = "parent", schema = "ex")
 public class ExampleParent extends Auditable {
     private static final long serialVersionUID = 1L;
@@ -28,6 +31,10 @@ public class ExampleParent extends Auditable {
     @Column(name = "stock_code")
     private String stockCode;
 
+    /**
+     * In this example, ExampleParent is the owning entity of the relationship,
+     * so it is configured to manage their children's persistence
+     */
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
     private Set<ExampleChild> children;
 
