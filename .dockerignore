@@ -1,0 +1,5 @@
+build/
+src/
+bin/
+*gradle*
+README.md

@@ -1,0 +1,3 @@
+###### BANNER HERE ######
+#Application Name Here ${application.version}
+BY Spring Boot ${spring-boot.formatted-version}

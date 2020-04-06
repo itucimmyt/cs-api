@@ -1,0 +1,50 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.ehcache.org/v3" xsi:schemaLocation="
+            http://www.ehcache.org/v3 
+            http://www.ehcache.org/schema/ehcache-core-3.7.xsd"
+            xmlns:jsr107='http://www.ehcache.org/v3/jsr107'>
+
+    <service>
+        <jsr107:defaults enable-statistics="true"/>
+    </service>
+
+
+	<!-- Template with balanced configuration -->
+	<cache-template name="default">
+		<expiry>
+			<ttl unit="seconds">120</ttl>
+		</expiry>
+		<resources>
+			<heap>500</heap>
+			<offheap unit="MB">5</offheap>
+			<!-- <disk persistent="true" unit="MB">20</disk> -->
+		</resources>
+	</cache-template>
+	<!-- Template for caching large amounts of objects for a short period. Recommended for operational data-->
+	<cache-template name="big-short">
+		<expiry>
+			<ttl unit="seconds">60</ttl>
+		</expiry>
+		<resources>
+			<heap>5000</heap>
+			<offheap unit="MB">50</offheap>
+		</resources>
+	</cache-template>
+	<!-- Template for caching few objects for a long period. Recommended for configurations and barley-changing elements-->
+	<cache-template name="small-long">
+		<expiry>
+			<ttl unit="seconds">600</ttl>
+		</expiry>
+		<resources>
+			<heap>200</heap>
+			<offheap unit="MB">2</offheap>
+		</resources>
+	</cache-template>
+	<cache alias="ExampleParentTO" uses-template="default">
+		<key-type>java.lang.Long</key-type>
+		<value-type>org.ebs.services.to.ExampleParentTO</value-type>
+	</cache>
+	<cache alias="ListExampleChildTO" uses-template="default">
+		<key-type>java.lang.Long</key-type>
+		<value-type>java.util.Set</value-type>
+	</cache>
+</config>
