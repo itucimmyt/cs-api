@@ -47,7 +47,7 @@ dependencyManagement {
 }
 
 bootJar {
-	archiveName = 'ebs-sg-ex.jar'
+	archiveName = 'ebs-sg-{domain}.jar'
 }
 
 test {

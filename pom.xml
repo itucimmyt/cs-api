@@ -98,7 +98,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-		<finalName>ebs-sg-ex</finalName>
+		<finalName>ebs-sg-{domain}</finalName>
 	</build>
 
 </project>

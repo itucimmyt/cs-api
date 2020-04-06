@@ -1,40 +1,5 @@
 type Query {
-  findExample(id:ID!): ExampleParentTO
-  findExampleList(filters:[FilterInput], sort:SortInput, page: PageInput): ExampleParentTOConnection
-  createExample(exampleParent: ExampleParentInput!):ExampleParentTO
-}
 
-# Analytical Request, with information about the dataset to use(experiment locations)
-# and the analysis to apply on it (model, patterns, etc)
-type ExampleParentTO {
-  # DB identifier
-  id: ID! 
-  # Documentation for attribute 'name'
-  name: String
-  # Documentation for attribute 'stockCode'
-  stockCode: String
-  children:[ExampleChildTO!]
-}
-
-type ExampleChildTO {
-  id: ID!
-  aNumber: Int
-  customField: String
-}
-
-type ExampleParentTOConnection {
-  totalPages: Int
-  totalElements: Int
-  numberOfElements: Int
-  size: Int
-  number: Int
-  content: [ExampleParentTO]!
-}
-
-input ExampleParentInput {
-  name: String!
-  stockCode: String!
-  children:[Int!]
 }
 
 input FilterInput {

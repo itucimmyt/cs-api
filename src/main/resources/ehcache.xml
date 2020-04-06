@@ -39,12 +39,4 @@
 			<offheap unit="MB">2</offheap>
 		</resources>
 	</cache-template>
-	<cache alias="ExampleParentTO" uses-template="default">
-		<key-type>java.lang.Long</key-type>
-		<value-type>org.ebs.services.to.ExampleParentTO</value-type>
-	</cache>
-	<cache alias="ListExampleChildTO" uses-template="default">
-		<key-type>java.lang.Long</key-type>
-		<value-type>java.util.Set</value-type>
-	</cache>
 </config>

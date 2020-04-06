@@ -7,5 +7,5 @@ docker run -it --rm \
 -w /usr/src \
 maven:3.6.3-jdk-11-slim mvn clean package
 
-echo "building image: ebs-sg-ex:0.1 ..."
-docker build -t ebs-sg-ex:0.1 .
+echo "building image: ebs-sg-{domain}:{version-tag} ..."
+docker build -t {domain}:{version-tag} .
