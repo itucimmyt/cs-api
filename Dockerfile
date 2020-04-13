@@ -1,9 +1,11 @@
-FROM openjdk:11-jdk-slim
-WORKDIR ./
-COPY target/ebs-sg-ex.jar .
+FROM wso2/micro-integrator:1.1.0
+WORKDIR /home/wso2carbon
 
 ENV spring.datasource.url=jdbc:postgresql://{hostname}:{port}/{databasename}
 ENV spring.datasource.username=username
 ENV spring.datasource.password=password
 
-ENTRYPOINT ["java","-jar","ebs-sg-ex.jar"]
+COPY dataflows/integratorCompositeApplication/target ./wso2mi-1.1.0/repository/deployment/server/carbonapps
+COPY entrypoint.sh target/ebs-sg-ex.jar ./
+
+ENTRYPOINT ["./entrypoint.sh"]
