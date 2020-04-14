@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="proxy" groupId="org.ebs.integrator.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/proxy-services/proxy.xml</file>
+    </artifact>
+    <artifact name="graphqlEP" groupId="org.ebs.integrator.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/graphqlEP.xml</file>
+    </artifact>
+    <artifact name="graphqlSEQ" groupId="org.ebs.integrator.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/graphqlSEQ.xml</file>
+    </artifact>
+</artifacts>
