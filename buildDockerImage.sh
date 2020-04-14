@@ -7,8 +7,8 @@ docker run -it --rm \
 -w /usr/src \
 maven:3.6.3-ibmjava-8-alpine \
 mvn clean install && \
-mvn clean -f dataflows/integrator clean install && \
-mvn -f dataflows/integratorCompositeApplication clean package
+mvn clean -f dataflows/integrator -Dmaven.test.skip=true install && \
+mvn -f dataflows/integratorCompositeApplication -Dmaven.test.skip=true clean package
 
 echo "building image: ebs-sg-ex:0.1 ..."
 docker build -t ebs-sg-ex:0.1 .
