@@ -1,3 +1,7 @@
+scalar Uuid;
+scalar Date
+scalar Datetime
+
 type Query {
   findExample(id:ID!): ExampleParentTO
   findExampleList(filters:[FilterInput], sort:SortInput, page: PageInput): ExampleParentTOConnection
