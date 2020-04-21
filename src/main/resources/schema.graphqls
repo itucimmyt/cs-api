@@ -1,3 +1,7 @@
+scalar Uuid;
+scalar Date
+scalar Datetime
+
 type Query {
 
 }
