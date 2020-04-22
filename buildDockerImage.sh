@@ -23,4 +23,4 @@ maven:3.6.3-ibmjava-8-alpine \
 mvn -Dmaven.test.skip=true clean package
 
 echo "building image: ebs-sg-tnt:0.1 ..."
-docker build -t tnt:0.1 .
+docker build -t ebs-sg-tnt:0.1 .
