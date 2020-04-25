@@ -1,0 +1,44 @@
+scalar Uuid;
+scalar Date
+scalar Datetime
+
+type Query {
+
+}
+
+input FilterInput {
+  #mode of comparison
+  mod: FilterMod = EQ
+  #column to use for filtering
+  col: String!
+  #value to compare against in the filter
+  val: String!
+} 
+
+input SortInput {
+  #column to use for sorting
+  col: String!
+  #mode of sorting
+  mod: SortMod = ASC
+}
+
+input PageInput {
+  #number of page, starting in 0
+  number: Int! = 0
+  #size of the page
+  size: Int! = 1
+}
+
+enum FilterMod {
+  #equals filter mode
+  EQ
+  #like filter mode
+  LK
+}
+
+enum SortMod {
+  # ascendant sort mode
+  ASC
+  # descendant sort mode
+  DES
+}

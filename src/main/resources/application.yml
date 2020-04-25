@@ -1,0 +1,88 @@
+logging: 
+  level: 
+    org:
+      springframework: INFO
+      hibernate: INFO
+      ebs: DEBUG
+server:
+  port: 8080
+spring:
+  application:
+    name: ebs-sg-ex
+  servlet:
+      multipart:
+        enabled: true
+        location: /tmp
+  security:
+    user:
+      name: client
+      password: client
+  cache:
+    jcache:
+      config: classpath:ehcache.xml
+  boot:
+    admin:
+      client:
+        url:
+        - http://ebs-sg-admin:8080
+        username: admin
+        password: admin
+        instance:
+          metadata:
+            user:
+              name: ${spring.security.user.name}
+              password: ${spring.security.user.password}
+  datasource:
+    initialization-mode: never
+    continue-on-error: false
+    url: jdbc:postgresql://localhost:5432/exampledb
+    username: user
+    password: password
+    dbcp2:
+      test-while-idle: true
+      test-on-borrow: true
+      validation-query: select 1
+  data:
+    web:
+      pageable:
+        size-parameter: pageSize
+  jpa:
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL94Dialect
+        format_sql: true
+        order_inserts: true
+        order_updates: true
+        max_fetch_depth: 1
+        default_batch_fetch_size: 8
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+graphql:
+  servlet:
+    mapping: /graphql
+    enabled: true
+    # corsEnabled: true
+    # if you want to @ExceptionHandler annotation for custom GraphQLErrors
+    exception-handlers-enabled: true
+    actuator-metrics: true
+  playground:
+    cdn:
+      enabled: false
+springdoc:
+  api-docs:
+    path: /api-doc
+  swagger-ui:
+    path: /api-doc.html

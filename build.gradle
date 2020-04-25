@@ -1,0 +1,55 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.4.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+}
+
+group = 'org.ebs.sg'
+version = '0.1'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+	jcenter()
+}
+
+ext {
+	set('springBootAdminVersion', "2.2.1")
+}
+
+dependencies {
+	implementation 'de.codecentric:spring-boot-admin-starter-client'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	runtimeOnly 'org.postgresql:postgresql'
+
+	implementation 'org.springframework.boot:spring-boot-starter-cache'
+	implementation 'javax.cache:cache-api'
+	implementation 'org.ehcache:ehcache:3.7.1'
+
+	implementation 'com.graphql-java-kickstart:graphql-spring-boot-starter:6.0.0'
+	implementation 'com.graphql-java-kickstart:graphql-java-tools'
+	implementation 'com.graphql-java-kickstart:playground-spring-boot-starter:6.0.0'
+
+	implementation 'org.springdoc:springdoc-openapi-ui:1.2.32'
+
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "de.codecentric:spring-boot-admin-dependencies:${springBootAdminVersion}"
+	}
+}
+
+bootJar {
+	archiveName = 'ebs-sg-tnt.jar'
+}
+
+test {
+	useJUnitPlatform()
+}
