@@ -1,0 +1,1173 @@
+type Query {findCollaborator(id:ID!):Collaborator
+findCollaboratorList( page: PageInput, sort:SortInput,filters:[FilterInput]):CollaboratorConnection
+findPartner(id:ID!):Partner
+findPartnerList( page: PageInput, sort:SortInput,filters:[FilterInput]):PartnerConnection
+findThemeStyle(id:ID!):ThemeStyle
+findThemeStyleList( page: PageInput, sort:SortInput,filters:[FilterInput]):ThemeStyleConnection
+findHtmlTag(id:ID!):HtmlTag
+findHtmlTagList( page: PageInput, sort:SortInput,filters:[FilterInput]):HtmlTagConnection
+findTranslation(id:ID!):Translation
+findTranslationList( page: PageInput, sort:SortInput,filters:[FilterInput]):TranslationConnection
+findLanguage(id:ID!):Language
+findLanguageList( page: PageInput, sort:SortInput,filters:[FilterInput]):LanguageConnection
+findDonor(id:ID!):Donor
+findDonorList( page: PageInput, sort:SortInput,filters:[FilterInput]):DonorConnection
+findAuditLogs(id:ID!):AuditLogs
+findAuditLogsList( page: PageInput, sort:SortInput,filters:[FilterInput]):AuditLogsConnection
+findProcess(id:ID!):Process
+findProcessList( page: PageInput, sort:SortInput,filters:[FilterInput]):ProcessConnection
+findPreference(id:ID!):Preference
+findPreferenceList( page: PageInput, sort:SortInput,filters:[FilterInput]):PreferenceConnection
+findAlertRule(id:ID!):AlertRule
+findAlertRuleList( page: PageInput, sort:SortInput,filters:[FilterInput]):AlertRuleConnection
+findAlert(id:ID!):Alert
+findAlertList( page: PageInput, sort:SortInput,filters:[FilterInput]):AlertConnection
+findMessage(id:ID!):Message
+findMessageList( page: PageInput, sort:SortInput,filters:[FilterInput]):MessageConnection
+findWorkflowNode(id:ID!):WorkflowNode
+findWorkflowNodeList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowNodeConnection
+findWorkflow(id:ID!):Workflow
+findWorkflowList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowConnection
+findSession(id:ID!):Session
+findSessionList( page: PageInput, sort:SortInput,filters:[FilterInput]):SessionConnection
+findAuthenticationType(id:ID!):AuthenticationType
+findAuthenticationTypeList( page: PageInput, sort:SortInput,filters:[FilterInput]):AuthenticationTypeConnection
+findAddress(id:ID!):Address
+findAddressList( page: PageInput, sort:SortInput,filters:[FilterInput]):AddressConnection
+findRole(id:ID!):Role
+findRoleList( page: PageInput, sort:SortInput,filters:[FilterInput]):RoleConnection
+findPearson(id:ID!):Pearson
+findPearsonList( page: PageInput, sort:SortInput,filters:[FilterInput]):PearsonConnection
+findUser(id:ID!):User
+findUserList( page: PageInput, sort:SortInput,filters:[FilterInput]):UserConnection
+findTenant(id:ID!):Tenant
+findTenantList( page: PageInput, sort:SortInput,filters:[FilterInput]):TenantConnection
+findOrganization(id:ID!):Organization
+findOrganizationList( page: PageInput, sort:SortInput,filters:[FilterInput]):OrganizationConnection
+findCustomer(id:ID!):Customer
+findCustomerList( page: PageInput, sort:SortInput,filters:[FilterInput]):CustomerConnection
+findModule(id:ID!):Module
+findModuleList( page: PageInput, sort:SortInput,filters:[FilterInput]):ModuleConnection
+findAction(id:ID!):Action
+findActionList( page: PageInput, sort:SortInput,filters:[FilterInput]):ActionConnection
+findDelegation(id:ID!):Delegation
+findDelegationList( page: PageInput, sort:SortInput,filters:[FilterInput]):DelegationConnection
+findComponent(id:ID!):Component
+findComponentList( page: PageInput, sort:SortInput,filters:[FilterInput]):ComponentConnection
+findInstance(id:ID!):Instance
+findInstanceList( page: PageInput, sort:SortInput,filters:[FilterInput]):InstanceConnection
+}
+type Mutation {createCollaborator(CollaboratorTo:CollaboratorInput!):Collaborator
+modifyCollaborator(CollaboratorTo:CollaboratorInput!):Collaborator
+deleteCollaborator(idcollaborator:Int!):Int
+createPartner(PartnerTo:PartnerInput!):Partner
+modifyPartner(PartnerTo:PartnerInput!):Partner
+deletePartner(idpartner:Int!):Int
+createThemeStyle(ThemeStyleTo:ThemeStyleInput!):ThemeStyle
+modifyThemeStyle(ThemeStyleTo:ThemeStyleInput!):ThemeStyle
+deleteThemeStyle(idthemestyle:Int!):Int
+createHtmlTag(HtmlTagTo:HtmlTagInput!):HtmlTag
+modifyHtmlTag(HtmlTagTo:HtmlTagInput!):HtmlTag
+deleteHtmlTag(idhtmltag:Int!):Int
+createTranslation(TranslationTo:TranslationInput!):Translation
+modifyTranslation(TranslationTo:TranslationInput!):Translation
+deleteTranslation(idtranslation:Int!):Int
+createLanguage(LanguageTo:LanguageInput!):Language
+modifyLanguage(LanguageTo:LanguageInput!):Language
+deleteLanguage(idlanguage:Int!):Int
+createDonor(DonorTo:DonorInput!):Donor
+modifyDonor(DonorTo:DonorInput!):Donor
+deleteDonor(iddonor:Int!):Int
+createAuditLogs(AuditLogsTo:AuditLogsInput!):AuditLogs
+modifyAuditLogs(AuditLogsTo:AuditLogsInput!):AuditLogs
+deleteAuditLogs(idauditlogs:Int!):Int
+createProcess(ProcessTo:ProcessInput!):Process
+modifyProcess(ProcessTo:ProcessInput!):Process
+deleteProcess(idprocess:Int!):Int
+createPreference(PreferenceTo:PreferenceInput!):Preference
+modifyPreference(PreferenceTo:PreferenceInput!):Preference
+deletePreference(idpreference:Int!):Int
+createAlertRule(AlertRuleTo:AlertRuleInput!):AlertRule
+modifyAlertRule(AlertRuleTo:AlertRuleInput!):AlertRule
+deleteAlertRule(idalertrule:Int!):Int
+createAlert(AlertTo:AlertInput!):Alert
+modifyAlert(AlertTo:AlertInput!):Alert
+deleteAlert(idalert:Int!):Int
+createMessage(MessageTo:MessageInput!):Message
+modifyMessage(MessageTo:MessageInput!):Message
+deleteMessage(idmessage:Int!):Int
+createWorkflowNode(WorkflowNodeTo:WorkflowNodeInput!):WorkflowNode
+modifyWorkflowNode(WorkflowNodeTo:WorkflowNodeInput!):WorkflowNode
+deleteWorkflowNode(idworkflownode:Int!):Int
+createWorkflow(WorkflowTo:WorkflowInput!):Workflow
+modifyWorkflow(WorkflowTo:WorkflowInput!):Workflow
+deleteWorkflow(idworkflow:Int!):Int
+createSession(SessionTo:SessionInput!):Session
+modifySession(SessionTo:SessionInput!):Session
+deleteSession(idsession:Int!):Int
+createAuthenticationType(AuthenticationTypeTo:AuthenticationTypeInput!):AuthenticationType
+modifyAuthenticationType(AuthenticationTypeTo:AuthenticationTypeInput!):AuthenticationType
+deleteAuthenticationType(idauthenticationtype:Int!):Int
+createAddress(AddressTo:AddressInput!):Address
+modifyAddress(AddressTo:AddressInput!):Address
+deleteAddress(idaddress:Int!):Int
+createRole(RoleTo:RoleInput!):Role
+modifyRole(RoleTo:RoleInput!):Role
+deleteRole(idrole:Int!):Int
+createPearson(PearsonTo:PearsonInput!):Pearson
+modifyPearson(PearsonTo:PearsonInput!):Pearson
+deletePearson(idpearson:Int!):Int
+createUser(UserTo:UserInput!):User
+modifyUser(UserTo:UserInput!):User
+deleteUser(iduser:Int!):Int
+createTenant(TenantTo:TenantInput!):Tenant
+modifyTenant(TenantTo:TenantInput!):Tenant
+deleteTenant(idtenant:Int!):Int
+createOrganization(OrganizationTo:OrganizationInput!):Organization
+modifyOrganization(OrganizationTo:OrganizationInput!):Organization
+deleteOrganization(idorganization:Int!):Int
+createCustomer(CustomerTo:CustomerInput!):Customer
+modifyCustomer(CustomerTo:CustomerInput!):Customer
+deleteCustomer(idcustomer:Int!):Int
+createModule(ModuleTo:ModuleInput!):Module
+modifyModule(ModuleTo:ModuleInput!):Module
+deleteModule(idmodule:Int!):Int
+createAction(ActionTo:ActionInput!):Action
+modifyAction(ActionTo:ActionInput!):Action
+deleteAction(idaction:Int!):Int
+createDelegation(DelegationTo:DelegationInput!):Delegation
+modifyDelegation(DelegationTo:DelegationInput!):Delegation
+deleteDelegation(iddelegation:Int!):Int
+createComponent(ComponentTo:ComponentInput!):Component
+modifyComponent(ComponentTo:ComponentInput!):Component
+deleteComponent(idcomponent:Int!):Int
+createInstance(InstanceTo:InstanceInput!):Instance
+modifyInstance(InstanceTo:InstanceInput!):Instance
+deleteInstance(idinstance:Int!):Int
+}
+
+type CollaboratorConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Collaborator]
+}
+#
+type Collaborator {
+#
+affiliation: String
+#
+contactPoint: String
+#
+identifier: String
+id: ID!
+pearson:Pearson
+}
+type PartnerConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Partner]
+}
+#
+type Partner {
+#
+affiliation: String
+#
+contactPoint: String
+#
+indentifier: String
+id: ID!
+pearson:Pearson
+}
+type ThemeStyleConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [ThemeStyle]
+}
+#
+type ThemeStyle {
+#
+description: String
+#
+path: String
+#
+physicalName: String
+#
+isDefault: Boolean
+id: ID!
+Preferences:[Preference]
+}
+type HtmlTagConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [HtmlTag]
+}
+#
+type HtmlTag {
+#
+tagName: String
+id: ID!
+Translations:[Translation]
+}
+type TranslationConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Translation]
+}
+#
+type Translation {
+#
+translation: String
+#
+languageTo: Int
+id: ID!
+alert:Alert
+language:Language
+message:Message
+htmltag:HtmlTag
+module:Module
+}
+type LanguageConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Language]
+}
+#management the globalization of the application
+type Language {
+#
+name: String
+#
+codeISO: String
+#
+isbase: String
+id: ID!
+Translations:[Translation]
+}
+type DonorConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Donor]
+}
+#
+type Donor {
+#
+affiliation: String
+#
+contactPoint: String
+#
+indentifier: String
+id: ID!
+pearson:Pearson
+}
+type AuditLogsConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [AuditLogs]
+}
+#register events of the users and applications
+type AuditLogs {
+#
+correlationId: String
+#
+message: String
+id: ID!
+instance:Instance
+}
+type ProcessConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Process]
+}
+#register all process that can be executed by any component or workflow
+type Process {
+#
+name: String
+#
+description: String
+#
+code: String
+#
+isBackground: Boolean
+#
+dbFunction: String
+#
+callReport: Boolean
+#
+path: String
+id: ID!
+workflownode:WorkflowNode
+}
+type PreferenceConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Preference]
+}
+#
+type Preference {
+#
+picture: String
+id: ID!
+user:User
+alert:Alert
+themestyle:ThemeStyle
+}
+type AlertRuleConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [AlertRule]
+}
+#
+type AlertRule {
+#
+name: String
+#
+sql: String
+#
+filterClause: String
+id: ID!
+alert:Alert
+}
+type AlertConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Alert]
+}
+#Management of the user alerts
+type Alert {
+#
+description: String
+id: ID!
+AlertRules:[AlertRule]
+Translations:[Translation]
+Preferences:[Preference]
+}
+type MessageConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Message]
+}
+#management the message text that the user receive from application
+type Message {
+#
+Description: String
+#
+sql: String
+#
+filterClause: String
+id: ID!
+Translations:[Translation]
+component:Component
+}
+type WorkflowNodeConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [WorkflowNode]
+}
+#
+type WorkflowNode {
+#
+name: String
+#
+description: String
+#
+help: String
+id: ID!
+workflow:Workflow
+Workflows:[Workflow]
+Processs:[Process]
+Modules:[Module]
+}
+type WorkflowConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Workflow]
+}
+#define the different workflow that interact with the process
+type Workflow {
+#
+description: String
+#
+help: String
+#
+sortno: Int
+id: ID!
+tenant:Tenant
+WorkflowNodes:[WorkflowNode]
+workflownode:WorkflowNode
+}
+type SessionConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Session]
+}
+#management the user sessions
+type Session {
+#
+webSession: String
+#
+remote_Address: String
+#
+remote_host: String
+id: ID!
+user:User
+instance:Instance
+}
+type AuthenticationTypeConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [AuthenticationType]
+}
+#
+type AuthenticationType {
+#
+name: String
+#
+protocol: String
+#
+clientId: String
+#
+tenantId: String
+#
+keySecret: String
+#
+objectId: String
+#
+isDefault: Boolean
+id: ID!
+Tenants:[Tenant]
+}
+type AddressConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Address]
+}
+#
+type Address {
+#
+country: Int
+#
+locality: String
+#
+region: String
+#
+postOfficeBoxNumber: String
+#
+postalCode: String
+#
+streetAddress: String
+id: ID!
+Pearsons:[Pearson]
+}
+type RoleConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Role]
+}
+#
+type Role {
+#
+description: String
+#
+securityGroup: String
+id: ID!
+user:User
+Actions:[Action]
+}
+type PearsonConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Pearson]
+}
+#
+type Pearson {
+#
+giveName: String
+#
+familyName: String
+#
+additionalName: String
+#
+email: String
+#
+officialEmail: String
+#
+gender: String
+#
+hasCredential: Boolean
+#
+jobTitle: String
+#
+knowsAbout: String
+#
+language: Int
+#
+phone: String
+id: ID!
+address:Address
+tenant:Tenant
+Collaborators:[Collaborator]
+Donors:[Donor]
+Partners:[Partner]
+}
+type UserConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [User]
+}
+#user management 
+type User {
+#
+userName: String
+#
+userPassword: String
+#
+lastAccess: Date
+#
+defaultRole: Int
+#
+isIS: Int
+id: ID!
+Sessions:[Session]
+Delegations:[Delegation]
+tenant:Tenant
+Preferences:[Preference]
+Roles:[Role]
+}
+type TenantConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Tenant]
+}
+#
+type Tenant {
+#
+name: String
+#
+expiration: Date
+#
+expire: Boolean
+id: ID!
+Users:[User]
+Instances:[Instance]
+Workflows:[Workflow]
+organization:Organization
+authenticationtype:AuthenticationType
+customer:Customer
+Pearsons:[Pearson]
+}
+type OrganizationConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Organization]
+}
+#
+type Organization {
+#
+legalName: String
+#
+phone: String
+#
+webpage: String
+#
+slogan: String
+#
+name: String
+#
+taxID: String
+#
+logo: String
+#
+isActive: String
+#
+defaultAuthentication: Int
+#
+defaultTheme: Int
+id: ID!
+Tenants:[Tenant]
+customer:Customer
+Customers:[Customer]
+}
+type CustomerConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Customer]
+}
+#register a client of the application, that client can be a individual or a company
+type Customer {
+#
+name: String
+#
+phone: String
+#
+officialEmail: String
+#
+alternateEmail: String
+#
+jobTitle: String
+#
+languagePreference: String
+#
+phoneExtension: String
+#
+isActive: String
+id: ID!
+Organizations:[Organization]
+organization:Organization
+Tenants:[Tenant]
+}
+type ModuleConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Module]
+}
+#register the menu list of each component or services depend of the component registers
+type Module {
+#
+name: String
+#
+description: String
+#
+help: String
+#
+route: String
+id: ID!
+workflownode:WorkflowNode
+Actions:[Action]
+component:Component
+Translations:[Translation]
+}
+type ActionConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Action]
+}
+#
+type Action {
+#
+description: String
+#
+actionType: Int
+id: ID!
+module:Module
+role:Role
+}
+type DelegationConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Delegation]
+}
+#
+type Delegation {
+#
+startDate: Date
+#
+endDate: Date
+#
+DelegateTo: String
+id: ID!
+user:User
+}
+type ComponentConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Component]
+}
+#register all components or microservices availables for the user
+type Component {
+#
+name: String
+#
+version: String
+#
+releaseNo: String
+#
+info: String
+id: ID!
+Instances:[Instance]
+Messages:[Message]
+Modules:[Module]
+}
+type InstanceConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Instance]
+}
+#instance management of all services liked with the client
+type Instance {
+#
+server: String
+#
+port: String
+#
+health: String
+id: ID!
+Sessions:[Session]
+AuditLogss:[AuditLogs]
+component:Component
+tenant:Tenant
+}
+
+input CollaboratorInput {
+#
+affiliation: String
+#
+contactPoint: String
+#
+identifier: String
+id: ID!
+pearson:PearsonInput
+}
+input PartnerInput {
+#
+affiliation: String
+#
+contactPoint: String
+#
+indentifier: String
+id: ID!
+pearson:PearsonInput
+}
+input ThemeStyleInput {
+#
+description: String
+#
+path: String
+#
+physicalName: String
+#
+isDefault: Boolean
+id: ID!
+}
+input HtmlTagInput {
+#
+tagName: String
+id: ID!
+}
+input TranslationInput {
+#
+translation: String
+#
+languageTo: Int
+id: ID!
+alert:AlertInput
+language:LanguageInput
+message:MessageInput
+htmltag:HtmlTagInput
+module:ModuleInput
+}
+input LanguageInput {
+#
+name: String
+#
+codeISO: String
+#
+isbase: String
+id: ID!
+}
+input DonorInput {
+#
+affiliation: String
+#
+contactPoint: String
+#
+indentifier: String
+id: ID!
+pearson:PearsonInput
+}
+input AuditLogsInput {
+#
+correlationId: String
+#
+message: String
+id: ID!
+instance:InstanceInput
+}
+input ProcessInput {
+#
+name: String
+#
+description: String
+#
+code: String
+#
+isBackground: Boolean
+#
+dbFunction: String
+#
+callReport: Boolean
+#
+path: String
+id: ID!
+workflownode:WorkflowNodeInput
+}
+input PreferenceInput {
+#
+picture: String
+id: ID!
+user:UserInput
+alert:AlertInput
+themestyle:ThemeStyleInput
+}
+input AlertRuleInput {
+#
+name: String
+#
+sql: String
+#
+filterClause: String
+id: ID!
+alert:AlertInput
+}
+input AlertInput {
+#
+description: String
+id: ID!
+}
+input MessageInput {
+#
+Description: String
+#
+sql: String
+#
+filterClause: String
+id: ID!
+component:ComponentInput
+}
+input WorkflowNodeInput {
+#
+name: String
+#
+description: String
+#
+help: String
+id: ID!
+workflow:WorkflowInput
+}
+input WorkflowInput {
+#
+description: String
+#
+help: String
+#
+sortno: Int
+id: ID!
+tenant:TenantInput
+workflownode:WorkflowNodeInput
+}
+input SessionInput {
+#
+webSession: String
+#
+remote_Address: String
+#
+remote_host: String
+id: ID!
+user:UserInput
+instance:InstanceInput
+}
+input AuthenticationTypeInput {
+#
+name: String
+#
+protocol: String
+#
+clientId: String
+#
+tenantId: String
+#
+keySecret: String
+#
+objectId: String
+#
+isDefault: Boolean
+id: ID!
+}
+input AddressInput {
+#
+country: Int
+#
+locality: String
+#
+region: String
+#
+postOfficeBoxNumber: String
+#
+postalCode: String
+#
+streetAddress: String
+id: ID!
+}
+input RoleInput {
+#
+description: String
+#
+securityGroup: String
+id: ID!
+user:UserInput
+}
+input PearsonInput {
+#
+giveName: String
+#
+familyName: String
+#
+additionalName: String
+#
+email: String
+#
+officialEmail: String
+#
+gender: String
+#
+hasCredential: Boolean
+#
+jobTitle: String
+#
+knowsAbout: String
+#
+language: Int
+#
+phone: String
+id: ID!
+address:AddressInput
+tenant:TenantInput
+}
+input UserInput {
+#
+userName: String
+#
+userPassword: String
+#
+lastAccess: Date
+#
+defaultRole: Int
+#
+isIS: Int
+id: ID!
+tenant:TenantInput
+}
+input TenantInput {
+#
+name: String
+#
+expiration: Date
+#
+expire: Boolean
+id: ID!
+organization:OrganizationInput
+authenticationtype:AuthenticationTypeInput
+customer:CustomerInput
+}
+input OrganizationInput {
+#
+legalName: String
+#
+phone: String
+#
+webpage: String
+#
+slogan: String
+#
+name: String
+#
+taxID: String
+#
+logo: String
+#
+isActive: String
+#
+defaultAuthentication: Int
+#
+defaultTheme: Int
+id: ID!
+customer:CustomerInput
+}
+input CustomerInput {
+#
+name: String
+#
+phone: String
+#
+officialEmail: String
+#
+alternateEmail: String
+#
+jobTitle: String
+#
+languagePreference: String
+#
+phoneExtension: String
+#
+isActive: String
+id: ID!
+organization:OrganizationInput
+}
+input ModuleInput {
+#
+name: String
+#
+description: String
+#
+help: String
+#
+route: String
+id: ID!
+workflownode:WorkflowNodeInput
+component:ComponentInput
+}
+input ActionInput {
+#
+description: String
+#
+actionType: Int
+id: ID!
+module:ModuleInput
+role:RoleInput
+}
+input DelegationInput {
+#
+startDate: Date
+#
+endDate: Date
+#
+DelegateTo: String
+id: ID!
+user:UserInput
+}
+input ComponentInput {
+#
+name: String
+#
+version: String
+#
+releaseNo: String
+#
+info: String
+id: ID!
+}
+input InstanceInput {
+#
+server: String
+#
+port: String
+#
+health: String
+id: ID!
+component:ComponentInput
+tenant:TenantInput
+}
+
+input FilterInput { 
+mod: FilterMod = EQ
+col: String!
+val: String!
+}
+
+input SortInput {
+col: String!
+mod: SortMod = ASC
+}
+
+input PageInput {
+number: Int! = 0
+size: Int!=1
+}
+
+enum FilterMod {
+EQ
+LK
+}
+
+enum SortMod {
+ASC
+DES
+}
+
+scalar Date
+

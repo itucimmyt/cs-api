@@ -94,7 +94,7 @@ Run the following script to generate a docker image for the project:
 
     ./buildDockerImage.sh
 
-This will generate an image named _ebs-sg-tnt:{version-tag}_. Example: _ebs-sg-tnt:0.1_
+This will generate an image named _ebs-sg-tnt:0.1.0_. Example: _ebs-sg-tnt:0.1_
 The host running this script just needs docker to be installed, maven and java are not necessary.
 
 ## Deploy container
