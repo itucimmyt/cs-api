@@ -29,7 +29,7 @@ import javax.persistence.GenerationType;
  * @version 1.0
  * @created 27-Apr-2020 9:47:38 AM
  */
-@Entity @Table(name="Delegation",schema="")
+@Entity @Table(name="Delegation",schema="tnt")
 public class DelegationModel extends Auditable {
 
 	@Column(name="DelegateTo")
