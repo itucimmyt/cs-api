@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import org.ebs.util.Auditable;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.FetchType;
 import java.util.Set;
@@ -33,7 +34,10 @@ import javax.persistence.Id;
 @Entity @Table(name="Role",schema="tnt")
 public class RoleModel extends Auditable {
 
-	@OneToMany(mappedBy = "role",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL)	
+	@JoinTable(name="role_action", schema = "tnt",
+	 joinColumns = @JoinColumn(name="role_id",referencedColumnName = "id"),
+	 inverseJoinColumns = @JoinColumn(name="action_id",referencedColumnName = "id"))
 	Set<ActionModel> Actions;
 	@Column(name="description")
 	private String description;

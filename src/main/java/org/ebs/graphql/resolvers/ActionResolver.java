@@ -78,9 +78,9 @@ public class ActionResolver implements GraphQLResolver<ActionTo> {
 	 * 
 	 * @param actionTo
 	 */
-	public RoleTo getRole(ActionTo actionTo){
+	/*public RoleTo getRole(ActionTo actionTo){
 		ActionModel actionModel = actionRepository.findById(actionTo.getId()).get(); 
 		 return roleService.findRole(actionModel.getRole().getId()).get();
-	}
+	}*/
 
 }

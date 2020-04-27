@@ -23,7 +23,7 @@ public class ActionInput implements Serializable {
 	private String description;
 	private int id;
 	ModuleInput module;
-	RoleInput role;
+	
 	private static final long serialVersionUID = -277039672;
 
 	public int getactionType(){
@@ -42,9 +42,7 @@ public class ActionInput implements Serializable {
 		 return module;
 	}
 
-	public RoleInput getRole(){
-		 return role;
-	}
+ 
 
 	/**
 	 * 
@@ -78,12 +76,6 @@ public class ActionInput implements Serializable {
 		this.module = module;
 	}
 
-	/**
-	 * 
-	 * @param role
-	 */
-	public void setRole(RoleInput role){
-		this.role = role;
-	}
+	 
 
 }

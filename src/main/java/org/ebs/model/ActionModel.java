@@ -10,6 +10,7 @@ package org.ebs.model;
 
 import org.ebs.util.Auditable;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.FetchType;
 import java.util.Set;
 import java.util.Date;
@@ -40,8 +41,8 @@ public class ActionModel extends Auditable {
 	private int id;
 	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="module_id")
 	ModuleModel module;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="role_id")
-	RoleModel role;
+	@ManyToMany(mappedBy = "Actions")
+	Set<RoleModel> role;
 
 	public int getactionType(){
 		return actionType;
@@ -59,7 +60,7 @@ public class ActionModel extends Auditable {
 		 return module;
 	}
 
-	public RoleModel getRole(){
+	public Set<RoleModel> getRole(){
 		 return role;
 	}
 
@@ -99,7 +100,7 @@ public class ActionModel extends Auditable {
 	 * 
 	 * @param role
 	 */
-	public void setRole(RoleModel role){
+	public void setRole(Set<RoleModel> role){
 		this.role = role;
 	}
 

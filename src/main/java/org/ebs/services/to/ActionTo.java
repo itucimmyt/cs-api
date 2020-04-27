@@ -25,7 +25,7 @@ public class ActionTo implements Serializable {
 	private String description;
 	private int id;
 	ModuleTo module;
-	RoleTo role;
+	Set<RoleTo> role;
 	private static final long serialVersionUID = 428686170;
 
 	public int getactionType(){
@@ -44,7 +44,7 @@ public class ActionTo implements Serializable {
 		 return module;
 	}
 
-	public RoleTo getRole(){
+	public Set<RoleTo> getRole(){
 		 return role;
 	}
 
@@ -84,7 +84,7 @@ public class ActionTo implements Serializable {
 	 * 
 	 * @param role
 	 */
-	public void setRole(RoleTo role){
+	public void setRole(Set<RoleTo> role){
 		this.role = role;
 	}
 

@@ -726,7 +726,7 @@ description: String
 actionType: Int
 id: ID!
 module:Module
-role:Role
+role:[Role]
 }
 type DelegationConnection {
 totalPages: Int
@@ -1108,7 +1108,6 @@ description: String
 actionType: Int
 id: ID!
 module:ModuleInput
-role:RoleInput
 }
 input DelegationInput {
 #
