@@ -49,7 +49,7 @@ public class UserModel extends Auditable {
 	@OneToMany(mappedBy = "user",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	Set<PreferenceModel> Preferences;
 	@ManyToMany(cascade = CascadeType.ALL)	
-	@JoinTable(name="user_role",
+	@JoinTable(name="user_role", schema = "tnt",
 	 joinColumns = @JoinColumn(name="user_id",referencedColumnName = "id"),
 	 inverseJoinColumns = @JoinColumn(name="role_id",referencedColumnName = "id"))
 	Set<RoleModel> Roles;
