@@ -56,6 +56,8 @@ findComponent(id:ID!):Component
 findComponentList( page: PageInput, sort:SortInput,filters:[FilterInput]):ComponentConnection
 findInstance(id:ID!):Instance
 findInstanceList( page: PageInput, sort:SortInput,filters:[FilterInput]):InstanceConnection
+findCountry(id:ID!):Country
+findCountryList( page: PageInput, sort:SortInput,filters:[FilterInput]):CountryConnection
 }
 type Mutation {createCollaborator(CollaboratorTo:CollaboratorInput!):Collaborator
 modifyCollaborator(CollaboratorTo:CollaboratorInput!):Collaborator
@@ -144,6 +146,9 @@ deleteComponent(idcomponent:Int!):Int
 createInstance(InstanceTo:InstanceInput!):Instance
 modifyInstance(InstanceTo:InstanceInput!):Instance
 deleteInstance(idinstance:Int!):Int
+createCountry(CountryTo:CountryInput!):Country
+modifyCountry(CountryTo:CountryInput!):Country
+deleteCountry(idcountry:Int!):Int
 }
 
 type CollaboratorConnection {
@@ -203,7 +208,7 @@ physicalName: String
 #
 isDefault: Boolean
 id: ID!
-Preferences:[Preference]
+preferences:[Preference]
 }
 type HtmlTagConnection {
 totalPages: Int
@@ -218,7 +223,7 @@ type HtmlTag {
 #
 tagName: String
 id: ID!
-Translations:[Translation]
+translations:[Translation]
 }
 type TranslationConnection {
 totalPages: Int
@@ -258,7 +263,7 @@ codeISO: String
 #
 isbase: String
 id: ID!
-Translations:[Translation]
+translations:[Translation]
 }
 type DonorConnection {
 totalPages: Int
@@ -372,9 +377,9 @@ type Alert {
 #
 description: String
 id: ID!
-AlertRules:[AlertRule]
-Translations:[Translation]
-Preferences:[Preference]
+alertrules:[AlertRule]
+translations:[Translation]
+preferences:[Preference]
 }
 type MessageConnection {
 totalPages: Int
@@ -393,7 +398,7 @@ sql: String
 #
 filterClause: String
 id: ID!
-Translations:[Translation]
+translations:[Translation]
 component:Component
 }
 type WorkflowNodeConnection {
@@ -414,9 +419,9 @@ description: String
 help: String
 id: ID!
 workflow:Workflow
-Workflows:[Workflow]
-Processs:[Process]
-Modules:[Module]
+workflows:[Workflow]
+processs:[Process]
+modules:[Module]
 }
 type WorkflowConnection {
 totalPages: Int
@@ -436,7 +441,7 @@ help: String
 sortno: Int
 id: ID!
 tenant:Tenant
-WorkflowNodes:[WorkflowNode]
+workflownodes:[WorkflowNode]
 workflownode:WorkflowNode
 }
 type SessionConnection {
@@ -484,7 +489,7 @@ objectId: String
 #
 isDefault: Boolean
 id: ID!
-Tenants:[Tenant]
+tenants:[Tenant]
 }
 type AddressConnection {
 totalPages: Int
@@ -509,7 +514,7 @@ postalCode: String
 #
 streetAddress: String
 id: ID!
-Pearsons:[Pearson]
+pearsons:[Pearson]
 }
 type RoleConnection {
 totalPages: Int
@@ -527,7 +532,7 @@ description: String
 securityGroup: String
 id: ID!
 user:[User]
-Actions:[Action]
+actions:[Action]
 }
 type PearsonConnection {
 totalPages: Int
@@ -564,9 +569,9 @@ phone: String
 id: ID!
 address:Address
 tenant:Tenant
-Collaborators:[Collaborator]
-Donors:[Donor]
-Partners:[Partner]
+collaborators:[Collaborator]
+donors:[Donor]
+partners:[Partner]
 }
 type UserConnection {
 totalPages: Int
@@ -589,11 +594,11 @@ defaultRole: Int
 #
 isIS: Int
 id: ID!
-Sessions:[Session]
-Delegations:[Delegation]
+sessions:[Session]
+delegations:[Delegation]
 tenant:Tenant
-Preferences:[Preference]
-Roles:[Role]
+preferences:[Preference]
+roles:[Role]
 }
 type TenantConnection {
 totalPages: Int
@@ -612,13 +617,13 @@ expiration: Date
 #
 expire: Boolean
 id: ID!
-Users:[User]
-Instances:[Instance]
-Workflows:[Workflow]
+users:[User]
+instances:[Instance]
+workflows:[Workflow]
 organization:Organization
 authenticationtype:AuthenticationType
 customer:Customer
-Pearsons:[Pearson]
+pearsons:[Pearson]
 }
 type OrganizationConnection {
 totalPages: Int
@@ -651,9 +656,9 @@ defaultAuthentication: Int
 #
 defaultTheme: Int
 id: ID!
-Tenants:[Tenant]
+tenants:[Tenant]
 customer:Customer
-Customers:[Customer]
+customers:[Customer]
 }
 type CustomerConnection {
 totalPages: Int
@@ -682,9 +687,9 @@ phoneExtension: String
 #
 isActive: String
 id: ID!
-Organizations:[Organization]
+organizations:[Organization]
 organization:Organization
-Tenants:[Tenant]
+tenants:[Tenant]
 }
 type ModuleConnection {
 totalPages: Int
@@ -706,9 +711,9 @@ help: String
 route: String
 id: ID!
 workflownode:WorkflowNode
-Actions:[Action]
+actions:[Action]
 component:Component
-Translations:[Translation]
+translations:[Translation]
 }
 type ActionConnection {
 totalPages: Int
@@ -766,9 +771,9 @@ releaseNo: String
 #
 info: String
 id: ID!
-Instances:[Instance]
-Messages:[Message]
-Modules:[Module]
+instances:[Instance]
+messages:[Message]
+modules:[Module]
 }
 type InstanceConnection {
 totalPages: Int
@@ -787,10 +792,32 @@ port: String
 #
 health: String
 id: ID!
-Sessions:[Session]
-AuditLogss:[AuditLogs]
+sessions:[Session]
+auditlogss:[AuditLogs]
 component:Component
 tenant:Tenant
+}
+type CountryConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Country]
+}
+#
+type Country {
+#
+code: String
+#
+name: String
+#
+full_name: String
+#
+iso3: String
+#
+number: String
+id: ID!
 }
 
 input CollaboratorInput {
@@ -1108,6 +1135,7 @@ description: String
 actionType: Int
 id: ID!
 module:ModuleInput
+role:[RoleInput]
 }
 input DelegationInput {
 #
@@ -1140,6 +1168,19 @@ health: String
 id: ID!
 component:ComponentInput
 tenant:TenantInput
+}
+input CountryInput {
+#
+code: String
+#
+name: String
+#
+full_name: String
+#
+iso3: String
+#
+number: String
+id: ID!
 }
 
 input FilterInput { 
