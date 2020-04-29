@@ -6,7 +6,7 @@ This project is the core of a micro service by domain, so it can be added into S
 
  - The micro service can connect to a DB, which is not managed in this project.
  - There should be an API manager component which will manage the microservice access.
- - The main configuration item is the data source, found in `` src/main/resources/application.yml `` under ``spring.datasource``. The default database configuration follows the standard naming: _ebs-{domain}-db:port/{domaindatabase}_. Example: ``jdbc:postgresql://ebs-tnt-db:5432/tntdb``. username and password default both to **postgres**
+ - The main configuration item is the data source, found in `` src/main/resources/application.yml `` under ``spring.datasource``. The default database configuration follows the standard naming: _ebs-catalog-db:port/{domaindatabase}_. Example: ``jdbc:postgresql://ebs-tnt-db:5432/tntdb``. username and password default both to **postgres**
  - Endpoints in dataflows connecting with other microservices _must_ point to standard container names: ebs-sg-tnt, protocol (http) and port (8080). Example: http://ebs-sg-tnt:8080
  - Communication over HTTPS will be managed by the upper layer of API Manager
 
