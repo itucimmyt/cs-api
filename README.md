@@ -102,3 +102,4 @@ Run an image based on this generated image. Example:
 
     docker run --rm -dt -p 8080:8080 --name ebs-sg-tnt-0.1 --network ebs-sg-net ebs-sg-tnt:0.1
 
+The script runDocker.sh will perform the same task
