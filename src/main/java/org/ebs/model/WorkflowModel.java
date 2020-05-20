@@ -42,11 +42,11 @@ public class WorkflowModel extends Auditable {
 	private Integer sortno;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="tenant_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="tenant_id")
 	TenantModel tenant;
-	@OneToMany(mappedBy = "workflow",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "workflow",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<WorkflowNodeModel> workflownodes;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="workflownode_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="workflownode_id")
 	WorkflowNodeModel workflownode;
 
 	public String getdescription(){

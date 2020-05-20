@@ -35,7 +35,7 @@ import javax.persistence.GenerationType;
 public class ProgramModel extends Auditable {
 
 
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="tenant_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="tenant_id")
 	private TenantModel tenant;
 	@Column(name="program_code")
 	private String program_code;
@@ -49,9 +49,9 @@ public class ProgramModel extends Auditable {
 	private String description;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@OneToMany(mappedBy = "program",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "program",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<ProjectModel> projects;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="crop_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="crop_id")
 	CropModel crop;
 
 	public CropModel getCrop(){

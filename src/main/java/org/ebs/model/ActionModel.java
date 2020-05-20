@@ -40,9 +40,9 @@ public class ActionModel extends Auditable {
 	private int actionType;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@OneToMany(mappedBy = "action",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "action",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<RoleActionModel> roleactions;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="module_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="module_id")
 	ModuleModel module;
 
 	public int getactionType(){

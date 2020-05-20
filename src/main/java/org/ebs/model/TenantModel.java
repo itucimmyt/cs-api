@@ -42,21 +42,21 @@ public class TenantModel extends Auditable {
 	private boolean expire;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@OneToMany(mappedBy = "tenant",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "tenant",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<UserModel> users;
-	@OneToMany(mappedBy = "tenant",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "tenant",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<InstanceModel> instances;
-	@OneToMany(mappedBy = "tenant",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "tenant",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<WorkflowModel> workflows;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="organization_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="organization_id")
 	OrganizationModel organization;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="authenticationtype_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="authenticationtype_id")
 	AuthenticationTypeModel authenticationtype;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="customer_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="customer_id")
 	CustomerModel customer;
-	@OneToMany(mappedBy = "tenant",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "tenant",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<PersonModel> persons;
-	@OneToMany(mappedBy = "tenant",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "tenant",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<ProgramModel> programs;
 
 	public Set<ProgramModel> getPrograms(){

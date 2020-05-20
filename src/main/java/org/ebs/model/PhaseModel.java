@@ -45,7 +45,7 @@ public class PhaseModel extends Auditable {
 	private int id;
 	@ManyToMany(cascade =CascadeType.ALL) @JoinTable(name = "phase_scheme", schema="breeding", joinColumns  = @JoinColumn(name="phase_id",referencedColumnName = "id"),inverseJoinColumns = @JoinColumn(name="scheme_id",referencedColumnName = "id"))
 	Set<SchemeModel> schemes;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="pipeline_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="pipeline_id")
 	PipelineModel pipeline;
 
 	public String getdescription(){

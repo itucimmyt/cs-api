@@ -37,11 +37,11 @@ public class PreferenceModel extends Auditable {
 	private int tenant_id;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="user_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="user_id")
 	UserModel user;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="alert_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="alert_id")
 	AlertModel alert;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="styletheme_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="styletheme_id")
 	StyleThemeModel styletheme;
 
 	public AlertModel getAlert(){

@@ -43,7 +43,7 @@ public class SchemaModel extends Auditable {
 	private String description;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="pipeline_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="pipeline_id")
 	PipelineModel pipeline;
 	@ManyToMany(cascade =CascadeType.ALL) @JoinTable(name = "schema_stage", schema="breeding", joinColumns  = @JoinColumn(name="schema_id",referencedColumnName = "id"),inverseJoinColumns = @JoinColumn(name="stage_id",referencedColumnName = "id"))
 	Set<StageModel> stages;

@@ -44,13 +44,13 @@ public class ModuleModel extends Auditable {
 	private String route;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="workflownode_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="workflownode_id")
 	WorkflowNodeModel workflownode;
-	@OneToMany(mappedBy = "module",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "module",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<ActionModel> actions;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="component_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="component_id")
 	ComponentModel component;
-	@OneToMany(mappedBy = "module",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "module",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<TranslationModel> translations;
 
 	public Set<ActionModel> getActions(){

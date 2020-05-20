@@ -40,17 +40,17 @@ public class TranslationModel extends Auditable {
 	private int languageTo;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="alert_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="alert_id")
 	AlertModel alert;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="attributes_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="attributes_id")
 	AttributesModel attributes;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="language_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="language_id")
 	LanguageModel language;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="message_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="message_id")
 	MessageModel message;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="htmltag_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="htmltag_id")
 	HtmlTagModel htmltag;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="module_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="module_id")
 	ModuleModel module;
 
 	public AlertModel getAlert(){

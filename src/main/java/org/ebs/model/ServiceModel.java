@@ -41,13 +41,13 @@ public class ServiceModel extends Auditable {
 	private String description;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="servicetype_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="servicetype_id")
 	ServiceTypeModel servicetype;
 	@ManyToMany(cascade =CascadeType.ALL) @JoinTable(name = "service_purpose", schema="analyticalsampling", joinColumns  = @JoinColumn(name="service_id",referencedColumnName = "id"),inverseJoinColumns = @JoinColumn(name="purpose_id",referencedColumnName = "id"))
 	Set<PurposeModel> purposes;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="serviceprovider_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="serviceprovider_id")
 	ServiceProviderModel serviceprovider;
-	@OneToMany(mappedBy = "service",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "service",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<AssayclassModel> assayclasss;
 	@ManyToMany(cascade =CascadeType.ALL) @JoinTable(name = "service_vendor", schema="analyticalsampling", joinColumns  = @JoinColumn(name="service_id",referencedColumnName = "id"),inverseJoinColumns = @JoinColumn(name="vendor_id",referencedColumnName = "id"))
 	Set<VendorModel> vendors;

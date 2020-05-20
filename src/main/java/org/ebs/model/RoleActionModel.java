@@ -39,11 +39,11 @@ public class RoleActionModel extends Auditable {
 	private int allow;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="action_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="action_id")
 	ActionModel action;
-	@OneToMany(mappedBy = "roleaction",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "roleaction",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<PermissionModel> permissions;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="role_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="role_id")
 	RoleModel role;
 
 	public ActionModel getAction(){

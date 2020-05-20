@@ -61,19 +61,19 @@ public class PersonModel extends Auditable {
 	private String status;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="address_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="address_id")
 	AddressModel address;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="tenant_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="tenant_id")
 	TenantModel tenant;
-	@OneToMany(mappedBy = "person",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "person",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<CollaboratorModel> collaborators;
-	@OneToMany(mappedBy = "person",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "person",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<DonorModel> donors;
-	@OneToMany(mappedBy = "person",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "person",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<PartnerModel> partners;
-	@OneToMany(mappedBy = "person",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "person",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<VendorModel> vendors;
-	@OneToMany(mappedBy = "person",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "person",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<ProjectModel> projects;
 
 	public String getadditionalName(){

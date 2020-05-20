@@ -46,13 +46,13 @@ public class UserModel extends Auditable {
 	private int isIS;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@OneToMany(mappedBy = "user",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<SessionModel> sessions;
-	@OneToMany(mappedBy = "user",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<DelegationModel> delegations;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="tenant_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="tenant_id")
 	TenantModel tenant;
-	@OneToMany(mappedBy = "user",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<PreferenceModel> preferences;
 	@ManyToMany(cascade =CascadeType.ALL) @JoinTable(name = "user_role", schema="tenant", joinColumns  = @JoinColumn(name="user_id",referencedColumnName = "id"),inverseJoinColumns = @JoinColumn(name="role_id",referencedColumnName = "id"))
 	Set<RoleModel> roles;

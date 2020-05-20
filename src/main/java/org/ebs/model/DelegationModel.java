@@ -43,7 +43,7 @@ public class DelegationModel extends Auditable {
 	private String DelegateTo;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="user_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="user_id")
 	UserModel user;
 
 	public String getDelegateTo(){

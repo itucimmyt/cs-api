@@ -41,7 +41,7 @@ public class RoleModel extends Auditable {
 	private String securityGroup;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@OneToMany(mappedBy = "role",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "role",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<RoleActionModel> roleactions;
 	@ManyToMany(mappedBy="roles")
 	Set<UserModel> user;

@@ -51,7 +51,7 @@ public class AuthenticationTypeModel extends Auditable {
 	private Boolean isDefault;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@OneToMany(mappedBy = "authenticationtype",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "authenticationtype",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<TenantModel> tenants;
 
 	public String getclientId(){

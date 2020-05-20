@@ -45,7 +45,7 @@ public class StyleThemeModel extends Auditable {
 	private Boolean isDefault;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@OneToMany(mappedBy = "styletheme",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "styletheme",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<PreferenceModel> preferences;
 
 	public String getdescription(){

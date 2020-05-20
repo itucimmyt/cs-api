@@ -889,10 +889,10 @@ program_type: String
 program_status: String
 #Additional information about the program
 description: String
-tenant_id: Int
+tenant: Tenant
 id: ID!
 projects:[Project]
-crop:[Crop]
+crop:Crop
 }
 type ProjectConnection {
 totalPages: Int
@@ -1044,6 +1044,7 @@ organization:Organization
 authenticationtype:AuthenticationType
 customer:Customer
 persons:[Person]
+programs:[Program]
 }
 type TranslationConnection {
 totalPages: Int
@@ -1283,7 +1284,7 @@ type TraitClass {
 #name for the trait_class
 name: String
 #description of the trait
-_class
+
 description: String
 tenant_id: Int
 id: ID!
@@ -1843,9 +1844,9 @@ program_type: String
 program_status: String
 #Additional information about the program
 description: String
-tenant_id: Int
+tenant: TenantInput
 id: ID!
-crop:[CropInput]
+crop:CropInput
 }
 input ProjectInput {
 #
@@ -2052,7 +2053,7 @@ input TraitClassInput {
 #name for the trait_class
 name: String
 #description of the trait
-_class
+
 description: String
 tenant_id: Int
 id: ID!

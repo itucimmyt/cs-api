@@ -46,7 +46,7 @@ public class CountryModel extends Auditable {
 	private String code;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@OneToMany(mappedBy = "country",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "country",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<VendorModel> vendors;
 
 	public String getcode(){

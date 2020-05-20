@@ -42,13 +42,13 @@ public class InstanceModel extends Auditable {
 	private String health;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@OneToMany(mappedBy = "instance",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "instance",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<SessionModel> sessions;
-	@OneToMany(mappedBy = "instance",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "instance",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<AuditLogsModel> auditlogss;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="component_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="component_id")
 	ComponentModel component;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="tenant_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="tenant_id")
 	TenantModel tenant;
 
 	public Set<AuditLogsModel> getAuditLogss(){

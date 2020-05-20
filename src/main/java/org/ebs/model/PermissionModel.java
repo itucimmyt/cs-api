@@ -37,7 +37,7 @@ public class PermissionModel extends Auditable {
 	private int tenant_id;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="roleaction_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="roleaction_id")
 	RoleActionModel roleaction;
 
 	public int getId(){

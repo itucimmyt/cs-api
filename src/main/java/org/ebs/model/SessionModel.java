@@ -43,9 +43,9 @@ public class SessionModel extends Auditable {
 	private String remote_host;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="user_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="user_id")
 	UserModel user;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="instance_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="instance_id")
 	InstanceModel instance;
 
 	public int getId(){

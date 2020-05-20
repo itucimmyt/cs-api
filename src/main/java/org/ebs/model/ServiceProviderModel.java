@@ -41,9 +41,9 @@ public class ServiceProviderModel extends Auditable {
 	private String name;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@OneToMany(mappedBy = "serviceprovider",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "serviceprovider",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<ServiceTypeModel> servicetypes;
-	@OneToMany(mappedBy = "serviceprovider",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "serviceprovider",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<ServiceModel> services;
 
 	public String getcode(){

@@ -39,11 +39,11 @@ public class AlertModel extends Auditable {
 	private String description;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@OneToMany(mappedBy = "alert",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "alert",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<AlertRuleModel> alertrules;
-	@OneToMany(mappedBy = "alert",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "alert",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<TranslationModel> translations;
-	@OneToMany(mappedBy = "alert",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "alert",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<PreferenceModel> preferences;
 
 	public Set<AlertRuleModel> getAlertRules(){

@@ -38,7 +38,7 @@ public class HtmlTagModel extends Auditable {
 	private String tagName;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@OneToMany(mappedBy = "htmltag",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "htmltag",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<TranslationModel> translations;
 
 	public int getId(){

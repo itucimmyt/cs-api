@@ -51,7 +51,7 @@ public class ProcessModel extends Auditable {
 	private String path;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="workflownode_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="workflownode_id")
 	WorkflowNodeModel workflownode;
 
 	public Boolean getcallReport(){

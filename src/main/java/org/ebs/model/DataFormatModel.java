@@ -41,7 +41,7 @@ public class DataFormatModel extends Auditable {
 	private String description;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@OneToMany(mappedBy = "dataformat",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "dataformat",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<VendorModel> vendors;
 
 	public String getdescription(){

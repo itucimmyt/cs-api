@@ -44,7 +44,7 @@ public class AttributesModel extends Auditable {
 	private int sortno;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@OneToMany(mappedBy = "attributes",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "attributes",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<TranslationModel> translations;
 
 	public String getdescription(){

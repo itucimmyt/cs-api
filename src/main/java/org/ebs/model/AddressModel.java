@@ -49,7 +49,7 @@ public class AddressModel extends Auditable {
 	private String streetAddress;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@OneToMany(mappedBy = "address",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "address",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<PersonModel> persons;
 
 	public int getcountry(){

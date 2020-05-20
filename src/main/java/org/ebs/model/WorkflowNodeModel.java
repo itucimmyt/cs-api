@@ -43,13 +43,13 @@ public class WorkflowNodeModel extends Auditable {
 	private String help;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="workflow_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="workflow_id")
 	WorkflowModel workflow;
-	@OneToMany(mappedBy = "workflownode",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "workflownode",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<WorkflowModel> workflows;
-	@OneToMany(mappedBy = "workflownode",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "workflownode",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<ProcessModel> processs;
-	@OneToMany(mappedBy = "workflownode",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "workflownode",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<ModuleModel> modules;
 
 	public String getdescription(){

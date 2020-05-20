@@ -47,13 +47,13 @@ public class VendorModel extends Auditable {
 	Set<TechnologyPlatformModel> technologyplatforms;
 	@ManyToMany(cascade =CascadeType.ALL) @JoinTable(name = "vendor_marker", schema="tenant", joinColumns  = @JoinColumn(name="vendor_id",referencedColumnName = "id"),inverseJoinColumns = @JoinColumn(name="marker_id",referencedColumnName = "id"))
 	Set<MarkerModel> markers;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="country_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="country_id")
 	CountryModel country;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="dataformat_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="dataformat_id")
 	DataFormatModel dataformat;
 	@ManyToMany(mappedBy="vendors")
 	Set<ServiceModel> service;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="person_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="person_id")
 	PersonModel person;
 
 	public String getcode(){

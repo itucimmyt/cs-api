@@ -39,7 +39,7 @@ public class MarkerSynonymModel extends Auditable {
 	private Integer synonym;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="marker_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="marker_id")
 	MarkerModel marker;
 
 	public int getId(){

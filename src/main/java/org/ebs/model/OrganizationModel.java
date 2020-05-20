@@ -58,11 +58,11 @@ public class OrganizationModel extends Auditable {
 	private int organization_code;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@OneToMany(mappedBy = "organization",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "organization",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<TenantModel> tenants;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="customer_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="customer_id")
 	CustomerModel customer;
-	@OneToMany(mappedBy = "organization",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "organization",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<CustomerModel> customers;
 
 	public CustomerModel getCustomer(){

@@ -43,13 +43,13 @@ public class ServiceTypeModel extends Auditable {
 	private String description;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="serviceprovider_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="serviceprovider_id")
 	ServiceProviderModel serviceprovider;
 	@ManyToMany(mappedBy="servicetypes")
 	Set<PurposeModel> purpose;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="crop_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="crop_id")
 	CropModel crop;
-	@OneToMany(mappedBy = "servicetype",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "servicetype",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<ServiceModel> services;
 
 	public String getcode(){

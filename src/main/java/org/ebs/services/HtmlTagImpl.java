@@ -66,7 +66,7 @@ public class HtmlTagImpl implements HtmlTagService {
 	 * @param htmltagId
 	 */
 	@Override
-	public Optional<HtmlTagTo> findHtmlTag(int htmltagId){
+	public Optional<HtmlTagTo> findHtmlTags(int htmltagId){
 		if(htmltagId <1) 
 		 {return Optional.empty();} 
 		 return htmltagRepository.findById(htmltagId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,HtmlTagTo.class));

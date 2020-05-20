@@ -45,15 +45,15 @@ public class PipelineModel extends Auditable {
 	private String description;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@OneToMany(mappedBy = "pipeline",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "pipeline",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<SchemeModel> schemes;
-	@OneToMany(mappedBy = "pipeline",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "pipeline",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<PhaseModel> phases;
-	@OneToMany(mappedBy = "pipeline",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "pipeline",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<ProjectModel> projects;
-	@OneToMany(mappedBy = "pipeline",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "pipeline",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<BreedingZoneModel> breedingzones;
-	@OneToMany(mappedBy = "pipeline",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "pipeline",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<SchemaModel> schemas;
 
 	public Set<BreedingZoneModel> getBreedingZones(){

@@ -41,9 +41,9 @@ public class TraitModel extends Auditable {
 	private String description;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="traitclass_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="traitclass_id")
 	TraitClassModel traitclass;
-	@OneToMany(mappedBy = "trait",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "trait",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<AssayGeneModel> assaygenes;
 
 	public Set<AssayGeneModel> getAssayGenes(){

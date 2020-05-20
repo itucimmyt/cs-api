@@ -43,7 +43,7 @@ public class DonorModel extends Auditable {
 	private String indentifier;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="person_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="person_id")
 	PersonModel person;
 
 	public String getaffiliation(){

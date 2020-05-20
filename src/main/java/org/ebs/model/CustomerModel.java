@@ -52,11 +52,11 @@ public class CustomerModel extends Auditable {
 	private String isActive;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@OneToMany(mappedBy = "customer",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "customer",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<OrganizationModel> organizations;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="organization_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="organization_id")
 	OrganizationModel organization;
-	@OneToMany(mappedBy = "customer",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "customer",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<TenantModel> tenants;
 
 	public String getalternateEmail(){

@@ -39,7 +39,7 @@ public class BreedingZoneModel extends Auditable {
 	private int geospatial_object_id;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="pipeline_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="pipeline_id")
 	PipelineModel pipeline;
 
 	public int getgeospatial_object_id(){

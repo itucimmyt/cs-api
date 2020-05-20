@@ -12,6 +12,10 @@ import com.coxautodev.graphql.tools.GraphQLResolver;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
+
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.stream.Collectors;
 import java.util.List;
 import java.util.Optional;
@@ -47,7 +51,7 @@ import org.ebs.services.to.MessageTo;
  */
 @Component @Validated
 public class TranslationResolver implements GraphQLResolver<TranslationTo> {
-
+	private static final Logger log = LoggerFactory.getLogger(TranslationResolver.class);
 	private TranslationService translationService;
 	private TranslationRepository translationRepository;
 	@Autowired
@@ -87,9 +91,11 @@ public class TranslationResolver implements GraphQLResolver<TranslationTo> {
 	 * 
 	 * @param translationTo
 	 */
-	public HtmlTagTo getHtmlTag(TranslationTo translationTo){
+	public HtmlTagTo getHtmltag(TranslationTo translationTo){
+
+		log.info("Entro");
 		TranslationModel translationModel = translationRepository.findById(translationTo.getId()).get(); 
-		 return htmltagService.findHtmlTag(translationModel.getHtmlTag().getId()).get();
+		 return htmltagService.findHtmlTags(translationModel.getHtmlTag().getId()).get();
 	}
 
 	/**

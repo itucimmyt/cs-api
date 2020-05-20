@@ -44,11 +44,11 @@ public class ComponentModel extends Auditable {
 	private String info;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@OneToMany(mappedBy = "component",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "component",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<InstanceModel> instances;
-	@OneToMany(mappedBy = "component",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "component",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<MessageModel> messages;
-	@OneToMany(mappedBy = "component",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "component",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<ModuleModel> modules;
 
 	public int getId(){

@@ -43,9 +43,9 @@ public class MarkerModel extends Auditable {
 	private int id;
 	@ManyToMany(mappedBy="markers")
 	Set<VendorModel> vendor;
-	@OneToMany(mappedBy = "marker",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "marker",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<MarkerSynonymModel> markersynonyms;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="assaygene_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="assaygene_id")
 	AssayGeneModel assaygene;
 
 	public AssayGeneModel getAssayGene(){

@@ -43,7 +43,7 @@ public class AssayclassModel extends Auditable {
 	private int id;
 	@ManyToMany(mappedBy="assayclasss")
 	Set<TechnologyPlatformModel> technologyplatform;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="service_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="service_id")
 	ServiceModel service;
 
 	public String getdescription(){

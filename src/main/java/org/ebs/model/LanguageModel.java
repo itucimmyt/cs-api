@@ -42,7 +42,7 @@ public class LanguageModel extends Auditable {
 	private String isbase;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@OneToMany(mappedBy = "language",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "language",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<TranslationModel> translations;
 
 	public String getcodeISO(){

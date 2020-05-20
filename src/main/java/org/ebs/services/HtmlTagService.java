@@ -42,7 +42,7 @@ public interface HtmlTagService {
 	 * 
 	 * @param htmltagId
 	 */
-	public Optional<HtmlTagTo> findHtmlTag(int htmltagId);
+	public Optional<HtmlTagTo> findHtmlTags(int htmltagId);
 
 	/**
 	 * 

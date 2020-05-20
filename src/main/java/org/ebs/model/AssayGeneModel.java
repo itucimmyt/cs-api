@@ -41,9 +41,9 @@ public class AssayGeneModel extends Auditable {
 	private String description;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="trait_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="trait_id")
 	TraitModel trait;
-	@OneToMany(mappedBy = "assaygene",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "assaygene",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<MarkerModel> markers;
 
 	public String getdescription(){

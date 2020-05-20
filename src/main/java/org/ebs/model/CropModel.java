@@ -42,9 +42,9 @@ public class CropModel extends Auditable {
 	private String description;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@OneToMany(mappedBy = "crop",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "crop",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<ServiceTypeModel> servicetypes;
-	@OneToMany(mappedBy = "crop",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "crop",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<ProgramModel> programs;
 	@ManyToMany(cascade =CascadeType.ALL) @JoinTable(name = "crop_season", schema="tenant", joinColumns  = @JoinColumn(name="crop_id",referencedColumnName = "id"),inverseJoinColumns = @JoinColumn(name="season_id",referencedColumnName = "id"))
 	Set<SeasonModel> seasons;

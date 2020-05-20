@@ -42,9 +42,9 @@ public class MessageModel extends Auditable {
 	private String filterClause;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@OneToMany(mappedBy = "message",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "message",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<TranslationModel> translations;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="component_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="component_id")
 	ComponentModel component;
 
 	public ComponentModel getComponent(){

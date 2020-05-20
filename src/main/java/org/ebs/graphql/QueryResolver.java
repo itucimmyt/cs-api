@@ -637,7 +637,7 @@ public class QueryResolver implements GraphQLQueryResolver {
 	 * @param htmltagId
 	 */
 	public Optional<HtmlTagTo> findHtmlTag(int htmltagId){
-		return this.htmltagService.findHtmlTag(htmltagId);
+		return this.htmltagService.findHtmlTags(htmltagId);
 	}
 
 	/**

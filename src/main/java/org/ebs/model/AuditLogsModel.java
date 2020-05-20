@@ -41,7 +41,7 @@ public class AuditLogsModel extends Auditable {
 	private String message;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@ManyToOne(fetch=FetchType.EAGER, optional =false) @JoinColumn(name="instance_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="instance_id")
 	InstanceModel instance;
 
 	public String getcorrelationId(){
