@@ -5,7 +5,7 @@ ENV spring.datasource.url=jdbc:postgresql://{hostname}:{port}/{databasename}
 ENV spring.datasource.username=username
 ENV spring.datasource.password=password
 
-COPY ./target ./wso2mi-1.1.0/repository/deployment/server/carbonapps
+COPY dataflows/armCompositeApplication/target ./wso2mi-1.1.0/repository/deployment/server/carbonapps
 COPY entrypoint.sh target/ebs-sg-tnt.jar ./
 
 ENTRYPOINT ["./entrypoint.sh"]
