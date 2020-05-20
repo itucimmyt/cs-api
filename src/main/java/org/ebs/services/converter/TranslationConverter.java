@@ -8,12 +8,11 @@
 
 package org.ebs.services.converter;
 
+import org.ebs.model.TranslationModel;
+import org.ebs.services.to.TranslationTo;
+import org.springframework.beans.BeanUtils;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
-import org.springframework.beans.BeanUtils;
-import org.ebs.model.TranslationModel;
-import org.ebs.services.to.Input.TranslationInput;
-import org.ebs.services.to.TranslationTo;
 
 /**
  * @author EBRIONES

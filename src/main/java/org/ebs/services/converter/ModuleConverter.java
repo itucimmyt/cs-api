@@ -8,12 +8,11 @@
 
 package org.ebs.services.converter;
 
+import org.ebs.model.ModuleModel;
+import org.ebs.services.to.ModuleTo;
+import org.springframework.beans.BeanUtils;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
-import org.springframework.beans.BeanUtils;
-import org.ebs.model.ModuleModel;
-import org.ebs.services.to.Input.ModuleInput;
-import org.ebs.services.to.ModuleTo;
 
 /**
  * @author EBRIONES

@@ -8,22 +8,17 @@
 
 package org.ebs.graphql.resolvers;
 
-import com.coxautodev.graphql.tools.GraphQLResolver;
-import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
-import java.util.stream.Collectors;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import org.springframework.core.convert.ConversionService;
-import org.ebs.model.SeasonModel;
-import org.ebs.services.to.SeasonTo;
-import org.ebs.model.repos.SeasonRepository;
-import org.ebs.services.SeasonService;
-import org.ebs.services.CropService;
 import org.ebs.model.repos.CropRepository;
-import org.ebs.services.to.CropTo;
+import org.ebs.model.repos.SeasonRepository;
+import org.ebs.services.CropService;
+import org.ebs.services.SeasonService;
+import org.ebs.services.to.SeasonTo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
+
+import com.coxautodev.graphql.tools.GraphQLResolver;
 
 /**
  * @author EBRIONES

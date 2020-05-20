@@ -8,34 +8,34 @@
 
 package org.ebs.graphql.resolvers;
 
-import com.coxautodev.graphql.tools.GraphQLResolver;
-import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
-import java.util.stream.Collectors;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
-import org.springframework.core.convert.ConversionService;
+import java.util.stream.Collectors;
+
 import org.ebs.model.ServiceModel;
-import org.ebs.services.to.ServiceTo;
+import org.ebs.model.repos.AssayclassRepository;
+import org.ebs.model.repos.PurposeRepository;
+import org.ebs.model.repos.ServiceProviderRepository;
 import org.ebs.model.repos.ServiceRepository;
+import org.ebs.model.repos.ServiceTypeRepository;
+import org.ebs.model.repos.VendorRepository;
+import org.ebs.services.AssayclassService;
+import org.ebs.services.PurposeService;
+import org.ebs.services.ServiceProviderService;
 import org.ebs.services.ServiceService;
 import org.ebs.services.ServiceTypeService;
-import org.ebs.model.repos.ServiceTypeRepository;
-import org.ebs.services.to.ServiceTypeTo;
-import org.ebs.model.repos.PurposeRepository;
-import org.ebs.services.PurposeService;
-import org.ebs.services.to.PurposeTo;
-import org.ebs.services.ServiceProviderService;
-import org.ebs.model.repos.ServiceProviderRepository;
-import org.ebs.services.to.ServiceProviderTo;
-import org.ebs.model.repos.AssayclassRepository;
-import org.ebs.services.AssayclassService;
-import org.ebs.services.to.AssayclassTo;
-import org.ebs.model.repos.VendorRepository;
 import org.ebs.services.VendorService;
-import org.ebs.services.to.VendorTo;
+import org.ebs.services.to.AssayclassTo;
+import org.ebs.services.to.PurposeTo;
+import org.ebs.services.to.ServiceProviderTo;
+import org.ebs.services.to.ServiceTo;
+import org.ebs.services.to.ServiceTypeTo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
+
+import com.coxautodev.graphql.tools.GraphQLResolver;
 
 /**
  * @author EBRIONES
@@ -87,6 +87,26 @@ public class ServiceResolver implements GraphQLResolver<ServiceTo> {
 		ServiceModel serviceModel = serviceRepository.findById(serviceTo.getId()).get(); 
 		 return servicetypeService.findServiceType(serviceModel.getServiceType().getId()).get();
 	}
+	
+	/**
+	 * 
+	 * @param serviceTo
+	 */
+	public List<PurposeTo> getPurpos3es(ServiceTo serviceTo){
+		ServiceModel serviceModel = serviceRepository.findById(serviceTo.getId()).get(); 
+		 return serviceModel.getPurposes().stream().map(e -> converter.convert(e,PurposeTo.class)) 
+		 .collect(Collectors.toList());
+	}
+	
+	/**
+	 * 
+	 * @param serviceTo
+	 */
+	public List<PurposeTo> getPurposes(ServiceTo serviceTo){
+		 return purposeRepository.findByServiceId(serviceTo.getId()).stream().map(e -> converter.convert(e,PurposeTo.class)) 
+		 .collect(Collectors.toList());
+	}
+
 
 	/**
 	 * 

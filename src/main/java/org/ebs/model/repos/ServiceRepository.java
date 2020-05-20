@@ -9,9 +9,10 @@
 package org.ebs.model.repos;
 
 import java.util.List;
+
 import org.ebs.model.ServiceModel;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.ebs.util.RepositoryExt;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * @author EBRIONES

@@ -10,14 +10,13 @@ package org.ebs.services;
 
 import java.util.List;
 import java.util.Optional;
+
+import org.ebs.services.to.ServiceProviderTo;
+import org.ebs.services.to.Input.ServiceProviderInput;
 import org.ebs.util.FilterInput;
 import org.ebs.util.PageInput;
 import org.ebs.util.SortInput;
 import org.springframework.data.domain.Page;
-import org.ebs.util.Utils;
-import org.ebs.model.repos.ServiceProviderRepository;
-import org.ebs.services.to.ServiceProviderTo;
-import org.ebs.services.to.Input.ServiceProviderInput;
 
 /**
  * @author EBRIONES

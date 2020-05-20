@@ -8,12 +8,11 @@
 
 package org.ebs.services.converter;
 
+import org.ebs.model.WorkflowNodeModel;
+import org.ebs.services.to.WorkflowNodeTo;
+import org.springframework.beans.BeanUtils;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
-import org.springframework.beans.BeanUtils;
-import org.ebs.model.WorkflowNodeModel;
-import org.ebs.services.to.Input.WorkflowNodeInput;
-import org.ebs.services.to.WorkflowNodeTo;
 
 /**
  * @author EBRIONES

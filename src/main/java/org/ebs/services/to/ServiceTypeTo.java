@@ -9,12 +9,7 @@
 package org.ebs.services.to;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.Set;
-import org.ebs.model.ServiceProviderModel;
-import org.ebs.model.PurposeModel;
-import org.ebs.model.CropModel;
-import org.ebs.model.ServiceModel;
 
 /**
  * @author EBRIONES

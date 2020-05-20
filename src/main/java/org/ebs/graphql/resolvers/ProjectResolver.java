@@ -8,28 +8,25 @@
 
 package org.ebs.graphql.resolvers;
 
-import com.coxautodev.graphql.tools.GraphQLResolver;
-import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
-import java.util.stream.Collectors;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import org.springframework.core.convert.ConversionService;
 import org.ebs.model.ProjectModel;
-import org.ebs.services.to.ProjectTo;
-import org.ebs.model.repos.ProjectRepository;
-import org.ebs.services.ProjectService;
-import org.ebs.services.ProgramService;
-import org.ebs.model.repos.ProgramRepository;
-import org.ebs.services.to.ProgramTo;
-import org.ebs.services.PipelineService;
-import org.ebs.model.repos.PipelineRepository;
-import org.ebs.services.to.PipelineTo;
-import org.ebs.services.PersonService;
 import org.ebs.model.repos.PersonRepository;
+import org.ebs.model.repos.PipelineRepository;
+import org.ebs.model.repos.ProgramRepository;
+import org.ebs.model.repos.ProjectRepository;
+import org.ebs.services.PersonService;
+import org.ebs.services.PipelineService;
+import org.ebs.services.ProgramService;
+import org.ebs.services.ProjectService;
 import org.ebs.services.to.PersonTo;
+import org.ebs.services.to.PipelineTo;
+import org.ebs.services.to.ProgramTo;
+import org.ebs.services.to.ProjectTo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
+
+import com.coxautodev.graphql.tools.GraphQLResolver;
 
 /**
  * @author EBRIONES

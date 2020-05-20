@@ -8,28 +8,28 @@
 
 package org.ebs.graphql.resolvers;
 
-import java.util.Optional;
 import java.util.Set;
-import org.springframework.core.convert.ConversionService;
-import org.ebs.model.RoleActionModel;
-import org.ebs.services.to.RoleActionTo;
-import org.ebs.model.repos.RoleActionRepository;
-import org.ebs.services.RoleActionService;
-import org.ebs.services.ActionService;
-import org.ebs.model.repos.ActionRepository;
-import org.ebs.services.to.ActionTo;
-import org.ebs.model.repos.PermissionRepository;
-import org.ebs.services.PermissionService;
-import org.ebs.services.to.PermissionTo;
-import org.ebs.services.RoleService;
-import org.ebs.model.repos.RoleRepository;
-import org.ebs.services.to.RoleTo;
-import com.coxautodev.graphql.tools.GraphQLResolver;
-import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
 import java.util.stream.Collectors;
-import java.util.List;
+
+import org.ebs.model.RoleActionModel;
+import org.ebs.model.repos.ActionRepository;
+import org.ebs.model.repos.PermissionRepository;
+import org.ebs.model.repos.RoleActionRepository;
+import org.ebs.model.repos.RoleRepository;
+import org.ebs.services.ActionService;
+import org.ebs.services.PermissionService;
+import org.ebs.services.RoleActionService;
+import org.ebs.services.RoleService;
+import org.ebs.services.to.ActionTo;
+import org.ebs.services.to.PermissionTo;
+import org.ebs.services.to.RoleActionTo;
+import org.ebs.services.to.RoleTo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
+
+import com.coxautodev.graphql.tools.GraphQLResolver;
 
 /**
  * @author EBRIONES

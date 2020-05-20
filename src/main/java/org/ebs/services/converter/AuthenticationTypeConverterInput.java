@@ -8,12 +8,11 @@
 
 package org.ebs.services.converter;
 
-import org.ebs.services.to.AuthenticationTypeTo;
-import org.springframework.core.convert.converter.Converter;
-import org.springframework.stereotype.Component;
-import org.springframework.beans.BeanUtils;
 import org.ebs.model.AuthenticationTypeModel;
 import org.ebs.services.to.Input.AuthenticationTypeInput;
+import org.springframework.beans.BeanUtils;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
 /**
  * @author EBRIONES

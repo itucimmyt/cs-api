@@ -8,12 +8,11 @@
 
 package org.ebs.services.converter;
 
+import org.ebs.model.ProjectModel;
+import org.ebs.services.to.ProjectTo;
+import org.springframework.beans.BeanUtils;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
-import org.springframework.beans.BeanUtils;
-import org.ebs.model.ProjectModel;
-import org.ebs.services.to.Input.ProjectInput;
-import org.ebs.services.to.ProjectTo;
 
 /**
  * @author EBRIONES

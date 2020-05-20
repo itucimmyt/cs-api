@@ -10,15 +10,13 @@ package org.ebs.services;
 
 import java.util.List;
 import java.util.Optional;
+
+import org.ebs.services.to.MessageTo;
+import org.ebs.services.to.Input.MessageInput;
 import org.ebs.util.FilterInput;
 import org.ebs.util.PageInput;
 import org.ebs.util.SortInput;
 import org.springframework.data.domain.Page;
-import org.ebs.util.Utils;
-import org.ebs.model.repos.MessageRepository;
-import org.springframework.stereotype.Component;
-import org.ebs.services.to.MessageTo;
-import org.ebs.services.to.Input.MessageInput;
 
 /**
  * @author EBRIONES

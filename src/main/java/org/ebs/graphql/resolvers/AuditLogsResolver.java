@@ -8,22 +8,19 @@
 
 package org.ebs.graphql.resolvers;
 
-import com.coxautodev.graphql.tools.GraphQLResolver;
-import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
-import java.util.stream.Collectors;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import org.springframework.core.convert.ConversionService;
 import org.ebs.model.AuditLogsModel;
-import org.ebs.services.to.AuditLogsTo;
 import org.ebs.model.repos.AuditLogsRepository;
+import org.ebs.model.repos.InstanceRepository;
 import org.ebs.services.AuditLogsService;
 import org.ebs.services.InstanceService;
-import org.ebs.model.repos.InstanceRepository;
+import org.ebs.services.to.AuditLogsTo;
 import org.ebs.services.to.InstanceTo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
+
+import com.coxautodev.graphql.tools.GraphQLResolver;
 
 /**
  * @author EBRIONES

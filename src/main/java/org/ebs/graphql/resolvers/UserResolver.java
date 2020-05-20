@@ -8,34 +8,33 @@
 
 package org.ebs.graphql.resolvers;
 
-import com.coxautodev.graphql.tools.GraphQLResolver;
-import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
-import java.util.stream.Collectors;
-import java.util.List;
-import java.util.Optional;
 import java.util.Set;
-import org.springframework.core.convert.ConversionService;
+import java.util.stream.Collectors;
+
 import org.ebs.model.UserModel;
-import org.ebs.services.to.UserTo;
-import org.ebs.model.repos.UserRepository;
-import org.ebs.services.UserService;
-import org.ebs.model.repos.SessionRepository;
-import org.ebs.services.SessionService;
-import org.ebs.services.to.SessionTo;
 import org.ebs.model.repos.DelegationRepository;
-import org.ebs.services.DelegationService;
-import org.ebs.services.to.DelegationTo;
-import org.ebs.services.TenantService;
-import org.ebs.model.repos.TenantRepository;
-import org.ebs.services.to.TenantTo;
 import org.ebs.model.repos.PreferenceRepository;
-import org.ebs.services.PreferenceService;
-import org.ebs.services.to.PreferenceTo;
 import org.ebs.model.repos.RoleRepository;
+import org.ebs.model.repos.SessionRepository;
+import org.ebs.model.repos.TenantRepository;
+import org.ebs.model.repos.UserRepository;
+import org.ebs.services.DelegationService;
+import org.ebs.services.PreferenceService;
 import org.ebs.services.RoleService;
-import org.ebs.services.to.RoleTo;
+import org.ebs.services.SessionService;
+import org.ebs.services.TenantService;
+import org.ebs.services.UserService;
+import org.ebs.services.to.DelegationTo;
+import org.ebs.services.to.PreferenceTo;
+import org.ebs.services.to.SessionTo;
+import org.ebs.services.to.TenantTo;
+import org.ebs.services.to.UserTo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
+
+import com.coxautodev.graphql.tools.GraphQLResolver;
 
 /**
  * @author EBRIONES

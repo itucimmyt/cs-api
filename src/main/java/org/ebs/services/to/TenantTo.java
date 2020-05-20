@@ -11,13 +11,6 @@ package org.ebs.services.to;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
-import org.ebs.model.UserModel;
-import org.ebs.model.InstanceModel;
-import org.ebs.model.WorkflowModel;
-import org.ebs.model.OrganizationModel;
-import org.ebs.model.AuthenticationTypeModel;
-import org.ebs.model.CustomerModel;
-import org.ebs.model.PersonModel;
 
 /**
  * @author EBRIONES

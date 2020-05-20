@@ -8,28 +8,27 @@
 
 package org.ebs.graphql.resolvers;
 
-import com.coxautodev.graphql.tools.GraphQLResolver;
-import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
-import java.util.stream.Collectors;
-import java.util.List;
-import java.util.Optional;
 import java.util.Set;
-import org.springframework.core.convert.ConversionService;
-import org.ebs.model.AlertModel;
-import org.ebs.services.to.AlertTo;
+import java.util.stream.Collectors;
+
 import org.ebs.model.repos.AlertRepository;
-import org.ebs.services.AlertService;
 import org.ebs.model.repos.AlertRuleRepository;
-import org.ebs.services.AlertRuleService;
-import org.ebs.services.to.AlertRuleTo;
-import org.ebs.model.repos.TranslationRepository;
-import org.ebs.services.TranslationService;
-import org.ebs.services.to.TranslationTo;
 import org.ebs.model.repos.PreferenceRepository;
+import org.ebs.model.repos.TranslationRepository;
+import org.ebs.services.AlertRuleService;
+import org.ebs.services.AlertService;
 import org.ebs.services.PreferenceService;
+import org.ebs.services.TranslationService;
+import org.ebs.services.to.AlertRuleTo;
+import org.ebs.services.to.AlertTo;
 import org.ebs.services.to.PreferenceTo;
+import org.ebs.services.to.TranslationTo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
+
+import com.coxautodev.graphql.tools.GraphQLResolver;
 
 /**
  * @author EBRIONES

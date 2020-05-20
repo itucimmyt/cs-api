@@ -8,40 +8,40 @@
 
 package org.ebs.graphql.resolvers;
 
-import com.coxautodev.graphql.tools.GraphQLResolver;
-import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
-import java.util.stream.Collectors;
-import java.util.List;
-import java.util.Optional;
 import java.util.Set;
-import org.springframework.core.convert.ConversionService;
+import java.util.stream.Collectors;
+
 import org.ebs.model.PersonModel;
-import org.ebs.services.to.PersonTo;
-import org.ebs.model.repos.PersonRepository;
-import org.ebs.services.PersonService;
-import org.ebs.services.AddressService;
 import org.ebs.model.repos.AddressRepository;
-import org.ebs.services.to.AddressTo;
-import org.ebs.services.TenantService;
-import org.ebs.model.repos.TenantRepository;
-import org.ebs.services.to.TenantTo;
 import org.ebs.model.repos.CollaboratorRepository;
-import org.ebs.services.CollaboratorService;
-import org.ebs.services.to.CollaboratorTo;
 import org.ebs.model.repos.DonorRepository;
-import org.ebs.services.DonorService;
-import org.ebs.services.to.DonorTo;
 import org.ebs.model.repos.PartnerRepository;
-import org.ebs.services.PartnerService;
-import org.ebs.services.to.PartnerTo;
-import org.ebs.model.repos.VendorRepository;
-import org.ebs.services.VendorService;
-import org.ebs.services.to.VendorTo;
+import org.ebs.model.repos.PersonRepository;
 import org.ebs.model.repos.ProjectRepository;
+import org.ebs.model.repos.TenantRepository;
+import org.ebs.model.repos.VendorRepository;
+import org.ebs.services.AddressService;
+import org.ebs.services.CollaboratorService;
+import org.ebs.services.DonorService;
+import org.ebs.services.PartnerService;
+import org.ebs.services.PersonService;
 import org.ebs.services.ProjectService;
+import org.ebs.services.TenantService;
+import org.ebs.services.VendorService;
+import org.ebs.services.to.AddressTo;
+import org.ebs.services.to.CollaboratorTo;
+import org.ebs.services.to.DonorTo;
+import org.ebs.services.to.PartnerTo;
+import org.ebs.services.to.PersonTo;
 import org.ebs.services.to.ProjectTo;
+import org.ebs.services.to.TenantTo;
+import org.ebs.services.to.VendorTo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
+
+import com.coxautodev.graphql.tools.GraphQLResolver;
 
 /**
  * @author EBRIONES

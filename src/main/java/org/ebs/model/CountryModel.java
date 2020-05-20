@@ -8,23 +8,19 @@
 
 package org.ebs.model;
 
-import org.ebs.util.Auditable;
-import javax.persistence.ManyToMany;
-import javax.persistence.JoinTable;
-import javax.persistence.JoinColumn;
-import javax.persistence.FetchType;
 import java.util.Set;
-import java.util.Date;
-import java.util.UUID;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import org.ebs.util.Auditable;
 
 /**
  * @author EBRIONES
@@ -34,6 +30,10 @@ import javax.persistence.GenerationType;
 @Entity @Table(name="Country",schema="tenant")
 public class CountryModel extends Auditable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Column(name="name")
 	private String name;
 	@Column(name="iso3")

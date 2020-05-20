@@ -8,37 +8,31 @@
 
 package org.ebs.graphql.resolvers;
 
-import com.coxautodev.graphql.tools.GraphQLResolver;
-import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
-import java.util.stream.Collectors;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import org.springframework.core.convert.ConversionService;
 import org.ebs.model.VendorModel;
-import org.ebs.services.to.VendorTo;
-import org.ebs.model.repos.VendorRepository;
-import org.ebs.services.VendorService;
-import org.ebs.model.repos.TechnologyPlatformRepository;
-import org.ebs.services.TechnologyPlatformService;
-import org.ebs.services.to.TechnologyPlatformTo;
-import org.ebs.model.repos.MarkerRepository;
-import org.ebs.services.MarkerService;
-import org.ebs.services.to.MarkerTo;
-import org.ebs.services.CountryService;
 import org.ebs.model.repos.CountryRepository;
-import org.ebs.services.to.CountryTo;
-import org.ebs.services.DataFormatService;
 import org.ebs.model.repos.DataFormatRepository;
-import org.ebs.services.to.DataFormatTo;
-import org.ebs.services.ServiceService;
-import org.ebs.model.repos.ServiceRepository;
-import org.ebs.services.to.ServiceTo;
-import org.ebs.services.PersonService;
+import org.ebs.model.repos.MarkerRepository;
 import org.ebs.model.repos.PersonRepository;
+import org.ebs.model.repos.ServiceRepository;
+import org.ebs.model.repos.TechnologyPlatformRepository;
+import org.ebs.model.repos.VendorRepository;
+import org.ebs.services.CountryService;
+import org.ebs.services.DataFormatService;
+import org.ebs.services.MarkerService;
+import org.ebs.services.PersonService;
+import org.ebs.services.ServiceService;
+import org.ebs.services.TechnologyPlatformService;
+import org.ebs.services.VendorService;
+import org.ebs.services.to.CountryTo;
+import org.ebs.services.to.DataFormatTo;
 import org.ebs.services.to.PersonTo;
+import org.ebs.services.to.VendorTo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
+
+import com.coxautodev.graphql.tools.GraphQLResolver;
 
 /**
  * @author EBRIONES

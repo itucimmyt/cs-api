@@ -8,22 +8,21 @@
 
 package org.ebs.graphql.resolvers;
 
-import java.util.stream.Collectors;
-import java.util.List;
-import java.util.Optional;
 import java.util.Set;
-import org.springframework.core.convert.ConversionService;
-import org.ebs.model.HtmlTagModel;
-import org.ebs.services.to.HtmlTagTo;
+import java.util.stream.Collectors;
+
 import org.ebs.model.repos.HtmlTagRepository;
-import org.ebs.services.HtmlTagService;
 import org.ebs.model.repos.TranslationRepository;
+import org.ebs.services.HtmlTagService;
 import org.ebs.services.TranslationService;
-import com.coxautodev.graphql.tools.GraphQLResolver;
-import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
+import org.ebs.services.to.HtmlTagTo;
 import org.ebs.services.to.TranslationTo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
+
+import com.coxautodev.graphql.tools.GraphQLResolver;
 
 /**
  * @author EBRIONES
