@@ -8,27 +8,28 @@
 
 package org.ebs.services;
 
-import org.ebs.model.UserModel;
-import org.ebs.model.repos.UserRepository;
-import org.ebs.model.AlertModel;
-import org.ebs.model.repos.AlertRepository;
-import org.ebs.model.StyleThemeModel;
-import org.ebs.model.repos.StyleThemeRepository;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
-import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import java.util.Optional;
+
+import org.ebs.model.AlertModel;
+import org.ebs.model.PreferenceModel;
+import org.ebs.model.StyleThemeModel;
+import org.ebs.model.UserModel;
+import org.ebs.model.repos.AlertRepository;
+import org.ebs.model.repos.PreferenceRepository;
+import org.ebs.model.repos.StyleThemeRepository;
+import org.ebs.model.repos.UserRepository;
+import org.ebs.services.to.PreferenceTo;
+import org.ebs.services.to.Input.PreferenceInput;
 import org.ebs.util.FilterInput;
 import org.ebs.util.PageInput;
 import org.ebs.util.SortInput;
 import org.ebs.util.Utils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
-import org.ebs.services.to.PreferenceTo;
-import org.ebs.services.to.Input.PreferenceInput;
-import org.ebs.model.PreferenceModel;
-import org.ebs.model.repos.PreferenceRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author EBRIONES

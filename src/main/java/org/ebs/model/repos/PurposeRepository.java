@@ -8,10 +8,11 @@
 
 package org.ebs.model.repos;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.ebs.util.RepositoryExt;
 import java.util.List;
+
 import org.ebs.model.PurposeModel;
+import org.ebs.util.RepositoryExt;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * @author EBRIONES
@@ -20,4 +21,5 @@ import org.ebs.model.PurposeModel;
  */
 public interface PurposeRepository extends JpaRepository<PurposeModel,Integer>, RepositoryExt<PurposeModel> {
 
+	public List<PurposeModel> findByServiceId (final int idService);
 }

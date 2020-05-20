@@ -9,9 +9,6 @@
 package org.ebs.services.to;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.Set;
-import org.ebs.model.WorkflowNodeModel;
 
 /**
  * @author EBRIONES

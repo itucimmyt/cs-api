@@ -8,31 +8,31 @@
 
 package org.ebs.graphql.resolvers;
 
-import com.coxautodev.graphql.tools.GraphQLResolver;
-import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
-import java.util.stream.Collectors;
-import java.util.List;
-import java.util.Optional;
 import java.util.Set;
-import org.springframework.core.convert.ConversionService;
+import java.util.stream.Collectors;
+
 import org.ebs.model.InstanceModel;
-import org.ebs.services.to.ComponentTo;
-import org.ebs.services.TenantService;
-import org.ebs.model.repos.TenantRepository;
-import org.ebs.services.to.TenantTo;
-import org.ebs.services.to.InstanceTo;
-import org.ebs.model.repos.InstanceRepository;
-import org.ebs.services.InstanceService;
-import org.ebs.model.repos.SessionRepository;
-import org.ebs.services.SessionService;
-import org.ebs.services.to.SessionTo;
 import org.ebs.model.repos.AuditLogsRepository;
-import org.ebs.services.AuditLogsService;
-import org.ebs.services.to.AuditLogsTo;
-import org.ebs.services.ComponentService;
 import org.ebs.model.repos.ComponentRepository;
+import org.ebs.model.repos.InstanceRepository;
+import org.ebs.model.repos.SessionRepository;
+import org.ebs.model.repos.TenantRepository;
+import org.ebs.services.AuditLogsService;
+import org.ebs.services.ComponentService;
+import org.ebs.services.InstanceService;
+import org.ebs.services.SessionService;
+import org.ebs.services.TenantService;
+import org.ebs.services.to.AuditLogsTo;
+import org.ebs.services.to.ComponentTo;
+import org.ebs.services.to.InstanceTo;
+import org.ebs.services.to.SessionTo;
+import org.ebs.services.to.TenantTo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
+
+import com.coxautodev.graphql.tools.GraphQLResolver;
 
 /**
  * @author EBRIONES

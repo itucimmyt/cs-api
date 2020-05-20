@@ -8,25 +8,26 @@
 
 package org.ebs.services;
 
-import org.ebs.model.AddressModel;
-import org.ebs.model.repos.AddressRepository;
-import org.ebs.model.TenantModel;
-import org.ebs.model.repos.TenantRepository;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
-import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import java.util.Optional;
+
+import org.ebs.model.AddressModel;
+import org.ebs.model.PersonModel;
+import org.ebs.model.TenantModel;
+import org.ebs.model.repos.AddressRepository;
+import org.ebs.model.repos.PersonRepository;
+import org.ebs.model.repos.TenantRepository;
+import org.ebs.services.to.PersonTo;
+import org.ebs.services.to.Input.PersonInput;
 import org.ebs.util.FilterInput;
 import org.ebs.util.PageInput;
 import org.ebs.util.SortInput;
 import org.ebs.util.Utils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
-import org.ebs.model.repos.PersonRepository;
-import org.ebs.services.to.PersonTo;
-import org.ebs.services.to.Input.PersonInput;
-import org.ebs.model.PersonModel;
+import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author EBRIONES

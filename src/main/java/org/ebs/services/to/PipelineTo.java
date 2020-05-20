@@ -9,13 +9,7 @@
 package org.ebs.services.to;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.Set;
-import org.ebs.model.SchemeModel;
-import org.ebs.model.PhaseModel;
-import org.ebs.model.ProjectModel;
-import org.ebs.model.BreedingZoneModel;
-import org.ebs.model.SchemaModel;
 
 /**
  * @author EBRIONES

@@ -8,12 +8,11 @@
 
 package org.ebs.services.converter;
 
-import org.springframework.core.convert.converter.Converter;
-import org.springframework.stereotype.Component;
-import org.springframework.beans.BeanUtils;
 import org.ebs.model.MarkerSynonymModel;
 import org.ebs.services.to.Input.MarkerSynonymInput;
-import org.ebs.services.to.MarkerSynonymTo;
+import org.springframework.beans.BeanUtils;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
 /**
  * @author EBRIONES

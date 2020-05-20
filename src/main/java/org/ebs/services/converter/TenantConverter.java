@@ -8,12 +8,11 @@
 
 package org.ebs.services.converter;
 
+import org.ebs.model.TenantModel;
+import org.ebs.services.to.TenantTo;
+import org.springframework.beans.BeanUtils;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
-import org.springframework.beans.BeanUtils;
-import org.ebs.model.TenantModel;
-import org.ebs.services.to.Input.TenantInput;
-import org.ebs.services.to.TenantTo;
 
 /**
  * @author EBRIONES

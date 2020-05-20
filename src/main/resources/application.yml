@@ -35,9 +35,9 @@ spring:
   datasource:
     initialization-mode: never
     continue-on-error: false
-    url: jdbc:postgresql://localhost:5432/cimmyt
+    url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
-    password: 12345
+    password: cimmyt
     dbcp2:
       test-while-idle: true
       test-on-borrow: true

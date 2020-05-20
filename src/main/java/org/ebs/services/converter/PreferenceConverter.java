@@ -8,12 +8,11 @@
 
 package org.ebs.services.converter;
 
+import org.ebs.model.PreferenceModel;
+import org.ebs.services.to.PreferenceTo;
+import org.springframework.beans.BeanUtils;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
-import org.springframework.beans.BeanUtils;
-import org.ebs.model.PreferenceModel;
-import org.ebs.services.to.Input.PreferenceInput;
-import org.ebs.services.to.PreferenceTo;
 
 /**
  * @author EBRIONES

@@ -8,22 +8,19 @@
 
 package org.ebs.graphql.resolvers;
 
-import com.coxautodev.graphql.tools.GraphQLResolver;
-import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
-import java.util.stream.Collectors;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import org.springframework.core.convert.ConversionService;
 import org.ebs.model.AlertRuleModel;
-import org.ebs.services.to.AlertRuleTo;
+import org.ebs.model.repos.AlertRepository;
 import org.ebs.model.repos.AlertRuleRepository;
 import org.ebs.services.AlertRuleService;
 import org.ebs.services.AlertService;
-import org.ebs.model.repos.AlertRepository;
+import org.ebs.services.to.AlertRuleTo;
 import org.ebs.services.to.AlertTo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
+
+import com.coxautodev.graphql.tools.GraphQLResolver;
 
 /**
  * @author EBRIONES

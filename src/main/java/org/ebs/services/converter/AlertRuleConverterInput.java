@@ -8,12 +8,11 @@
 
 package org.ebs.services.converter;
 
-import org.springframework.core.convert.converter.Converter;
-import org.springframework.stereotype.Component;
-import org.springframework.beans.BeanUtils;
 import org.ebs.model.AlertRuleModel;
 import org.ebs.services.to.Input.AlertRuleInput;
-import org.ebs.services.to.AlertRuleTo;
+import org.springframework.beans.BeanUtils;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
 /**
  * @author EBRIONES

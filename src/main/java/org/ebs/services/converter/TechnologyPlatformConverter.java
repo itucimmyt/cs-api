@@ -8,12 +8,11 @@
 
 package org.ebs.services.converter;
 
+import org.ebs.model.TechnologyPlatformModel;
+import org.ebs.services.to.TechnologyPlatformTo;
+import org.springframework.beans.BeanUtils;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
-import org.springframework.beans.BeanUtils;
-import org.ebs.model.TechnologyPlatformModel;
-import org.ebs.services.to.Input.TechnologyPlatformInput;
-import org.ebs.services.to.TechnologyPlatformTo;
 
 /**
  * @author EBRIONES

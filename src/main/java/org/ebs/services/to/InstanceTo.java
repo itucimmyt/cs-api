@@ -8,13 +8,8 @@
 
 package org.ebs.services.to;
 
-import java.util.Set;
-import org.ebs.model.SessionModel;
-import org.ebs.model.AuditLogsModel;
-import org.ebs.model.ComponentModel;
-import org.ebs.model.TenantModel;
 import java.io.Serializable;
-import java.util.Date;
+import java.util.Set;
 
 /**
  * @author EBRIONES

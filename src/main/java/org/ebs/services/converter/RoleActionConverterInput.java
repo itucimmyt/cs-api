@@ -8,12 +8,11 @@
 
 package org.ebs.services.converter;
 
-import org.springframework.core.convert.converter.Converter;
-import org.springframework.stereotype.Component;
-import org.springframework.beans.BeanUtils;
 import org.ebs.model.RoleActionModel;
 import org.ebs.services.to.Input.RoleActionInput;
-import org.ebs.services.to.RoleActionTo;
+import org.springframework.beans.BeanUtils;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 
 /**
  * @author EBRIONES

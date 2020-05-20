@@ -8,25 +8,25 @@
 
 package org.ebs.graphql.resolvers;
 
-import com.coxautodev.graphql.tools.GraphQLResolver;
-import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
-import java.util.stream.Collectors;
-import java.util.List;
-import java.util.Optional;
 import java.util.Set;
-import org.springframework.core.convert.ConversionService;
+import java.util.stream.Collectors;
+
 import org.ebs.model.WorkflowModel;
-import org.ebs.services.to.WorkflowTo;
-import org.ebs.model.repos.WorkflowRepository;
-import org.ebs.services.WorkflowService;
-import org.ebs.services.TenantService;
 import org.ebs.model.repos.TenantRepository;
-import org.ebs.services.to.TenantTo;
 import org.ebs.model.repos.WorkflowNodeRepository;
+import org.ebs.model.repos.WorkflowRepository;
+import org.ebs.services.TenantService;
 import org.ebs.services.WorkflowNodeService;
+import org.ebs.services.WorkflowService;
+import org.ebs.services.to.TenantTo;
 import org.ebs.services.to.WorkflowNodeTo;
+import org.ebs.services.to.WorkflowTo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
+
+import com.coxautodev.graphql.tools.GraphQLResolver;
 
 /**
  * @author EBRIONES

@@ -9,11 +9,7 @@
 package org.ebs.services.to;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.Set;
-import org.ebs.model.WorkflowModel;
-import org.ebs.model.ProcessModel;
-import org.ebs.model.ModuleModel;
 
 /**
  * @author EBRIONES

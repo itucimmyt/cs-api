@@ -10,14 +10,13 @@ package org.ebs.services;
 
 import java.util.List;
 import java.util.Optional;
+
+import org.ebs.services.to.HtmlTagTo;
+import org.ebs.services.to.Input.HtmlTagInput;
 import org.ebs.util.FilterInput;
 import org.ebs.util.PageInput;
 import org.ebs.util.SortInput;
 import org.springframework.data.domain.Page;
-import org.ebs.util.Utils;
-import org.ebs.model.repos.HtmlTagRepository;
-import org.ebs.services.to.HtmlTagTo;
-import org.ebs.services.to.Input.HtmlTagInput;
 
 /**
  * @author EBRIONES

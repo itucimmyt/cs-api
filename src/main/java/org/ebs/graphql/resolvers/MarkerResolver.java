@@ -8,28 +8,27 @@
 
 package org.ebs.graphql.resolvers;
 
-import com.coxautodev.graphql.tools.GraphQLResolver;
-import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
-import java.util.stream.Collectors;
-import java.util.List;
-import java.util.Optional;
 import java.util.Set;
-import org.springframework.core.convert.ConversionService;
+import java.util.stream.Collectors;
+
 import org.ebs.model.MarkerModel;
-import org.ebs.services.to.MarkerTo;
-import org.ebs.model.repos.MarkerRepository;
-import org.ebs.services.MarkerService;
-import org.ebs.services.VendorService;
-import org.ebs.model.repos.VendorRepository;
-import org.ebs.services.to.VendorTo;
-import org.ebs.model.repos.MarkerSynonymRepository;
-import org.ebs.services.MarkerSynonymService;
-import org.ebs.services.to.MarkerSynonymTo;
-import org.ebs.services.AssayGeneService;
 import org.ebs.model.repos.AssayGeneRepository;
+import org.ebs.model.repos.MarkerRepository;
+import org.ebs.model.repos.MarkerSynonymRepository;
+import org.ebs.model.repos.VendorRepository;
+import org.ebs.services.AssayGeneService;
+import org.ebs.services.MarkerService;
+import org.ebs.services.MarkerSynonymService;
+import org.ebs.services.VendorService;
 import org.ebs.services.to.AssayGeneTo;
+import org.ebs.services.to.MarkerSynonymTo;
+import org.ebs.services.to.MarkerTo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
+
+import com.coxautodev.graphql.tools.GraphQLResolver;
 
 /**
  * @author EBRIONES

@@ -8,45 +8,42 @@
 
 package org.ebs.graphql.resolvers;
 
-import com.coxautodev.graphql.tools.GraphQLResolver;
-import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
-import java.util.stream.Collectors;
-import java.util.List;
-import java.util.Optional;
 import java.util.Set;
-import org.springframework.core.convert.ConversionService;
+import java.util.stream.Collectors;
+
 import org.ebs.model.TenantModel;
-import org.ebs.services.to.TenantTo;
-import org.ebs.model.repos.TenantRepository;
-import org.ebs.services.TenantService;
-import org.ebs.model.repos.UserRepository;
-import org.ebs.services.UserService;
-import org.ebs.services.to.UserTo;
-import org.ebs.model.repos.InstanceRepository;
-import org.ebs.services.InstanceService;
-import org.ebs.services.to.InstanceTo;
-import org.ebs.model.repos.WorkflowRepository;
-import org.ebs.services.WorkflowService;
-import org.ebs.services.to.WorkflowTo;
-import org.ebs.services.OrganizationService;
-import org.ebs.model.repos.OrganizationRepository;
-import org.ebs.services.to.OrganizationTo;
-import org.ebs.services.AuthenticationTypeService;
-import org.ebs.services.CropService;
 import org.ebs.model.repos.AuthenticationTypeRepository;
-import org.ebs.model.repos.CropRepository;
-import org.ebs.services.to.AuthenticationTypeTo;
-import org.ebs.services.to.CropTo;
-import org.ebs.services.CustomerService;
 import org.ebs.model.repos.CustomerRepository;
-import org.ebs.services.to.CustomerTo;
+import org.ebs.model.repos.InstanceRepository;
+import org.ebs.model.repos.OrganizationRepository;
 import org.ebs.model.repos.PersonRepository;
 import org.ebs.model.repos.ProgramRepository;
+import org.ebs.model.repos.TenantRepository;
+import org.ebs.model.repos.UserRepository;
+import org.ebs.model.repos.WorkflowRepository;
+import org.ebs.services.AuthenticationTypeService;
+import org.ebs.services.CustomerService;
+import org.ebs.services.InstanceService;
+import org.ebs.services.OrganizationService;
 import org.ebs.services.PersonService;
+import org.ebs.services.TenantService;
+import org.ebs.services.UserService;
+import org.ebs.services.WorkflowService;
+import org.ebs.services.to.AuthenticationTypeTo;
+import org.ebs.services.to.CustomerTo;
+import org.ebs.services.to.InstanceTo;
+import org.ebs.services.to.OrganizationTo;
 import org.ebs.services.to.PersonTo;
 import org.ebs.services.to.ProgramTo;
+import org.ebs.services.to.TenantTo;
+import org.ebs.services.to.UserTo;
+import org.ebs.services.to.WorkflowTo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
+
+import com.coxautodev.graphql.tools.GraphQLResolver;
 
 /**
  * @author EBRIONES

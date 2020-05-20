@@ -8,41 +8,36 @@
 
 package org.ebs.graphql.resolvers;
 
-import com.coxautodev.graphql.tools.GraphQLResolver;
-import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
-
-
+import org.ebs.model.TranslationModel;
+import org.ebs.model.repos.AlertRepository;
+import org.ebs.model.repos.AttributesRepository;
+import org.ebs.model.repos.HtmlTagRepository;
+import org.ebs.model.repos.LanguageRepository;
+import org.ebs.model.repos.MessageRepository;
+import org.ebs.model.repos.ModuleRepository;
+import org.ebs.model.repos.TranslationRepository;
+import org.ebs.services.AlertService;
+import org.ebs.services.AttributesService;
+import org.ebs.services.HtmlTagService;
+import org.ebs.services.LanguageService;
+import org.ebs.services.MessageService;
+import org.ebs.services.ModuleService;
+import org.ebs.services.TranslationService;
+import org.ebs.services.to.AlertTo;
+import org.ebs.services.to.AttributesTo;
+import org.ebs.services.to.HtmlTagTo;
+import org.ebs.services.to.LanguageTo;
+import org.ebs.services.to.MessageTo;
+import org.ebs.services.to.ModuleTo;
+import org.ebs.services.to.TranslationTo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.util.stream.Collectors;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
-import org.ebs.model.TranslationModel;
-import org.ebs.services.to.TranslationTo;
-import org.ebs.model.repos.TranslationRepository;
-import org.ebs.services.TranslationService;
-import org.ebs.services.AlertService;
-import org.ebs.services.HtmlTagService;
-import org.ebs.model.repos.HtmlTagRepository;
-import org.ebs.services.to.HtmlTagTo;
-import org.ebs.services.ModuleService;
-import org.ebs.model.repos.ModuleRepository;
-import org.ebs.services.to.ModuleTo;
-import org.ebs.model.repos.AlertRepository;
-import org.ebs.services.to.AlertTo;
-import org.ebs.services.AttributesService;
-import org.ebs.model.repos.AttributesRepository;
-import org.ebs.services.to.AttributesTo;
-import org.ebs.services.LanguageService;
-import org.ebs.model.repos.LanguageRepository;
-import org.ebs.services.to.LanguageTo;
-import org.ebs.services.MessageService;
-import org.ebs.model.repos.MessageRepository;
-import org.ebs.services.to.MessageTo;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
+
+import com.coxautodev.graphql.tools.GraphQLResolver;
 
 /**
  * @author EBRIONES

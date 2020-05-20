@@ -8,12 +8,11 @@
 
 package org.ebs.services.converter;
 
+import org.ebs.model.AttributesModel;
+import org.ebs.services.to.AttributesTo;
+import org.springframework.beans.BeanUtils;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
-import org.springframework.beans.BeanUtils;
-import org.ebs.model.AttributesModel;
-import org.ebs.services.to.Input.AttributesInput;
-import org.ebs.services.to.AttributesTo;
 
 /**
  * @author EBRIONES

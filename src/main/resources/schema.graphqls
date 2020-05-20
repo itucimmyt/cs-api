@@ -1445,7 +1445,7 @@ code: String
 name: String
 tenant_id: Int
 id: ID!
-servicetypes:[ServiceType]
+serviceTypes:[ServiceType]
 services:[Service]
 }
 type ServiceTypeConnection {

@@ -9,15 +9,7 @@
 package org.ebs.services.to;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.Set;
-import org.ebs.model.AddressModel;
-import org.ebs.model.TenantModel;
-import org.ebs.model.CollaboratorModel;
-import org.ebs.model.DonorModel;
-import org.ebs.model.PartnerModel;
-import org.ebs.model.VendorModel;
-import org.ebs.model.ProjectModel;
 
 /**
  * @author EBRIONES
