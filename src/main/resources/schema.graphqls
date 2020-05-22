@@ -1117,7 +1117,7 @@ id: ID!
 technologyplatforms:[TechnologyPlatform]
 markers:[Marker]
 country:Country
-dataformat:DataFormat
+dataFormat:DataFormat
 service:[Service]
 person:Person
 }
@@ -1423,9 +1423,9 @@ name: String
 description: String
 tenant_id: Int
 id: ID!
-servicetype:ServiceType
+serviceType:ServiceType
 purposes:[Purpose]
-serviceprovider:ServiceProvider
+serviceProvider:ServiceProvider
 assayclasss:[Assayclass]
 vendors:[Vendor]
 }
