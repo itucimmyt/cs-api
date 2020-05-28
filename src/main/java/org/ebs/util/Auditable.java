@@ -20,24 +20,24 @@ public abstract class Auditable implements Serializable{
 
     @Column(name = "creator_id")
     @CreatedBy
-    private Integer createdBy;
+    private String createdBy;
     @CreatedDate
     @Column(name = "creation_timestamp")
     private Date createdOn;
     @Column(name = "modifier_id")
     @LastModifiedBy
-    private Integer updatedBy;
+    private String updatedBy;
     @LastModifiedDate
     @Column(name = "modification_timestamp")
     private Date updatedOn;
     @Column(name = "is_void")
     private Boolean deleted = false;
 
-    public Integer getCreatedBy() {
+    public String getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(int createdBy) {
+    public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
     }
 
@@ -49,11 +49,11 @@ public abstract class Auditable implements Serializable{
         this.createdOn = createdOn;
     }
 
-    public Integer getUpdatedBy() {
+    public String getUpdatedBy() {
         return updatedBy;
     }
 
-    public void setUpdatedBy(int updatedBy) {
+    public void setUpdatedBy(String updatedBy) {
         this.updatedBy = updatedBy;
     }
 
