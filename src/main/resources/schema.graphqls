@@ -1402,7 +1402,6 @@ code: String
 description: String
 tenant_id: Int
 id: ID!
-servicetypes:[ServiceType]
 service:[Service]
 }
 type ServiceConnection {
@@ -1446,7 +1445,6 @@ name: String
 tenant_id: Int
 id: ID!
 serviceTypes:[ServiceType]
-services:[Service]
 }
 type ServiceTypeConnection {
 totalPages: Int
@@ -1467,10 +1465,10 @@ code: String
 description: String
 tenant_id: Int
 id: ID!
-serviceprovider:ServiceProvider
-purpose:[Purpose]
+serviceProvider:ServiceProvider
+purposes:[Purpose]
 crop:Crop
-services:[Service]
+
 }
 type TechnologyPlatformConnection {
 totalPages: Int

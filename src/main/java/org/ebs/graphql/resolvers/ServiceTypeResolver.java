@@ -23,8 +23,8 @@ import org.ebs.services.ServiceProviderService;
 import org.ebs.services.ServiceService;
 import org.ebs.services.ServiceTypeService;
 import org.ebs.services.to.CropTo;
+import org.ebs.services.to.PurposeTo;
 import org.ebs.services.to.ServiceProviderTo;
-import org.ebs.services.to.ServiceTo;
 import org.ebs.services.to.ServiceTypeTo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
@@ -72,15 +72,24 @@ public class ServiceTypeResolver implements GraphQLResolver<ServiceTypeTo> {
 		 return serviceproviderService.findServiceProvider(servicetypeModel.getServiceProvider().getId()).get();
 	}
 
+	
+	
+	public Set<PurposeTo> getPurposes(ServiceTypeTo servicetypeTo) {
+		return purposeRepository.findByServicetypeId(servicetypeTo.getId()).stream().
+				map( e -> converter.convert(e, PurposeTo.class))
+				.collect(Collectors.toSet());
+	}
+	
 	/**
 	 * 
 	 * @param servicetypeTo
 	 */
+	/*
 	public Set<ServiceTo> getServices(ServiceTypeTo servicetypeTo){
 		return serviceRepository.findByServicetypeId(servicetypeTo.getId()).stream() 
 		 .map(e -> converter.convert(e,ServiceTo.class)) 
 		 .collect(Collectors.toSet());
-	}
+	}*/
 
 	/**
 	 * 

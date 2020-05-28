@@ -40,9 +40,7 @@ public class ServiceProviderModel extends Auditable {
 	private int id;
 	@OneToMany(mappedBy = "serviceprovider",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<ServiceTypeModel> servicetypes;
-	@OneToMany(mappedBy = "serviceprovider",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
-	Set<ServiceModel> services;
-
+	
 	public String getcode(){
 		return code;
 	}
@@ -53,10 +51,6 @@ public class ServiceProviderModel extends Auditable {
 
 	public String getname(){
 		return name;
-	}
-
-	public Set<ServiceModel> getServices(){
-		return services;
 	}
 
 	public Set<ServiceTypeModel> getServiceTypes(){
@@ -89,14 +83,6 @@ public class ServiceProviderModel extends Auditable {
 	 */
 	public void setname(String name){
 		this.name = name;
-	}
-
-	/**
-	 * 
-	 * @param service
-	 */
-	public void setServices(Set<ServiceModel> service){
-		this.services =service;
 	}
 
 	/**

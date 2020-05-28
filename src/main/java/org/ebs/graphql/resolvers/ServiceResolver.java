@@ -74,10 +74,11 @@ public class ServiceResolver implements GraphQLResolver<ServiceTo> {
 	 * 
 	 * @param serviceTo
 	 */
+	/*
 	public ServiceProviderTo getServiceProvider(ServiceTo serviceTo){
 		ServiceModel serviceModel = serviceRepository.findById(serviceTo.getId()).get(); 
 		 return serviceproviderService.findServiceProvider(serviceModel.getServiceProvider().getId()).get();
-	}
+	}*/
 
 	/**
 	 * 
@@ -92,10 +93,9 @@ public class ServiceResolver implements GraphQLResolver<ServiceTo> {
 	 * 
 	 * @param serviceTo
 	 */
-	public List<PurposeTo> getPurpos3es(ServiceTo serviceTo){
+	public PurposeTo getPurpos3es(ServiceTo serviceTo){
 		ServiceModel serviceModel = serviceRepository.findById(serviceTo.getId()).get(); 
-		 return serviceModel.getPurposes().stream().map(e -> converter.convert(e,PurposeTo.class)) 
-		 .collect(Collectors.toList());
+		 return purposeService.findPurpose(serviceModel.getPurpose().getId()).get();
 	}
 	
 	/**

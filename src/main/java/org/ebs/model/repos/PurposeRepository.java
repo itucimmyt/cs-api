@@ -22,4 +22,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface PurposeRepository extends JpaRepository<PurposeModel,Integer>, RepositoryExt<PurposeModel> {
 
 	public List<PurposeModel> findByServiceId (final int idService);
+	public List<PurposeModel> findByServicetypeId (final int idServiceType);
 }

@@ -13,12 +13,13 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.ebs.util.Auditable;
@@ -41,9 +42,11 @@ public class PurposeModel extends Auditable {
 	private String description;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@ManyToMany(cascade =CascadeType.ALL) @JoinTable(name = "purpose_servicetype", schema="analyticalsampling", joinColumns  = @JoinColumn(name="purpose_id",referencedColumnName = "id"),inverseJoinColumns = @JoinColumn(name="servicetype_id",referencedColumnName="id"))
-	Set<ServiceTypeModel> servicetypes;
-	@ManyToMany(mappedBy="purposes")
+	
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="servicetype_id")
+	ServiceTypeModel servicetype;
+	
+	@OneToMany(mappedBy="purpose",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<ServiceModel> service;
 
 	public String getcode(){
@@ -66,8 +69,8 @@ public class PurposeModel extends Auditable {
 		return service;
 	}
 
-	public Set<ServiceTypeModel> getServiceTypes(){
-		return servicetypes;
+	public ServiceTypeModel getServiceType(){
+		return servicetype;
 	}
 
 	public int getTenantId(){
@@ -118,8 +121,8 @@ public class PurposeModel extends Auditable {
 	 * 
 	 * @param servicetype
 	 */
-	public void setServiceTypes(Set<ServiceTypeModel> servicetype){
-		this.servicetypes =servicetype;
+	public void setServiceTypes(ServiceTypeModel servicetype){
+		this.servicetype =servicetype;
 	}
 
 	/**

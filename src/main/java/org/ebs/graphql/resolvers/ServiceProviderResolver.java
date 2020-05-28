@@ -41,19 +41,10 @@ public class ServiceProviderResolver implements GraphQLResolver<ServiceProviderT
 	private ConversionService converter;
 	private ServiceTypeService servicetypeService;
 	private ServiceTypeRepository servicetypeRepository;
-	private ServiceService serviceService;
-	private ServiceRepository serviceRepository;
+	
+	
 
-	/**
-	 * 
-	 * @param serviceproviderTo
-	 */
-	public Set<ServiceTo> getServices(ServiceProviderTo serviceproviderTo){
-		return serviceRepository.findByServiceproviderId(serviceproviderTo.getId()).stream() 
-		 .map(e -> converter.convert(e,ServiceTo.class)) 
-		 .collect(Collectors.toSet());
-	}
-
+	
 	/**
 	 * 
 	 * @param serviceproviderTo
@@ -74,13 +65,13 @@ public class ServiceProviderResolver implements GraphQLResolver<ServiceProviderT
 	 * @param serviceproviderService
 	 */
 	@Autowired
-	public ServiceProviderResolver(ServiceRepository serviceRepository, ServiceService serviceService, ServiceTypeRepository servicetypeRepository, ServiceTypeService servicetypeService, ServiceProviderRepository serviceproviderRepository, ServiceProviderService serviceproviderService){
+	public ServiceProviderResolver(  ServiceTypeRepository servicetypeRepository, ServiceTypeService servicetypeService, ServiceProviderRepository serviceproviderRepository, ServiceProviderService serviceproviderService){
 		this.serviceproviderService = serviceproviderService; 
 		this.serviceproviderRepository = serviceproviderRepository; 
 		this.servicetypeService = servicetypeService; 
 		this.servicetypeRepository = servicetypeRepository; 
-		this.serviceService = serviceService; 
-		this.serviceRepository = serviceRepository; 
+		 
+		 
 	
 	}
 
