@@ -3,7 +3,7 @@ logging:
     org:
       springframework: INFO
       hibernate: INFO
-      ebs: DEBUG
+      ebs: TRACE
 server:
   port: 8080
 spring:
@@ -48,7 +48,7 @@ spring:
         size-parameter: pageSize
   jpa:
     open-in-view: false
-    show-sql: true
+    show-sql: false
     hibernate:
       ddl-auto: none
       naming:
