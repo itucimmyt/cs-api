@@ -2,9 +2,7 @@ package org.ebs;
 
 import org.ebs.security.AuthenticationFilter;
 import org.ebs.security.UnauthorizedEntryPoint;
-import org.ebs.util.AuditorAwareImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -57,11 +55,6 @@ class SecurityConfig extends WebSecurityConfigurerAdapter{
       .addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class)
       .headers()
         .cacheControl();
-    }
-
-    @Bean
-    public AuditorAwareImpl auditorProvider() {
-      return new AuditorAwareImpl();
     }
 
 }
