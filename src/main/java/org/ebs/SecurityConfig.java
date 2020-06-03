@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -19,13 +18,17 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableJpaAuditing(modifyOnCreate = false)
 class SecurityConfig extends WebSecurityConfigurerAdapter{
 
-  @Autowired
   private UnauthorizedEntryPoint unauthorizedEntryPoint;
-  @Autowired
   private AuthenticationFilter authenticationFilter;
-  @Autowired
   private UserDetailsService userDetailsService;
 
+  @Autowired
+  public SecurityConfig(UnauthorizedEntryPoint unauthorizedEntryPoint, AuthenticationFilter authenticationFilter,
+      UserDetailsService userDetailsService) {
+    this.unauthorizedEntryPoint = unauthorizedEntryPoint;
+    this.authenticationFilter = authenticationFilter;
+    this.userDetailsService = userDetailsService;
+  }
   
 	@Autowired
 	public void configureAuthentication(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
@@ -61,14 +64,4 @@ class SecurityConfig extends WebSecurityConfigurerAdapter{
       return new AuditorAwareImpl();
     }
 
-    
-
-  /**
-  * Explicitly exposing this bean since Spring Security 5 doesn't do it by default
-  */
-  @Bean
-  @Override
-  public AuthenticationManager authenticationManagerBean() throws Exception {
-    return super.authenticationManagerBean();
-  }
 }

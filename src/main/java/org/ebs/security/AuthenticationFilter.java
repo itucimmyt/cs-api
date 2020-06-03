@@ -17,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
@@ -65,10 +64,9 @@ public class AuthenticationFilter extends OncePerRequestFilter {
             DecodedJWT jwt = JWT.decode(token);
             username = jwt.getClaim("http://wso2.org/claims/displayName").asString();
         } catch (Exception e) {
-            LOG.error("Error reading getting token", e);
+            LOG.error("Error reading username from token", e);
         }
 
-        LOG.debug("Validating authentication token for: {} ", username);
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
         	EbsUser userDetails = (EbsUser)this.userDetailsService.loadUserByUsername(username);
@@ -78,7 +76,7 @@ public class AuthenticationFilter extends OncePerRequestFilter {
             authentication.setDetails(
                     new WebAuthenticationDetailsSource().buildDetails(request));
             
-            LOG.debug("Setting security context for authenticated user: {}", username);
+            LOG.trace("Setting security context for authenticated user: {}", username);
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
     }
