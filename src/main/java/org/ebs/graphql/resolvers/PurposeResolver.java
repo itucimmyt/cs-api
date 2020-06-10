@@ -52,7 +52,7 @@ public class PurposeResolver implements GraphQLResolver<PurposeTo> {
 	 */
 	
 	public Set<ServiceTo> getService(PurposeTo purposeTo){
-		return serviceRepository.findByServicetypeId(purposeTo.getId()).stream() 
+		return serviceRepository.findByPurposeId(purposeTo.getId()).stream() 
 		 .map(e -> converter.convert(e,ServiceTo.class)) 
 		 .collect(Collectors.toSet());
 	}

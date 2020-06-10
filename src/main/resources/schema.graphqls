@@ -536,7 +536,7 @@ crop_name: String
 #
 description: String
 id: ID!
-servicetypes:[ServiceType]
+serviceProvider: [ServiceProvider]
 programs:[Program]
 seasons:[Season]
 }

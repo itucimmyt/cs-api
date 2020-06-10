@@ -54,7 +54,7 @@ public class ServiceTypeImpl implements ServiceTypeService {
 		ServiceTypeModel model = converter.convert(ServiceType,ServiceTypeModel.class); 
 		 model.setId(0);
 		 ServiceProviderModel serviceproviderModel = serviceproviderRepository.findById(ServiceType.getServiceProvider().getId()).get(); 
-		model.setServiceProvider(serviceproviderModel); 
+		//model.setServiceProvider(serviceproviderModel); 
 		CropModel cropModel = cropRepository.findById(ServiceType.getCrop().getId()).get(); 
 		model.setCrop(cropModel); 
 		 

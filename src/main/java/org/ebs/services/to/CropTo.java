@@ -23,7 +23,7 @@ public class CropTo implements Serializable {
 	private String crop_code;
 	private String crop_name;
 	private String description;
-	Set<ServiceTypeTo> servicetypes;
+	Set<ServiceProviderTo> serviceProviders;
 	Set<ProgramTo> programs;
 	Set<SeasonTo> seasons;
 
@@ -49,10 +49,6 @@ public class CropTo implements Serializable {
 
 	public Set<SeasonTo> getSeasons(){
 		return seasons;
-	}
-
-	public Set<ServiceTypeTo> getServiceTypes(){
-		return servicetypes;
 	}
 
 	/**
@@ -102,13 +98,13 @@ public class CropTo implements Serializable {
 	public void setSeasons(Set<SeasonTo> season){
 		this.seasons =season;
 	}
+	
+	public Set<ServiceProviderTo> getServiceProviders() {
+		return serviceProviders;
+	}
 
-	/**
-	 * 
-	 * @param servicetype
-	 */
-	public void setServiceTypes(Set<ServiceTypeTo> servicetype){
-		this.servicetypes =servicetype;
+	public void setServiceProviders(Set<ServiceProviderTo> serviceProviders) {
+		this.serviceProviders = serviceProviders;
 	}
 
 }

@@ -42,8 +42,10 @@ public class AssayclassModel extends Auditable {
 	private String description;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
+	
 	@ManyToMany(mappedBy="assayclasss")
 	Set<TechnologyPlatformModel> technologyplatform;
+		
 	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="service_id")
 	ServiceModel service;
 

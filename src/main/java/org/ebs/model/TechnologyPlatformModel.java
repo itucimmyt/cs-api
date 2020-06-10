@@ -39,8 +39,13 @@ public class TechnologyPlatformModel extends Auditable {
 	private String description;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@ManyToMany(cascade =CascadeType.ALL) @JoinTable(name = "technologyplatform_assayclass", schema="analyticalsampling", joinColumns  = @JoinColumn(name="technologyplatform_id",referencedColumnName = "id"),inverseJoinColumns = @JoinColumn(name="assayclass_id",referencedColumnName = "id"))
+	
+	@ManyToMany(cascade =CascadeType.ALL)
+	@JoinTable(name = "technologyplatform_assayclass", schema="analyticalsampling", 
+	joinColumns  = @JoinColumn(name="technologyplatform_id",referencedColumnName = "id"),
+	inverseJoinColumns = @JoinColumn(name="assayclass_id",referencedColumnName = "id"))
 	Set<AssayclassModel> assayclasss;
+	
 	@ManyToMany(mappedBy="technologyplatforms")
 	Set<VendorModel> vendor;
 

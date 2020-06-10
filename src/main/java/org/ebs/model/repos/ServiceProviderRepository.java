@@ -8,6 +8,9 @@
 
 package org.ebs.model.repos;
 
+import java.util.List;
+
+import org.ebs.model.ProgramModel;
 import org.ebs.model.ServiceProviderModel;
 import org.ebs.util.RepositoryExt;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,5 +21,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @created 17-May-2020 3:10:16 PM
  */
 public interface ServiceProviderRepository extends JpaRepository<ServiceProviderModel,Integer>, RepositoryExt<ServiceProviderModel> {
+	 public List<ServiceProviderModel> findByCropId(int cropId);
 
 }

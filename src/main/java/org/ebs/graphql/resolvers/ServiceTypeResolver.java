@@ -67,10 +67,11 @@ public class ServiceTypeResolver implements GraphQLResolver<ServiceTypeTo> {
 	 * 
 	 * @param servicetypeTo
 	 */
+	/*
 	public ServiceProviderTo getServiceProvider(ServiceTypeTo servicetypeTo){
 		ServiceTypeModel servicetypeModel = servicetypeRepository.findById(servicetypeTo.getId()).get(); 
 		 return serviceproviderService.findServiceProvider(servicetypeModel.getServiceProvider().getId()).get();
-	}
+	}*/
 
 	
 	

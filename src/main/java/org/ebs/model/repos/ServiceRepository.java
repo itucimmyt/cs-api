@@ -31,6 +31,6 @@ public interface ServiceRepository extends JpaRepository<ServiceModel,Integer>, 
 	 * 
 	 * @param servicetypeId
 	 */
-	public List<ServiceModel> findByServicetypeId(int servicetypeId);
+   public List<ServiceModel> findByPurposeId(int servicetypeId);
 
 }

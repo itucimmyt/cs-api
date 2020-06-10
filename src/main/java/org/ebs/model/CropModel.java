@@ -36,6 +36,9 @@ public class CropModel extends Auditable {
 	/**
 	 * 
 	 */
+	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
+	private int id;
+	
 	private static final long serialVersionUID = 1L;
 	@Column(name="crop_code")
 	private String crop_code;
@@ -43,16 +46,19 @@ public class CropModel extends Auditable {
 	private String crop_name;
 	@Column(name="description")
 	private String description;
-	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
-	private int id;
-	@OneToMany(mappedBy = "crop",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
-	Set<ServiceTypeModel> servicetypes;
+	
+	
 	@OneToMany(mappedBy = "crop",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<ProgramModel> programs;
 	@ManyToMany(cascade =CascadeType.ALL) @JoinTable(name = "crop_season", schema="tenant", joinColumns  = @JoinColumn(name="crop_id",referencedColumnName = "id"),inverseJoinColumns = @JoinColumn(name="season_id",referencedColumnName = "id"))
 	Set<SeasonModel> seasons;
 	 
 
+	@ManyToMany(cascade =CascadeType.ALL) 
+	@JoinTable(name = "crop_serviceprovider", schema="analyticalsampling", 
+	joinColumns  = @JoinColumn(name="crop_id",referencedColumnName = "id"),
+	inverseJoinColumns = @JoinColumn(name="serviceprovider_id",referencedColumnName = "id"))
+	Set<ServiceProviderModel> serviceProviders;
  
 	
 	public String getcrop_code(){
@@ -77,10 +83,6 @@ public class CropModel extends Auditable {
 
 	public Set<SeasonModel> getSeasons(){
 		return seasons;
-	}
-
-	public Set<ServiceTypeModel> getServiceTypes(){
-		return servicetypes;
 	}
 
 	/**
@@ -131,12 +133,14 @@ public class CropModel extends Auditable {
 		this.seasons =season;
 	}
 
-	/**
-	 * 
-	 * @param servicetype
-	 */
-	public void setServiceTypes(Set<ServiceTypeModel> servicetype){
-		this.servicetypes =servicetype;
+	public Set<ServiceProviderModel> getServiceProviders() {
+		return serviceProviders;
 	}
+
+	public void setServiceProviders(Set<ServiceProviderModel> serviceProviders) {
+		this.serviceProviders = serviceProviders;
+	}
+
+	
 
 }

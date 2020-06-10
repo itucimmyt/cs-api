@@ -20,7 +20,7 @@ public abstract class Auditable implements Serializable{
 
     @Column(name = "creator_id")
     @CreatedBy
-    private Integer createdBy;
+    private String createdBy;
     @CreatedDate
     @Column(name = "creation_timestamp")
     private Date createdOn;
@@ -33,11 +33,11 @@ public abstract class Auditable implements Serializable{
     @Column(name = "is_void")
     private Boolean deleted = false;
 
-    public Integer getCreatedBy() {
+    public String getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(int createdBy) {
+    public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
     }
 

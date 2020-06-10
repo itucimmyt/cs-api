@@ -42,12 +42,10 @@ public class ServiceModel extends Auditable {
 	private String description;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@ManyToOne(fetch=FetchType.LAZY, optional =false) @JoinColumn(name="servicetype_id")
-	ServiceTypeModel servicetype;
+	
 	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="purpose_id")
 	PurposeModel purpose;
-	//@ManyToOne(fetch=FetchType.LAZY, optional =false) @JoinColumn(name="serviceprovider_id")
-//	ServiceProviderModel serviceprovider;
+
 	@OneToMany(mappedBy = "service",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<AssayclassModel> assayclasss;
 	@ManyToMany(cascade =CascadeType.ALL) @JoinTable(name = "service_vendor", schema="analyticalsampling", joinColumns  = @JoinColumn(name="service_id",referencedColumnName = "id"),inverseJoinColumns = @JoinColumn(name="vendor_id",referencedColumnName = "id"))
@@ -71,15 +69,6 @@ public class ServiceModel extends Auditable {
 
 	public PurposeModel getPurpose(){
 		return purpose;
-	}
-
-	/*
-	public ServiceProviderModel getServiceProvider(){
-		return serviceprovider;
-	}*/
-
-	public ServiceTypeModel getServiceType(){
-		return servicetype;
 	}
 
 	public int getTenantId(){
@@ -128,24 +117,6 @@ public class ServiceModel extends Auditable {
 	 */
 	public void setPurposes(PurposeModel purpose){
 		this.purpose =purpose;
-	}
-
-	/**
-	 * 
-	 * @param serviceprovider
-	
-	 */
-
-	/*public void setServiceProvider(ServiceProviderModel serviceprovider){
-		this.serviceprovider =serviceprovider;
-	}
-*/
-	/**
-	 * 
-	 * @param servicetype
-	 */
-	public void setServiceType(ServiceTypeModel servicetype){
-		this.servicetype =servicetype;
 	}
 
 	/**

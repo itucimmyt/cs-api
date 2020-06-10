@@ -33,6 +33,10 @@ public class CountryModel extends Auditable {
 	/**
 	 * 
 	 */
+	
+	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
+	private int id;
+	
 	private static final long serialVersionUID = 1L;
 	@Column(name="name")
 	private String name;
@@ -44,10 +48,12 @@ public class CountryModel extends Auditable {
 	private String full_name;
 	@Column(name="code")
 	private String code;
-	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
-	private int id;
+	
 	@OneToMany(mappedBy = "country",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<VendorModel> vendors;
+	
+	@OneToMany(mappedBy="country",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	Set<ServiceProviderModel> serviceProviders;
 
 	public String getcode(){
 		return code;
@@ -133,4 +139,13 @@ public class CountryModel extends Auditable {
 		this.vendors =vendor;
 	}
 
+	public Set<ServiceProviderModel> getServiceProviders() {
+		return serviceProviders;
+	}
+
+	public void setServiceProviders(Set<ServiceProviderModel> serviceProviders) {
+		this.serviceProviders = serviceProviders;
+	}
+
+	
 }

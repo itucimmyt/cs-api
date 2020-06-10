@@ -35,7 +35,7 @@ public class ServiceConverterInput implements Converter<ServiceInput,ServiceMode
 		ServiceModel target = new  ServiceModel(); 
 		BeanUtils.copyProperties(source, target); 
 		target.setPurposes(purposeConverterInput.convert(source.getPurpose()));
-		target.setServiceType(serviceTypeConverterInput.convert(source.getServiceType()));
+		//target.setServiceType(serviceTypeConverterInput.convert(source.getServiceType()));
 		return target;
 	}
 

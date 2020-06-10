@@ -50,7 +50,7 @@ public class ServiceProviderResolver implements GraphQLResolver<ServiceProviderT
 	 * @param serviceproviderTo
 	 */
 	public Set<ServiceTypeTo> getServiceTypes(ServiceProviderTo serviceproviderTo){
-		return servicetypeRepository.findByServiceproviderId(serviceproviderTo.getId()).stream() 
+		return servicetypeRepository.findByServiceProviderId(serviceproviderTo.getId()).stream() 
 		 .map(e -> converter.convert(e,ServiceTypeTo.class)) 
 		 .collect(Collectors.toSet());
 	}

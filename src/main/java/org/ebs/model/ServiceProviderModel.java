@@ -17,6 +17,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -31,15 +35,26 @@ import org.ebs.util.Auditable;
 @Entity @Table(name="ServiceProvider",schema="analyticalsampling")
 public class ServiceProviderModel extends Auditable {
 
+	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
+	private int id;
+	
 	private int tenant_id;
 	@Column(name="code")
 	private String code;
 	@Column(name="name")
 	private String name;
-	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
-	private int id;
-	@OneToMany(mappedBy = "serviceprovider",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	
+	@ManyToMany(cascade =CascadeType.ALL)
+	@JoinTable(name = "serviceprovider_servicetype", schema="analyticalsampling", 
+	joinColumns  = @JoinColumn(name="serviceprovider_id",referencedColumnName = "id"),
+	inverseJoinColumns = @JoinColumn(name="servicetype_id",referencedColumnName = "id"))
 	Set<ServiceTypeModel> servicetypes;
+	
+	@ManyToMany(mappedBy="serviceProviders")
+	Set<CropModel> crop;
+	
+	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="country_id")
+	CountryModel country;
 	
 	public String getcode(){
 		return code;
@@ -100,5 +115,14 @@ public class ServiceProviderModel extends Auditable {
 	public void setTenantId(int id){
 		this.tenant_id=id;
 	}
+
+	public Set<CropModel> getCrop() {
+		return crop;
+	}
+
+	public void setCrop(Set<CropModel> crop) {
+		this.crop = crop;
+	}
+	
 
 }

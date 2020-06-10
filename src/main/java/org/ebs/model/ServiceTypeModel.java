@@ -44,8 +44,8 @@ public class ServiceTypeModel extends Auditable {
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
 	
-	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="serviceprovider_id")
-	ServiceProviderModel serviceprovider;	
+	@ManyToMany(mappedBy="servicetypes")
+	Set<ServiceProviderModel> serviceProvider;
 	
 	@OneToMany(mappedBy="servicetype",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<PurposeModel> purpose;
@@ -79,10 +79,6 @@ public class ServiceTypeModel extends Auditable {
 
 	public Set<PurposeModel> getPurpose(){
 		return purpose;
-	}
-
-	public ServiceProviderModel getServiceProvider(){
-		return serviceprovider;
 	}
 
 	/*
@@ -144,14 +140,6 @@ public class ServiceTypeModel extends Auditable {
 
 	/**
 	 * 
-	 * @param serviceprovider
-	 */
-	public void setServiceProvider(ServiceProviderModel serviceprovider){
-		this.serviceprovider =serviceprovider;
-	}
-
-	/**
-	 * 
 	 * @param service
 	 */
 	/*
@@ -167,4 +155,14 @@ public class ServiceTypeModel extends Auditable {
 		this.tenant_id=id;
 	}
 
+	public Set<ServiceProviderModel> getServiceProvider() {
+		return serviceProvider;
+	}
+
+	public void setServiceProvider(Set<ServiceProviderModel> serviceProvider) {
+		this.serviceProvider = serviceProvider;
+	}
+
+
+	
 }

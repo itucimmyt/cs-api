@@ -14,14 +14,14 @@ import java.util.stream.Collectors;
 import org.ebs.model.repos.CropRepository;
 import org.ebs.model.repos.ProgramRepository;
 import org.ebs.model.repos.SeasonRepository;
-import org.ebs.model.repos.ServiceTypeRepository;
+import org.ebs.model.repos.ServiceProviderRepository;
 import org.ebs.services.CropService;
 import org.ebs.services.ProgramService;
 import org.ebs.services.SeasonService;
 import org.ebs.services.ServiceTypeService;
 import org.ebs.services.to.CropTo;
 import org.ebs.services.to.ProgramTo;
-import org.ebs.services.to.ServiceTypeTo;
+import org.ebs.services.to.ServiceProviderTo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Component;
@@ -41,8 +41,8 @@ public class CropResolver implements GraphQLResolver<CropTo> {
 	private CropRepository cropRepository;
 	@Autowired
 	private ConversionService converter;
-	private ServiceTypeService servicetypeService;
-	private ServiceTypeRepository servicetypeRepository;
+	
+	private ServiceProviderRepository serviceProviderRepository;
 	private ProgramService programService;
 	private ProgramRepository programRepository;
 	private SeasonService seasonService;
@@ -54,17 +54,17 @@ public class CropResolver implements GraphQLResolver<CropTo> {
 	 * @param seasonService
 	 * @param programRepository
 	 * @param programService
-	 * @param servicetypeRepository
 	 * @param servicetypeService
 	 * @param cropRepository
 	 * @param cropService
 	 */
 	@Autowired
-	public CropResolver(SeasonRepository seasonRepository, SeasonService seasonService, ProgramRepository programRepository, ProgramService programService, ServiceTypeRepository servicetypeRepository, ServiceTypeService servicetypeService, CropRepository cropRepository, CropService cropService){
+	public CropResolver(SeasonRepository seasonRepository, SeasonService seasonService, ProgramRepository programRepository, 
+			ProgramService programService, ServiceProviderRepository _serviceProviderRepository, 
+			CropRepository cropRepository, CropService cropService){
 		this.cropService = cropService; 
 		this.cropRepository = cropRepository; 
-		this.servicetypeService = servicetypeService; 
-		this.servicetypeRepository = servicetypeRepository; 
+		this.serviceProviderRepository = _serviceProviderRepository; 
 		this.programService = programService; 
 		this.programRepository = programRepository; 
 		this.seasonService = seasonService; 
@@ -86,9 +86,9 @@ public class CropResolver implements GraphQLResolver<CropTo> {
 	 * 
 	 * @param cropTo
 	 */
-	public Set<ServiceTypeTo> getServiceTypes(CropTo cropTo){
-		return servicetypeRepository.findByCropId(cropTo.getId()).stream() 
-		 .map(e -> converter.convert(e,ServiceTypeTo.class)) 
+	public Set<ServiceProviderTo> getServiceProvider(CropTo cropTo){
+		return serviceProviderRepository.findByCropId(cropTo.getId()).stream() 
+		 .map(e -> converter.convert(e,ServiceProviderTo.class)) 
 		 .collect(Collectors.toSet());
 	}
 
