@@ -11,6 +11,7 @@ package org.ebs.services.converter;
 import org.ebs.model.ServiceTypeModel;
 import org.ebs.services.to.Input.ServiceTypeInput;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +23,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class ServiceTypeConverterInput implements Converter<ServiceTypeInput,ServiceTypeModel> {
 
+	
+	private ServiceProviderConverterInput serviceProviderConverterInput;
+	private CropConverterInput cropConverterInput; 
 	/**
 	 * 
 	 * @param source
@@ -30,7 +34,15 @@ public class ServiceTypeConverterInput implements Converter<ServiceTypeInput,Ser
 	public ServiceTypeModel convert(ServiceTypeInput source){
 		ServiceTypeModel target = new  ServiceTypeModel(); 
 		BeanUtils.copyProperties(source, target); 
+		target.setServiceProvider(serviceProviderConverterInput.convert(source.getServiceProvider()));
+		target.setCrop(cropConverterInput.convert(source.getCrop()));
 		return target;
 	}
 
+	@Autowired
+	public ServiceTypeConverterInput(ServiceProviderConverterInput _serviceProviderConverterInput, CropConverterInput _cropConverterInput ) {
+		this.serviceProviderConverterInput = _serviceProviderConverterInput;
+		this.cropConverterInput = _cropConverterInput;
+		
+	}
 }

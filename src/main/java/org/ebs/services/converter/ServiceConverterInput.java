@@ -11,6 +11,7 @@ package org.ebs.services.converter;
 import org.ebs.model.ServiceModel;
 import org.ebs.services.to.Input.ServiceInput;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +23,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class ServiceConverterInput implements Converter<ServiceInput,ServiceModel> {
 
+	
+	private PurposeConverterInput purposeConverterInput;
+	private ServiceTypeConverterInput  serviceTypeConverterInput;
 	/**
 	 * 
 	 * @param source
@@ -30,7 +34,15 @@ public class ServiceConverterInput implements Converter<ServiceInput,ServiceMode
 	public ServiceModel convert(ServiceInput source){
 		ServiceModel target = new  ServiceModel(); 
 		BeanUtils.copyProperties(source, target); 
+		target.setPurposes(purposeConverterInput.convert(source.getPurpose()));
+		target.setServiceType(serviceTypeConverterInput.convert(source.getServiceType()));
 		return target;
 	}
 
+	@Autowired
+	public ServiceConverterInput (PurposeConverterInput _purposeConverterInput, ServiceTypeConverterInput  _serviceTypeConverterInput) {
+	this.purposeConverterInput = _purposeConverterInput;
+	this.serviceTypeConverterInput = _serviceTypeConverterInput;
+	
+	}
 }

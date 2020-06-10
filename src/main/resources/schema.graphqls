@@ -2123,7 +2123,7 @@ description: String
 tenant_id: Int
 id: ID!
 servicetype:ServiceTypeInput
-serviceprovider:ServiceProviderInput
+purpose:PurposeInput
 }
 input ServiceProviderInput {
 #Code identifier for the Service Provider
@@ -2144,7 +2144,6 @@ description: String
 tenant_id: Int
 id: ID!
 serviceprovider:ServiceProviderInput
-purpose:[PurposeInput]
 crop:CropInput
 }
 input TechnologyPlatformInput {

@@ -24,6 +24,15 @@ public class ServiceInput implements Serializable {
 	private String description;
 	ServiceTypeInput servicetype;
 	ServiceProviderInput serviceprovider;
+	PurposeInput purpose;
+	
+	public PurposeInput getPurpose() {
+		return purpose;
+	}
+
+	public void setPurpose(PurposeInput purpose) {
+		this.purpose = purpose;
+	}
 
 	public String getdescription(){
 		return description;
