@@ -50,7 +50,10 @@ public class ServiceProviderModel extends Auditable {
 	inverseJoinColumns = @JoinColumn(name="servicetype_id",referencedColumnName = "id"))
 	Set<ServiceTypeModel> servicetypes;
 	
-	@ManyToMany(mappedBy="serviceProviders")
+	@ManyToMany(cascade =CascadeType.ALL) 
+	@JoinTable(name = "crop_serviceprovider", schema="analyticalsampling", 
+	joinColumns  = @JoinColumn(name="serviceprovider_id",referencedColumnName = "id"),
+	inverseJoinColumns = @JoinColumn(name="crop_id",referencedColumnName = "id"))
 	Set<CropModel> crop;
 	
 	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="country_id")
@@ -115,6 +118,8 @@ public class ServiceProviderModel extends Auditable {
 	public void setTenantId(int id){
 		this.tenant_id=id;
 	}
+
+
 
 	public Set<CropModel> getCrop() {
 		return crop;

@@ -54,10 +54,7 @@ public class CropModel extends Auditable {
 	Set<SeasonModel> seasons;
 	 
 
-	@ManyToMany(cascade =CascadeType.ALL) 
-	@JoinTable(name = "crop_serviceprovider", schema="analyticalsampling", 
-	joinColumns  = @JoinColumn(name="crop_id",referencedColumnName = "id"),
-	inverseJoinColumns = @JoinColumn(name="serviceprovider_id",referencedColumnName = "id"))
+	@ManyToMany(mappedBy="crop")
 	Set<ServiceProviderModel> serviceProviders;
  
 	

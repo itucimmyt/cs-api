@@ -26,7 +26,7 @@ public abstract class Auditable implements Serializable{
     private Date createdOn;
     @Column(name = "modifier_id")
     @LastModifiedBy
-    private Integer updatedBy;
+    private String updatedBy;
     @LastModifiedDate
     @Column(name = "modification_timestamp")
     private Date updatedOn;
@@ -49,11 +49,11 @@ public abstract class Auditable implements Serializable{
         this.createdOn = createdOn;
     }
 
-    public Integer getUpdatedBy() {
+    public String getUpdatedBy() {
         return updatedBy;
     }
 
-    public void setUpdatedBy(int updatedBy) {
+    public void setUpdatedBy(String updatedBy) {
         this.updatedBy = updatedBy;
     }
 

@@ -4,13 +4,14 @@ import java.util.Optional;
 
 import org.springframework.data.domain.AuditorAware;
 
-public class AuditorAwareImpl implements AuditorAware<Integer> {
+public class AuditorAwareImpl implements AuditorAware<String> {
 
     private User placeholderUser = new User(1);
 
     @Override
-    public Optional<Integer> getCurrentAuditor() {
-        return Optional.of(placeholderUser.getUsername());
+    public Optional<String> getCurrentAuditor() {
+        return Optional.of("System");
+    	//return Optional.of(placeholderUser.getUsername());
     }
 
 }

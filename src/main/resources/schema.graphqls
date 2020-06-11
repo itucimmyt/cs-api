@@ -2130,6 +2130,7 @@ name: String
 tenant_id: Int
 id: ID!
 crop:[CropInput]
+country: CountryInput
 }
 input ServiceTypeInput {
 #Name of the service_type
