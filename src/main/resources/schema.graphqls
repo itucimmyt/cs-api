@@ -1423,9 +1423,7 @@ name: String
 description: String
 tenant_id: Int
 id: ID!
-serviceType:ServiceType
 purposes:[Purpose]
-serviceProvider:ServiceProvider
 assayclasss:[Assayclass]
 vendors:[Vendor]
 }
@@ -2122,7 +2120,6 @@ name: String
 description: String
 tenant_id: Int
 id: ID!
-servicetype:ServiceTypeInput
 purpose:PurposeInput
 }
 input ServiceProviderInput {
