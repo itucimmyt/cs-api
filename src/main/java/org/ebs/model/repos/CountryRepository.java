@@ -19,4 +19,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface CountryRepository extends JpaRepository<CountryModel,Integer>, RepositoryExt<CountryModel> {
 
+	/**
+	 * 
+	 * @param serviceproviderId
+	 */
+	public CountryModel findByServiceProvidersId(int serviceproviderId);
+	
 }

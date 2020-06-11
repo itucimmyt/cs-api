@@ -1444,6 +1444,8 @@ name: String
 tenant_id: Int
 id: ID!
 serviceTypes:[ServiceType]
+crops:[Crop]
+country:Country
 }
 type ServiceTypeConnection {
 totalPages: Int

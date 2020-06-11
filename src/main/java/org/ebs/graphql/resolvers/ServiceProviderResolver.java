@@ -11,14 +11,15 @@ package org.ebs.graphql.resolvers;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.ebs.model.repos.CountryRepository;
+import org.ebs.model.repos.CropRepository;
 import org.ebs.model.repos.ServiceProviderRepository;
-import org.ebs.model.repos.ServiceRepository;
 import org.ebs.model.repos.ServiceTypeRepository;
 import org.ebs.services.ServiceProviderService;
-import org.ebs.services.ServiceService;
 import org.ebs.services.ServiceTypeService;
+import org.ebs.services.to.CountryTo;
+import org.ebs.services.to.CropTo;
 import org.ebs.services.to.ServiceProviderTo;
-import org.ebs.services.to.ServiceTo;
 import org.ebs.services.to.ServiceTypeTo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
@@ -41,6 +42,8 @@ public class ServiceProviderResolver implements GraphQLResolver<ServiceProviderT
 	private ConversionService converter;
 	private ServiceTypeService servicetypeService;
 	private ServiceTypeRepository servicetypeRepository;
+	private CropRepository cropRepository;
+	private CountryRepository countryRepository;
 	
 	
 
@@ -54,6 +57,25 @@ public class ServiceProviderResolver implements GraphQLResolver<ServiceProviderT
 		 .map(e -> converter.convert(e,ServiceTypeTo.class)) 
 		 .collect(Collectors.toSet());
 	}
+	
+	/**
+	 * 
+	 * @param serviceproviderTo
+	 */
+	public Set<CropTo> getCrops(ServiceProviderTo serviceproviderTo){
+		
+		return cropRepository.findByServiceProvidersId(serviceproviderTo.getId()).stream() 
+		 .map(e -> converter.convert(e, CropTo.class))
+		 .collect(Collectors.toSet());
+	}
+	
+	/**
+	 * 
+	 * @param serviceproviderTo
+	 */
+	public CountryTo getCountry(ServiceProviderTo serviceproviderTo){
+		return converter.convert(countryRepository.findByServiceProvidersId(serviceproviderTo.getId()), CountryTo.class);
+	}
 
 	/**
 	 * 
@@ -65,12 +87,17 @@ public class ServiceProviderResolver implements GraphQLResolver<ServiceProviderT
 	 * @param serviceproviderService
 	 */
 	@Autowired
-	public ServiceProviderResolver(  ServiceTypeRepository servicetypeRepository, ServiceTypeService servicetypeService, ServiceProviderRepository serviceproviderRepository, ServiceProviderService serviceproviderService){
+	public ServiceProviderResolver(  ServiceTypeRepository servicetypeRepository, ServiceTypeService servicetypeService, 
+			ServiceProviderRepository serviceproviderRepository, 
+			ServiceProviderService serviceproviderService,
+			CropRepository _cropRepository,
+			CountryRepository _countryRepository){
 		this.serviceproviderService = serviceproviderService; 
 		this.serviceproviderRepository = serviceproviderRepository; 
 		this.servicetypeService = servicetypeService; 
 		this.servicetypeRepository = servicetypeRepository; 
-		 
+		this.cropRepository = _cropRepository;
+		this.countryRepository = _countryRepository;
 		 
 	
 	}

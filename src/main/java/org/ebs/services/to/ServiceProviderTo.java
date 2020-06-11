@@ -24,7 +24,8 @@ public class ServiceProviderTo implements Serializable {
 	private String code;
 	private String name;
 	Set<ServiceTypeTo> servicetypes;
-	Set<ServiceTo> services;
+	Set<CropTo> crops;
+	CountryTo country;
 
 	public String getcode(){
 		return code;
@@ -38,9 +39,7 @@ public class ServiceProviderTo implements Serializable {
 		return name;
 	}
 
-	public Set<ServiceTo> getServices(){
-		return services;
-	}
+	
 
 	public Set<ServiceTypeTo> getServiceTypes(){
 		return servicetypes;
@@ -74,13 +73,7 @@ public class ServiceProviderTo implements Serializable {
 		this.name = name;
 	}
 
-	/**
-	 * 
-	 * @param service
-	 */
-	public void setServices(Set<ServiceTo> service){
-		this.services =service;
-	}
+	
 
 	/**
 	 * 
@@ -97,5 +90,22 @@ public class ServiceProviderTo implements Serializable {
 	public void setTenantId(int id){
 		this.tenant_id=id;
 	}
+
+	public Set<CropTo> getCrops() {
+		return crops;
+	}
+
+	public void setCrops(Set<CropTo> crops) {
+		this.crops = crops;
+	}
+
+	public CountryTo getCountry() {
+		return country;
+	}
+
+	public void setCountry(CountryTo country) {
+		this.country = country;
+	}
+	
 
 }
