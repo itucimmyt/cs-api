@@ -12,6 +12,7 @@ import java.util.List;
 
 import org.ebs.model.ProgramModel;
 import org.ebs.model.ServiceProviderModel;
+import org.ebs.model.ServiceTypeModel;
 import org.ebs.util.RepositoryExt;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -24,5 +25,11 @@ public interface ServiceProviderRepository extends JpaRepository<ServiceProvider
 	 public List<ServiceProviderModel> findByCropId(int cropId);
 	 
 	 public List<ServiceProviderModel> findByCountryId(int cropId);
+	 
+	 /**
+		 * 
+		 * @param serviceproviderId
+		 */
+		public List<ServiceProviderModel> findByServicetypesId(int serviceproviderId);
 
 }

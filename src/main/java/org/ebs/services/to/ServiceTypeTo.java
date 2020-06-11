@@ -24,7 +24,7 @@ public class ServiceTypeTo implements Serializable {
 	private String name;
 	private String code;
 	private String description;
-	ServiceProviderTo serviceprovider;
+	Set <ServiceProviderTo> serviceProviders;
 	Set<PurposeTo> purpose;
 	
 	Set<ServiceTo> services;
@@ -50,9 +50,7 @@ public class ServiceTypeTo implements Serializable {
 		return purpose;
 	}
 
-	public ServiceProviderTo getServiceProvider(){
-		return serviceprovider;
-	}
+	
 
 	public Set<ServiceTo> getServices(){
 		return services;
@@ -105,14 +103,6 @@ public class ServiceTypeTo implements Serializable {
 
 	/**
 	 * 
-	 * @param serviceprovider
-	 */
-	public void setServiceProvider(ServiceProviderTo serviceprovider){
-		this.serviceprovider =serviceprovider;
-	}
-
-	/**
-	 * 
 	 * @param service
 	 */
 	public void setServices(Set<ServiceTo> service){
@@ -126,5 +116,17 @@ public class ServiceTypeTo implements Serializable {
 	public void setTenantId(int id){
 		this.tenant_id=id;
 	}
+
+
+	public Set<ServiceProviderTo> getServiceProviders() {
+		return serviceProviders;
+	}
+
+
+	public void setServiceProviders(Set<ServiceProviderTo> serviceProviders) {
+		this.serviceProviders = serviceProviders;
+	}
+	
+	
 
 }

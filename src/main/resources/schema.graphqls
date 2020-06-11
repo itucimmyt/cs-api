@@ -1466,7 +1466,7 @@ code: String
 description: String
 tenant_id: Int
 id: ID!
-serviceProvider:ServiceProvider
+serviceProvider:[ServiceProvider]
 purposes:[Purpose]
 
 }
