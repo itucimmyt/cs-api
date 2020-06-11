@@ -2144,7 +2144,7 @@ code: String
 description: String
 tenant_id: Int
 id: ID!
-serviceprovider:ServiceProviderInput
+serviceprovider:[ServiceProviderInput]
 }
 input TechnologyPlatformInput {
 #Name of the technology

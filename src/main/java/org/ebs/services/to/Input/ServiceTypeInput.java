@@ -24,17 +24,14 @@ public class ServiceTypeInput implements Serializable {
 	private String name;
 	private String code;
 	private String description;
-	ServiceProviderInput serviceprovider;
+	Set<ServiceProviderInput> serviceprovider;
 	Set<PurposeInput> purpose;
-	CropInput crop;
+	
 
 	public String getcode(){
 		return code;
 	}
 
-	public CropInput getCrop(){
-		return crop;
-	}
 
 	public String getdescription(){
 		return description;
@@ -52,9 +49,7 @@ public class ServiceTypeInput implements Serializable {
 		return purpose;
 	}
 
-	public ServiceProviderInput getServiceProvider(){
-		return serviceprovider;
-	}
+
 
 	public int getTenantId(){
 		return tenant_id;
@@ -68,13 +63,7 @@ public class ServiceTypeInput implements Serializable {
 		this.code = code;
 	}
 
-	/**
-	 * 
-	 * @param crop
-	 */
-	public void setCrop(CropInput crop){
-		this.crop =crop;
-	}
+	
 
 	/**
 	 * 
@@ -108,13 +97,7 @@ public class ServiceTypeInput implements Serializable {
 		this.purpose =purpose;
 	}
 
-	/**
-	 * 
-	 * @param serviceprovider
-	 */
-	public void setServiceProvider(ServiceProviderInput serviceprovider){
-		this.serviceprovider =serviceprovider;
-	}
+	
 
 	/**
 	 * 
@@ -123,5 +106,22 @@ public class ServiceTypeInput implements Serializable {
 	public void setTenantId(int id){
 		this.tenant_id=id;
 	}
+
+
+	public Set<ServiceProviderInput> getServiceprovider() {
+		return serviceprovider;
+	}
+
+
+	public void setServiceprovider(Set<ServiceProviderInput> serviceprovider) {
+		this.serviceprovider = serviceprovider;
+	}
+
+
+
+
+
+
+	
 
 }

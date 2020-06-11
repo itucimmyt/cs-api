@@ -18,6 +18,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -44,7 +45,10 @@ public class ServiceTypeModel extends Auditable {
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
 	
-	@ManyToMany(mappedBy="servicetypes")
+	@ManyToMany(cascade =CascadeType.ALL)
+	@JoinTable(name = "serviceprovider_servicetype", schema="analyticalsampling", 
+	joinColumns  = @JoinColumn(name="servicetype_id",referencedColumnName = "id"),
+	inverseJoinColumns = @JoinColumn(name="serviceprovider_id",referencedColumnName = "id"))
 	Set<ServiceProviderModel> serviceProvider;
 	
 	@OneToMany(mappedBy="servicetype",fetch=FetchType.LAZY, cascade = CascadeType.ALL)

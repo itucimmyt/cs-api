@@ -44,10 +44,7 @@ public class ServiceProviderModel extends Auditable {
 	@Column(name="name")
 	private String name;
 	
-	@ManyToMany(cascade =CascadeType.ALL)
-	@JoinTable(name = "serviceprovider_servicetype", schema="analyticalsampling", 
-	joinColumns  = @JoinColumn(name="serviceprovider_id",referencedColumnName = "id"),
-	inverseJoinColumns = @JoinColumn(name="servicetype_id",referencedColumnName = "id"))
+	@ManyToMany(mappedBy="serviceProvider")
 	Set<ServiceTypeModel> servicetypes;
 	
 	@ManyToMany(cascade =CascadeType.ALL) 
