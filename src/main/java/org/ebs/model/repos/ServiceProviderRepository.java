@@ -22,5 +22,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface ServiceProviderRepository extends JpaRepository<ServiceProviderModel,Integer>, RepositoryExt<ServiceProviderModel> {
 	 public List<ServiceProviderModel> findByCropId(int cropId);
+	 
+	 public List<ServiceProviderModel> findByCountryId(int cropId);
 
 }

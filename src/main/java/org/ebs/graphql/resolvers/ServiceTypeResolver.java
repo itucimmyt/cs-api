@@ -58,11 +58,12 @@ public class ServiceTypeResolver implements GraphQLResolver<ServiceTypeTo> {
 	 * 
 	 * @param servicetypeTo
 	 */
+	/*
 	public CropTo getCrop(ServiceTypeTo servicetypeTo){
 		ServiceTypeModel servicetypeModel = servicetypeRepository.findById(servicetypeTo.getId()).get(); 
 		 return cropService.findCrop(servicetypeModel.getCrop().getId()).get();
 	}
-
+*/
 	/**
 	 * 
 	 * @param servicetypeTo

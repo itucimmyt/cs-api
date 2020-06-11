@@ -12,10 +12,12 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.ebs.model.repos.CountryRepository;
+import org.ebs.model.repos.ServiceProviderRepository;
 import org.ebs.model.repos.VendorRepository;
 import org.ebs.services.CountryService;
 import org.ebs.services.VendorService;
 import org.ebs.services.to.CountryTo;
+import org.ebs.services.to.ServiceProviderTo;
 import org.ebs.services.to.VendorTo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
@@ -38,6 +40,7 @@ public class CountryResolver implements GraphQLResolver<CountryTo> {
 	private ConversionService converter;
 	private VendorService vendorService;
 	private VendorRepository vendorRepository;
+	private ServiceProviderRepository serviceProviderRepository;
 
 	/**
 	 * 
@@ -47,14 +50,27 @@ public class CountryResolver implements GraphQLResolver<CountryTo> {
 	 * @param countryService
 	 */
 	@Autowired
-	public CountryResolver(VendorRepository vendorRepository, VendorService vendorService, CountryRepository countryRepository, CountryService countryService){
+	public CountryResolver(VendorRepository vendorRepository, VendorService vendorService, 
+			CountryRepository countryRepository, CountryService countryService,
+			ServiceProviderRepository _serviceProviderRepository){
 		this.countryService = countryService; 
 		this.countryRepository = countryRepository; 
 		this.vendorService = vendorService; 
-		this.vendorRepository = vendorRepository; 
+		this.vendorRepository = vendorRepository;
+		this.serviceProviderRepository = _serviceProviderRepository;
 	
 	}
 
+	/**
+	 * 
+	 * @param countryTo
+	 */
+	public Set<ServiceProviderTo> getServiceProviders(CountryTo countryTo){
+		return serviceProviderRepository.findByCountryId(countryTo.getId()).stream() 
+		 .map(e -> converter.convert(e,ServiceProviderTo.class)) 
+		 .collect(Collectors.toSet());
+	}
+	
 	/**
 	 * 
 	 * @param countryTo

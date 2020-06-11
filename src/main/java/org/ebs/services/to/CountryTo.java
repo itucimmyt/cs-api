@@ -26,6 +26,7 @@ public class CountryTo implements Serializable {
 	private String full_name;
 	private String code;
 	Set<VendorTo> vendors;
+	Set<ServiceProviderTo> serviceProviderTo;
 
 	public String getcode(){
 		return code;
@@ -110,5 +111,14 @@ public class CountryTo implements Serializable {
 	public void setVendors(Set<VendorTo> vendor){
 		this.vendors =vendor;
 	}
+
+	public Set<ServiceProviderTo> getServiceProviderTo() {
+		return serviceProviderTo;
+	}
+
+	public void setServiceProviderTo(Set<ServiceProviderTo> serviceProviderTo) {
+		this.serviceProviderTo = serviceProviderTo;
+	}
+	
 
 }

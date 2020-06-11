@@ -123,6 +123,23 @@ public class ServiceProviderModel extends Auditable {
 	public void setCrop(Set<CropModel> crop) {
 		this.crop = crop;
 	}
+
+	public Set<ServiceTypeModel> getServicetypes() {
+		return servicetypes;
+	}
+
+	public void setServicetypes(Set<ServiceTypeModel> servicetypes) {
+		this.servicetypes = servicetypes;
+	}
+
+	public CountryModel getCountry() {
+		return country;
+	}
+
+	public void setCountry(CountryModel country) {
+		this.country = country;
+	}
+	
 	
 
 }

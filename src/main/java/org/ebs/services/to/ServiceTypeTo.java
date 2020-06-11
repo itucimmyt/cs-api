@@ -26,16 +26,13 @@ public class ServiceTypeTo implements Serializable {
 	private String description;
 	ServiceProviderTo serviceprovider;
 	Set<PurposeTo> purpose;
-	CropTo crop;
+	
 	Set<ServiceTo> services;
 
 	public String getcode(){
 		return code;
 	}
 
-	public CropTo getCrop(){
-		return crop;
-	}
 
 	public String getdescription(){
 		return description;
@@ -73,14 +70,7 @@ public class ServiceTypeTo implements Serializable {
 		this.code = code;
 	}
 
-	/**
-	 * 
-	 * @param crop
-	 */
-	public void setCrop(CropTo crop){
-		this.crop =crop;
-	}
-
+	
 	/**
 	 * 
 	 * @param description

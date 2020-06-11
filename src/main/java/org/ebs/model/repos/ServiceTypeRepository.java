@@ -23,12 +23,6 @@ public interface ServiceTypeRepository extends JpaRepository<ServiceTypeModel,In
 
 	/**
 	 * 
-	 * @param cropId
-	 */
-	public List<ServiceTypeModel> findByCropId(int cropId);
-
-	/**
-	 * 
 	 * @param serviceproviderId
 	 */
 	public List<ServiceTypeModel> findByServiceProviderId(int serviceproviderId);

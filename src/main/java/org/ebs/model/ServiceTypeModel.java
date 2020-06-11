@@ -50,19 +50,12 @@ public class ServiceTypeModel extends Auditable {
 	@OneToMany(mappedBy="servicetype",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<PurposeModel> purpose;
 	
-	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="crop_id")
-	CropModel crop;
-	
 	/*@OneToMany(mappedBy = "servicetype",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<ServiceModel> services;
 	*/
 
 	public String getcode(){
 		return code;
-	}
-
-	public CropModel getCrop(){
-		return crop;
 	}
 
 	public String getdescription(){
@@ -98,14 +91,7 @@ public class ServiceTypeModel extends Auditable {
 		this.code = code;
 	}
 
-	/**
-	 * 
-	 * @param crop
-	 */
-	public void setCrop(CropModel crop){
-		this.crop =crop;
-	}
-
+	
 	/**
 	 * 
 	 * @param description

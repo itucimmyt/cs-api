@@ -9,6 +9,7 @@
 package org.ebs.services.to.Input;
 
 import java.io.Serializable;
+import java.util.Set;
 
 /**
  * @author EBRIONES
@@ -22,6 +23,8 @@ public class ServiceProviderInput implements Serializable {
 	private int tenant_id;
 	private String code;
 	private String name;
+	Set <CropInput> crop;
+	CountryInput country;
 
 	public String getcode(){
 		return code;
@@ -71,4 +74,24 @@ public class ServiceProviderInput implements Serializable {
 		this.tenant_id=id;
 	}
 
+	public Set<CropInput> getCrop() {
+		return crop;
+	}
+
+	public void setCrop(Set<CropInput> crop) {
+		this.crop = crop;
+	}
+
+	public CountryInput getCountry() {
+		return country;
+	}
+
+	public void setCountry(CountryInput country) {
+		this.country = country;
+	}
+
+	
+
+
+	
 }

@@ -517,6 +517,7 @@ full_name: String
 #
 code: String
 id: ID!
+serviceProviders: [ServiceProvider]
 vendors:[Vendor]
 }
 type CropConnection {
@@ -1467,7 +1468,6 @@ tenant_id: Int
 id: ID!
 serviceProvider:ServiceProvider
 purposes:[Purpose]
-crop:Crop
 
 }
 type TechnologyPlatformConnection {
@@ -2132,6 +2132,7 @@ code: String
 name: String
 tenant_id: Int
 id: ID!
+crop:[CropInput]
 }
 input ServiceTypeInput {
 #Name of the service_type
@@ -2144,7 +2145,6 @@ description: String
 tenant_id: Int
 id: ID!
 serviceprovider:ServiceProviderInput
-crop:CropInput
 }
 input TechnologyPlatformInput {
 #Name of the technology
