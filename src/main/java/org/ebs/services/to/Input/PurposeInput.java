@@ -25,6 +25,7 @@ public class PurposeInput implements Serializable {
 	private String code;
 	private String description;
 	Set<ServiceInput> service;
+	ServiceTypeInput serviceType;
 
 	public String getcode(){
 		return code;
@@ -98,4 +99,15 @@ public class PurposeInput implements Serializable {
 		this.tenant_id=id;
 	}
 
+	public ServiceTypeInput getServiceType() {
+		return serviceType;
+	}
+
+	public void setServiceType(ServiceTypeInput serviceType) {
+		this.serviceType = serviceType;
+	}
+
+
+
+	
 }

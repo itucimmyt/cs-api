@@ -11,7 +11,6 @@ package org.ebs.graphql.resolvers;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.ebs.model.ServiceTypeModel;
 import org.ebs.model.repos.CropRepository;
 import org.ebs.model.repos.PurposeRepository;
 import org.ebs.model.repos.ServiceProviderRepository;
@@ -22,7 +21,6 @@ import org.ebs.services.PurposeService;
 import org.ebs.services.ServiceProviderService;
 import org.ebs.services.ServiceService;
 import org.ebs.services.ServiceTypeService;
-import org.ebs.services.to.CropTo;
 import org.ebs.services.to.PurposeTo;
 import org.ebs.services.to.ServiceProviderTo;
 import org.ebs.services.to.ServiceTypeTo;
@@ -65,8 +63,6 @@ public class ServiceTypeResolver implements GraphQLResolver<ServiceTypeTo> {
 		return serviceproviderRepository.findByServicetypesId(servicetypeTo.getId()).stream() 
 		 .map(e -> converter.convert(e, ServiceProviderTo.class))
 		 .collect(Collectors.toSet());
-		//ServiceTypeModel servicetypeModel = servicetypeRepository.findById(servicetypeTo.getId()).get(); 
-		 //return serviceproviderService.findServiceProvider(servicetypeModel.getServiceProvider().getId()).get();
 	}
 
 	public Set<PurposeTo> getPurposes(ServiceTypeTo servicetypeTo) {

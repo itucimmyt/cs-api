@@ -11,6 +11,7 @@ package org.ebs.services.converter;
 import java.util.stream.Collectors;
 
 import org.ebs.model.ServiceProviderModel;
+import org.ebs.model.repos.CountryRepository;
 import org.ebs.model.repos.CropRepository;
 import org.ebs.services.to.Input.ServiceProviderInput;
 import org.springframework.beans.BeanUtils;
@@ -26,8 +27,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ServiceProviderConverterInput implements Converter<ServiceProviderInput,ServiceProviderModel> {
 
-
-	private CountryConverterInput countryConverterInput;
+	private CountryRepository countryRepository;
 	private CropRepository cropRepository; 
 	/**
 	 * 
@@ -37,15 +37,20 @@ public class ServiceProviderConverterInput implements Converter<ServiceProviderI
 	public ServiceProviderModel convert(ServiceProviderInput source){
 		ServiceProviderModel target = new  ServiceProviderModel(); 
 		BeanUtils.copyProperties(source, target);
-		target.setCrop(source.getCrop().stream().map( e -> cropRepository.findById(e.getId()).get()).collect(Collectors.toSet()));
-		target.setCountry(countryConverterInput.convert(source.getCountry()));
+		target.setCrop(source.getCrop().stream()
+				.map( e -> cropRepository.findById(e.getId()).get())
+				.collect(Collectors.toSet()));
+		target.setCountry(
+				countryRepository.findById(source.getCountry().
+						getId())
+							.get());
 		return target;
 	}
 
 	@Autowired
-	public ServiceProviderConverterInput (CountryConverterInput _countryConverterInput
+	public ServiceProviderConverterInput (CountryRepository _countryRepository
 			, CropRepository _cropRepository) {
-		this.countryConverterInput = _countryConverterInput;
+		this.countryRepository = _countryRepository;
 		
 		this.cropRepository = _cropRepository;
 	}

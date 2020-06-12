@@ -2112,6 +2112,7 @@ description: String
 tenant_id: Int
 id: ID!
 service:[ServiceInput]
+serviceType: ServiceTypeInput
 }
 input ServiceInput {
 #Name of the Service
