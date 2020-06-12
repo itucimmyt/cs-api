@@ -23,6 +23,7 @@ public class ServiceTo implements Serializable {
 	private int tenant_id;
 	private String name;
 	private String description;
+	private String code;
 	ServiceTypeTo servicetype;
 	Set<PurposeTo> purposes;
 	ServiceProviderTo serviceprovider;
@@ -137,4 +138,13 @@ public class ServiceTo implements Serializable {
 		this.vendors =vendor;
 	}
 
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	
 }

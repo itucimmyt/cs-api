@@ -22,6 +22,7 @@ public class ServiceInput implements Serializable {
 	private int tenant_id;
 	private String name;
 	private String description;
+	private String code;
 	ServiceTypeInput servicetype;
 	ServiceProviderInput serviceprovider;
 	PurposeInput purpose;
@@ -105,5 +106,15 @@ public class ServiceInput implements Serializable {
 	public void setTenantId(int id){
 		this.tenant_id=id;
 	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+	
+	
 
 }

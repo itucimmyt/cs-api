@@ -9,6 +9,7 @@
 package org.ebs.services.converter;
 
 import org.ebs.model.ServiceModel;
+import org.ebs.model.repos.PurposeRepository;
 import org.ebs.services.to.Input.ServiceInput;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,7 @@ import org.springframework.stereotype.Component;
 public class ServiceConverterInput implements Converter<ServiceInput,ServiceModel> {
 
 	
-	private PurposeConverterInput purposeConverterInput;
-	private ServiceTypeConverterInput  serviceTypeConverterInput;
+	private PurposeRepository purposeRepository;
 	/**
 	 * 
 	 * @param source
@@ -34,15 +34,16 @@ public class ServiceConverterInput implements Converter<ServiceInput,ServiceMode
 	public ServiceModel convert(ServiceInput source){
 		ServiceModel target = new  ServiceModel(); 
 		BeanUtils.copyProperties(source, target); 
-		target.setPurposes(purposeConverterInput.convert(source.getPurpose()));
-		//target.setServiceType(serviceTypeConverterInput.convert(source.getServiceType()));
+		target.setPurposes(purposeRepository.findById(source.getPurpose().getId()).get());
+		
 		return target;
 	}
 
 	@Autowired
-	public ServiceConverterInput (PurposeConverterInput _purposeConverterInput, ServiceTypeConverterInput  _serviceTypeConverterInput) {
-	this.purposeConverterInput = _purposeConverterInput;
-	this.serviceTypeConverterInput = _serviceTypeConverterInput;
+	public ServiceConverterInput (PurposeRepository _purposeRepository
+			) {
+	this.purposeRepository = _purposeRepository;
+	
 	
 	}
 }

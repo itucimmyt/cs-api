@@ -1420,6 +1420,8 @@ type Service {
 name: String
 #Description of the Service
 
+code: String
+
 description: String
 tenant_id: Int
 id: ID!
@@ -2121,6 +2123,7 @@ name: String
 #Description of the Service
 
 description: String
+code : String
 tenant_id: Int
 id: ID!
 purpose:PurposeInput

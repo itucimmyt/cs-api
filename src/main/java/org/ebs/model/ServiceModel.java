@@ -40,6 +40,10 @@ public class ServiceModel extends Auditable {
 	private String name;
 	@Column(name="description")
 	private String description;
+	
+	@Column(name="code")
+	private String code;
+	
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
 	
@@ -134,5 +138,19 @@ public class ServiceModel extends Auditable {
 	public void setVendors(Set<VendorModel> vendor){
 		this.vendors =vendor;
 	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public void setPurpose(PurposeModel purpose) {
+		this.purpose = purpose;
+	}
+
+	
 
 }
