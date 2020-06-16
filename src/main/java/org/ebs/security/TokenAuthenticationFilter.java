@@ -32,9 +32,7 @@ class TokenAuthenticationFilter extends AbstractAuthenticationFilter {
 	    @Autowired
 	    public TokenAuthenticationFilter(UserDetailsService userDetailsService) {
 			super(userDetailsService);
-            LOG.info("CREATING DEFAULT FILTER");
-            LOG.info("CREATING DEFAULT FILTER");
-            LOG.info("CREATING DEFAULT FILTER");
+            LOG.info("Creating authentication filter for PRODUCTION");
 		}
 
     @Override

@@ -26,14 +26,12 @@ class DevAuthenticationFilter extends AbstractAuthenticationFilter {
 	    @Autowired
 	    public DevAuthenticationFilter(UserDetailsService userDetailsService) {
 			super(userDetailsService);
-            LOG.info("CREATING DEVELOPMENT FILTER");
-            LOG.info("CREATING DEVELOPMENT FILTER");
-            LOG.info("CREATING DEVELOPMENT FILTER");
+            LOG.info("Creating authentication filter for DEVELOPMENT/TESTING");
 		}
 
         @Override
         public String getUsername(HttpServletRequest request) {
-            return "admin";
+            return "admin@ebs.org";
         }
 
 
