@@ -21,7 +21,6 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional(readOnly=true)
-@Profile("default")
 class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Override
