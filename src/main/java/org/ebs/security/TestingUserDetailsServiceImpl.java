@@ -13,7 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Service required by Spring Security to obtain additional information about
+ * Replacement for authentication, ONLY FOR DEVELOPMENNT AND TESTING ENVIRONMENTS.
+ * It has to be explicitly declared in environment to work
  * users
  * 
  * @author jarojas
@@ -21,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional(readOnly=true)
-@Profile("default")
+@Profile({ "dev", "test" })
 class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Override
