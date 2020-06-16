@@ -5,7 +5,7 @@
             <dblookup>
                 <connection>
                     <pool>
-                        <driver>com.postgres.jdbc.Driver</driver>
+                        <driver>org.postgresql.Driver</driver>
                         <url>jdbc:postgresql://localhost:5432/test</url>
                         <user>postgres</user>
                         <password>12345</password>
@@ -20,20 +20,6 @@
             <log level="custom">
                 <property expression="fn:concat('Language - ',get-property('name'))" name="data"/>
             </log>
-            <payloadFactory media-type="json">
-                <format>{   "data":[      {&#xd;
-         "name":"$1"&#xd;
-      &#xd;
-}&#xd;
-   &#xd;
-]&#xd;
-}&#xd;
-&#xd;
-</format>
-                <args>
-                    <arg evaluator="json" expression="fn:concat('Language - ',get-property('name'))"/>
-                </args>
-            </payloadFactory>
             <respond/>
         </inSequence>
         <outSequence/>

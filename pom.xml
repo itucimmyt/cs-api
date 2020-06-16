@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.ebs.sg</groupId>
-	<artifactId>exservices</artifactId>
+	<artifactId>tenantsrvs</artifactId>
 	<version>0.1</version>
-	<name>ebs-sg-exservices</name>
-	<description>Services for ex module</description>
+	<name>ebs-sg-tnt</name>
+	<description>Services for tenant</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -105,7 +105,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-		<finalName>ebs-sg-{domain}</finalName>
+		<finalName>ebs-sg-tnt</finalName>
 	</build>
 
 </project>
