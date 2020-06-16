@@ -23,7 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional(readOnly=true)
 @Profile({ "dev", "test" })
-class UserDetailsServiceImpl implements UserDetailsService {
+class TestingUserDetailsServiceImpl implements UserDetailsService {
 
 	@Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
