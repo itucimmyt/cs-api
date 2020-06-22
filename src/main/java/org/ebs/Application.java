@@ -4,11 +4,8 @@ package org.ebs;
 import org.ebs.util.DateCoercing;
 import org.ebs.util.DateTimeCoercing;
 import org.ebs.util.UUIDCoercing;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cache.CacheManager;
-import org.springframework.cache.jcache.JCacheCacheManager;
 import org.springframework.context.annotation.Bean;
 
 import graphql.schema.GraphQLScalarType;
@@ -17,12 +14,6 @@ import graphql.schema.GraphQLScalarType;
 public class Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
-	}
-
-	@Autowired
-	public void cacheManager(CacheManager cacheManager) {
-		JCacheCacheManager cacheM = (JCacheCacheManager) cacheManager;
-		cacheM.setTransactionAware(true);
 	}
 
 	@Bean
