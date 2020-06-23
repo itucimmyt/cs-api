@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>ebs-sg-tnt</name>
+	<name>ebs-sg-{domain}</name>
 	<comment>Project ebs-sg-base created by Buildship.</comment>
 	<projects>
 	</projects>

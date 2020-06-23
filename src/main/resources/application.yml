@@ -3,7 +3,7 @@ logging:
     org:
       springframework: INFO
       hibernate: INFO
-      ebs: DEBUG
+      ebs: TRACE
 server:
   port: 8080
 spring:
@@ -35,9 +35,9 @@ spring:
   datasource:
     initialization-mode: never
     continue-on-error: false
-    url: jdbc:postgresql://localhost:5432/postgres
+    url: jdbc:postgresql://localhost:5432/tenant
     username: postgres
-    password: cimmyt
+    password: 12345
     dbcp2:
       test-while-idle: true
       test-on-borrow: true
@@ -48,7 +48,7 @@ spring:
         size-parameter: pageSize
   jpa:
     open-in-view: false
-    show-sql: true
+    show-sql: false
     hibernate:
       ddl-auto: none
       naming:
