@@ -35,6 +35,11 @@ dependencies {
 	implementation 'org.springdoc:springdoc-openapi-ui:1.2.32'
 
 	implementation 'com.auth0:java-jwt:3.10.3'
+	compileOnly 'org.projectlombok:lombok:1.18.12'
+	annotationProcessor 'org.projectlombok:lombok:1.18.12'
+	
+	testCompileOnly 'org.projectlombok:lombok:1.18.12'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
 
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
