@@ -1,5 +1,6 @@
 package org.ebs.security;
 
+import static org.ebs.Application.REQUEST_TOKEN;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,11 +39,14 @@ class TokenAuthenticationFilter extends AbstractAuthenticationFilter {
     @Override
     public String getUsername(HttpServletRequest request) {
         String username = null;
+        REQUEST_TOKEN.set(null);
         try {
-            DecodedJWT jwt = JWT.decode(extractToken(request));
+            REQUEST_TOKEN.set(extractToken(request));
+            DecodedJWT jwt = JWT.decode(REQUEST_TOKEN.get());
             username = jwt.getClaim("http://wso2.org/claims/displayName").asString();
         } catch (Exception e) {
             LOG.error("Error reading username from token", e);
+            REQUEST_TOKEN.set(null);
         }
 
         return username;
