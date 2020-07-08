@@ -1,9 +1,9 @@
 package org.ebs;
 
-
 import org.ebs.util.DateCoercing;
 import org.ebs.util.DateTimeCoercing;
 import org.ebs.util.UUIDCoercing;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +15,11 @@ public class Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
+
+	public static ThreadLocal<String> REQUEST_TOKEN = new ThreadLocal<>();
+
+	@Value("${ebs.sg.tenant.endpoint}")
+	private String tenantEndpoint;
 
 	@Bean
 	public GraphQLScalarType dateScalar() {
