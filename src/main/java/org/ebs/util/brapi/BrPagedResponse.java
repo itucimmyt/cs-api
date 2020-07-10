@@ -1,7 +1,6 @@
 package org.ebs.util.brapi;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
