@@ -1,8 +1,11 @@
 package org.ebs.util.brapi;
 
+import static java.time.temporal.ChronoUnit.SECONDS;
+
 import java.time.Instant;
-import java.time.temporal.ChronoUnit;
 import java.util.Date;
+
+import javax.annotation.PostConstruct;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
@@ -18,10 +21,11 @@ public class B4RapiTokenGenerator {
     @Value("${ebs.sg.b4rapi.jwt-secret}")
     private String secret;
     private String token = null;
-    private final Algorithm algorithm;
-    private final JWTVerifier verifier;
+    private Algorithm algorithm;
+    private JWTVerifier verifier;
 
-    public B4RapiTokenGenerator() {
+    @PostConstruct
+    public void init() {
         algorithm = Algorithm.HMAC256(secret);
         verifier = JWT.require(algorithm)
             .withIssuer("org.ebs.sg")
@@ -29,15 +33,16 @@ public class B4RapiTokenGenerator {
     }
 
     public String getToken() {
-          if (token == null)
-            try {
+          
+        try {
+            if(token != null)
                 verifier.verify(token);
-                token = generateNewToken();
-            } catch (JWTCreationException e){
-                
-            } catch (TokenExpiredException e){
-                token = generateNewToken();
-            }
+            token = generateNewToken();
+        } catch (JWTCreationException e){
+            
+        } catch (TokenExpiredException e){
+            token = generateNewToken();
+        }
         return token;
     }
 
@@ -46,7 +51,7 @@ public class B4RapiTokenGenerator {
             .withIssuer("org.ebs.sg")
             .withClaim("email", "irri@irri.org")
             .withClaim("userId", 1)
-            .withExpiresAt(Date.from(Instant.now().plus(5, ChronoUnit.SECONDS)))
+            .withExpiresAt(Date.from(Instant.now().plus(10, SECONDS)))
             .sign(algorithm);
     }
 }
