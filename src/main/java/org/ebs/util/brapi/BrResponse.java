@@ -1,5 +1,8 @@
 package org.ebs.util.brapi;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * Global format for any BrAPI call
  * 
@@ -7,29 +10,12 @@ package org.ebs.util.brapi;
  *
  * @param <T> the payload type in this response
  */
+@Getter @Setter
 public class BrResponse<T> {
 
-	private BrMetadata metadata;
 	/**
 	 * Contains the payload
 	 */
 	private T result;
-	
-	public BrResponse() {
-		metadata = new BrMetadata();
-	}
-	
-	public BrMetadata getMetadata() {
-		return metadata;
-	}
-	public void setMetadata(BrMetadata metadata) {
-		this.metadata = metadata;
-	}
-	public T getResult() {
-		return result;
-	}
-	public void setResult(T result) {
-		this.result = result;
-	}
-	
+	private BrMetadata metadata = new BrMetadata();
 }
