@@ -20,6 +20,8 @@ import org.springframework.stereotype.Component;
 public class B4RapiTokenGenerator {
     @Value("${ebs.sg.b4rapi.jwt-secret}")
     private String secret;
+    @Value("${ebs.sg.b4rapi.jwt-expiry}")
+    private int expiry;
     private String token = null;
     private Algorithm algorithm;
     private JWTVerifier verifier;
@@ -51,7 +53,7 @@ public class B4RapiTokenGenerator {
             .withIssuer("org.ebs.sg")
             .withClaim("email", "irri@irri.org")
             .withClaim("userId", 1)
-            .withExpiresAt(Date.from(Instant.now().plus(10, SECONDS)))
+            .withExpiresAt(Date.from(Instant.now().plus(expiry, SECONDS)))
             .sign(algorithm);
     }
 }

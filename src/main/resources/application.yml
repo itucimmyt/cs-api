@@ -5,6 +5,7 @@ ebs:
     b4rapi:
       endpoint: http://ebs-test.cimmyt.org:3000/api-bc-wheat/20.01/
       jwt-secret: Vu3L8QoDPhrRYJ0cDCoVhVxMWvfzakiR
+      jwt-expiry: 60
 logging: 
   level: 
     org:
