@@ -1,3 +1,10 @@
+ebs:
+  sg:
+    tenant:
+      endpoint: http://ebs-test.cimmyt.org:3000/api-tnt/0.1/
+    b4rapi:
+      endpoint: http://ebs-test.cimmyt.org:3000/api-bc-wheat/20.01/
+      jwt-secret: Vu3L8QoDPhrRYJ0cDCoVhVxMWvfzakiR
 logging: 
   level: 
     org:

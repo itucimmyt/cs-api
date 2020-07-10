@@ -1,8 +1,13 @@
 package org.ebs;
 
+import java.net.URI;
+
 import org.ebs.util.DateCoercing;
 import org.ebs.util.DateTimeCoercing;
 import org.ebs.util.UUIDCoercing;
+import org.ebs.util.brapi.B4RapiTokenGenerator;
+import org.ebs.util.brapi.BrapiClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,6 +25,9 @@ public class Application {
 
 	@Value("${ebs.sg.tenant.endpoint}")
 	private String tenantEndpoint;
+
+	@Value("${ebs.sg.b4rapi.endpoint}")
+	private String b4rapiEndpoint;
 
 	@Bean
 	public GraphQLScalarType dateScalar() {
@@ -46,5 +54,11 @@ public class Application {
 			.description("Uuid Scalar, custom implementation")
 			.coercing(new UUIDCoercing())
 			.build();
+	}
+
+	@Bean 
+	@Autowired
+	BrapiClient b4rApiClient(B4RapiTokenGenerator b4rTokenGenerator) {
+		return new BrapiClient(URI.create(b4rapiEndpoint), b4rTokenGenerator);
 	}
 }
