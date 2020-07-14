@@ -28,6 +28,10 @@ findDelegation(id:ID!):Delegation
 findDelegationList( page: PageInput, sort:SortInput,filters:[FilterInput]):DelegationConnection
 findDonor(id:ID!):Donor
 findDonorList( page: PageInput, sort:SortInput,filters:[FilterInput]):DonorConnection
+findEmailTemplate(id:ID!):EmailTemplate
+findEmailTemplateList( page: PageInput, sort:SortInput,filters:[FilterInput]):EmailTemplateConnection
+findEntityReference(id:ID!):EntityReference
+findEntityReferenceList( page: PageInput, sort:SortInput,filters:[FilterInput]):EntityReferenceConnection
 findHtmlTag(id:ID!):HtmlTag
 findHtmlTagList( page: PageInput, sort:SortInput,filters:[FilterInput]):HtmlTagConnection
 findInstance(id:ID!):Instance
@@ -38,12 +42,14 @@ findMessage(id:ID!):Message
 findMessageList( page: PageInput, sort:SortInput,filters:[FilterInput]):MessageConnection
 findModule(id:ID!):Module
 findModuleList( page: PageInput, sort:SortInput,filters:[FilterInput]):ModuleConnection
+findNumberSequenceRule(id:ID!):NumberSequenceRule
+findNumberSequenceRuleList( page: PageInput, sort:SortInput,filters:[FilterInput]):NumberSequenceRuleConnection
+findNumberSequenceRuleSegment(id:ID!):NumberSequenceRuleSegment
+findNumberSequenceRuleSegmentList( page: PageInput, sort:SortInput,filters:[FilterInput]):NumberSequenceRuleSegmentConnection
 findOrganization(id:ID!):Organization
 findOrganizationList( page: PageInput, sort:SortInput,filters:[FilterInput]):OrganizationConnection
 findPartner(id:ID!):Partner
 findPartnerList( page: PageInput, sort:SortInput,filters:[FilterInput]):PartnerConnection
-findPermission(id:ID!):Permission
-findPermissionList( page: PageInput, sort:SortInput,filters:[FilterInput]):PermissionConnection
 findPerson(id:ID!):Person
 findPersonList( page: PageInput, sort:SortInput,filters:[FilterInput]):PersonConnection
 findPreference(id:ID!):Preference
@@ -56,8 +62,6 @@ findProject(id:ID!):Project
 findProjectList( page: PageInput, sort:SortInput,filters:[FilterInput]):ProjectConnection
 findRequest(id:ID!):Request
 findRequestList( page: PageInput, sort:SortInput,filters:[FilterInput]):RequestConnection
-findRequestCFValue(id:ID!):RequestCFValue
-findRequestCFValueList( page: PageInput, sort:SortInput,filters:[FilterInput]):RequestCFValueConnection
 findRole(id:ID!):Role
 findRoleList( page: PageInput, sort:SortInput,filters:[FilterInput]):RoleConnection
 findRoleAction(id:ID!):RoleAction
@@ -66,6 +70,8 @@ findScheme(id:ID!):Scheme
 findSchemeList( page: PageInput, sort:SortInput,filters:[FilterInput]):SchemeConnection
 findSeason(id:ID!):Season
 findSeasonList( page: PageInput, sort:SortInput,filters:[FilterInput]):SeasonConnection
+findSegment(id:ID!):Segment
+findSegmentList( page: PageInput, sort:SortInput,filters:[FilterInput]):SegmentConnection
 findSession(id:ID!):Session
 findSessionList( page: PageInput, sort:SortInput,filters:[FilterInput]):SessionConnection
 findStyleTheme(id:ID!):StyleTheme
@@ -82,6 +88,8 @@ findWorkflow(id:ID!):Workflow
 findWorkflowList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowConnection
 findWorkflowCFType(id:ID!):WorkflowCFType
 findWorkflowCFTypeList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowCFTypeConnection
+findWorkflowCFValue(id:ID!):WorkflowCFValue
+findWorkflowCFValueList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowCFValueConnection
 findWorkflowEvent(id:ID!):WorkflowEvent
 findWorkflowEventList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowEventConnection
 findWorkflowInstance(id:ID!):WorkflowInstance
@@ -96,30 +104,6 @@ findWorkflowStage(id:ID!):WorkflowStage
 findWorkflowStageList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowStageConnection
 findWorkflowStatus(id:ID!):WorkflowStatus
 findWorkflowStatusList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowStatusConnection
-findTraitClass(id:ID!):TraitClass
-findTraitClassList( page: PageInput, sort:SortInput,filters:[FilterInput]):TraitClassConnection
-findAssayclass(id:ID!):Assayclass
-findAssayclassList( page: PageInput, sort:SortInput,filters:[FilterInput]):AssayclassConnection
-findAssayGene(id:ID!):AssayGene
-findAssayGeneList( page: PageInput, sort:SortInput,filters:[FilterInput]):AssayGeneConnection
-findDataFormat(id:ID!):DataFormat
-findDataFormatList( page: PageInput, sort:SortInput,filters:[FilterInput]):DataFormatConnection
-findMarker(id:ID!):Marker
-findMarkerList( page: PageInput, sort:SortInput,filters:[FilterInput]):MarkerConnection
-findMarkerSynonym(id:ID!):MarkerSynonym
-findMarkerSynonymList( page: PageInput, sort:SortInput,filters:[FilterInput]):MarkerSynonymConnection
-findPurpose(id:ID!):Purpose
-findPurposeList( page: PageInput, sort:SortInput,filters:[FilterInput]):PurposeConnection
-findService(id:ID!):Service
-findServiceList( page: PageInput, sort:SortInput,filters:[FilterInput]):ServiceConnection
-findServiceProvider(id:ID!):ServiceProvider
-findServiceProviderList( page: PageInput, sort:SortInput,filters:[FilterInput]):ServiceProviderConnection
-findServiceType(id:ID!):ServiceType
-findServiceTypeList( page: PageInput, sort:SortInput,filters:[FilterInput]):ServiceTypeConnection
-findTechnologyPlatform(id:ID!):TechnologyPlatform
-findTechnologyPlatformList( page: PageInput, sort:SortInput,filters:[FilterInput]):TechnologyPlatformConnection
-findTrait(id:ID!):Trait
-findTraitList( page: PageInput, sort:SortInput,filters:[FilterInput]):TraitConnection
 }
 type Mutation {createWorkflowStatusType(WorkflowStatusTypeTo:WorkflowStatusTypeInput!):WorkflowStatusType
 modifyWorkflowStatusType(WorkflowStatusTypeTo:WorkflowStatusTypeInput!):WorkflowStatusType
@@ -166,6 +150,12 @@ deleteDelegation(iddelegation:Int!):Int
 createDonor(DonorTo:DonorInput!):Donor
 modifyDonor(DonorTo:DonorInput!):Donor
 deleteDonor(iddonor:Int!):Int
+createEmailTemplate(EmailTemplateTo:EmailTemplateInput!):EmailTemplate
+modifyEmailTemplate(EmailTemplateTo:EmailTemplateInput!):EmailTemplate
+deleteEmailTemplate(idemailtemplate:Int!):Int
+createEntityReference(EntityReferenceTo:EntityReferenceInput!):EntityReference
+modifyEntityReference(EntityReferenceTo:EntityReferenceInput!):EntityReference
+deleteEntityReference(identityreference:Int!):Int
 createHtmlTag(HtmlTagTo:HtmlTagInput!):HtmlTag
 modifyHtmlTag(HtmlTagTo:HtmlTagInput!):HtmlTag
 deleteHtmlTag(idhtmltag:Int!):Int
@@ -181,15 +171,18 @@ deleteMessage(idmessage:Int!):Int
 createModule(ModuleTo:ModuleInput!):Module
 modifyModule(ModuleTo:ModuleInput!):Module
 deleteModule(idmodule:Int!):Int
+createNumberSequenceRule(NumberSequenceRuleTo:NumberSequenceRuleInput!):NumberSequenceRule
+modifyNumberSequenceRule(NumberSequenceRuleTo:NumberSequenceRuleInput!):NumberSequenceRule
+deleteNumberSequenceRule(idnumbersequencerule:Int!):Int
+createNumberSequenceRuleSegment(NumberSequenceRuleSegmentTo:NumberSequenceRuleSegmentInput!):NumberSequenceRuleSegment
+modifyNumberSequenceRuleSegment(NumberSequenceRuleSegmentTo:NumberSequenceRuleSegmentInput!):NumberSequenceRuleSegment
+deleteNumberSequenceRuleSegment(idnumbersequencerulesegment:Int!):Int
 createOrganization(OrganizationTo:OrganizationInput!):Organization
 modifyOrganization(OrganizationTo:OrganizationInput!):Organization
 deleteOrganization(idorganization:Int!):Int
 createPartner(PartnerTo:PartnerInput!):Partner
 modifyPartner(PartnerTo:PartnerInput!):Partner
 deletePartner(idpartner:Int!):Int
-createPermission(PermissionTo:PermissionInput!):Permission
-modifyPermission(PermissionTo:PermissionInput!):Permission
-deletePermission(idpermission:Int!):Int
 createPerson(PersonTo:PersonInput!):Person
 modifyPerson(PersonTo:PersonInput!):Person
 deletePerson(idperson:Int!):Int
@@ -208,9 +201,6 @@ deleteProject(idproject:Int!):Int
 createRequest(RequestTo:RequestInput!):Request
 modifyRequest(RequestTo:RequestInput!):Request
 deleteRequest(idrequest:Int!):Int
-createRequestCFValue(RequestCFValueTo:RequestCFValueInput!):RequestCFValue
-modifyRequestCFValue(RequestCFValueTo:RequestCFValueInput!):RequestCFValue
-deleteRequestCFValue(idrequestcfvalue:Int!):Int
 createRole(RoleTo:RoleInput!):Role
 modifyRole(RoleTo:RoleInput!):Role
 deleteRole(idrole:Int!):Int
@@ -223,6 +213,9 @@ deleteScheme(idscheme:Int!):Int
 createSeason(SeasonTo:SeasonInput!):Season
 modifySeason(SeasonTo:SeasonInput!):Season
 deleteSeason(idseason:Int!):Int
+createSegment(SegmentTo:SegmentInput!):Segment
+modifySegment(SegmentTo:SegmentInput!):Segment
+deleteSegment(idsegment:Int!):Int
 createSession(SessionTo:SessionInput!):Session
 modifySession(SessionTo:SessionInput!):Session
 deleteSession(idsession:Int!):Int
@@ -247,6 +240,9 @@ deleteWorkflow(idworkflow:Int!):Int
 createWorkflowCFType(WorkflowCFTypeTo:WorkflowCFTypeInput!):WorkflowCFType
 modifyWorkflowCFType(WorkflowCFTypeTo:WorkflowCFTypeInput!):WorkflowCFType
 deleteWorkflowCFType(idworkflowcftype:Int!):Int
+createWorkflowCFValue(WorkflowCFValueTo:WorkflowCFValueInput!):WorkflowCFValue
+modifyWorkflowCFValue(WorkflowCFValueTo:WorkflowCFValueInput!):WorkflowCFValue
+deleteWorkflowCFValue(idworkflowcfvalue:Int!):Int
 createWorkflowEvent(WorkflowEventTo:WorkflowEventInput!):WorkflowEvent
 modifyWorkflowEvent(WorkflowEventTo:WorkflowEventInput!):WorkflowEvent
 deleteWorkflowEvent(idworkflowevent:Int!):Int
@@ -268,42 +264,6 @@ deleteWorkflowStage(idworkflowstage:Int!):Int
 createWorkflowStatus(WorkflowStatusTo:WorkflowStatusInput!):WorkflowStatus
 modifyWorkflowStatus(WorkflowStatusTo:WorkflowStatusInput!):WorkflowStatus
 deleteWorkflowStatus(idworkflowstatus:Int!):Int
-createTraitClass(TraitClassTo:TraitClassInput!):TraitClass
-modifyTraitClass(TraitClassTo:TraitClassInput!):TraitClass
-deleteTraitClass(idtraitclass:Int!):Int
-createAssayclass(AssayclassTo:AssayclassInput!):Assayclass
-modifyAssayclass(AssayclassTo:AssayclassInput!):Assayclass
-deleteAssayclass(idassayclass:Int!):Int
-createAssayGene(AssayGeneTo:AssayGeneInput!):AssayGene
-modifyAssayGene(AssayGeneTo:AssayGeneInput!):AssayGene
-deleteAssayGene(idassaygene:Int!):Int
-createDataFormat(DataFormatTo:DataFormatInput!):DataFormat
-modifyDataFormat(DataFormatTo:DataFormatInput!):DataFormat
-deleteDataFormat(iddataformat:Int!):Int
-createMarker(MarkerTo:MarkerInput!):Marker
-modifyMarker(MarkerTo:MarkerInput!):Marker
-deleteMarker(idmarker:Int!):Int
-createMarkerSynonym(MarkerSynonymTo:MarkerSynonymInput!):MarkerSynonym
-modifyMarkerSynonym(MarkerSynonymTo:MarkerSynonymInput!):MarkerSynonym
-deleteMarkerSynonym(idmarkersynonym:Int!):Int
-createPurpose(PurposeTo:PurposeInput!):Purpose
-modifyPurpose(PurposeTo:PurposeInput!):Purpose
-deletePurpose(idpurpose:Int!):Int
-createService(ServiceTo:ServiceInput!):Service
-modifyService(ServiceTo:ServiceInput!):Service
-deleteService(idservice:Int!):Int
-createServiceProvider(ServiceProviderTo:ServiceProviderInput!):ServiceProvider
-modifyServiceProvider(ServiceProviderTo:ServiceProviderInput!):ServiceProvider
-deleteServiceProvider(idserviceprovider:Int!):Int
-createServiceType(ServiceTypeTo:ServiceTypeInput!):ServiceType
-modifyServiceType(ServiceTypeTo:ServiceTypeInput!):ServiceType
-deleteServiceType(idservicetype:Int!):Int
-createTechnologyPlatform(TechnologyPlatformTo:TechnologyPlatformInput!):TechnologyPlatform
-modifyTechnologyPlatform(TechnologyPlatformTo:TechnologyPlatformInput!):TechnologyPlatform
-deleteTechnologyPlatform(idtechnologyplatform:Int!):Int
-createTrait(TraitTo:TraitInput!):Trait
-modifyTrait(TraitTo:TraitInput!):Trait
-deleteTrait(idtrait:Int!):Int
 }
 
 type WorkflowStatusTypeConnection {
@@ -428,6 +388,7 @@ help: String
 sortno: Int
 id: ID!
 translations:[Translation]
+entityreference:EntityReference
 }
 type AuditLogsConnection {
 totalPages: Int
@@ -559,7 +520,6 @@ crop_name: String
 description: String
 id: ID!
 programs:[Program]
-servicetypes:[ServiceType]
 seasons:[Season]
 }
 type CustomerConnection {
@@ -632,6 +592,55 @@ indentifier: String
 tenant: Int
 id: ID!
 person:Person
+}
+type EmailTemplateConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [EmailTemplate]
+}
+#
+type EmailTemplate {
+#
+name: String
+#
+subject: String
+#
+to: String
+#
+template: String
+#
+bcc: String
+id: ID!
+tenant:Tenant
+entityreferences:[EntityReference]
+}
+type EntityReferenceConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [EntityReference]
+}
+#
+type EntityReference {
+#
+entity: String
+#
+textfield: String
+#
+valuefield: String
+#
+storefield: String
+tenant: Int
+id: ID!
+segments:[Segment]
+numbersequencerule:[NumberSequenceRule]
+emailtemplate:[EmailTemplate]
+attributess:[Attributes]
 }
 type HtmlTagConnection {
 totalPages: Int
@@ -727,11 +736,59 @@ description: String
 help: String
 #
 route: String
+#
+MainEntity: String
 id: ID!
-workflownode:[WorkflowNode]
 actions:[Action]
 component:Component
 translations:[Translation]
+workflownodes:[WorkflowNode]
+}
+type NumberSequenceRuleConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [NumberSequenceRule]
+}
+#
+type NumberSequenceRule {
+#
+name: String
+#
+lowest: Int
+#
+nextrec: Int
+#
+format: String
+#
+lastcode: String
+id: ID!
+entityreferences:[EntityReference]
+tenant:Tenant
+numbersequencerulesegments:[NumberSequenceRuleSegment]
+}
+type NumberSequenceRuleSegmentConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [NumberSequenceRuleSegment]
+}
+#
+type NumberSequenceRuleSegment {
+#
+Length: Int
+#
+FieldOrigin: String
+#
+Position: Int
+tenant: Int
+id: ID!
+numbersequencerule:NumberSequenceRule
+segment:Segment
 }
 type OrganizationConnection {
 totalPages: Int
@@ -789,20 +846,6 @@ indentifier: String
 tenant: Int
 id: ID!
 person:Person
-}
-type PermissionConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Permission]
-}
-#
-type Permission {
-tenant: Int
-id: ID!
-roleaction:RoleAction
 }
 type PersonConnection {
 totalPages: Int
@@ -956,7 +999,7 @@ type Request {
 #Id of the person who is making a request
 requester: String
 #Date when the request was submitted
-submition_date: String
+submition_date: Date
 #ID of the admin contact for the request
 admin_contact: String
 #
@@ -965,36 +1008,8 @@ charge_account: String
 description: String
 tenant: Int
 id: ID!
-serviceprovider:ServiceProvider
-service:Service
-purpose:Purpose
-requestcfvalues:[RequestCFValue]
+workflowcfvalues:[WorkflowCFValue]
 workflowinstance:WorkflowInstance
-}
-type RequestCFValueConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [RequestCFValue]
-}
-#
-type RequestCFValue {
-#
-FLAG_Value: Boolean
-#
-TEXT_Value: String
-#
-NUM_Value: Int
-#
-DATE_Value: Date
-#
-CODE_Value: Int
-tenant: Int
-id: ID!
-request:[Request]
-workflownodecf:[WorkflowNodeCF]
 }
 type RoleConnection {
 totalPages: Int
@@ -1030,7 +1045,6 @@ allow: Int
 tenant: Int
 id: ID!
 action:Action
-permissions:[Permission]
 role:Role
 }
 type SchemeConnection {
@@ -1071,6 +1085,39 @@ description: String
 tenant: Int
 id: ID!
 crop:[Crop]
+}
+type SegmentConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Segment]
+}
+#
+type Segment {
+#
+name: String
+#
+tag: String
+#
+isAPI: Boolean
+#
+isDatabase: Boolean
+#
+IsAutoNum: Boolean
+#
+IsStatic: Boolean
+#
+IsFormule: Boolean
+#
+Formule: String
+#
+IsOrigin: Boolean
+tenant: Int
+id: ID!
+entityreference:EntityReference
+numbersequencerulesegments:[NumberSequenceRuleSegment]
 }
 type SessionConnection {
 totalPages: Int
@@ -1140,6 +1187,8 @@ organization:Organization
 authenticationtype:AuthenticationType
 customer:Customer
 persons:[Person]
+numbersequencerules:[NumberSequenceRule]
+emailtemplates:[EmailTemplate]
 }
 type TranslationConnection {
 totalPages: Int
@@ -1209,10 +1258,6 @@ reference: String
 status: String
 tenant: Int
 id: ID!
-technologyplatforms:[TechnologyPlatform]
-markers:[Marker]
-dataformat:DataFormat
-service:[Service]
 country:Country
 person:Person
 }
@@ -1261,6 +1306,31 @@ tenant: Int
 id: ID!
 workflownodecfs:[WorkflowNodeCF]
 }
+type WorkflowCFValueConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [WorkflowCFValue]
+}
+#
+type WorkflowCFValue {
+#
+FLAG_Value: Boolean
+#
+TEXT_Value: String
+#
+NUM_Value: Int
+#
+DATE_Value: Date
+#
+CODE_Value: Int
+tenant: Int
+id: ID!
+request:Request
+workflownodecf:WorkflowNodeCF
+}
 type WorkflowEventConnection {
 totalPages: Int
 totalElements: Int
@@ -1280,7 +1350,8 @@ description: String
 tenant: Int
 id: ID!
 workflowinstance:[WorkflowInstance]
-workflownode:[WorkflowNode]
+workflownode:WorkflowNode
+workflowstage:WorkflowStage
 }
 type WorkflowInstanceConnection {
 totalPages: Int
@@ -1301,6 +1372,7 @@ id: ID!
 workflowevents:[WorkflowEvent]
 workflow:Workflow
 requests:[Request]
+workflowstatuss:[WorkflowStatus]
 }
 type WorkflowNodeConnection {
 totalPages: Int
@@ -1326,12 +1398,11 @@ tenant: Int
 id: ID!
 workflow:Workflow
 workflowevents:[WorkflowEvent]
-workflowstatuss:[WorkflowStatus]
 workflowstages:[WorkflowStage]
 workflows:[Workflow]
 processs:[Process]
-modules:[Module]
 workflownodecfs:[WorkflowNodeCF]
+module:Module
 }
 type WorkflowNodeCFConnection {
 totalPages: Int
@@ -1353,7 +1424,7 @@ help: String
 required: Boolean
 tenant: Int
 id: ID!
-requestcfvalues:[RequestCFValue]
+workflowcfvalues:[WorkflowCFValue]
 workflowcftype:[WorkflowCFType]
 workflownode:[WorkflowNode]
 }
@@ -1398,6 +1469,7 @@ tenant: Int
 id: ID!
 workflowphase:WorkflowPhase
 workflownode:[WorkflowNode]
+workflowevents:[WorkflowEvent]
 }
 type WorkflowStatusConnection {
 totalPages: Int
@@ -1410,258 +1482,13 @@ content: [WorkflowStatus]
 #
 type WorkflowStatus {
 #
-rec_uid: Int
-#
 initiate_date: Date
 #
 completation_date: Date
-#
-submitted_date: Date
 tenant: Int
 id: ID!
 workflowstatustype:WorkflowStatusType
-workflownode:[WorkflowNode]
-}
-type TraitClassConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [TraitClass]
-}
-#Classification of the traits into groups such as agronomic, biotic, abiotic, quality, 
-type TraitClass {
-#name for the trait_class
-name: String
-#description of the trait
-_class
-description: String
-tenant: Int
-id: ID!
-traits:[Trait]
-}
-type AssayclassConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Assayclass]
-}
-#Fixed assay, user defined assay, random assay
-type Assayclass {
-#Name of the assayClass
-name: String
-#Description of the assay class
-description: String
-tenant: Int
-id: ID!
-technologyplatform:[TechnologyPlatform]
-service:Service
-}
-type AssayGeneConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [AssayGene]
-}
-#List of genes
-type AssayGene {
-#Name of the assay gene
-name: String
-#Description of the assay gene
-description: String
-tenant: Int
-id: ID!
-trait:Trait
-markers:[Marker]
-}
-type DataFormatConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [DataFormat]
-}
-#Data formats preferred to receive per vendor spec, such as CSV, VCF, tab delimited, EXCEL. 
-type DataFormat {
-#Name of the data format
-name: String
-#Description of the data format
-description: String
-tenant: Int
-id: ID!
-vendors:[Vendor]
-}
-type MarkerConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Marker]
-}
-#Production marker IDs based on vendor spec
-type Marker {
-#Name of the marker
-name: String
-#Description of the marker
-description: String
-tenant: Int
-id: ID!
-markersynonyms:[MarkerSynonym]
-assaygene:AssayGene
-vendor:[Vendor]
-}
-type MarkerSynonymConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [MarkerSynonym]
-}
-#Stores the alias of the markers
-type MarkerSynonym {
-#Alias name
-synonym: Int
-tenant: Int
-id: ID!
-marker:Marker
-}
-type PurposeConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Purpose]
-}
-#High level buiness needs that the service to address. For genotyping, values include MAS, QC, GS/GWAS, germplasm characterization
-type Purpose {
-#Name of the purpose
-name: String
-#Identifier for each purpose
-
-code: String
-#description of the purpose
-
-description: String
-tenant: Int
-id: ID!
-servicetypes:[ServiceType]
-services:[Service]
-requests:[Request]
-}
-type ServiceConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Service]
-}
-#Service or product name, corresponding to a specific vendor catalog product or service identifier
-type Service {
-#Name of the Service
-
-name: String
-#Description of the Service
-
-description: String
-#
-code: String
-tenant: Int
-id: ID!
-assayclasss:[Assayclass]
-purpose:Purpose
-requests:[Request]
-vendors:[Vendor]
-}
-type ServiceProviderConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [ServiceProvider]
-}
-#Internal service unit that triage, and/or process clients' service requests.
-type ServiceProvider {
-#Code identifier for the Service Provider
-code: String
-#Name of the Service Provider
-name: String
-tenant: Int
-id: ID!
-servicetypes:[ServiceType]
-requests:[Request]
-}
-type ServiceTypeConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [ServiceType]
-}
-#Type of services, such as Genotyping (G), Phytosanitary (P), seed quality (G), pathology including MLN screening
-type ServiceType {
-#Name of the service_type
-name: String
-#Code identifier for the service type
-
-code: String
-#Description of the Service type
-description: String
-tenant: Int
-id: ID!
-serviceprovider:[ServiceProvider]
-purpose:[Purpose]
-crop:Crop
-}
-type TechnologyPlatformConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [TechnologyPlatform]
-}
-#Technology or platform based on vendor spec
-type TechnologyPlatform {
-#Name of the technology
-name: String
-#Description of the technology 
-description: String
-tenant: Int
-id: ID!
-assayclasss:[Assayclass]
-vendor:[Vendor]
-}
-type TraitConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Trait]
-}
-#Detailed trait names such as MLN, Rust, Zinc, protein, plant height, 
-type Trait {
-#Name of the trait
-name: String
-#Description of the trait
-
-description: String
-tenant: Int
-id: ID!
-traitclass:TraitClass
-assaygenes:[AssayGene]
+workflowinstance:WorkflowInstance
 }
 
 input WorkflowStatusTypeInput {
@@ -1725,6 +1552,7 @@ help: String
 #
 sortno: Int
 id: ID!
+entityreference:EntityReferenceInput
 }
 input AuditLogsInput {
 #
@@ -1839,6 +1667,34 @@ tenant: Int
 id: ID!
 person:PersonInput
 }
+input EmailTemplateInput {
+#
+name: String
+#
+subject: String
+#
+to: String
+#
+template: String
+#
+bcc: String
+id: ID!
+tenant:TenantInput
+}
+input EntityReferenceInput {
+#
+entity: String
+#
+textfield: String
+#
+valuefield: String
+#
+storefield: String
+tenant: Int
+id: ID!
+numbersequencerule:[NumberSequenceRuleInput]
+emailtemplate:[EmailTemplateInput]
+}
 input HtmlTagInput {
 #
 tagName: String
@@ -1883,9 +1739,36 @@ description: String
 help: String
 #
 route: String
+#
+MainEntity: String
 id: ID!
-workflownode:[WorkflowNodeInput]
 component:ComponentInput
+}
+input NumberSequenceRuleInput {
+#
+name: String
+#
+lowest: Int
+#
+nextrec: Int
+#
+format: String
+#
+lastcode: String
+id: ID!
+tenant:TenantInput
+}
+input NumberSequenceRuleSegmentInput {
+#
+Length: Int
+#
+FieldOrigin: String
+#
+Position: Int
+tenant: Int
+id: ID!
+numbersequencerule:NumberSequenceRuleInput
+segment:SegmentInput
 }
 input OrganizationInput {
 #
@@ -1923,11 +1806,6 @@ indentifier: String
 tenant: Int
 id: ID!
 person:PersonInput
-}
-input PermissionInput {
-tenant: Int
-id: ID!
-roleaction:RoleActionInput
 }
 input PersonInput {
 #
@@ -2021,7 +1899,7 @@ input RequestInput {
 #Id of the person who is making a request
 requester: String
 #Date when the request was submitted
-submition_date: String
+submition_date: Date
 #ID of the admin contact for the request
 admin_contact: String
 #
@@ -2030,26 +1908,7 @@ charge_account: String
 description: String
 tenant: Int
 id: ID!
-serviceprovider:ServiceProviderInput
-service:ServiceInput
-purpose:PurposeInput
 workflowinstance:WorkflowInstanceInput
-}
-input RequestCFValueInput {
-#
-FLAG_Value: Boolean
-#
-TEXT_Value: String
-#
-NUM_Value: Int
-#
-DATE_Value: Date
-#
-CODE_Value: Int
-tenant: Int
-id: ID!
-request:[RequestInput]
-workflownodecf:[WorkflowNodeCFInput]
 }
 input RoleInput {
 #
@@ -2088,6 +1947,29 @@ description: String
 tenant: Int
 id: ID!
 crop:[CropInput]
+}
+input SegmentInput {
+#
+name: String
+#
+tag: String
+#
+isAPI: Boolean
+#
+isDatabase: Boolean
+#
+IsAutoNum: Boolean
+#
+IsStatic: Boolean
+#
+IsFormule: Boolean
+#
+Formule: String
+#
+IsOrigin: Boolean
+tenant: Int
+id: ID!
+entityreference:EntityReferenceInput
 }
 input SessionInput {
 #
@@ -2162,8 +2044,6 @@ reference: String
 status: String
 tenant: Int
 id: ID!
-dataformat:DataFormatInput
-service:[ServiceInput]
 country:CountryInput
 person:PersonInput
 }
@@ -2190,6 +2070,22 @@ type: String
 tenant: Int
 id: ID!
 }
+input WorkflowCFValueInput {
+#
+FLAG_Value: Boolean
+#
+TEXT_Value: String
+#
+NUM_Value: Int
+#
+DATE_Value: Date
+#
+CODE_Value: Int
+tenant: Int
+id: ID!
+request:RequestInput
+workflownodecf:WorkflowNodeCFInput
+}
 input WorkflowEventInput {
 #
 completed: Date
@@ -2200,7 +2096,8 @@ description: String
 tenant: Int
 id: ID!
 workflowinstance:[WorkflowInstanceInput]
-workflownode:[WorkflowNodeInput]
+workflownode:WorkflowNodeInput
+workflowstage:WorkflowStageInput
 }
 input WorkflowInstanceInput {
 #
@@ -2225,6 +2122,7 @@ require_approval: Boolean
 tenant: Int
 id: ID!
 workflow:WorkflowInput
+module:ModuleInput
 }
 input WorkflowNodeCFInput {
 #
@@ -2265,136 +2163,13 @@ workflownode:[WorkflowNodeInput]
 }
 input WorkflowStatusInput {
 #
-rec_uid: Int
-#
 initiate_date: Date
 #
 completation_date: Date
-#
-submitted_date: Date
 tenant: Int
 id: ID!
 workflowstatustype:WorkflowStatusTypeInput
-workflownode:[WorkflowNodeInput]
-}
-input TraitClassInput {
-#name for the trait_class
-name: String
-#description of the trait
-_class
-description: String
-tenant: Int
-id: ID!
-}
-input AssayclassInput {
-#Name of the assayClass
-name: String
-#Description of the assay class
-description: String
-tenant: Int
-id: ID!
-technologyplatform:[TechnologyPlatformInput]
-service:ServiceInput
-}
-input AssayGeneInput {
-#Name of the assay gene
-name: String
-#Description of the assay gene
-description: String
-tenant: Int
-id: ID!
-trait:TraitInput
-}
-input DataFormatInput {
-#Name of the data format
-name: String
-#Description of the data format
-description: String
-tenant: Int
-id: ID!
-}
-input MarkerInput {
-#Name of the marker
-name: String
-#Description of the marker
-description: String
-tenant: Int
-id: ID!
-assaygene:AssayGeneInput
-vendor:[VendorInput]
-}
-input MarkerSynonymInput {
-#Alias name
-synonym: Int
-tenant: Int
-id: ID!
-marker:MarkerInput
-}
-input PurposeInput {
-#Name of the purpose
-name: String
-#Identifier for each purpose
-
-code: String
-#description of the purpose
-
-description: String
-tenant: Int
-id: ID!
-}
-input ServiceInput {
-#Name of the Service
-
-name: String
-#Description of the Service
-
-description: String
-#
-code: String
-tenant: Int
-id: ID!
-purpose:PurposeInput
-}
-input ServiceProviderInput {
-#Code identifier for the Service Provider
-code: String
-#Name of the Service Provider
-name: String
-tenant: Int
-id: ID!
-}
-input ServiceTypeInput {
-#Name of the service_type
-name: String
-#Code identifier for the service type
-
-code: String
-#Description of the Service type
-description: String
-tenant: Int
-id: ID!
-serviceprovider:[ServiceProviderInput]
-purpose:[PurposeInput]
-crop:CropInput
-}
-input TechnologyPlatformInput {
-#Name of the technology
-name: String
-#Description of the technology 
-description: String
-tenant: Int
-id: ID!
-vendor:[VendorInput]
-}
-input TraitInput {
-#Name of the trait
-name: String
-#Description of the trait
-
-description: String
-tenant: Int
-id: ID!
-traitclass:TraitClassInput
+workflowinstance:WorkflowInstanceInput
 }
 
 input FilterInput { 
