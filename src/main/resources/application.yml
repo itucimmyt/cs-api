@@ -5,7 +5,7 @@ logging:
       hibernate: INFO
       ebs: TRACE
 server:
-  port: 8080
+  port: 8081
 spring:
   application:
     name: ebs-sg-ex
@@ -35,7 +35,7 @@ spring:
   datasource:
     initialization-mode: never
     continue-on-error: false
-    url: jdbc:postgresql://localhost:5432/tenant
+    url: jdbc:postgresql://localhost:5432/cimmyt1
     username: postgres
     password: 12345
     dbcp2:

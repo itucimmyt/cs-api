@@ -28,6 +28,10 @@ findDelegation(id:ID!):Delegation
 findDelegationList( page: PageInput, sort:SortInput,filters:[FilterInput]):DelegationConnection
 findDonor(id:ID!):Donor
 findDonorList( page: PageInput, sort:SortInput,filters:[FilterInput]):DonorConnection
+findEmailTemplate(id:ID!):EmailTemplate
+findEmailTemplateList( page: PageInput, sort:SortInput,filters:[FilterInput]):EmailTemplateConnection
+findEntityReference(id:ID!):EntityReference
+findEntityReferenceList( page: PageInput, sort:SortInput,filters:[FilterInput]):EntityReferenceConnection
 findHtmlTag(id:ID!):HtmlTag
 findHtmlTagList( page: PageInput, sort:SortInput,filters:[FilterInput]):HtmlTagConnection
 findInstance(id:ID!):Instance
@@ -38,6 +42,10 @@ findMessage(id:ID!):Message
 findMessageList( page: PageInput, sort:SortInput,filters:[FilterInput]):MessageConnection
 findModule(id:ID!):Module
 findModuleList( page: PageInput, sort:SortInput,filters:[FilterInput]):ModuleConnection
+findNumberSequenceRule(id:ID!):NumberSequenceRule
+findNumberSequenceRuleList( page: PageInput, sort:SortInput,filters:[FilterInput]):NumberSequenceRuleConnection
+findNumberSequenceRuleSegment(id:ID!):NumberSequenceRuleSegment
+findNumberSequenceRuleSegmentList( page: PageInput, sort:SortInput,filters:[FilterInput]):NumberSequenceRuleSegmentConnection
 findOrganization(id:ID!):Organization
 findOrganizationList( page: PageInput, sort:SortInput,filters:[FilterInput]):OrganizationConnection
 findPartner(id:ID!):Partner
@@ -56,16 +64,14 @@ findProject(id:ID!):Project
 findProjectList( page: PageInput, sort:SortInput,filters:[FilterInput]):ProjectConnection
 findRequest(id:ID!):Request
 findRequestList( page: PageInput, sort:SortInput,filters:[FilterInput]):RequestConnection
-findRequestCFValue(id:ID!):RequestCFValue
-findRequestCFValueList( page: PageInput, sort:SortInput,filters:[FilterInput]):RequestCFValueConnection
 findRole(id:ID!):Role
 findRoleList( page: PageInput, sort:SortInput,filters:[FilterInput]):RoleConnection
 findRoleAction(id:ID!):RoleAction
 findRoleActionList( page: PageInput, sort:SortInput,filters:[FilterInput]):RoleActionConnection
-findScheme(id:ID!):Scheme
-findSchemeList( page: PageInput, sort:SortInput,filters:[FilterInput]):SchemeConnection
 findSeason(id:ID!):Season
 findSeasonList( page: PageInput, sort:SortInput,filters:[FilterInput]):SeasonConnection
+findSegment(id:ID!):Segment
+findSegmentList( page: PageInput, sort:SortInput,filters:[FilterInput]):SegmentConnection
 findSession(id:ID!):Session
 findSessionList( page: PageInput, sort:SortInput,filters:[FilterInput]):SessionConnection
 findStyleTheme(id:ID!):StyleTheme
@@ -82,6 +88,8 @@ findWorkflow(id:ID!):Workflow
 findWorkflowList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowConnection
 findWorkflowCFType(id:ID!):WorkflowCFType
 findWorkflowCFTypeList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowCFTypeConnection
+findWorkflowCFValue(id:ID!):WorkflowCFValue
+findWorkflowCFValueList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowCFValueConnection
 findWorkflowEvent(id:ID!):WorkflowEvent
 findWorkflowEventList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowEventConnection
 findWorkflowInstance(id:ID!):WorkflowInstance
@@ -96,8 +104,6 @@ findWorkflowStage(id:ID!):WorkflowStage
 findWorkflowStageList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowStageConnection
 findWorkflowStatus(id:ID!):WorkflowStatus
 findWorkflowStatusList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowStatusConnection
-findTraitClass(id:ID!):TraitClass
-findTraitClassList( page: PageInput, sort:SortInput,filters:[FilterInput]):TraitClassConnection
 findAssayclass(id:ID!):Assayclass
 findAssayclassList( page: PageInput, sort:SortInput,filters:[FilterInput]):AssayclassConnection
 findAssayGene(id:ID!):AssayGene
@@ -120,6 +126,8 @@ findTechnologyPlatform(id:ID!):TechnologyPlatform
 findTechnologyPlatformList( page: PageInput, sort:SortInput,filters:[FilterInput]):TechnologyPlatformConnection
 findTrait(id:ID!):Trait
 findTraitList( page: PageInput, sort:SortInput,filters:[FilterInput]):TraitConnection
+findTraitClass(id:ID!):TraitClass
+findTraitClassList( page: PageInput, sort:SortInput,filters:[FilterInput]):TraitClassConnection
 }
 type Mutation {createWorkflowStatusType(WorkflowStatusTypeTo:WorkflowStatusTypeInput!):WorkflowStatusType
 modifyWorkflowStatusType(WorkflowStatusTypeTo:WorkflowStatusTypeInput!):WorkflowStatusType
@@ -166,6 +174,12 @@ deleteDelegation(iddelegation:Int!):Int
 createDonor(DonorTo:DonorInput!):Donor
 modifyDonor(DonorTo:DonorInput!):Donor
 deleteDonor(iddonor:Int!):Int
+createEmailTemplate(EmailTemplateTo:EmailTemplateInput!):EmailTemplate
+modifyEmailTemplate(EmailTemplateTo:EmailTemplateInput!):EmailTemplate
+deleteEmailTemplate(idemailtemplate:Int!):Int
+createEntityReference(EntityReferenceTo:EntityReferenceInput!):EntityReference
+modifyEntityReference(EntityReferenceTo:EntityReferenceInput!):EntityReference
+deleteEntityReference(identityreference:Int!):Int
 createHtmlTag(HtmlTagTo:HtmlTagInput!):HtmlTag
 modifyHtmlTag(HtmlTagTo:HtmlTagInput!):HtmlTag
 deleteHtmlTag(idhtmltag:Int!):Int
@@ -181,6 +195,12 @@ deleteMessage(idmessage:Int!):Int
 createModule(ModuleTo:ModuleInput!):Module
 modifyModule(ModuleTo:ModuleInput!):Module
 deleteModule(idmodule:Int!):Int
+createNumberSequenceRule(NumberSequenceRuleTo:NumberSequenceRuleInput!):NumberSequenceRule
+modifyNumberSequenceRule(NumberSequenceRuleTo:NumberSequenceRuleInput!):NumberSequenceRule
+deleteNumberSequenceRule(idnumbersequencerule:Int!):Int
+createNumberSequenceRuleSegment(NumberSequenceRuleSegmentTo:NumberSequenceRuleSegmentInput!):NumberSequenceRuleSegment
+modifyNumberSequenceRuleSegment(NumberSequenceRuleSegmentTo:NumberSequenceRuleSegmentInput!):NumberSequenceRuleSegment
+deleteNumberSequenceRuleSegment(idnumbersequencerulesegment:Int!):Int
 createOrganization(OrganizationTo:OrganizationInput!):Organization
 modifyOrganization(OrganizationTo:OrganizationInput!):Organization
 deleteOrganization(idorganization:Int!):Int
@@ -208,21 +228,18 @@ deleteProject(idproject:Int!):Int
 createRequest(RequestTo:RequestInput!):Request
 modifyRequest(RequestTo:RequestInput!):Request
 deleteRequest(idrequest:Int!):Int
-createRequestCFValue(RequestCFValueTo:RequestCFValueInput!):RequestCFValue
-modifyRequestCFValue(RequestCFValueTo:RequestCFValueInput!):RequestCFValue
-deleteRequestCFValue(idrequestcfvalue:Int!):Int
 createRole(RoleTo:RoleInput!):Role
 modifyRole(RoleTo:RoleInput!):Role
 deleteRole(idrole:Int!):Int
 createRoleAction(RoleActionTo:RoleActionInput!):RoleAction
 modifyRoleAction(RoleActionTo:RoleActionInput!):RoleAction
 deleteRoleAction(idroleaction:Int!):Int
-createScheme(SchemeTo:SchemeInput!):Scheme
-modifyScheme(SchemeTo:SchemeInput!):Scheme
-deleteScheme(idscheme:Int!):Int
 createSeason(SeasonTo:SeasonInput!):Season
 modifySeason(SeasonTo:SeasonInput!):Season
 deleteSeason(idseason:Int!):Int
+createSegment(SegmentTo:SegmentInput!):Segment
+modifySegment(SegmentTo:SegmentInput!):Segment
+deleteSegment(idsegment:Int!):Int
 createSession(SessionTo:SessionInput!):Session
 modifySession(SessionTo:SessionInput!):Session
 deleteSession(idsession:Int!):Int
@@ -247,6 +264,9 @@ deleteWorkflow(idworkflow:Int!):Int
 createWorkflowCFType(WorkflowCFTypeTo:WorkflowCFTypeInput!):WorkflowCFType
 modifyWorkflowCFType(WorkflowCFTypeTo:WorkflowCFTypeInput!):WorkflowCFType
 deleteWorkflowCFType(idworkflowcftype:Int!):Int
+createWorkflowCFValue(WorkflowCFValueTo:WorkflowCFValueInput!):WorkflowCFValue
+modifyWorkflowCFValue(WorkflowCFValueTo:WorkflowCFValueInput!):WorkflowCFValue
+deleteWorkflowCFValue(idworkflowcfvalue:Int!):Int
 createWorkflowEvent(WorkflowEventTo:WorkflowEventInput!):WorkflowEvent
 modifyWorkflowEvent(WorkflowEventTo:WorkflowEventInput!):WorkflowEvent
 deleteWorkflowEvent(idworkflowevent:Int!):Int
@@ -268,9 +288,6 @@ deleteWorkflowStage(idworkflowstage:Int!):Int
 createWorkflowStatus(WorkflowStatusTo:WorkflowStatusInput!):WorkflowStatus
 modifyWorkflowStatus(WorkflowStatusTo:WorkflowStatusInput!):WorkflowStatus
 deleteWorkflowStatus(idworkflowstatus:Int!):Int
-createTraitClass(TraitClassTo:TraitClassInput!):TraitClass
-modifyTraitClass(TraitClassTo:TraitClassInput!):TraitClass
-deleteTraitClass(idtraitclass:Int!):Int
 createAssayclass(AssayclassTo:AssayclassInput!):Assayclass
 modifyAssayclass(AssayclassTo:AssayclassInput!):Assayclass
 deleteAssayclass(idassayclass:Int!):Int
@@ -304,6 +321,9 @@ deleteTechnologyPlatform(idtechnologyplatform:Int!):Int
 createTrait(TraitTo:TraitInput!):Trait
 modifyTrait(TraitTo:TraitInput!):Trait
 deleteTrait(idtrait:Int!):Int
+createTraitClass(TraitClassTo:TraitClassInput!):TraitClass
+modifyTraitClass(TraitClassTo:TraitClassInput!):TraitClass
+deleteTraitClass(idtraitclass:Int!):Int
 }
 
 type WorkflowStatusTypeConnection {
@@ -355,8 +375,6 @@ content: [Address]
 #
 type Address {
 #
-country: Int
-#
 locality: String
 #
 region: String
@@ -368,6 +386,7 @@ postalCode: String
 streetAddress: String
 tenant: Int
 id: ID!
+country:Country
 persons:[Person]
 }
 type AlertConnection {
@@ -428,6 +447,7 @@ help: String
 sortno: Int
 id: ID!
 translations:[Translation]
+entityreference:EntityReference
 }
 type AuditLogsConnection {
 totalPages: Int
@@ -539,7 +559,8 @@ full_name: String
 #
 code: String
 id: ID!
-vendors:[Vendor]
+serviceproviders:[ServiceProvider]
+addresss:[Address]
 }
 type CropConnection {
 totalPages: Int
@@ -559,7 +580,7 @@ crop_name: String
 description: String
 id: ID!
 programs:[Program]
-servicetypes:[ServiceType]
+serviceproviders:[ServiceProvider]
 seasons:[Season]
 }
 type CustomerConnection {
@@ -632,6 +653,52 @@ indentifier: String
 tenant: Int
 id: ID!
 person:Person
+}
+type EmailTemplateConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [EmailTemplate]
+}
+#
+type EmailTemplate {
+#
+name: String
+#
+subject: String
+#
+template: String
+id: ID!
+entityreferences:[EntityReference]
+tenant:Tenant
+}
+type EntityReferenceConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [EntityReference]
+}
+#
+type EntityReference {
+#
+entity: String
+#
+textfield: String
+#
+valuefield: String
+#
+storefield: String
+tenant: Int
+id: ID!
+attributess:[Attributes]
+emailtemplate:[EmailTemplate]
+segments:[Segment]
+numbersequencerule:[NumberSequenceRule]
+workflownodecfs:[WorkflowNodeCF]
 }
 type HtmlTagConnection {
 totalPages: Int
@@ -727,11 +794,59 @@ description: String
 help: String
 #
 route: String
+#
+MainEntity: String
 id: ID!
-workflownode:[WorkflowNode]
 actions:[Action]
 component:Component
 translations:[Translation]
+workflownodes:[WorkflowNode]
+}
+type NumberSequenceRuleConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [NumberSequenceRule]
+}
+#
+type NumberSequenceRule {
+#
+name: String
+#
+lowest: Int
+#
+nextrec: Int
+#
+format: String
+#
+lastcode: String
+id: ID!
+numbersequencerulesegments:[NumberSequenceRuleSegment]
+tenant:Tenant
+entityreferences:[EntityReference]
+}
+type NumberSequenceRuleSegmentConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [NumberSequenceRuleSegment]
+}
+#
+type NumberSequenceRuleSegment {
+#
+Length: Int
+#
+FieldOrigin: String
+#
+Position: Int
+tenant: Int
+id: ID!
+segment:Segment
+numbersequencerule:NumberSequenceRule
 }
 type OrganizationConnection {
 totalPages: Int
@@ -839,7 +954,7 @@ phone: String
 #
 status: String
 id: ID!
-address:Address
+address:[Address]
 tenant:Tenant
 collaborators:[Collaborator]
 donors:[Donor]
@@ -956,7 +1071,7 @@ type Request {
 #Id of the person who is making a request
 requester: String
 #Date when the request was submitted
-submition_date: String
+submition_date: Date
 #ID of the admin contact for the request
 admin_contact: String
 #
@@ -965,36 +1080,9 @@ charge_account: String
 description: String
 tenant: Int
 id: ID!
-serviceprovider:ServiceProvider
-service:Service
 purpose:Purpose
-requestcfvalues:[RequestCFValue]
+workflowcfvalues:[WorkflowCFValue]
 workflowinstance:WorkflowInstance
-}
-type RequestCFValueConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [RequestCFValue]
-}
-#
-type RequestCFValue {
-#
-FLAG_Value: Boolean
-#
-TEXT_Value: String
-#
-NUM_Value: Int
-#
-DATE_Value: Date
-#
-CODE_Value: Int
-tenant: Int
-id: ID!
-request:[Request]
-workflownodecf:[WorkflowNodeCF]
 }
 type RoleConnection {
 totalPages: Int
@@ -1033,25 +1121,6 @@ action:Action
 permissions:[Permission]
 role:Role
 }
-type SchemeConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Scheme]
-}
-#
-type Scheme {
-#
-scheme_code: String
-#
-scheme_name: String
-#
-description: String
-tenant: Int
-id: ID!
-}
 type SeasonConnection {
 totalPages: Int
 totalElements: Int
@@ -1071,6 +1140,39 @@ description: String
 tenant: Int
 id: ID!
 crop:[Crop]
+}
+type SegmentConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Segment]
+}
+#
+type Segment {
+#
+name: String
+#
+tag: String
+#
+isAPI: Boolean
+#
+isDatabase: Boolean
+#
+IsAutoNum: Boolean
+#
+IsStatic: Boolean
+#
+IsFormule: Boolean
+#
+Formule: String
+#
+IsOrigin: Boolean
+tenant: Int
+id: ID!
+entityreference:EntityReference
+numbersequencerulesegments:[NumberSequenceRuleSegment]
 }
 type SessionConnection {
 totalPages: Int
@@ -1132,12 +1234,14 @@ expiration: Date
 #
 expire: Boolean
 id: ID!
+emailtemplates:[EmailTemplate]
 programs:[Program]
 users:[User]
 instances:[Instance]
 workflows:[Workflow]
 organization:Organization
 authenticationtype:AuthenticationType
+numbersequencerules:[NumberSequenceRule]
 customer:Customer
 persons:[Person]
 }
@@ -1162,6 +1266,7 @@ language:Language
 message:Message
 htmltag:HtmlTag
 module:Module
+workflownodecf:WorkflowNodeCF
 }
 type UserConnection {
 totalPages: Int
@@ -1209,11 +1314,10 @@ reference: String
 status: String
 tenant: Int
 id: ID!
-technologyplatforms:[TechnologyPlatform]
-markers:[Marker]
 dataformat:DataFormat
 service:[Service]
-country:Country
+technologyplatforms:[TechnologyPlatform]
+markers:[Marker]
 person:Person
 }
 type WorkflowConnection {
@@ -1261,6 +1365,31 @@ tenant: Int
 id: ID!
 workflownodecfs:[WorkflowNodeCF]
 }
+type WorkflowCFValueConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [WorkflowCFValue]
+}
+#
+type WorkflowCFValue {
+#
+FLAG_Value: Boolean
+#
+TEXT_Value: String
+#
+NUM_Value: Int
+#
+DATE_Value: Date
+#
+CODE_Value: Int
+tenant: Int
+id: ID!
+request:Request
+workflownodecf:WorkflowNodeCF
+}
 type WorkflowEventConnection {
 totalPages: Int
 totalElements: Int
@@ -1279,8 +1408,9 @@ error: String
 description: String
 tenant: Int
 id: ID!
-workflowinstance:[WorkflowInstance]
-workflownode:[WorkflowNode]
+workflowstage:WorkflowStage
+workflowinstance:WorkflowInstance
+workflownode:WorkflowNode
 }
 type WorkflowInstanceConnection {
 totalPages: Int
@@ -1298,6 +1428,7 @@ complete: Date
 initiated: Date
 tenant: Int
 id: ID!
+workflowstatuss:[WorkflowStatus]
 workflowevents:[WorkflowEvent]
 workflow:Workflow
 requests:[Request]
@@ -1326,12 +1457,11 @@ tenant: Int
 id: ID!
 workflow:Workflow
 workflowevents:[WorkflowEvent]
-workflowstatuss:[WorkflowStatus]
 workflowstages:[WorkflowStage]
 workflows:[Workflow]
 processs:[Process]
-modules:[Module]
 workflownodecfs:[WorkflowNodeCF]
+module:Module
 }
 type WorkflowNodeCFConnection {
 totalPages: Int
@@ -1353,9 +1483,11 @@ help: String
 required: Boolean
 tenant: Int
 id: ID!
-requestcfvalues:[RequestCFValue]
-workflowcftype:[WorkflowCFType]
-workflownode:[WorkflowNode]
+translations:[Translation]
+workflowcfvalues:[WorkflowCFValue]
+workflowcftype:WorkflowCFType
+entityreference:EntityReference
+workflownode:WorkflowNode
 }
 type WorkflowPhaseConnection {
 totalPages: Int
@@ -1397,6 +1529,7 @@ help: String
 tenant: Int
 id: ID!
 workflowphase:WorkflowPhase
+workflowevents:[WorkflowEvent]
 workflownode:[WorkflowNode]
 }
 type WorkflowStatusConnection {
@@ -1410,36 +1543,13 @@ content: [WorkflowStatus]
 #
 type WorkflowStatus {
 #
-rec_uid: Int
-#
 initiate_date: Date
 #
 completation_date: Date
-#
-submitted_date: Date
 tenant: Int
 id: ID!
 workflowstatustype:WorkflowStatusType
-workflownode:[WorkflowNode]
-}
-type TraitClassConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [TraitClass]
-}
-#Classification of the traits into groups such as agronomic, biotic, abiotic, quality, 
-type TraitClass {
-#name for the trait_class
-name: String
-#description of the trait
-_class
-description: String
-tenant: Int
-id: ID!
-traits:[Trait]
+workflowinstance:WorkflowInstance
 }
 type AssayclassConnection {
 totalPages: Int
@@ -1553,7 +1663,7 @@ code: String
 description: String
 tenant: Int
 id: ID!
-servicetypes:[ServiceType]
+servicetype:ServiceType
 services:[Service]
 requests:[Request]
 }
@@ -1577,9 +1687,8 @@ description: String
 code: String
 tenant: Int
 id: ID!
+purpose:[Purpose]
 assayclasss:[Assayclass]
-purpose:Purpose
-requests:[Request]
 vendors:[Vendor]
 }
 type ServiceProviderConnection {
@@ -1599,7 +1708,8 @@ name: String
 tenant: Int
 id: ID!
 servicetypes:[ServiceType]
-requests:[Request]
+country:Country
+crop:[Crop]
 }
 type ServiceTypeConnection {
 totalPages: Int
@@ -1620,9 +1730,8 @@ code: String
 description: String
 tenant: Int
 id: ID!
+purposes:[Purpose]
 serviceprovider:[ServiceProvider]
-purpose:[Purpose]
-crop:Crop
 }
 type TechnologyPlatformConnection {
 totalPages: Int
@@ -1663,6 +1772,25 @@ id: ID!
 traitclass:TraitClass
 assaygenes:[AssayGene]
 }
+type TraitClassConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [TraitClass]
+}
+#Classification of the traits into groups such as agronomic, biotic, abiotic, quality, 
+type TraitClass {
+#name for the trait_class
+name: String
+#description of the trait
+_class
+description: String
+tenant: Int
+id: ID!
+traits:[Trait]
+}
 
 input WorkflowStatusTypeInput {
 #
@@ -1684,8 +1812,6 @@ module:ModuleInput
 }
 input AddressInput {
 #
-country: Int
-#
 locality: String
 #
 region: String
@@ -1697,6 +1823,7 @@ postalCode: String
 streetAddress: String
 tenant: Int
 id: ID!
+country:CountryInput
 }
 input AlertInput {
 #
@@ -1725,6 +1852,7 @@ help: String
 #
 sortno: Int
 id: ID!
+entityreference:EntityReferenceInput
 }
 input AuditLogsInput {
 #
@@ -1839,6 +1967,30 @@ tenant: Int
 id: ID!
 person:PersonInput
 }
+input EmailTemplateInput {
+#
+name: String
+#
+subject: String
+#
+template: String
+id: ID!
+tenant:TenantInput
+}
+input EntityReferenceInput {
+#
+entity: String
+#
+textfield: String
+#
+valuefield: String
+#
+storefield: String
+tenant: Int
+id: ID!
+emailtemplate:[EmailTemplateInput]
+numbersequencerule:[NumberSequenceRuleInput]
+}
 input HtmlTagInput {
 #
 tagName: String
@@ -1883,9 +2035,36 @@ description: String
 help: String
 #
 route: String
+#
+MainEntity: String
 id: ID!
-workflownode:[WorkflowNodeInput]
 component:ComponentInput
+}
+input NumberSequenceRuleInput {
+#
+name: String
+#
+lowest: Int
+#
+nextrec: Int
+#
+format: String
+#
+lastcode: String
+id: ID!
+tenant:TenantInput
+}
+input NumberSequenceRuleSegmentInput {
+#
+Length: Int
+#
+FieldOrigin: String
+#
+Position: Int
+tenant: Int
+id: ID!
+segment:SegmentInput
+numbersequencerule:NumberSequenceRuleInput
 }
 input OrganizationInput {
 #
@@ -1955,7 +2134,7 @@ phone: String
 #
 status: String
 id: ID!
-address:AddressInput
+address:[AddressInput]
 tenant:TenantInput
 }
 input PreferenceInput {
@@ -2021,7 +2200,7 @@ input RequestInput {
 #Id of the person who is making a request
 requester: String
 #Date when the request was submitted
-submition_date: String
+submition_date: Date
 #ID of the admin contact for the request
 admin_contact: String
 #
@@ -2030,26 +2209,8 @@ charge_account: String
 description: String
 tenant: Int
 id: ID!
-serviceprovider:ServiceProviderInput
-service:ServiceInput
 purpose:PurposeInput
 workflowinstance:WorkflowInstanceInput
-}
-input RequestCFValueInput {
-#
-FLAG_Value: Boolean
-#
-TEXT_Value: String
-#
-NUM_Value: Int
-#
-DATE_Value: Date
-#
-CODE_Value: Int
-tenant: Int
-id: ID!
-request:[RequestInput]
-workflownodecf:[WorkflowNodeCFInput]
 }
 input RoleInput {
 #
@@ -2068,16 +2229,6 @@ id: ID!
 action:ActionInput
 role:RoleInput
 }
-input SchemeInput {
-#
-scheme_code: String
-#
-scheme_name: String
-#
-description: String
-tenant: Int
-id: ID!
-}
 input SeasonInput {
 #
 season_code: String
@@ -2088,6 +2239,29 @@ description: String
 tenant: Int
 id: ID!
 crop:[CropInput]
+}
+input SegmentInput {
+#
+name: String
+#
+tag: String
+#
+isAPI: Boolean
+#
+isDatabase: Boolean
+#
+IsAutoNum: Boolean
+#
+IsStatic: Boolean
+#
+IsFormule: Boolean
+#
+Formule: String
+#
+IsOrigin: Boolean
+tenant: Int
+id: ID!
+entityreference:EntityReferenceInput
 }
 input SessionInput {
 #
@@ -2137,6 +2311,7 @@ language:LanguageInput
 message:MessageInput
 htmltag:HtmlTagInput
 module:ModuleInput
+workflownodecf:WorkflowNodeCFInput
 }
 input UserInput {
 #
@@ -2164,7 +2339,6 @@ tenant: Int
 id: ID!
 dataformat:DataFormatInput
 service:[ServiceInput]
-country:CountryInput
 person:PersonInput
 }
 input WorkflowInput {
@@ -2190,6 +2364,22 @@ type: String
 tenant: Int
 id: ID!
 }
+input WorkflowCFValueInput {
+#
+FLAG_Value: Boolean
+#
+TEXT_Value: String
+#
+NUM_Value: Int
+#
+DATE_Value: Date
+#
+CODE_Value: Int
+tenant: Int
+id: ID!
+request:RequestInput
+workflownodecf:WorkflowNodeCFInput
+}
 input WorkflowEventInput {
 #
 completed: Date
@@ -2199,8 +2389,9 @@ error: String
 description: String
 tenant: Int
 id: ID!
-workflowinstance:[WorkflowInstanceInput]
-workflownode:[WorkflowNodeInput]
+workflowstage:WorkflowStageInput
+workflowinstance:WorkflowInstanceInput
+workflownode:WorkflowNodeInput
 }
 input WorkflowInstanceInput {
 #
@@ -2225,6 +2416,7 @@ require_approval: Boolean
 tenant: Int
 id: ID!
 workflow:WorkflowInput
+module:ModuleInput
 }
 input WorkflowNodeCFInput {
 #
@@ -2237,8 +2429,9 @@ help: String
 required: Boolean
 tenant: Int
 id: ID!
-workflowcftype:[WorkflowCFTypeInput]
-workflownode:[WorkflowNodeInput]
+workflowcftype:WorkflowCFTypeInput
+entityreference:EntityReferenceInput
+workflownode:WorkflowNodeInput
 }
 input WorkflowPhaseInput {
 #
@@ -2265,26 +2458,13 @@ workflownode:[WorkflowNodeInput]
 }
 input WorkflowStatusInput {
 #
-rec_uid: Int
-#
 initiate_date: Date
 #
 completation_date: Date
-#
-submitted_date: Date
 tenant: Int
 id: ID!
 workflowstatustype:WorkflowStatusTypeInput
-workflownode:[WorkflowNodeInput]
-}
-input TraitClassInput {
-#name for the trait_class
-name: String
-#description of the trait
-_class
-description: String
-tenant: Int
-id: ID!
+workflowinstance:WorkflowInstanceInput
 }
 input AssayclassInput {
 #Name of the assayClass
@@ -2341,6 +2521,7 @@ code: String
 description: String
 tenant: Int
 id: ID!
+servicetype:ServiceTypeInput
 }
 input ServiceInput {
 #Name of the Service
@@ -2353,7 +2534,7 @@ description: String
 code: String
 tenant: Int
 id: ID!
-purpose:PurposeInput
+purpose:[PurposeInput]
 }
 input ServiceProviderInput {
 #Code identifier for the Service Provider
@@ -2362,6 +2543,8 @@ code: String
 name: String
 tenant: Int
 id: ID!
+country:CountryInput
+crop:[CropInput]
 }
 input ServiceTypeInput {
 #Name of the service_type
@@ -2374,8 +2557,6 @@ description: String
 tenant: Int
 id: ID!
 serviceprovider:[ServiceProviderInput]
-purpose:[PurposeInput]
-crop:CropInput
 }
 input TechnologyPlatformInput {
 #Name of the technology
@@ -2395,6 +2576,15 @@ description: String
 tenant: Int
 id: ID!
 traitclass:TraitClassInput
+}
+input TraitClassInput {
+#name for the trait_class
+name: String
+#description of the trait
+_class
+description: String
+tenant: Int
+id: ID!
 }
 
 input FilterInput { 
