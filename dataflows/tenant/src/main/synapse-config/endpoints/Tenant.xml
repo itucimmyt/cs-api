@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoint name="Tenant" xmlns="http://ws.apache.org/ns/synapse">
+    <address optimize="swa" statistics="enable" uri="http://localhost:8081/graphql">
+        <enableSec/>
+    </address>
+</endpoint>
