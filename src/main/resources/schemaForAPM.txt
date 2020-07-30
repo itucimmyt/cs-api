@@ -404,8 +404,8 @@ description: String
 tenant: Int
 id: ID!
 alertrules:[AlertRule]
-translations:[Translation]
 preferences:[Preference]
+htmltag:HtmlTag
 }
 type AlertRuleConnection {
 totalPages: Int
@@ -445,9 +445,21 @@ description: String
 help: String
 #
 sortno: Int
+#
+attComponent: String
+#
+is_multiline: Boolean
+#
+is_required: Boolean
+#
+defaultValue: String
+#
+sm: Int
+#
+md: Int
 id: ID!
-translations:[Translation]
 entityreference:EntityReference
+htmltag:HtmlTag
 }
 type AuditLogsConnection {
 totalPages: Int
@@ -533,10 +545,12 @@ version: String
 releaseNo: String
 #
 info: String
+#
+icon: String
 id: ID!
 instances:[Instance]
-messages:[Message]
 modules:[Module]
+htmltag:HtmlTag
 }
 type CountryConnection {
 totalPages: Int
@@ -699,6 +713,8 @@ emailtemplate:[EmailTemplate]
 segments:[Segment]
 numbersequencerule:[NumberSequenceRule]
 workflownodecfs:[WorkflowNodeCF]
+workflownodes:[WorkflowNode]
+workflows:[Workflow]
 }
 type HtmlTagConnection {
 totalPages: Int
@@ -714,6 +730,16 @@ type HtmlTag {
 tagName: String
 id: ID!
 translations:[Translation]
+alerts:[Alert]
+attributess:[Attributes]
+modules:[Module]
+components:[Component]
+messages:[Message]
+workflowstages:[WorkflowStage]
+workflowphases:[WorkflowPhase]
+workflows:[Workflow]
+workflownodes:[WorkflowNode]
+workflownodecfs:[WorkflowNodeCF]
 }
 type InstanceConnection {
 totalPages: Int
@@ -734,7 +760,7 @@ health: String
 id: ID!
 sessions:[Session]
 auditlogss:[AuditLogs]
-component:Component
+component:[Component]
 tenant:Tenant
 }
 type LanguageConnection {
@@ -773,8 +799,7 @@ sql: String
 #
 filterClause: String
 id: ID!
-translations:[Translation]
-component:Component
+htmltag:HtmlTag
 }
 type ModuleConnection {
 totalPages: Int
@@ -796,11 +821,13 @@ help: String
 route: String
 #
 MainEntity: String
+#
+icon: String
 id: ID!
 actions:[Action]
 component:Component
-translations:[Translation]
 workflownodes:[WorkflowNode]
+htmltag:HtmlTag
 }
 type NumberSequenceRuleConnection {
 totalPages: Int
@@ -1260,13 +1287,8 @@ translation: String
 #
 languageTo: Int
 id: ID!
-alert:Alert
-attributes:Attributes
 language:Language
-message:Message
 htmltag:HtmlTag
-module:Module
-workflownodecf:WorkflowNodeCF
 }
 type UserConnection {
 totalPages: Int
@@ -1331,17 +1353,27 @@ content: [Workflow]
 #define the different workflow that interact with the process
 type Workflow {
 #
+title: String
+#
+name: String
+#
 description: String
 #
 help: String
 #
 sortno: Int
+#
+htmltag: String
+#
+icon: String
 id: ID!
 workflowphases:[WorkflowPhase]
 tenant:Tenant
 workflowinstances:[WorkflowInstance]
 workflownodes:[WorkflowNode]
 workflownode:WorkflowNode
+entityreference:EntityReference
+htmltag:HtmlTag
 }
 type WorkflowCFTypeConnection {
 totalPages: Int
@@ -1462,6 +1494,8 @@ workflows:[Workflow]
 processs:[Process]
 workflownodecfs:[WorkflowNodeCF]
 module:Module
+entityreference:EntityReference
+htmltag:HtmlTag
 }
 type WorkflowNodeCFConnection {
 totalPages: Int
@@ -1483,11 +1517,11 @@ help: String
 required: Boolean
 tenant: Int
 id: ID!
-translations:[Translation]
 workflowcfvalues:[WorkflowCFValue]
 workflowcftype:WorkflowCFType
 entityreference:EntityReference
 workflownode:WorkflowNode
+htmltag:HtmlTag
 }
 type WorkflowPhaseConnection {
 totalPages: Int
@@ -1509,6 +1543,7 @@ tenant: Int
 id: ID!
 workflowstages:[WorkflowStage]
 workflow:Workflow
+htmltag:HtmlTag
 }
 type WorkflowStageConnection {
 totalPages: Int
@@ -1531,6 +1566,7 @@ id: ID!
 workflowphase:WorkflowPhase
 workflowevents:[WorkflowEvent]
 workflownode:[WorkflowNode]
+htmltag:HtmlTag
 }
 type WorkflowStatusConnection {
 totalPages: Int
@@ -1830,6 +1866,7 @@ input AlertInput {
 description: String
 tenant: Int
 id: ID!
+htmltag:HtmlTagInput
 }
 input AlertRuleInput {
 #
@@ -1851,8 +1888,21 @@ description: String
 help: String
 #
 sortno: Int
+#
+attComponent: String
+#
+is_multiline: Boolean
+#
+is_required: Boolean
+#
+defaultValue: String
+#
+sm: Int
+#
+md: Int
 id: ID!
 entityreference:EntityReferenceInput
+htmltag:HtmlTagInput
 }
 input AuditLogsInput {
 #
@@ -1901,7 +1951,10 @@ version: String
 releaseNo: String
 #
 info: String
+#
+icon: String
 id: ID!
+htmltag:HtmlTagInput
 }
 input CountryInput {
 #Name of the Country
@@ -2004,7 +2057,7 @@ port: String
 #
 health: String
 id: ID!
-component:ComponentInput
+component:[ComponentInput]
 tenant:TenantInput
 }
 input LanguageInput {
@@ -2024,7 +2077,7 @@ sql: String
 #
 filterClause: String
 id: ID!
-component:ComponentInput
+htmltag:HtmlTagInput
 }
 input ModuleInput {
 #
@@ -2037,8 +2090,11 @@ help: String
 route: String
 #
 MainEntity: String
+#
+icon: String
 id: ID!
 component:ComponentInput
+htmltag:HtmlTagInput
 }
 input NumberSequenceRuleInput {
 #
@@ -2305,13 +2361,8 @@ translation: String
 #
 languageTo: Int
 id: ID!
-alert:AlertInput
-attributes:AttributesInput
 language:LanguageInput
-message:MessageInput
 htmltag:HtmlTagInput
-module:ModuleInput
-workflownodecf:WorkflowNodeCFInput
 }
 input UserInput {
 #
@@ -2343,14 +2394,24 @@ person:PersonInput
 }
 input WorkflowInput {
 #
+title: String
+#
+name: String
+#
 description: String
 #
 help: String
 #
 sortno: Int
+#
+htmltag: String
+#
+icon: String
 id: ID!
 tenant:TenantInput
 workflownode:WorkflowNodeInput
+entityreference:EntityReferenceInput
+htmltag:HtmlTagInput
 }
 input WorkflowCFTypeInput {
 #
@@ -2417,6 +2478,8 @@ tenant: Int
 id: ID!
 workflow:WorkflowInput
 module:ModuleInput
+entityreference:EntityReferenceInput
+htmltag:HtmlTagInput
 }
 input WorkflowNodeCFInput {
 #
@@ -2432,6 +2495,7 @@ id: ID!
 workflowcftype:WorkflowCFTypeInput
 entityreference:EntityReferenceInput
 workflownode:WorkflowNodeInput
+htmltag:HtmlTagInput
 }
 input WorkflowPhaseInput {
 #
@@ -2443,6 +2507,7 @@ help: String
 tenant: Int
 id: ID!
 workflow:WorkflowInput
+htmltag:HtmlTagInput
 }
 input WorkflowStageInput {
 #
@@ -2455,6 +2520,7 @@ tenant: Int
 id: ID!
 workflowphase:WorkflowPhaseInput
 workflownode:[WorkflowNodeInput]
+htmltag:HtmlTagInput
 }
 input WorkflowStatusInput {
 #
