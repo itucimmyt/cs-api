@@ -96,9 +96,9 @@ import org.ebs.services.to.PersonTo;
 	 */
 	@Override
 	public Optional<ProjectTo> findProject(int projectId){
-		if(projectId <1) 
-		 {return Optional.empty();} 
-		 return projectRepository.findById(projectId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,ProjectTo.class));
+	/*	if(projectId <1) 
+		 {return Optional.empty();} */
+		 return projectRepository.findById(projectId).map(r -> converter.convert(r,ProjectTo.class));
 	}
 
 	/**

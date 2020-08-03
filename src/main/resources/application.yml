@@ -35,7 +35,7 @@ spring:
   datasource:
     initialization-mode: never
     continue-on-error: false
-    url: jdbc:postgresql://localhost:5432/tenant
+    url: jdbc:postgresql://localhost:5432/tenant3
     username: postgres
     password: 12345
     dbcp2:
