@@ -75,6 +75,8 @@ public interface WorkflowNodeService {
 	 */
 	public Set<WorkflowEventTo> findWorkflowEvents(int workflownodeId);
 
+	public Set<WorkflowStageTo> findWorkflowStages(int workflownodeId);
+	
 	/**
 	 * 
 	 * @param workflownodeId

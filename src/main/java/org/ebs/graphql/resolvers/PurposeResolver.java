@@ -14,6 +14,8 @@ import java.util.Set;
 import org.ebs.services.PurposeService;
 import org.ebs.services.to.ServiceTypeTo;
 import org.ebs.services.to.RequestTo;
+import org.ebs.services.to.ServiceTo;
+
 import com.coxautodev.graphql.tools.GraphQLResolver;
 import org.ebs.services.to.PurposeTo;
 import org.springframework.stereotype.Component;
@@ -35,7 +37,9 @@ public class PurposeResolver implements GraphQLResolver<PurposeTo> {
 	public Set<RequestTo> getRequests(PurposeTo purpose){
 		return purposeService.findRequests(purpose.getId());
 	}
-
+	public Set<ServiceTo> getServices(PurposeTo purpose){
+		return purposeService.findServices(purpose.getId());
+	}
 	/**
 	 * 
 	 * @param purposeTo
@@ -43,6 +47,7 @@ public class PurposeResolver implements GraphQLResolver<PurposeTo> {
 	public ServiceTypeTo getServicetype(PurposeTo purposeTo){
 		return purposeService.findServiceType(purposeTo.getId()).get();
 	}
+
 
 	/**
 	 * 

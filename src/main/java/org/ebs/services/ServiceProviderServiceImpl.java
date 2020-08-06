@@ -104,6 +104,9 @@ import org.ebs.services.to.CropTo;
 		return serviceproviderRepository.findByCriteria(ServiceProviderModel.class,filters,sort,page).map(r -> converter.convert(r,ServiceProviderTo.class));
 	}
 
+	public Set<ServiceTypeTo> findServiceTypes(int serviceproviderId ){
+		return serviceproviderRepository.findById(serviceproviderId).get().getservicetypes().stream().map(e -> converter.convert(e,ServiceTypeTo.class)).collect(Collectors.toSet());
+	}
 	/**
 	 * 
 	 * @param serviceprovider

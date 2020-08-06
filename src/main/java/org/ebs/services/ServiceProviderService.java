@@ -10,6 +10,8 @@ package org.ebs.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+
 import org.ebs.util.FilterInput;
 import org.ebs.util.PageInput;
 import org.ebs.util.SortInput;
@@ -51,6 +53,7 @@ public interface ServiceProviderService {
 	 */
 	public Optional<ServiceProviderTo> findServiceProvider(int serviceproviderId);
 
+	public Set<ServiceTypeTo> findServiceTypes(int serviceproviderId );
 	/**
 	 * 
 	 * @param page

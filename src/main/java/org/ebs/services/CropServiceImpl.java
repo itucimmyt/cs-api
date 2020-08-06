@@ -117,7 +117,10 @@ import org.ebs.services.to.SeasonTo;
 	public Set<ProgramTo> findPrograms(int cropId){
 		return programRepository.findByCropId(cropId).stream().map(e -> converter.convert(e,ProgramTo.class)).collect(Collectors.toSet());
 	}
-
+	
+	public Set<ServiceProviderTo> findServiceProviders(int cropId){
+		return cropRepository.findById(cropId).get().getserviceproviders().stream().map(e -> converter.convert(e,ServiceProviderTo.class)).collect(Collectors.toSet());
+	}
 	/**
 	 * 
 	 * @param crop

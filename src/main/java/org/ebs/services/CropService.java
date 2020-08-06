@@ -59,7 +59,7 @@ public interface CropService {
 	 * @param cropId
 	 */
 	public Set<ProgramTo> findPrograms(int cropId);
-
+	public Set<ServiceProviderTo> findServiceProviders(int cropId);
 	/**
 	 * 
 	 * @param crop

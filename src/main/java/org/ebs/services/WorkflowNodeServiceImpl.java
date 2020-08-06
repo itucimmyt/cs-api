@@ -130,6 +130,10 @@ import org.ebs.services.to.EntityReferenceTo;
 		return workflownodeRepository.findById(workflownodeId).map(r -> converter.convert(r.getworkflow(),WorkflowTo.class));
 	}
 
+	public Set<WorkflowStageTo> findWorkflowStages(int workflownodeId){
+		return  workflownodeRepository.findById(workflownodeId).get().getworkflowstages().stream().map(e -> converter.convert(e,WorkflowStageTo.class)).collect(Collectors.toSet());
+	
+	}
 	/**
 	 * 
 	 * @param workflownodeId

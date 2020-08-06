@@ -8,8 +8,11 @@
 
 package org.ebs.graphql.resolvers;
 
+import java.util.Set;
+
 import com.coxautodev.graphql.tools.GraphQLResolver;
 import org.ebs.services.to.ServiceProviderTo;
+import org.ebs.services.to.ServiceTypeTo;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -42,6 +45,10 @@ public class ServiceProviderResolver implements GraphQLResolver<ServiceProviderT
 	public ServiceProviderResolver(ServiceProviderService serviceproviderService){
 		this.serviceproviderService = serviceproviderService; 
 	
+	}
+
+	public Set<ServiceTypeTo> getServicetypes(ServiceProviderTo serviceproviderTo){
+		return serviceproviderService.findServiceTypes(serviceproviderTo.getId());
 	}
 
 }

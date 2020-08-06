@@ -16,6 +16,7 @@ import org.springframework.validation.annotation.Validated;
 import java.util.Set;
 import org.ebs.services.CropService;
 import org.ebs.services.to.ProgramTo;
+import org.ebs.services.to.ServiceProviderTo;
 
 /**
  * @author EBRIONES
@@ -44,5 +45,7 @@ public class CropResolver implements GraphQLResolver<CropTo> {
 	public Set<ProgramTo> getPrograms(CropTo crop){
 		return cropService.findPrograms(crop.getId());
 	}
-
+ public Set<ServiceProviderTo> getServiceproviders(CropTo crop){
+	 return cropService.findServiceProviders(crop.getId());
+ }
 }

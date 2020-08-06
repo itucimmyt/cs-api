@@ -104,6 +104,10 @@ import org.ebs.services.to.RequestTo;
 		return requestRepository.findByPurposeId(purposeId).stream().map(e -> converter.convert(e,RequestTo.class)).collect(Collectors.toSet());
 	}
 
+	public Set<ServiceTo> findServices(int purposeId){
+		return purposeRepository.findById(purposeId).get().getservices().stream().map(e -> converter.convert(e,ServiceTo.class)).collect(Collectors.toSet());
+	}
+
 	/**
 	 * 
 	 * @param purposeId

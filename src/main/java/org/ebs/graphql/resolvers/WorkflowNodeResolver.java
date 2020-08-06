@@ -10,6 +10,7 @@ package org.ebs.graphql.resolvers;
 
 import com.coxautodev.graphql.tools.GraphQLResolver;
 import org.ebs.services.to.WorkflowNodeTo;
+import org.ebs.services.to.WorkflowStageTo;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -86,6 +87,9 @@ public class WorkflowNodeResolver implements GraphQLResolver<WorkflowNodeTo> {
 	 */
 	public Set<WorkflowTo> getWorkflows(WorkflowNodeTo workflownode){
 		return workflownodeService.findWorkflows(workflownode.getId());
+	}
+	public Set<WorkflowStageTo> getWorkflowstages(WorkflowNodeTo workflownode){
+		return workflownodeService.findWorkflowStages(workflownode.getId());
 	}
 
 	/**

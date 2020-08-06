@@ -61,6 +61,7 @@ public interface PurposeService {
 	 */
 	public Set<RequestTo> findRequests(int purposeId);
 
+	public Set<ServiceTo> findServices(int purposeId);
 	/**
 	 * 
 	 * @param purposeId
