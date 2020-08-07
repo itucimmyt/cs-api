@@ -45,7 +45,7 @@ public class PurposeModel extends Auditable {
 	private int id;
 	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="servicetype_id")
 	ServiceTypeModel servicetype;
-	@ManyToMany(cascade =CascadeType.ALL) @JoinTable(name = "purpose_service", schema="analyticalsampling", joinColumns  = @JoinColumn(name="purpose_id",referencedColumnName = "id"),inverseJoinColumns = @JoinColumn(name="service_id",referencedColumnName = "id"))
+	@OneToMany(mappedBy = "service",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<ServiceModel> services;
 	@OneToMany(mappedBy = "purpose",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	Set<RequestModel> requests;

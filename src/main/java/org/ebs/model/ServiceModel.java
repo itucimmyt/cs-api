@@ -49,6 +49,7 @@ public class ServiceModel extends Auditable {
 	@ManyToMany(cascade =CascadeType.ALL) @JoinTable(name = "service_vendor", schema="analyticalsampling", joinColumns  = @JoinColumn(name="service_id",referencedColumnName = "id"),inverseJoinColumns = @JoinColumn(name="vendor_id",referencedColumnName = "id"))
 	Set<VendorModel> vendors;
 
+
 	public Set<AssayclassModel> getassayclasss(){
 		return assayclasss;
 	}
