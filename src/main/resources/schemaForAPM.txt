@@ -1,4 +1,46 @@
-type Query {findWorkflowStatusType(id:ID!):WorkflowStatusType
+type Query {findWorkflowCFType(id:ID!):WorkflowCFType
+findWorkflowCFTypeList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowCFTypeConnection
+findWorkflowCFValue(id:ID!):WorkflowCFValue
+findWorkflowCFValueList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowCFValueConnection
+findWorkflowEvent(id:ID!):WorkflowEvent
+findWorkflowEventList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowEventConnection
+findWorkflowInstance(id:ID!):WorkflowInstance
+findWorkflowInstanceList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowInstanceConnection
+findWorkflowNode(id:ID!):WorkflowNode
+findWorkflowNodeList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowNodeConnection
+findWorkflowNodeCF(id:ID!):WorkflowNodeCF
+findWorkflowNodeCFList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowNodeCFConnection
+findWorkflowPhase(id:ID!):WorkflowPhase
+findWorkflowPhaseList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowPhaseConnection
+findWorkflowStage(id:ID!):WorkflowStage
+findWorkflowStageList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowStageConnection
+findWorkflowStatus(id:ID!):WorkflowStatus
+findWorkflowStatusList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowStatusConnection
+findTraitClass(id:ID!):TraitClass
+findTraitClassList( page: PageInput, sort:SortInput,filters:[FilterInput]):TraitClassConnection
+findAssayclass(id:ID!):Assayclass
+findAssayclassList( page: PageInput, sort:SortInput,filters:[FilterInput]):AssayclassConnection
+findAssayGene(id:ID!):AssayGene
+findAssayGeneList( page: PageInput, sort:SortInput,filters:[FilterInput]):AssayGeneConnection
+findDataFormat(id:ID!):DataFormat
+findDataFormatList( page: PageInput, sort:SortInput,filters:[FilterInput]):DataFormatConnection
+findMarker(id:ID!):Marker
+findMarkerList( page: PageInput, sort:SortInput,filters:[FilterInput]):MarkerConnection
+findMarkerSynonym(id:ID!):MarkerSynonym
+findMarkerSynonymList( page: PageInput, sort:SortInput,filters:[FilterInput]):MarkerSynonymConnection
+findPurpose(id:ID!):Purpose
+findPurposeList( page: PageInput, sort:SortInput,filters:[FilterInput]):PurposeConnection
+findService(id:ID!):Service
+findServiceList( page: PageInput, sort:SortInput,filters:[FilterInput]):ServiceConnection
+findServiceProvider(id:ID!):ServiceProvider
+findServiceProviderList( page: PageInput, sort:SortInput,filters:[FilterInput]):ServiceProviderConnection
+findServiceType(id:ID!):ServiceType
+findServiceTypeList( page: PageInput, sort:SortInput,filters:[FilterInput]):ServiceTypeConnection
+findTechnologyPlatform(id:ID!):TechnologyPlatform
+findTechnologyPlatformList( page: PageInput, sort:SortInput,filters:[FilterInput]):TechnologyPlatformConnection
+findTrait(id:ID!):Trait
+findTraitList( page: PageInput, sort:SortInput,filters:[FilterInput]):TraitConnection
+findWorkflowStatusType(id:ID!):WorkflowStatusType
 findWorkflowStatusTypeList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowStatusTypeConnection
 findAction(id:ID!):Action
 findActionList( page: PageInput, sort:SortInput,filters:[FilterInput]):ActionConnection
@@ -76,6 +118,8 @@ findSession(id:ID!):Session
 findSessionList( page: PageInput, sort:SortInput,filters:[FilterInput]):SessionConnection
 findStyleTheme(id:ID!):StyleTheme
 findStyleThemeList( page: PageInput, sort:SortInput,filters:[FilterInput]):StyleThemeConnection
+findteam(id:ID!):team
+findteamList( page: PageInput, sort:SortInput,filters:[FilterInput]):teamConnection
 findTenant(id:ID!):Tenant
 findTenantList( page: PageInput, sort:SortInput,filters:[FilterInput]):TenantConnection
 findTranslation(id:ID!):Translation
@@ -86,50 +130,71 @@ findVendor(id:ID!):Vendor
 findVendorList( page: PageInput, sort:SortInput,filters:[FilterInput]):VendorConnection
 findWorkflow(id:ID!):Workflow
 findWorkflowList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowConnection
-findWorkflowCFType(id:ID!):WorkflowCFType
-findWorkflowCFTypeList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowCFTypeConnection
-findWorkflowCFValue(id:ID!):WorkflowCFValue
-findWorkflowCFValueList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowCFValueConnection
-findWorkflowEvent(id:ID!):WorkflowEvent
-findWorkflowEventList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowEventConnection
-findWorkflowInstance(id:ID!):WorkflowInstance
-findWorkflowInstanceList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowInstanceConnection
-findWorkflowNode(id:ID!):WorkflowNode
-findWorkflowNodeList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowNodeConnection
-findWorkflowNodeCF(id:ID!):WorkflowNodeCF
-findWorkflowNodeCFList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowNodeCFConnection
-findWorkflowPhase(id:ID!):WorkflowPhase
-findWorkflowPhaseList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowPhaseConnection
-findWorkflowStage(id:ID!):WorkflowStage
-findWorkflowStageList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowStageConnection
-findWorkflowStatus(id:ID!):WorkflowStatus
-findWorkflowStatusList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowStatusConnection
-findAssayclass(id:ID!):Assayclass
-findAssayclassList( page: PageInput, sort:SortInput,filters:[FilterInput]):AssayclassConnection
-findAssayGene(id:ID!):AssayGene
-findAssayGeneList( page: PageInput, sort:SortInput,filters:[FilterInput]):AssayGeneConnection
-findDataFormat(id:ID!):DataFormat
-findDataFormatList( page: PageInput, sort:SortInput,filters:[FilterInput]):DataFormatConnection
-findMarker(id:ID!):Marker
-findMarkerList( page: PageInput, sort:SortInput,filters:[FilterInput]):MarkerConnection
-findMarkerSynonym(id:ID!):MarkerSynonym
-findMarkerSynonymList( page: PageInput, sort:SortInput,filters:[FilterInput]):MarkerSynonymConnection
-findPurpose(id:ID!):Purpose
-findPurposeList( page: PageInput, sort:SortInput,filters:[FilterInput]):PurposeConnection
-findService(id:ID!):Service
-findServiceList( page: PageInput, sort:SortInput,filters:[FilterInput]):ServiceConnection
-findServiceProvider(id:ID!):ServiceProvider
-findServiceProviderList( page: PageInput, sort:SortInput,filters:[FilterInput]):ServiceProviderConnection
-findServiceType(id:ID!):ServiceType
-findServiceTypeList( page: PageInput, sort:SortInput,filters:[FilterInput]):ServiceTypeConnection
-findTechnologyPlatform(id:ID!):TechnologyPlatform
-findTechnologyPlatformList( page: PageInput, sort:SortInput,filters:[FilterInput]):TechnologyPlatformConnection
-findTrait(id:ID!):Trait
-findTraitList( page: PageInput, sort:SortInput,filters:[FilterInput]):TraitConnection
-findTraitClass(id:ID!):TraitClass
-findTraitClassList( page: PageInput, sort:SortInput,filters:[FilterInput]):TraitClassConnection
 }
-type Mutation {createWorkflowStatusType(WorkflowStatusTypeTo:WorkflowStatusTypeInput!):WorkflowStatusType
+type Mutation {createWorkflowCFType(WorkflowCFTypeTo:WorkflowCFTypeInput!):WorkflowCFType
+modifyWorkflowCFType(WorkflowCFTypeTo:WorkflowCFTypeInput!):WorkflowCFType
+deleteWorkflowCFType(idworkflowcftype:Int!):Int
+createWorkflowCFValue(WorkflowCFValueTo:WorkflowCFValueInput!):WorkflowCFValue
+modifyWorkflowCFValue(WorkflowCFValueTo:WorkflowCFValueInput!):WorkflowCFValue
+deleteWorkflowCFValue(idworkflowcfvalue:Int!):Int
+createWorkflowEvent(WorkflowEventTo:WorkflowEventInput!):WorkflowEvent
+modifyWorkflowEvent(WorkflowEventTo:WorkflowEventInput!):WorkflowEvent
+deleteWorkflowEvent(idworkflowevent:Int!):Int
+createWorkflowInstance(WorkflowInstanceTo:WorkflowInstanceInput!):WorkflowInstance
+modifyWorkflowInstance(WorkflowInstanceTo:WorkflowInstanceInput!):WorkflowInstance
+deleteWorkflowInstance(idworkflowinstance:Int!):Int
+createWorkflowNode(WorkflowNodeTo:WorkflowNodeInput!):WorkflowNode
+modifyWorkflowNode(WorkflowNodeTo:WorkflowNodeInput!):WorkflowNode
+deleteWorkflowNode(idworkflownode:Int!):Int
+createWorkflowNodeCF(WorkflowNodeCFTo:WorkflowNodeCFInput!):WorkflowNodeCF
+modifyWorkflowNodeCF(WorkflowNodeCFTo:WorkflowNodeCFInput!):WorkflowNodeCF
+deleteWorkflowNodeCF(idworkflownodecf:Int!):Int
+createWorkflowPhase(WorkflowPhaseTo:WorkflowPhaseInput!):WorkflowPhase
+modifyWorkflowPhase(WorkflowPhaseTo:WorkflowPhaseInput!):WorkflowPhase
+deleteWorkflowPhase(idworkflowphase:Int!):Int
+createWorkflowStage(WorkflowStageTo:WorkflowStageInput!):WorkflowStage
+modifyWorkflowStage(WorkflowStageTo:WorkflowStageInput!):WorkflowStage
+deleteWorkflowStage(idworkflowstage:Int!):Int
+createWorkflowStatus(WorkflowStatusTo:WorkflowStatusInput!):WorkflowStatus
+modifyWorkflowStatus(WorkflowStatusTo:WorkflowStatusInput!):WorkflowStatus
+deleteWorkflowStatus(idworkflowstatus:Int!):Int
+createTraitClass(TraitClassTo:TraitClassInput!):TraitClass
+modifyTraitClass(TraitClassTo:TraitClassInput!):TraitClass
+deleteTraitClass(idtraitclass:Int!):Int
+createAssayclass(AssayclassTo:AssayclassInput!):Assayclass
+modifyAssayclass(AssayclassTo:AssayclassInput!):Assayclass
+deleteAssayclass(idassayclass:Int!):Int
+createAssayGene(AssayGeneTo:AssayGeneInput!):AssayGene
+modifyAssayGene(AssayGeneTo:AssayGeneInput!):AssayGene
+deleteAssayGene(idassaygene:Int!):Int
+createDataFormat(DataFormatTo:DataFormatInput!):DataFormat
+modifyDataFormat(DataFormatTo:DataFormatInput!):DataFormat
+deleteDataFormat(iddataformat:Int!):Int
+createMarker(MarkerTo:MarkerInput!):Marker
+modifyMarker(MarkerTo:MarkerInput!):Marker
+deleteMarker(idmarker:Int!):Int
+createMarkerSynonym(MarkerSynonymTo:MarkerSynonymInput!):MarkerSynonym
+modifyMarkerSynonym(MarkerSynonymTo:MarkerSynonymInput!):MarkerSynonym
+deleteMarkerSynonym(idmarkersynonym:Int!):Int
+createPurpose(PurposeTo:PurposeInput!):Purpose
+modifyPurpose(PurposeTo:PurposeInput!):Purpose
+deletePurpose(idpurpose:Int!):Int
+createService(ServiceTo:ServiceInput!):Service
+modifyService(ServiceTo:ServiceInput!):Service
+deleteService(idservice:Int!):Int
+createServiceProvider(ServiceProviderTo:ServiceProviderInput!):ServiceProvider
+modifyServiceProvider(ServiceProviderTo:ServiceProviderInput!):ServiceProvider
+deleteServiceProvider(idserviceprovider:Int!):Int
+createServiceType(ServiceTypeTo:ServiceTypeInput!):ServiceType
+modifyServiceType(ServiceTypeTo:ServiceTypeInput!):ServiceType
+deleteServiceType(idservicetype:Int!):Int
+createTechnologyPlatform(TechnologyPlatformTo:TechnologyPlatformInput!):TechnologyPlatform
+modifyTechnologyPlatform(TechnologyPlatformTo:TechnologyPlatformInput!):TechnologyPlatform
+deleteTechnologyPlatform(idtechnologyplatform:Int!):Int
+createTrait(TraitTo:TraitInput!):Trait
+modifyTrait(TraitTo:TraitInput!):Trait
+deleteTrait(idtrait:Int!):Int
+createWorkflowStatusType(WorkflowStatusTypeTo:WorkflowStatusTypeInput!):WorkflowStatusType
 modifyWorkflowStatusType(WorkflowStatusTypeTo:WorkflowStatusTypeInput!):WorkflowStatusType
 deleteWorkflowStatusType(idworkflowstatustype:Int!):Int
 createAction(ActionTo:ActionInput!):Action
@@ -246,6 +311,9 @@ deleteSession(idsession:Int!):Int
 createStyleTheme(StyleThemeTo:StyleThemeInput!):StyleTheme
 modifyStyleTheme(StyleThemeTo:StyleThemeInput!):StyleTheme
 deleteStyleTheme(idstyletheme:Int!):Int
+createteam(teamTo:teamInput!):team
+modifyteam(teamTo:teamInput!):team
+deleteteam(idteam:Int!):Int
 createTenant(TenantTo:TenantInput!):Tenant
 modifyTenant(TenantTo:TenantInput!):Tenant
 deleteTenant(idtenant:Int!):Int
@@ -261,71 +329,465 @@ deleteVendor(idvendor:Int!):Int
 createWorkflow(WorkflowTo:WorkflowInput!):Workflow
 modifyWorkflow(WorkflowTo:WorkflowInput!):Workflow
 deleteWorkflow(idworkflow:Int!):Int
-createWorkflowCFType(WorkflowCFTypeTo:WorkflowCFTypeInput!):WorkflowCFType
-modifyWorkflowCFType(WorkflowCFTypeTo:WorkflowCFTypeInput!):WorkflowCFType
-deleteWorkflowCFType(idworkflowcftype:Int!):Int
-createWorkflowCFValue(WorkflowCFValueTo:WorkflowCFValueInput!):WorkflowCFValue
-modifyWorkflowCFValue(WorkflowCFValueTo:WorkflowCFValueInput!):WorkflowCFValue
-deleteWorkflowCFValue(idworkflowcfvalue:Int!):Int
-createWorkflowEvent(WorkflowEventTo:WorkflowEventInput!):WorkflowEvent
-modifyWorkflowEvent(WorkflowEventTo:WorkflowEventInput!):WorkflowEvent
-deleteWorkflowEvent(idworkflowevent:Int!):Int
-createWorkflowInstance(WorkflowInstanceTo:WorkflowInstanceInput!):WorkflowInstance
-modifyWorkflowInstance(WorkflowInstanceTo:WorkflowInstanceInput!):WorkflowInstance
-deleteWorkflowInstance(idworkflowinstance:Int!):Int
-createWorkflowNode(WorkflowNodeTo:WorkflowNodeInput!):WorkflowNode
-modifyWorkflowNode(WorkflowNodeTo:WorkflowNodeInput!):WorkflowNode
-deleteWorkflowNode(idworkflownode:Int!):Int
-createWorkflowNodeCF(WorkflowNodeCFTo:WorkflowNodeCFInput!):WorkflowNodeCF
-modifyWorkflowNodeCF(WorkflowNodeCFTo:WorkflowNodeCFInput!):WorkflowNodeCF
-deleteWorkflowNodeCF(idworkflownodecf:Int!):Int
-createWorkflowPhase(WorkflowPhaseTo:WorkflowPhaseInput!):WorkflowPhase
-modifyWorkflowPhase(WorkflowPhaseTo:WorkflowPhaseInput!):WorkflowPhase
-deleteWorkflowPhase(idworkflowphase:Int!):Int
-createWorkflowStage(WorkflowStageTo:WorkflowStageInput!):WorkflowStage
-modifyWorkflowStage(WorkflowStageTo:WorkflowStageInput!):WorkflowStage
-deleteWorkflowStage(idworkflowstage:Int!):Int
-createWorkflowStatus(WorkflowStatusTo:WorkflowStatusInput!):WorkflowStatus
-modifyWorkflowStatus(WorkflowStatusTo:WorkflowStatusInput!):WorkflowStatus
-deleteWorkflowStatus(idworkflowstatus:Int!):Int
-createAssayclass(AssayclassTo:AssayclassInput!):Assayclass
-modifyAssayclass(AssayclassTo:AssayclassInput!):Assayclass
-deleteAssayclass(idassayclass:Int!):Int
-createAssayGene(AssayGeneTo:AssayGeneInput!):AssayGene
-modifyAssayGene(AssayGeneTo:AssayGeneInput!):AssayGene
-deleteAssayGene(idassaygene:Int!):Int
-createDataFormat(DataFormatTo:DataFormatInput!):DataFormat
-modifyDataFormat(DataFormatTo:DataFormatInput!):DataFormat
-deleteDataFormat(iddataformat:Int!):Int
-createMarker(MarkerTo:MarkerInput!):Marker
-modifyMarker(MarkerTo:MarkerInput!):Marker
-deleteMarker(idmarker:Int!):Int
-createMarkerSynonym(MarkerSynonymTo:MarkerSynonymInput!):MarkerSynonym
-modifyMarkerSynonym(MarkerSynonymTo:MarkerSynonymInput!):MarkerSynonym
-deleteMarkerSynonym(idmarkersynonym:Int!):Int
-createPurpose(PurposeTo:PurposeInput!):Purpose
-modifyPurpose(PurposeTo:PurposeInput!):Purpose
-deletePurpose(idpurpose:Int!):Int
-createService(ServiceTo:ServiceInput!):Service
-modifyService(ServiceTo:ServiceInput!):Service
-deleteService(idservice:Int!):Int
-createServiceProvider(ServiceProviderTo:ServiceProviderInput!):ServiceProvider
-modifyServiceProvider(ServiceProviderTo:ServiceProviderInput!):ServiceProvider
-deleteServiceProvider(idserviceprovider:Int!):Int
-createServiceType(ServiceTypeTo:ServiceTypeInput!):ServiceType
-modifyServiceType(ServiceTypeTo:ServiceTypeInput!):ServiceType
-deleteServiceType(idservicetype:Int!):Int
-createTechnologyPlatform(TechnologyPlatformTo:TechnologyPlatformInput!):TechnologyPlatform
-modifyTechnologyPlatform(TechnologyPlatformTo:TechnologyPlatformInput!):TechnologyPlatform
-deleteTechnologyPlatform(idtechnologyplatform:Int!):Int
-createTrait(TraitTo:TraitInput!):Trait
-modifyTrait(TraitTo:TraitInput!):Trait
-deleteTrait(idtrait:Int!):Int
-createTraitClass(TraitClassTo:TraitClassInput!):TraitClass
-modifyTraitClass(TraitClassTo:TraitClassInput!):TraitClass
-deleteTraitClass(idtraitclass:Int!):Int
 }
 
+type WorkflowCFTypeConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [WorkflowCFType]
+}
+#
+type WorkflowCFType {
+#
+name: String
+#
+description: String
+#
+help: String
+#
+type: String
+tenant: Int
+id: ID!
+workflownodecfs:[WorkflowNodeCF]
+}
+type WorkflowCFValueConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [WorkflowCFValue]
+}
+#
+type WorkflowCFValue {
+#
+FLAG_Value: Boolean
+#
+TEXT_Value: String
+#
+NUM_Value: Int
+#
+DATE_Value: Date
+#
+CODE_Value: Int
+tenant: Int
+id: ID!
+request:Request
+workflownodecf:WorkflowNodeCF
+}
+type WorkflowEventConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [WorkflowEvent]
+}
+#
+type WorkflowEvent {
+#
+completed: Date
+#
+error: String
+#
+description: String
+tenant: Int
+id: ID!
+workflowstage:WorkflowStage
+workflowinstance:WorkflowInstance
+workflownode:WorkflowNode
+}
+type WorkflowInstanceConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [WorkflowInstance]
+}
+#
+type WorkflowInstance {
+#
+complete: Date
+#
+initiated: Date
+tenant: Int
+id: ID!
+workflowstatuss:[WorkflowStatus]
+workflowevents:[WorkflowEvent]
+workflow:Workflow
+requests:[Request]
+}
+type WorkflowNodeConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [WorkflowNode]
+}
+#
+type WorkflowNode {
+#
+name: String
+#
+description: String
+#
+help: String
+#
+sequence: Int
+#
+require_approval: Boolean
+tenant: Int
+id: ID!
+workflowstages:[WorkflowStage]
+workflow:Workflow
+actions:[Action]
+entityreference:EntityReference
+workflowevents:[WorkflowEvent]
+htmltag:HtmlTag
+workflows:[Workflow]
+processs:[Process]
+module:Module
+workflownodecfs:[WorkflowNodeCF]
+}
+type WorkflowNodeCFConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [WorkflowNodeCF]
+}
+#
+type WorkflowNodeCF {
+#
+name: String
+#
+description: String
+#
+help: String
+#
+required: Boolean
+tenant: Int
+id: ID!
+workflowcfvalues:[WorkflowCFValue]
+workflowcftype:WorkflowCFType
+htmltag:HtmlTag
+entityreference:EntityReference
+workflownode:WorkflowNode
+}
+type WorkflowPhaseConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [WorkflowPhase]
+}
+#
+type WorkflowPhase {
+#
+name: String
+#
+description: String
+#
+help: String
+#
+sequence: Int
+tenant: Int
+id: ID!
+workflowstages:[WorkflowStage]
+workflow:Workflow
+htmltag:HtmlTag
+}
+type WorkflowStageConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [WorkflowStage]
+}
+#
+type WorkflowStage {
+#
+name: String
+#
+description: String
+#
+help: String
+#
+sequence: Int
+tenant: Int
+id: ID!
+workflowphase:WorkflowPhase
+workflowevents:[WorkflowEvent]
+htmltag:HtmlTag
+workflownode:[WorkflowNode]
+}
+type WorkflowStatusConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [WorkflowStatus]
+}
+#
+type WorkflowStatus {
+#
+initiate_date: Date
+#
+completion_date: Date
+tenant: Int
+id: ID!
+workflowstatustype:WorkflowStatusType
+workflowinstance:WorkflowInstance
+}
+type TraitClassConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [TraitClass]
+}
+#Classification of the traits into groups such as agronomic, biotic, abiotic, quality, 
+type TraitClass {
+#name for the trait_class
+name: String
+#description of the trait
+_class
+description: String
+tenant: Int
+id: ID!
+traits:[Trait]
+}
+type AssayclassConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Assayclass]
+}
+#Fixed assay, user defined assay, random assay
+type Assayclass {
+#Name of the assayClass
+name: String
+#Description of the assay class
+description: String
+tenant: Int
+id: ID!
+technologyplatform:[TechnologyPlatform]
+service:Service
+}
+type AssayGeneConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [AssayGene]
+}
+#List of genes
+type AssayGene {
+#Name of the assay gene
+name: String
+#Description of the assay gene
+description: String
+tenant: Int
+id: ID!
+trait:Trait
+markers:[Marker]
+}
+type DataFormatConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [DataFormat]
+}
+#Data formats preferred to receive per vendor spec, such as CSV, VCF, tab delimited, EXCEL. 
+type DataFormat {
+#Name of the data format
+name: String
+#Description of the data format
+description: String
+tenant: Int
+id: ID!
+vendors:[Vendor]
+}
+type MarkerConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Marker]
+}
+#Production marker IDs based on vendor spec
+type Marker {
+#Name of the marker
+name: String
+#Description of the marker
+description: String
+tenant: Int
+id: ID!
+markersynonyms:[MarkerSynonym]
+assaygene:AssayGene
+vendor:[Vendor]
+}
+type MarkerSynonymConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [MarkerSynonym]
+}
+#Stores the alias of the markers
+type MarkerSynonym {
+#Alias name
+synonym: Int
+tenant: Int
+id: ID!
+marker:Marker
+}
+type PurposeConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Purpose]
+}
+#High level buiness needs that the service to address. For genotyping, values include MAS, QC, GS/GWAS, germplasm characterization
+type Purpose {
+#Name of the purpose
+name: String
+#Identifier for each purpose
+
+code: String
+#description of the purpose
+
+description: String
+tenant: Int
+id: ID!
+requests:[Request]
+servicetype:ServiceType
+services:[Service]
+}
+type ServiceConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Service]
+}
+#Service or product name, corresponding to a specific vendor catalog product or service identifier
+type Service {
+#Name of the Service
+
+name: String
+#Description of the Service
+
+description: String
+#
+code: String
+tenant: Int
+id: ID!
+purpose:Purpose
+assayclasss:[Assayclass]
+vendors:[Vendor]
+}
+type ServiceProviderConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [ServiceProvider]
+}
+#Internal service unit that triage, and/or process clients' service requests.
+type ServiceProvider {
+#Code identifier for the Service Provider
+code: String
+#Name of the Service Provider
+name: String
+tenant: Int
+id: ID!
+servicetypes:[ServiceType]
+country:Country
+crop:[Crop]
+}
+type ServiceTypeConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [ServiceType]
+}
+#Type of services, such as Genotyping (G), Phytosanitary (P), seed quality (G), pathology including MLN screening
+type ServiceType {
+#Name of the service_type
+name: String
+#Code identifier for the service type
+
+code: String
+#Description of the Service type
+description: String
+tenant: Int
+id: ID!
+purposes:[Purpose]
+serviceprovider:[ServiceProvider]
+}
+type TechnologyPlatformConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [TechnologyPlatform]
+}
+#Technology or platform based on vendor spec
+type TechnologyPlatform {
+#Name of the technology
+name: String
+#Description of the technology 
+description: String
+tenant: Int
+id: ID!
+assayclasss:[Assayclass]
+vendor:[Vendor]
+}
+type TraitConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Trait]
+}
+#Detailed trait names such as MLN, Rust, Zinc, protein, plant height, 
+type Trait {
+#Name of the trait
+name: String
+#Description of the trait
+
+description: String
+tenant: Int
+id: ID!
+traitclass:TraitClass
+assaygenes:[AssayGene]
+}
 type WorkflowStatusTypeConnection {
 totalPages: Int
 totalElements: Int
@@ -357,11 +819,13 @@ content: [Action]
 #
 type Action {
 #
-description: Int
+description: String
 #
 actionType: Int
 id: ID!
 roleactions:[RoleAction]
+permission:[Permission]
+workflownode:WorkflowNode
 module:Module
 }
 type AddressConnection {
@@ -404,8 +868,8 @@ description: String
 tenant: Int
 id: ID!
 alertrules:[AlertRule]
-preferences:[Preference]
 htmltag:HtmlTag
+preferences:[Preference]
 }
 type AlertRuleConnection {
 totalPages: Int
@@ -549,8 +1013,8 @@ info: String
 icon: String
 id: ID!
 instances:[Instance]
-modules:[Module]
 htmltag:HtmlTag
+modules:[Module]
 }
 type CountryConnection {
 totalPages: Int
@@ -706,15 +1170,17 @@ textfield: String
 valuefield: String
 #
 storefield: String
+#
+entityschema: String
 tenant: Int
 id: ID!
 attributess:[Attributes]
 emailtemplate:[EmailTemplate]
+workflows:[Workflow]
 segments:[Segment]
+workflownodes:[WorkflowNode]
 numbersequencerule:[NumberSequenceRule]
 workflownodecfs:[WorkflowNodeCF]
-workflownodes:[WorkflowNode]
-workflows:[Workflow]
 }
 type HtmlTagConnection {
 totalPages: Int
@@ -729,16 +1195,16 @@ type HtmlTag {
 #
 tagName: String
 id: ID!
-translations:[Translation]
-alerts:[Alert]
 attributess:[Attributes]
-modules:[Module]
-components:[Component]
 messages:[Message]
-workflowstages:[WorkflowStage]
-workflowphases:[WorkflowPhase]
+components:[Component]
 workflows:[Workflow]
+workflowphases:[WorkflowPhase]
+alerts:[Alert]
+workflowstages:[WorkflowStage]
+translations:[Translation]
 workflownodes:[WorkflowNode]
+modules:[Module]
 workflownodecfs:[WorkflowNodeCF]
 }
 type InstanceConnection {
@@ -826,8 +1292,8 @@ icon: String
 id: ID!
 actions:[Action]
 component:Component
-workflownodes:[WorkflowNode]
 htmltag:HtmlTag
+workflownodes:[WorkflowNode]
 }
 type NumberSequenceRuleConnection {
 totalPages: Int
@@ -944,7 +1410,8 @@ content: [Permission]
 type Permission {
 tenant: Int
 id: ID!
-roleaction:RoleAction
+actions:[Action]
+role:[Role]
 }
 type PersonConnection {
 totalPages: Int
@@ -988,6 +1455,8 @@ donors:[Donor]
 partners:[Partner]
 vendors:[Vendor]
 projects:[Project]
+users:[User]
+team:[team]
 }
 type PreferenceConnection {
 totalPages: Int
@@ -1058,6 +1527,7 @@ description: String
 id: ID!
 projects:[Project]
 tenant:Tenant
+teams:[team]
 crop:Crop
 }
 type ProjectConnection {
@@ -1128,6 +1598,7 @@ securityGroup: String
 tenant: Int
 id: ID!
 roleactions:[RoleAction]
+permissions:[Permission]
 user:[User]
 }
 type RoleActionConnection {
@@ -1145,7 +1616,6 @@ allow: Int
 tenant: Int
 id: ID!
 action:Action
-permissions:[Permission]
 role:Role
 }
 type SeasonConnection {
@@ -1244,6 +1714,31 @@ tenant: Int
 id: ID!
 preferences:[Preference]
 }
+type teamConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [team]
+}
+#
+type team {
+#
+team_code: String
+#
+team_name: String
+#
+description: String
+#
+notes: String
+#
+event_log: String
+tenant: Int
+id: ID!
+program:[Program]
+persons:[Person]
+}
 type TenantConnection {
 totalPages: Int
 totalElements: Int
@@ -1316,6 +1811,7 @@ delegations:[Delegation]
 tenant:Tenant
 preferences:[Preference]
 roles:[Role]
+person:Person
 }
 type VendorConnection {
 totalPages: Int
@@ -1363,28 +1859,20 @@ help: String
 #
 sortno: Int
 #
-htmltag: String
+definition: String
 #
 icon: String
 id: ID!
 workflowphases:[WorkflowPhase]
+entityreference:EntityReference
 tenant:Tenant
+htmltag:HtmlTag
 workflowinstances:[WorkflowInstance]
 workflownodes:[WorkflowNode]
 workflownode:WorkflowNode
-entityreference:EntityReference
-htmltag:HtmlTag
 }
-type WorkflowCFTypeConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [WorkflowCFType]
-}
-#
-type WorkflowCFType {
+
+input WorkflowCFTypeInput {
 #
 name: String
 #
@@ -1395,18 +1883,8 @@ help: String
 type: String
 tenant: Int
 id: ID!
-workflownodecfs:[WorkflowNodeCF]
 }
-type WorkflowCFValueConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [WorkflowCFValue]
-}
-#
-type WorkflowCFValue {
+input WorkflowCFValueInput {
 #
 FLAG_Value: Boolean
 #
@@ -1419,19 +1897,10 @@ DATE_Value: Date
 CODE_Value: Int
 tenant: Int
 id: ID!
-request:Request
-workflownodecf:WorkflowNodeCF
+request:RequestInput
+workflownodecf:WorkflowNodeCFInput
 }
-type WorkflowEventConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [WorkflowEvent]
-}
-#
-type WorkflowEvent {
+input WorkflowEventInput {
 #
 completed: Date
 #
@@ -1440,41 +1909,20 @@ error: String
 description: String
 tenant: Int
 id: ID!
-workflowstage:WorkflowStage
-workflowinstance:WorkflowInstance
-workflownode:WorkflowNode
+workflowstage:WorkflowStageInput
+workflowinstance:WorkflowInstanceInput
+workflownode:WorkflowNodeInput
 }
-type WorkflowInstanceConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [WorkflowInstance]
-}
-#
-type WorkflowInstance {
+input WorkflowInstanceInput {
 #
 complete: Date
 #
 initiated: Date
 tenant: Int
 id: ID!
-workflowstatuss:[WorkflowStatus]
-workflowevents:[WorkflowEvent]
-workflow:Workflow
-requests:[Request]
+workflow:WorkflowInput
 }
-type WorkflowNodeConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [WorkflowNode]
-}
-#
-type WorkflowNode {
+input WorkflowNodeInput {
 #
 name: String
 #
@@ -1487,26 +1935,12 @@ sequence: Int
 require_approval: Boolean
 tenant: Int
 id: ID!
-workflow:Workflow
-workflowevents:[WorkflowEvent]
-workflowstages:[WorkflowStage]
-workflows:[Workflow]
-processs:[Process]
-workflownodecfs:[WorkflowNodeCF]
-module:Module
-entityreference:EntityReference
-htmltag:HtmlTag
+workflow:WorkflowInput
+entityreference:EntityReferenceInput
+htmltag:HtmlTagInput
+module:ModuleInput
 }
-type WorkflowNodeCFConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [WorkflowNodeCF]
-}
-#
-type WorkflowNodeCF {
+input WorkflowNodeCFInput {
 #
 name: String
 #
@@ -1517,178 +1951,104 @@ help: String
 required: Boolean
 tenant: Int
 id: ID!
-workflowcfvalues:[WorkflowCFValue]
-workflowcftype:WorkflowCFType
-entityreference:EntityReference
-workflownode:WorkflowNode
-htmltag:HtmlTag
+workflowcftype:WorkflowCFTypeInput
+htmltag:HtmlTagInput
+entityreference:EntityReferenceInput
+workflownode:WorkflowNodeInput
 }
-type WorkflowPhaseConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [WorkflowPhase]
-}
-#
-type WorkflowPhase {
+input WorkflowPhaseInput {
 #
 name: String
 #
 description: String
 #
 help: String
+#
+sequence: Int
 tenant: Int
 id: ID!
-workflowstages:[WorkflowStage]
-workflow:Workflow
-htmltag:HtmlTag
+workflow:WorkflowInput
+htmltag:HtmlTagInput
 }
-type WorkflowStageConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [WorkflowStage]
-}
-#
-type WorkflowStage {
+input WorkflowStageInput {
 #
 name: String
 #
 description: String
 #
 help: String
+#
+sequence: Int
 tenant: Int
 id: ID!
-workflowphase:WorkflowPhase
-workflowevents:[WorkflowEvent]
-workflownode:[WorkflowNode]
-htmltag:HtmlTag
+workflowphase:WorkflowPhaseInput
+htmltag:HtmlTagInput
+workflownode:[WorkflowNodeInput]
 }
-type WorkflowStatusConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [WorkflowStatus]
-}
-#
-type WorkflowStatus {
+input WorkflowStatusInput {
 #
 initiate_date: Date
 #
-completation_date: Date
+completion_date: Date
 tenant: Int
 id: ID!
-workflowstatustype:WorkflowStatusType
-workflowinstance:WorkflowInstance
+workflowstatustype:WorkflowStatusTypeInput
+workflowinstance:WorkflowInstanceInput
 }
-type AssayclassConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Assayclass]
+input TraitClassInput {
+#name for the trait_class
+name: String
+#description of the trait
+_class
+description: String
+tenant: Int
+id: ID!
 }
-#Fixed assay, user defined assay, random assay
-type Assayclass {
+input AssayclassInput {
 #Name of the assayClass
 name: String
 #Description of the assay class
 description: String
 tenant: Int
 id: ID!
-technologyplatform:[TechnologyPlatform]
-service:Service
+technologyplatform:[TechnologyPlatformInput]
+service:ServiceInput
 }
-type AssayGeneConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [AssayGene]
-}
-#List of genes
-type AssayGene {
+input AssayGeneInput {
 #Name of the assay gene
 name: String
 #Description of the assay gene
 description: String
 tenant: Int
 id: ID!
-trait:Trait
-markers:[Marker]
+trait:TraitInput
 }
-type DataFormatConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [DataFormat]
-}
-#Data formats preferred to receive per vendor spec, such as CSV, VCF, tab delimited, EXCEL. 
-type DataFormat {
+input DataFormatInput {
 #Name of the data format
 name: String
 #Description of the data format
 description: String
 tenant: Int
 id: ID!
-vendors:[Vendor]
 }
-type MarkerConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Marker]
-}
-#Production marker IDs based on vendor spec
-type Marker {
+input MarkerInput {
 #Name of the marker
 name: String
 #Description of the marker
 description: String
 tenant: Int
 id: ID!
-markersynonyms:[MarkerSynonym]
-assaygene:AssayGene
-vendor:[Vendor]
+assaygene:AssayGeneInput
+vendor:[VendorInput]
 }
-type MarkerSynonymConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [MarkerSynonym]
-}
-#Stores the alias of the markers
-type MarkerSynonym {
+input MarkerSynonymInput {
 #Alias name
 synonym: Int
 tenant: Int
 id: ID!
-marker:Marker
+marker:MarkerInput
 }
-type PurposeConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Purpose]
-}
-#High level buiness needs that the service to address. For genotyping, values include MAS, QC, GS/GWAS, germplasm characterization
-type Purpose {
+input PurposeInput {
 #Name of the purpose
 name: String
 #Identifier for each purpose
@@ -1699,20 +2059,9 @@ code: String
 description: String
 tenant: Int
 id: ID!
-servicetype:ServiceType
-services:[Service]
-requests:[Request]
+servicetype:ServiceTypeInput
 }
-type ServiceConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Service]
-}
-#Service or product name, corresponding to a specific vendor catalog product or service identifier
-type Service {
+input ServiceInput {
 #Name of the Service
 
 name: String
@@ -1723,40 +2072,19 @@ description: String
 code: String
 tenant: Int
 id: ID!
-purpose:[Purpose]
-assayclasss:[Assayclass]
-vendors:[Vendor]
+purpose:PurposeInput
 }
-type ServiceProviderConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [ServiceProvider]
-}
-#Internal service unit that triage, and/or process clients' service requests.
-type ServiceProvider {
+input ServiceProviderInput {
 #Code identifier for the Service Provider
 code: String
 #Name of the Service Provider
 name: String
 tenant: Int
 id: ID!
-servicetypes:[ServiceType]
-country:Country
-crop:[Crop]
+country:CountryInput
+crop:[CropInput]
 }
-type ServiceTypeConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [ServiceType]
-}
-#Type of services, such as Genotyping (G), Phytosanitary (P), seed quality (G), pathology including MLN screening
-type ServiceType {
+input ServiceTypeInput {
 #Name of the service_type
 name: String
 #Code identifier for the service type
@@ -1766,38 +2094,18 @@ code: String
 description: String
 tenant: Int
 id: ID!
-purposes:[Purpose]
-serviceprovider:[ServiceProvider]
+serviceprovider:[ServiceProviderInput]
 }
-type TechnologyPlatformConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [TechnologyPlatform]
-}
-#Technology or platform based on vendor spec
-type TechnologyPlatform {
+input TechnologyPlatformInput {
 #Name of the technology
 name: String
 #Description of the technology 
 description: String
 tenant: Int
 id: ID!
-assayclasss:[Assayclass]
-vendor:[Vendor]
+vendor:[VendorInput]
 }
-type TraitConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Trait]
-}
-#Detailed trait names such as MLN, Rust, Zinc, protein, plant height, 
-type Trait {
+input TraitInput {
 #Name of the trait
 name: String
 #Description of the trait
@@ -1805,29 +2113,8 @@ name: String
 description: String
 tenant: Int
 id: ID!
-traitclass:TraitClass
-assaygenes:[AssayGene]
+traitclass:TraitClassInput
 }
-type TraitClassConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [TraitClass]
-}
-#Classification of the traits into groups such as agronomic, biotic, abiotic, quality, 
-type TraitClass {
-#name for the trait_class
-name: String
-#description of the trait
-_class
-description: String
-tenant: Int
-id: ID!
-traits:[Trait]
-}
-
 input WorkflowStatusTypeInput {
 #
 name: String
@@ -1840,10 +2127,12 @@ id: ID!
 }
 input ActionInput {
 #
-description: Int
+description: String
 #
 actionType: Int
 id: ID!
+permission:[PermissionInput]
+workflownode:WorkflowNodeInput
 module:ModuleInput
 }
 input AddressInput {
@@ -2039,6 +2328,8 @@ textfield: String
 valuefield: String
 #
 storefield: String
+#
+entityschema: String
 tenant: Int
 id: ID!
 emailtemplate:[EmailTemplateInput]
@@ -2162,7 +2453,7 @@ person:PersonInput
 input PermissionInput {
 tenant: Int
 id: ID!
-roleaction:RoleActionInput
+role:[RoleInput]
 }
 input PersonInput {
 #
@@ -2192,6 +2483,7 @@ status: String
 id: ID!
 address:[AddressInput]
 tenant:TenantInput
+team:[teamInput]
 }
 input PreferenceInput {
 #
@@ -2343,6 +2635,21 @@ isDefault: Boolean
 tenant: Int
 id: ID!
 }
+input teamInput {
+#
+team_code: String
+#
+team_name: String
+#
+description: String
+#
+notes: String
+#
+event_log: String
+tenant: Int
+id: ID!
+program:[ProgramInput]
+}
 input TenantInput {
 #
 name: String
@@ -2377,6 +2684,7 @@ defaultRole: Int
 isIS: Int
 id: ID!
 tenant:TenantInput
+person:PersonInput
 }
 input VendorInput {
 #Code identifier for the Vendor
@@ -2404,253 +2712,14 @@ help: String
 #
 sortno: Int
 #
-htmltag: String
+definition: String
 #
 icon: String
 id: ID!
+entityreference:EntityReferenceInput
 tenant:TenantInput
+htmltag:HtmlTagInput
 workflownode:WorkflowNodeInput
-entityreference:EntityReferenceInput
-htmltag:HtmlTagInput
-}
-input WorkflowCFTypeInput {
-#
-name: String
-#
-description: String
-#
-help: String
-#
-type: String
-tenant: Int
-id: ID!
-}
-input WorkflowCFValueInput {
-#
-FLAG_Value: Boolean
-#
-TEXT_Value: String
-#
-NUM_Value: Int
-#
-DATE_Value: Date
-#
-CODE_Value: Int
-tenant: Int
-id: ID!
-request:RequestInput
-workflownodecf:WorkflowNodeCFInput
-}
-input WorkflowEventInput {
-#
-completed: Date
-#
-error: String
-#
-description: String
-tenant: Int
-id: ID!
-workflowstage:WorkflowStageInput
-workflowinstance:WorkflowInstanceInput
-workflownode:WorkflowNodeInput
-}
-input WorkflowInstanceInput {
-#
-complete: Date
-#
-initiated: Date
-tenant: Int
-id: ID!
-workflow:WorkflowInput
-}
-input WorkflowNodeInput {
-#
-name: String
-#
-description: String
-#
-help: String
-#
-sequence: Int
-#
-require_approval: Boolean
-tenant: Int
-id: ID!
-workflow:WorkflowInput
-module:ModuleInput
-entityreference:EntityReferenceInput
-htmltag:HtmlTagInput
-}
-input WorkflowNodeCFInput {
-#
-name: String
-#
-description: String
-#
-help: String
-#
-required: Boolean
-tenant: Int
-id: ID!
-workflowcftype:WorkflowCFTypeInput
-entityreference:EntityReferenceInput
-workflownode:WorkflowNodeInput
-htmltag:HtmlTagInput
-}
-input WorkflowPhaseInput {
-#
-name: String
-#
-description: String
-#
-help: String
-tenant: Int
-id: ID!
-workflow:WorkflowInput
-htmltag:HtmlTagInput
-}
-input WorkflowStageInput {
-#
-name: String
-#
-description: String
-#
-help: String
-tenant: Int
-id: ID!
-workflowphase:WorkflowPhaseInput
-workflownode:[WorkflowNodeInput]
-htmltag:HtmlTagInput
-}
-input WorkflowStatusInput {
-#
-initiate_date: Date
-#
-completation_date: Date
-tenant: Int
-id: ID!
-workflowstatustype:WorkflowStatusTypeInput
-workflowinstance:WorkflowInstanceInput
-}
-input AssayclassInput {
-#Name of the assayClass
-name: String
-#Description of the assay class
-description: String
-tenant: Int
-id: ID!
-technologyplatform:[TechnologyPlatformInput]
-service:ServiceInput
-}
-input AssayGeneInput {
-#Name of the assay gene
-name: String
-#Description of the assay gene
-description: String
-tenant: Int
-id: ID!
-trait:TraitInput
-}
-input DataFormatInput {
-#Name of the data format
-name: String
-#Description of the data format
-description: String
-tenant: Int
-id: ID!
-}
-input MarkerInput {
-#Name of the marker
-name: String
-#Description of the marker
-description: String
-tenant: Int
-id: ID!
-assaygene:AssayGeneInput
-vendor:[VendorInput]
-}
-input MarkerSynonymInput {
-#Alias name
-synonym: Int
-tenant: Int
-id: ID!
-marker:MarkerInput
-}
-input PurposeInput {
-#Name of the purpose
-name: String
-#Identifier for each purpose
-
-code: String
-#description of the purpose
-
-description: String
-tenant: Int
-id: ID!
-servicetype:ServiceTypeInput
-}
-input ServiceInput {
-#Name of the Service
-
-name: String
-#Description of the Service
-
-description: String
-#
-code: String
-tenant: Int
-id: ID!
-purpose:[PurposeInput]
-}
-input ServiceProviderInput {
-#Code identifier for the Service Provider
-code: String
-#Name of the Service Provider
-name: String
-tenant: Int
-id: ID!
-country:CountryInput
-crop:[CropInput]
-}
-input ServiceTypeInput {
-#Name of the service_type
-name: String
-#Code identifier for the service type
-
-code: String
-#Description of the Service type
-description: String
-tenant: Int
-id: ID!
-serviceprovider:[ServiceProviderInput]
-}
-input TechnologyPlatformInput {
-#Name of the technology
-name: String
-#Description of the technology 
-description: String
-tenant: Int
-id: ID!
-vendor:[VendorInput]
-}
-input TraitInput {
-#Name of the trait
-name: String
-#Description of the trait
-
-description: String
-tenant: Int
-id: ID!
-traitclass:TraitClassInput
-}
-input TraitClassInput {
-#name for the trait_class
-name: String
-#description of the trait
-_class
-description: String
-tenant: Int
-id: ID!
 }
 
 input FilterInput { 
