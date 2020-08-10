@@ -445,9 +445,9 @@ entityreference:EntityReference
 workflowevents:[WorkflowEvent]
 htmltag:HtmlTag
 workflows:[Workflow]
+processs:[Process]
 module:Module
 workflownodecfs:[WorkflowNodeCF]
-process:Process
 }
 type WorkflowNodeCFConnection {
 totalPages: Int
@@ -675,7 +675,7 @@ code: String
 description: String
 tenant: Int
 id: ID!
-#requests:[Request]
+requests:[Request]
 servicetype:ServiceType
 services:[Service]
 }
@@ -1563,10 +1563,9 @@ charge_account: String
 description: String
 tenant: Int
 id: ID!
-#purpose:Purpose
+purpose:Purpose
 workflowcfvalues:[WorkflowCFValue]
 workflowinstance:WorkflowInstance
-requestcode: String
 }
 type RoleConnection {
 totalPages: Int
@@ -1926,7 +1925,6 @@ workflow:WorkflowInput
 entityreference:EntityReferenceInput
 htmltag:HtmlTagInput
 module:ModuleInput
-process:ProcessInput
 }
 input WorkflowNodeCFInput {
 #
@@ -2498,6 +2496,7 @@ callReport: Boolean
 path: String
 tenant: Int
 id: ID!
+workflownodes:[WorkflowNodeInput]
 }
 input ProgramInput {
 #Textual identifier of the program 
@@ -2543,9 +2542,8 @@ charge_account: String
 description: String
 tenant: Int
 id: ID!
-#purpose:PurposeInput
+purpose:PurposeInput
 workflowinstance:WorkflowInstanceInput
-requestcode: String
 }
 input RoleInput {
 #

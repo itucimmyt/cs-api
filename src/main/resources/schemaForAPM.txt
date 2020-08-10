@@ -92,8 +92,6 @@ findOrganization(id:ID!):Organization
 findOrganizationList( page: PageInput, sort:SortInput,filters:[FilterInput]):OrganizationConnection
 findPartner(id:ID!):Partner
 findPartnerList( page: PageInput, sort:SortInput,filters:[FilterInput]):PartnerConnection
-findPermission(id:ID!):Permission
-findPermissionList( page: PageInput, sort:SortInput,filters:[FilterInput]):PermissionConnection
 findPerson(id:ID!):Person
 findPersonList( page: PageInput, sort:SortInput,filters:[FilterInput]):PersonConnection
 findPreference(id:ID!):Preference
@@ -272,9 +270,6 @@ deleteOrganization(idorganization:Int!):Int
 createPartner(PartnerTo:PartnerInput!):Partner
 modifyPartner(PartnerTo:PartnerInput!):Partner
 deletePartner(idpartner:Int!):Int
-createPermission(PermissionTo:PermissionInput!):Permission
-modifyPermission(PermissionTo:PermissionInput!):Permission
-deletePermission(idpermission:Int!):Int
 createPerson(PersonTo:PersonInput!):Person
 modifyPerson(PersonTo:PersonInput!):Person
 deletePerson(idperson:Int!):Int
@@ -450,9 +445,9 @@ entityreference:EntityReference
 workflowevents:[WorkflowEvent]
 htmltag:HtmlTag
 workflows:[Workflow]
-processs:[Process]
 module:Module
 workflownodecfs:[WorkflowNodeCF]
+process:Process
 }
 type WorkflowNodeCFConnection {
 totalPages: Int
@@ -527,7 +522,8 @@ id: ID!
 workflowphase:WorkflowPhase
 workflowevents:[WorkflowEvent]
 htmltag:HtmlTag
-workflownode:[WorkflowNode]
+workflownodes:[WorkflowNode]
+actions:[Action]
 }
 type WorkflowStatusConnection {
 totalPages: Int
@@ -583,7 +579,7 @@ name: String
 description: String
 tenant: Int
 id: ID!
-technologyplatform:[TechnologyPlatform]
+technologyplatforms:[TechnologyPlatform]
 service:Service
 }
 type AssayGeneConnection {
@@ -641,7 +637,7 @@ tenant: Int
 id: ID!
 markersynonyms:[MarkerSynonym]
 assaygene:AssayGene
-vendor:[Vendor]
+vendors:[Vendor]
 }
 type MarkerSynonymConnection {
 totalPages: Int
@@ -725,7 +721,7 @@ tenant: Int
 id: ID!
 servicetypes:[ServiceType]
 country:Country
-crop:[Crop]
+crops:[Crop]
 }
 type ServiceTypeConnection {
 totalPages: Int
@@ -747,7 +743,7 @@ description: String
 tenant: Int
 id: ID!
 purposes:[Purpose]
-serviceprovider:[ServiceProvider]
+serviceproviders:[ServiceProvider]
 }
 type TechnologyPlatformConnection {
 totalPages: Int
@@ -766,7 +762,7 @@ description: String
 tenant: Int
 id: ID!
 assayclasss:[Assayclass]
-vendor:[Vendor]
+vendors:[Vendor]
 }
 type TraitConnection {
 totalPages: Int
@@ -821,12 +817,15 @@ type Action {
 #
 description: String
 #
-actionType: Int
+actionType: Boolean
+#
+action: String
 id: ID!
 roleactions:[RoleAction]
-permission:[Permission]
 workflownode:WorkflowNode
 module:Module
+roles:[Role]
+workflowstage:WorkflowStage
 }
 type AddressConnection {
 totalPages: Int
@@ -1175,11 +1174,11 @@ entityschema: String
 tenant: Int
 id: ID!
 attributess:[Attributes]
-emailtemplate:[EmailTemplate]
+emailtemplates:[EmailTemplate]
 workflows:[Workflow]
 segments:[Segment]
 workflownodes:[WorkflowNode]
-numbersequencerule:[NumberSequenceRule]
+numbersequencerules:[NumberSequenceRule]
 workflownodecfs:[WorkflowNodeCF]
 }
 type HtmlTagConnection {
@@ -1226,7 +1225,7 @@ health: String
 id: ID!
 sessions:[Session]
 auditlogss:[AuditLogs]
-component:[Component]
+components:[Component]
 tenant:Tenant
 }
 type LanguageConnection {
@@ -1289,6 +1288,8 @@ route: String
 MainEntity: String
 #
 icon: String
+#
+container: String
 id: ID!
 actions:[Action]
 component:Component
@@ -1398,21 +1399,6 @@ tenant: Int
 id: ID!
 person:Person
 }
-type PermissionConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Permission]
-}
-#
-type Permission {
-tenant: Int
-id: ID!
-actions:[Action]
-role:[Role]
-}
 type PersonConnection {
 totalPages: Int
 totalElements: Int
@@ -1448,7 +1434,7 @@ phone: String
 #
 status: String
 id: ID!
-address:[Address]
+addresss:[Address]
 tenant:Tenant
 collaborators:[Collaborator]
 donors:[Donor]
@@ -1456,7 +1442,7 @@ partners:[Partner]
 vendors:[Vendor]
 projects:[Project]
 users:[User]
-team:[team]
+teams:[team]
 }
 type PreferenceConnection {
 totalPages: Int
@@ -1502,7 +1488,7 @@ callReport: Boolean
 path: String
 tenant: Int
 id: ID!
-workflownode:[WorkflowNode]
+workflownodes:[WorkflowNode]
 }
 type ProgramConnection {
 totalPages: Int
@@ -1598,8 +1584,8 @@ securityGroup: String
 tenant: Int
 id: ID!
 roleactions:[RoleAction]
-permissions:[Permission]
-user:[User]
+users:[User]
+actions:[Action]
 }
 type RoleActionConnection {
 totalPages: Int
@@ -1636,7 +1622,7 @@ season_name: String
 description: String
 tenant: Int
 id: ID!
-crop:[Crop]
+crops:[Crop]
 }
 type SegmentConnection {
 totalPages: Int
@@ -1736,7 +1722,7 @@ notes: String
 event_log: String
 tenant: Int
 id: ID!
-program:[Program]
+programs:[Program]
 persons:[Person]
 }
 type TenantConnection {
@@ -1833,10 +1819,10 @@ status: String
 tenant: Int
 id: ID!
 dataformat:DataFormat
-service:[Service]
-technologyplatforms:[TechnologyPlatform]
+services:[Service]
 markers:[Marker]
 person:Person
+technologyplatform:TechnologyPlatform
 }
 type WorkflowConnection {
 totalPages: Int
@@ -1939,6 +1925,7 @@ workflow:WorkflowInput
 entityreference:EntityReferenceInput
 htmltag:HtmlTagInput
 module:ModuleInput
+process:ProcessInput
 }
 input WorkflowNodeCFInput {
 #
@@ -1983,7 +1970,7 @@ tenant: Int
 id: ID!
 workflowphase:WorkflowPhaseInput
 htmltag:HtmlTagInput
-workflownode:[WorkflowNodeInput]
+workflownodes:[WorkflowNodeInput]
 }
 input WorkflowStatusInput {
 #
@@ -2011,7 +1998,7 @@ name: String
 description: String
 tenant: Int
 id: ID!
-technologyplatform:[TechnologyPlatformInput]
+technologyplatforms:[TechnologyPlatformInput]
 service:ServiceInput
 }
 input AssayGeneInput {
@@ -2039,7 +2026,7 @@ description: String
 tenant: Int
 id: ID!
 assaygene:AssayGeneInput
-vendor:[VendorInput]
+vendors:[VendorInput]
 }
 input MarkerSynonymInput {
 #Alias name
@@ -2082,7 +2069,7 @@ name: String
 tenant: Int
 id: ID!
 country:CountryInput
-crop:[CropInput]
+crops:[CropInput]
 }
 input ServiceTypeInput {
 #Name of the service_type
@@ -2094,7 +2081,7 @@ code: String
 description: String
 tenant: Int
 id: ID!
-serviceprovider:[ServiceProviderInput]
+serviceproviders:[ServiceProviderInput]
 }
 input TechnologyPlatformInput {
 #Name of the technology
@@ -2103,7 +2090,6 @@ name: String
 description: String
 tenant: Int
 id: ID!
-vendor:[VendorInput]
 }
 input TraitInput {
 #Name of the trait
@@ -2129,11 +2115,14 @@ input ActionInput {
 #
 description: String
 #
-actionType: Int
+actionType: Boolean
+#
+action: String
 id: ID!
-permission:[PermissionInput]
 workflownode:WorkflowNodeInput
 module:ModuleInput
+roles:[RoleInput]
+workflowstage:WorkflowStageInput
 }
 input AddressInput {
 #
@@ -2332,8 +2321,8 @@ storefield: String
 entityschema: String
 tenant: Int
 id: ID!
-emailtemplate:[EmailTemplateInput]
-numbersequencerule:[NumberSequenceRuleInput]
+emailtemplates:[EmailTemplateInput]
+numbersequencerules:[NumberSequenceRuleInput]
 }
 input HtmlTagInput {
 #
@@ -2348,7 +2337,7 @@ port: String
 #
 health: String
 id: ID!
-component:[ComponentInput]
+components:[ComponentInput]
 tenant:TenantInput
 }
 input LanguageInput {
@@ -2383,6 +2372,8 @@ route: String
 MainEntity: String
 #
 icon: String
+#
+container: String
 id: ID!
 component:ComponentInput
 htmltag:HtmlTagInput
@@ -2450,11 +2441,6 @@ tenant: Int
 id: ID!
 person:PersonInput
 }
-input PermissionInput {
-tenant: Int
-id: ID!
-role:[RoleInput]
-}
 input PersonInput {
 #
 giveName: String
@@ -2481,9 +2467,9 @@ phone: String
 #
 status: String
 id: ID!
-address:[AddressInput]
+addresss:[AddressInput]
 tenant:TenantInput
-team:[teamInput]
+teams:[teamInput]
 }
 input PreferenceInput {
 #
@@ -2511,7 +2497,6 @@ callReport: Boolean
 path: String
 tenant: Int
 id: ID!
-workflownode:[WorkflowNodeInput]
 }
 input ProgramInput {
 #Textual identifier of the program 
@@ -2567,7 +2552,7 @@ description: String
 securityGroup: String
 tenant: Int
 id: ID!
-user:[UserInput]
+users:[UserInput]
 }
 input RoleActionInput {
 #
@@ -2586,7 +2571,7 @@ season_name: String
 description: String
 tenant: Int
 id: ID!
-crop:[CropInput]
+crops:[CropInput]
 }
 input SegmentInput {
 #
@@ -2648,7 +2633,7 @@ notes: String
 event_log: String
 tenant: Int
 id: ID!
-program:[ProgramInput]
+programs:[ProgramInput]
 }
 input TenantInput {
 #
@@ -2697,8 +2682,9 @@ status: String
 tenant: Int
 id: ID!
 dataformat:DataFormatInput
-service:[ServiceInput]
+services:[ServiceInput]
 person:PersonInput
+technologyplatform:TechnologyPlatformInput
 }
 input WorkflowInput {
 #
