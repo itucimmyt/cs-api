@@ -1873,15 +1873,15 @@ id: ID!
 }
 input WorkflowCFValueInput {
 #
-FLAG_Value: Boolean
+flagValue: Boolean
 #
-TEXT_Value: String
+textValue: String
 #
-NUM_Value: Int
+numValue: Int
 #
-DATE_Value: Date
+dateValue: Date
 #
-CODE_Value: Int
+codeValue: Int
 tenant: Int
 id: ID!
 request:RequestInput
