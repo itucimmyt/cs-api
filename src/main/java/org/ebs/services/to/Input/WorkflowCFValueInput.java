@@ -21,32 +21,16 @@ public class WorkflowCFValueInput implements Serializable {
 	private static final long serialVersionUID = -522835546;
 	private int id;
 	private int tenant;
-	private boolean FLAG_Value;
-	private String TEXT_Value;
-	private int NUM_Value;
-	private Date DATE_Value;
-	private int CODE_Value;
+	private boolean flagValue;
+	private String textValue;
+	private int numValue;
+	private Date dateValue;
+	private int codeValue;
 	RequestInput request;
 	WorkflowNodeCFInput workflownodecf;
 
-	public int getCODE_Value(){
-		return CODE_Value;
-	}
-
-	public Date getDATE_Value(){
-		return DATE_Value;
-	}
-
-	public boolean getFLAG_Value(){
-		return FLAG_Value;
-	}
-
 	public int getId(){
 		return id;
-	}
-
-	public int getNUM_Value(){
-		return NUM_Value;
 	}
 
 	public RequestInput getrequest(){
@@ -57,36 +41,8 @@ public class WorkflowCFValueInput implements Serializable {
 		return tenant;
 	}
 
-	public String getTEXT_Value(){
-		return TEXT_Value;
-	}
-
 	public WorkflowNodeCFInput getworkflownodecf(){
 		return workflownodecf;
-	}
-
-	/**
-	 * 
-	 * @param code_value
-	 */
-	public void setCODE_Value(int code_value){
-		this.CODE_Value = code_value;
-	}
-
-	/**
-	 * 
-	 * @param date_value
-	 */
-	public void setDATE_Value(Date date_value){
-		this.DATE_Value = date_value;
-	}
-
-	/**
-	 * 
-	 * @param flag_value
-	 */
-	public void setFLAG_Value(boolean flag_value){
-		this.FLAG_Value = flag_value;
 	}
 
 	/**
@@ -95,14 +51,6 @@ public class WorkflowCFValueInput implements Serializable {
 	 */
 	public void setId(int id){
 		this.id=id;
-	}
-
-	/**
-	 * 
-	 * @param num_value
-	 */
-	public void setNUM_Value(int num_value){
-		this.NUM_Value = num_value;
 	}
 
 	/**
@@ -123,18 +71,51 @@ public class WorkflowCFValueInput implements Serializable {
 
 	/**
 	 * 
-	 * @param text_value
-	 */
-	public void setTEXT_Value(String text_value){
-		this.TEXT_Value = text_value;
-	}
-
-	/**
-	 * 
 	 * @param workflownodecf
 	 */
 	public void setworkflownodecf(WorkflowNodeCFInput workflownodecf){
 		this.workflownodecf =workflownodecf;
+	}
+
+	
+	public boolean isFlagValue() {
+		return flagValue;
+	}
+
+	public void setFlagValue(boolean flagValue) {
+		this.flagValue = flagValue;
+	}
+
+	public String getTextValue() {
+		return textValue;
+	}
+
+	public void setTextValue(String textValue) {
+		this.textValue = textValue;
+	}
+
+	public int getNumValue() {
+		return numValue;
+	}
+
+	public void setNumValue(int numValue) {
+		this.numValue = numValue;
+	}
+
+	public Date getDateValue() {
+		return dateValue;
+	}
+
+	public void setDateValue(Date dateValue) {
+		this.dateValue = dateValue;
+	}
+
+	public int getCodeValue() {
+		return codeValue;
+	}
+
+	public void setCodeValue(int codeValue) {
+		this.codeValue = codeValue;
 	}
 
 }
