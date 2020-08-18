@@ -53,7 +53,7 @@ dependencyManagement {
 }
 
 bootJar {
-	archiveName = 'ebs-sg-tnt.jar'
+	archiveFileName = 'ebs-sg-tnt.jar'
 }
 
 test {
