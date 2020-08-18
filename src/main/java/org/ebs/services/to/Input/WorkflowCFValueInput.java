@@ -11,111 +11,26 @@ package org.ebs.services.to.Input;
 import java.io.Serializable;
 import java.util.Date;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * @author EBRIONES
  * @version 1.0
  * @created 09-Aug-2020 4:51:53 PM
+ * modified by JAROJAS 2020-08-18
  */
+@Getter @Setter
 public class WorkflowCFValueInput implements Serializable {
 
 	private static final long serialVersionUID = -522835546;
 	private int id;
 	private int tenant;
-	private boolean flagValue;
+	private Boolean flagValue;
 	private String textValue;
-	private int numValue;
+	private Integer numValue;
 	private Date dateValue;
-	private int codeValue;
-	RequestInput request;
-	WorkflowNodeCFInput workflownodecf;
-
-	public int getId(){
-		return id;
-	}
-
-	public RequestInput getrequest(){
-		return request;
-	}
-
-	public int getTenant(){
-		return tenant;
-	}
-
-	public WorkflowNodeCFInput getworkflownodecf(){
-		return workflownodecf;
-	}
-
-	/**
-	 * 
-	 * @param id
-	 */
-	public void setId(int id){
-		this.id=id;
-	}
-
-	/**
-	 * 
-	 * @param request
-	 */
-	public void setrequest(RequestInput request){
-		this.request =request;
-	}
-
-	/**
-	 * 
-	 * @param tenantid
-	 */
-	public void setTenant(int tenantid){
-		this.tenant=tenantid;
-	}
-
-	/**
-	 * 
-	 * @param workflownodecf
-	 */
-	public void setworkflownodecf(WorkflowNodeCFInput workflownodecf){
-		this.workflownodecf =workflownodecf;
-	}
-
-	
-	public boolean isFlagValue() {
-		return flagValue;
-	}
-
-	public void setFlagValue(boolean flagValue) {
-		this.flagValue = flagValue;
-	}
-
-	public String getTextValue() {
-		return textValue;
-	}
-
-	public void setTextValue(String textValue) {
-		this.textValue = textValue;
-	}
-
-	public int getNumValue() {
-		return numValue;
-	}
-
-	public void setNumValue(int numValue) {
-		this.numValue = numValue;
-	}
-
-	public Date getDateValue() {
-		return dateValue;
-	}
-
-	public void setDateValue(Date dateValue) {
-		this.dateValue = dateValue;
-	}
-
-	public int getCodeValue() {
-		return codeValue;
-	}
-
-	public void setCodeValue(int codeValue) {
-		this.codeValue = codeValue;
-	}
-
+	private Integer codeValue;
+	private RequestInput request;
+	private WorkflowNodeCFInput workflowNodeCF;
 }

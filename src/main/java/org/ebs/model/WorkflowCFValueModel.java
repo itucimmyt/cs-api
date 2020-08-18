@@ -9,6 +9,10 @@
 package org.ebs.model;
 
 import org.ebs.util.Auditable;
+
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.JoinColumn;
 import javax.persistence.FetchType;
 import java.util.Date;
@@ -24,123 +28,34 @@ import javax.persistence.GenerationType;
  * @author EBRIONES
  * @version 1.0
  * @created 09-Aug-2020 4:51:53 PM
+ * modified by JAROJAS 2020-08-18
  */
 @Entity @Table(name="WorkflowCFValue",schema="workflow")
+@Getter @Setter
 public class WorkflowCFValueModel extends Auditable {
 
 	private static final long serialVersionUID = 303216545;
 	@Column(name="tenant_id")
 	private int tenant;
 	@Column(name="flag_value")
-	private boolean flagValue;
+	private Boolean flagValue;
 	@Column(name="text_value")
 	private String textValue;
 	@Column(name="num_value")
-	private int numValue;
+	private Integer numValue;
 	@Column(name="date_value")
 	private Date dateValue;
 	@Column(name="code_value")
-	private int codeValue;
+	private Integer codeValue;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
 	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="request_id")
-	RequestModel request;
-	@ManyToOne(fetch=FetchType.LAZY, optional =false) @JoinColumn(name="workflownodecf_id")
-	WorkflowNodeCFModel workflownodecf;
-
-
-	public int getId(){
-		return id;
-	}
-
-	public RequestModel getrequest(){
-		return request;
-	}
-
-	public int getTenant(){
-		return tenant;
-	}
-
-	public WorkflowNodeCFModel getworkflownodecf(){
-		return workflownodecf;
-	}
-
-
-	/**
-	 * 
-	 * @param id
-	 */
-	public void setId(int id){
-		this.id = id;
-	}
-
-	/**
-	 * 
-	 * @param request
-	 */
-	public void setrequest(RequestModel request){
-		this.request =request;
-	}
-
-	/**
-	 * 
-	 * @param tenantid
-	 */
-	public void setTenant(int tenantid){
-		this.tenant=tenantid;
-	}
-
-	/**
-	 * 
-	 * @param workflownodecf
-	 */
-	public void setworkflownodecf(WorkflowNodeCFModel workflownodecf){
-		this.workflownodecf =workflownodecf;
-	}
+	private RequestModel request;
+	@ManyToOne(fetch=FetchType.LAZY, optional =false) @JoinColumn(name="workflowNodeCF_id")
+	private WorkflowNodeCFModel workflowNodeCF;
 
 	@Override
 	public String toString(){
 		return "WorkflowCFValueModel [FLAG_Value=" + flagValue + ",NUM_Value=" + numValue + ",CODE_Value=" + codeValue + ",id=" + id + ",]";
 	}
-
-	public boolean isFlagValue() {
-		return flagValue;
-	}
-
-	public void setFlagValue(boolean flagValue) {
-		this.flagValue = flagValue;
-	}
-
-	public String getTextValue() {
-		return textValue;
-	}
-
-	public void setTextValue(String textValue) {
-		this.textValue = textValue;
-	}
-
-	public int getNumValue() {
-		return numValue;
-	}
-
-	public void setNumValue(int numValue) {
-		this.numValue = numValue;
-	}
-
-	public Date getDateValue() {
-		return dateValue;
-	}
-
-	public void setDateValue(Date dateValue) {
-		this.dateValue = dateValue;
-	}
-
-	public int getCodeValue() {
-		return codeValue;
-	}
-
-	public void setCodeValue(int codeValue) {
-		this.codeValue = codeValue;
-	}
-
 }

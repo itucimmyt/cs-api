@@ -13,6 +13,10 @@ import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import org.ebs.util.Auditable;
+
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.JoinColumn;
 import javax.persistence.FetchType;
 import java.util.Set;
@@ -28,6 +32,7 @@ import javax.persistence.OneToMany;
  * @created 09-Aug-2020 4:51:59 PM
  */
 @Entity @Table(name="WorkflowNodeCF",schema="workflow")
+@Getter @Setter
 public class WorkflowNodeCFModel extends Auditable {
 
 	private static final long serialVersionUID = 528321398;
@@ -43,8 +48,8 @@ public class WorkflowNodeCFModel extends Auditable {
 	private boolean required;
 	@GeneratedValue(strategy= GenerationType.IDENTITY) @Id @Column
 	private int id;
-	@OneToMany(mappedBy = "workflownodecf",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
-	Set<WorkflowCFValueModel> workflowcfvalues;
+	@OneToMany(mappedBy = "workflowNodeCF",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	Set<WorkflowCFValueModel> workflowCFValues;
 	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="workflowcftype_id")
 	WorkflowCFTypeModel workflowcftype;
 	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="htmltag_id")
@@ -53,138 +58,6 @@ public class WorkflowNodeCFModel extends Auditable {
 	EntityReferenceModel entityreference;
 	@ManyToOne(fetch=FetchType.LAZY, optional =true) @JoinColumn(name="workflownode_id")
 	WorkflowNodeModel workflownode;
-
-	public String getdescription(){
-		return description;
-	}
-
-	public EntityReferenceModel getentityreference(){
-		return entityreference;
-	}
-
-	public String gethelp(){
-		return help;
-	}
-
-	public HtmlTagModel gethtmltag(){
-		return htmltag;
-	}
-
-	public int getId(){
-		return id;
-	}
-
-	public String getname(){
-		return name;
-	}
-
-	public boolean getrequired(){
-		return required;
-	}
-
-	public int getTenant(){
-		return tenant;
-	}
-
-	public WorkflowCFTypeModel getworkflowcftype(){
-		return workflowcftype;
-	}
-
-	public Set<WorkflowCFValueModel> getworkflowcfvalues(){
-		return workflowcfvalues;
-	}
-
-	public WorkflowNodeModel getworkflownode(){
-		return workflownode;
-	}
-
-	/**
-	 * 
-	 * @param description
-	 */
-	public void setdescription(String description){
-		this.description = description;
-	}
-
-	/**
-	 * 
-	 * @param entityreference
-	 */
-	public void setentityreference(EntityReferenceModel entityreference){
-		this.entityreference =entityreference;
-	}
-
-	/**
-	 * 
-	 * @param help
-	 */
-	public void sethelp(String help){
-		this.help = help;
-	}
-
-	/**
-	 * 
-	 * @param htmltag
-	 */
-	public void sethtmltag(HtmlTagModel htmltag){
-		this.htmltag =htmltag;
-	}
-
-	/**
-	 * 
-	 * @param id
-	 */
-	public void setId(int id){
-		this.id = id;
-	}
-
-	/**
-	 * 
-	 * @param name
-	 */
-	public void setname(String name){
-		this.name = name;
-	}
-
-	/**
-	 * 
-	 * @param required
-	 */
-	public void setrequired(boolean required){
-		this.required = required;
-	}
-
-	/**
-	 * 
-	 * @param tenantid
-	 */
-	public void setTenant(int tenantid){
-		this.tenant=tenantid;
-	}
-
-	/**
-	 * 
-	 * @param workflowcftype
-	 */
-	public void setworkflowcftype(WorkflowCFTypeModel workflowcftype){
-		this.workflowcftype =workflowcftype;
-	}
-
-	/**
-	 * 
-	 * @param workflowcfvalue
-	 */
-	public void setworkflowcfvalues(Set<WorkflowCFValueModel> workflowcfvalue){
-		this.workflowcfvalues =workflowcfvalue;
-	}
-
-	/**
-	 * 
-	 * @param workflownode
-	 */
-	public void setworkflownode(WorkflowNodeModel workflownode){
-		this.workflownode =workflownode;
-	}
 
 	@Override
 	public String toString(){

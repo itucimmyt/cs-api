@@ -132,8 +132,8 @@ findWorkflowList( page: PageInput, sort:SortInput,filters:[FilterInput]):Workflo
 type Mutation {createWorkflowCFType(WorkflowCFTypeTo:WorkflowCFTypeInput!):WorkflowCFType
 modifyWorkflowCFType(WorkflowCFTypeTo:WorkflowCFTypeInput!):WorkflowCFType
 deleteWorkflowCFType(idworkflowcftype:Int!):Int
-createWorkflowCFValue(WorkflowCFValueTo:WorkflowCFValueInput!):WorkflowCFValue
-modifyWorkflowCFValue(WorkflowCFValueTo:WorkflowCFValueInput!):WorkflowCFValue
+createWorkflowCFValue(WorkflowCFValue:WorkflowCFValueInput!):WorkflowCFValue
+modifyWorkflowCFValue(WorkflowCFValue:WorkflowCFValueInput!):WorkflowCFValue
 deleteWorkflowCFValue(idworkflowcfvalue:Int!):Int
 createWorkflowEvent(WorkflowEventTo:WorkflowEventInput!):WorkflowEvent
 modifyWorkflowEvent(WorkflowEventTo:WorkflowEventInput!):WorkflowEvent
@@ -359,19 +359,19 @@ content: [WorkflowCFValue]
 #
 type WorkflowCFValue {
 #
-FLAG_Value: Boolean
+flagValue: Boolean
 #
-TEXT_Value: String
+textValue: String
 #
-NUM_Value: Int
+numValue: Int
 #
-DATE_Value: Date
+dateValue: Date
 #
-CODE_Value: Int
+codeValue: Int
 tenant: Int
 id: ID!
 request:Request
-workflownodecf:WorkflowNodeCF
+workflowNodeCF:WorkflowNodeCF
 }
 type WorkflowEventConnection {
 totalPages: Int
