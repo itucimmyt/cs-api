@@ -8,28 +8,27 @@
 
 package org.ebs.services;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.ebs.model.WorkflowInstanceModel;
+import org.ebs.model.WorkflowStatusModel;
 import org.ebs.model.repos.WorkflowInstanceRepository;
 import org.ebs.model.repos.WorkflowStatusRepository;
 import org.ebs.model.repos.WorkflowStatusTypeRepository;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
-import org.springframework.beans.factory.annotation.Autowired;
-import java.util.List;
-import java.util.Optional;
+import org.ebs.services.to.WorkflowInstanceTo;
+import org.ebs.services.to.WorkflowStatusTo;
+import org.ebs.services.to.WorkflowStatusTypeTo;
+import org.ebs.services.to.Input.WorkflowStatusInput;
 import org.ebs.util.FilterInput;
 import org.ebs.util.PageInput;
 import org.ebs.util.SortInput;
 import org.ebs.util.Utils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
-import java.util.stream.Collectors;
-import java.util.Set;
-import org.ebs.services.to.WorkflowStatusTo;
-import org.ebs.services.to.Input.WorkflowStatusInput;
-import org.ebs.model.WorkflowStatusModel;
-import org.ebs.services.to.WorkflowStatusTypeTo;
-import org.ebs.services.to.WorkflowInstanceTo;
+import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author EBRIONES

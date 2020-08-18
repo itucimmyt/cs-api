@@ -6,7 +6,6 @@ import java.time.Instant;
 import java.util.Date;
 
 import org.ebs.model.WorkflowCFValueModel;
-import org.ebs.services.to.WorkflowCFValueTo;
 import org.ebs.services.to.Input.RequestInput;
 import org.ebs.services.to.Input.WorkflowCFValueInput;
 import org.ebs.services.to.Input.WorkflowNodeCFInput;

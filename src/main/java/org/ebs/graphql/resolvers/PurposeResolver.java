@@ -8,16 +8,17 @@
 
 package org.ebs.graphql.resolvers;
 
-import com.coxautodev.graphql.tools.GraphQLResolver;
-import org.ebs.services.to.PurposeTo;
-import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
 import java.util.Set;
+
+import com.coxautodev.graphql.tools.GraphQLResolver;
+
 import org.ebs.services.PurposeService;
-import org.ebs.services.to.RequestTo;
-import org.ebs.services.to.ServiceTypeTo;
+import org.ebs.services.to.PurposeTo;
 import org.ebs.services.to.ServiceTo;
+import org.ebs.services.to.ServiceTypeTo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
 
 /**
  * @author EBRIONES
