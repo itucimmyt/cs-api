@@ -30,6 +30,6 @@ public interface WorkflowCFValueRepository extends JpaRepository<WorkflowCFValue
 	 * 
 	 * @param workflownodecfId
 	 */
-	public List<WorkflowCFValueModel> findByWorkflownodecfId(int workflownodecfId);
+	public List<WorkflowCFValueModel> findByWorkflowNodeCFId(int workflownodecfId);
 
 }

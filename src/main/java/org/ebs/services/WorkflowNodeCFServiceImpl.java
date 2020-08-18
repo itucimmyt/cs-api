@@ -65,13 +65,13 @@ import org.ebs.services.to.WorkflowNodeTo;
 		WorkflowNodeCFModel model = converter.convert(WorkflowNodeCF,WorkflowNodeCFModel.class); 
 		 model.setId(0);
 		 WorkflowCFTypeModel workflowcftypeModel = workflowcftypeRepository.findById(WorkflowNodeCF.getworkflowcftype().getId()).get(); 
-		model.setworkflowcftype(workflowcftypeModel); 
+		model.setWorkflowcftype(workflowcftypeModel); 
 		HtmlTagModel htmltagModel = htmltagRepository.findById(WorkflowNodeCF.gethtmltag().getId()).get(); 
-		model.sethtmltag(htmltagModel); 
+		model.setHtmltag(htmltagModel); 
 		EntityReferenceModel entityreferenceModel = entityreferenceRepository.findById(WorkflowNodeCF.getentityreference().getId()).get(); 
-		model.setentityreference(entityreferenceModel); 
+		model.setEntityreference(entityreferenceModel); 
 		WorkflowNodeModel workflownodeModel = workflownodeRepository.findById(WorkflowNodeCF.getworkflownode().getId()).get(); 
-		model.setworkflownode(workflownodeModel); 
+		model.setWorkflownode(workflownodeModel); 
 		 
 		 model= workflownodecfRepository.save(model); 
 		 return converter.convert(model, WorkflowNodeCFTo.class); 
@@ -94,7 +94,7 @@ import org.ebs.services.to.WorkflowNodeTo;
 	 * @param workflownodecfId
 	 */
 	public Optional<EntityReferenceTo> findEntityReference(int workflownodecfId){
-		return workflownodecfRepository.findById(workflownodecfId).map(r -> converter.convert(r.getentityreference(),EntityReferenceTo.class));
+		return workflownodecfRepository.findById(workflownodecfId).map(r -> converter.convert(r.getEntityreference(),EntityReferenceTo.class));
 	}
 
 	/**
@@ -102,7 +102,7 @@ import org.ebs.services.to.WorkflowNodeTo;
 	 * @param workflownodecfId
 	 */
 	public Optional<HtmlTagTo> findHtmlTag(int workflownodecfId){
-		return workflownodecfRepository.findById(workflownodecfId).map(r -> converter.convert(r.gethtmltag(),HtmlTagTo.class));
+		return workflownodecfRepository.findById(workflownodecfId).map(r -> converter.convert(r.getHtmltag(),HtmlTagTo.class));
 	}
 
 	/**
@@ -110,7 +110,7 @@ import org.ebs.services.to.WorkflowNodeTo;
 	 * @param workflownodecfId
 	 */
 	public Optional<WorkflowCFTypeTo> findWorkflowCFType(int workflownodecfId){
-		return workflownodecfRepository.findById(workflownodecfId).map(r -> converter.convert(r.getworkflowcftype(),WorkflowCFTypeTo.class));
+		return workflownodecfRepository.findById(workflownodecfId).map(r -> converter.convert(r.getWorkflowcftype(),WorkflowCFTypeTo.class));
 	}
 
 	/**
@@ -118,7 +118,7 @@ import org.ebs.services.to.WorkflowNodeTo;
 	 * @param workflownodecfId
 	 */
 	public Set<WorkflowCFValueTo> findWorkflowCFValues(int workflownodecfId){
-		return workflowcfvalueRepository.findByWorkflownodecfId(workflownodecfId).stream().map(e -> converter.convert(e,WorkflowCFValueTo.class)).collect(Collectors.toSet());
+		return workflowcfvalueRepository.findByWorkflowNodeCFId(workflownodecfId).stream().map(e -> converter.convert(e,WorkflowCFValueTo.class)).collect(Collectors.toSet());
 	}
 
 	/**
@@ -126,7 +126,7 @@ import org.ebs.services.to.WorkflowNodeTo;
 	 * @param workflownodecfId
 	 */
 	public Optional<WorkflowNodeTo> findWorkflowNode(int workflownodecfId){
-		return workflownodecfRepository.findById(workflownodecfId).map(r -> converter.convert(r.getworkflownode(),WorkflowNodeTo.class));
+		return workflownodecfRepository.findById(workflownodecfId).map(r -> converter.convert(r.getWorkflownode(),WorkflowNodeTo.class));
 	}
 
 	/**
