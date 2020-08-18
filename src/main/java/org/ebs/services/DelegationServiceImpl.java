@@ -8,26 +8,25 @@
 
 package org.ebs.services;
 
-import org.ebs.model.UserModel;
-import org.ebs.model.repos.UserRepository;
-import org.ebs.model.repos.DelegationRepository;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
-import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import java.util.Optional;
+
+import org.ebs.model.DelegationModel;
+import org.ebs.model.UserModel;
+import org.ebs.model.repos.DelegationRepository;
+import org.ebs.model.repos.UserRepository;
+import org.ebs.services.to.DelegationTo;
+import org.ebs.services.to.UserTo;
+import org.ebs.services.to.Input.DelegationInput;
 import org.ebs.util.FilterInput;
 import org.ebs.util.PageInput;
 import org.ebs.util.SortInput;
 import org.ebs.util.Utils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
-import java.util.stream.Collectors;
-import java.util.Set;
-import org.ebs.services.to.DelegationTo;
-import org.ebs.services.to.Input.DelegationInput;
-import org.ebs.model.DelegationModel;
-import org.ebs.services.to.UserTo;
+import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author EBRIONES

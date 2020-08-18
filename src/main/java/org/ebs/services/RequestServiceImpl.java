@@ -8,31 +8,29 @@
 
 package org.ebs.services;
 
-import org.ebs.model.PurposeModel;
-import org.ebs.model.repos.PurposeRepository;
-import org.ebs.model.WorkflowInstanceModel;
-import org.ebs.model.repos.WorkflowInstanceRepository;
-import org.ebs.model.repos.RequestRepository;
-import org.ebs.model.repos.WorkflowCFValueRepository;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
-import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import org.ebs.model.RequestModel;
+import org.ebs.model.WorkflowInstanceModel;
+import org.ebs.model.repos.RequestRepository;
+import org.ebs.model.repos.WorkflowCFValueRepository;
+import org.ebs.model.repos.WorkflowInstanceRepository;
+import org.ebs.services.to.RequestTo;
+import org.ebs.services.to.WorkflowCFValueTo;
+import org.ebs.services.to.WorkflowInstanceTo;
+import org.ebs.services.to.Input.RequestInput;
 import org.ebs.util.FilterInput;
 import org.ebs.util.PageInput;
 import org.ebs.util.SortInput;
 import org.ebs.util.Utils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
-import java.util.stream.Collectors;
-import java.util.Set;
-import org.ebs.services.to.RequestTo;
-import org.ebs.services.to.Input.RequestInput;
-import org.ebs.model.RequestModel;
-import org.ebs.services.to.PurposeTo;
-import org.ebs.services.to.WorkflowCFValueTo;
-import org.ebs.services.to.WorkflowInstanceTo;
+import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author EBRIONES
@@ -44,7 +42,6 @@ import org.ebs.services.to.WorkflowInstanceTo;
 
 	private RequestRepository requestRepository;
 	private ConversionService converter;
-	private PurposeRepository purposeRepository;
 	private WorkflowInstanceRepository workflowinstanceRepository;
 	public WorkflowCFValueRepository workflowcfvalueRepository;
 
@@ -139,15 +136,13 @@ import org.ebs.services.to.WorkflowInstanceTo;
 	 * 
 	 * @param workflowinstanceRepository
 	 * @param workflowcfvalueRepository
-	 * @param purposeRepository
 	 * @param converter
 	 * @param requestRepository
 	 */
 	@Autowired
-	public RequestServiceImpl(WorkflowInstanceRepository workflowinstanceRepository, WorkflowCFValueRepository workflowcfvalueRepository, PurposeRepository purposeRepository, ConversionService converter, RequestRepository requestRepository){
+	public RequestServiceImpl(WorkflowInstanceRepository workflowinstanceRepository, WorkflowCFValueRepository workflowcfvalueRepository, ConversionService converter, RequestRepository requestRepository){
 		this.requestRepository =requestRepository; 
 		 this.converter = converter;
-		 this.purposeRepository = purposeRepository;
 		 this.workflowcfvalueRepository = workflowcfvalueRepository;
 		 this.workflowinstanceRepository = workflowinstanceRepository;
 	}

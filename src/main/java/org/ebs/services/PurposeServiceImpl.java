@@ -8,30 +8,29 @@
 
 package org.ebs.services;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import org.ebs.model.PurposeModel;
+import org.ebs.model.ServiceTypeModel;
+import org.ebs.model.repos.PurposeRepository;
+import org.ebs.model.repos.ServiceRepository;
+import org.ebs.model.repos.ServiceTypeRepository;
+import org.ebs.services.to.PurposeTo;
+import org.ebs.services.to.ServiceTo;
+import org.ebs.services.to.ServiceTypeTo;
+import org.ebs.services.to.Input.PurposeInput;
 import org.ebs.util.FilterInput;
 import org.ebs.util.PageInput;
 import org.ebs.util.SortInput;
 import org.ebs.util.Utils;
-import org.springframework.core.convert.ConversionService;
-import java.util.stream.Collectors;
-import java.util.Set;
-import org.ebs.model.repos.RequestRepository;
-import org.ebs.model.ServiceTypeModel;
-import org.ebs.model.repos.ServiceTypeRepository;
-import org.ebs.model.repos.PurposeRepository;
-import org.ebs.model.repos.ServiceRepository;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
 import org.springframework.beans.factory.annotation.Autowired;
-import java.util.List;
-import java.util.Optional;
-import org.ebs.services.to.PurposeTo;
-import org.ebs.services.to.Input.PurposeInput;
-import org.ebs.model.PurposeModel;
-import org.ebs.services.to.RequestTo;
-import org.ebs.services.to.ServiceTypeTo;
-import org.ebs.services.to.ServiceTo;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author EBRIONES
@@ -43,7 +42,6 @@ import org.ebs.services.to.ServiceTo;
 
 	private PurposeRepository purposeRepository;
 	private ConversionService converter;
-	private RequestRepository requestRepository;
 	private ServiceTypeRepository servicetypeRepository;
 	public ServiceRepository serviceRepository;
 
@@ -136,15 +134,13 @@ import org.ebs.services.to.ServiceTo;
 	 * 
 	 * @param serviceRepository
 	 * @param servicetypeRepository
-	 * @param requestRepository
 	 * @param converter
 	 * @param purposeRepository
 	 */
 	@Autowired
-	public PurposeServiceImpl(ServiceRepository serviceRepository, ServiceTypeRepository servicetypeRepository, RequestRepository requestRepository, ConversionService converter, PurposeRepository purposeRepository){
+	public PurposeServiceImpl(ServiceRepository serviceRepository, ServiceTypeRepository servicetypeRepository, ConversionService converter, PurposeRepository purposeRepository){
 		this.purposeRepository =purposeRepository; 
 		 this.converter = converter;
-		 this.requestRepository = requestRepository;
 		 this.servicetypeRepository = servicetypeRepository;
 		 this.serviceRepository = serviceRepository;
 	}

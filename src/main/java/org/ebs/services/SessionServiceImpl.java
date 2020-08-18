@@ -8,29 +8,28 @@
 
 package org.ebs.services;
 
-import org.ebs.util.SortInput;
-import org.ebs.util.Utils;
-import org.springframework.core.convert.ConversionService;
-import java.util.stream.Collectors;
-import java.util.Set;
-import org.ebs.model.UserModel;
-import org.ebs.model.repos.UserRepository;
-import org.ebs.model.InstanceModel;
-import org.ebs.model.repos.InstanceRepository;
-import org.ebs.model.repos.SessionRepository;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
-import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import java.util.Optional;
+
+import org.ebs.model.InstanceModel;
+import org.ebs.model.SessionModel;
+import org.ebs.model.UserModel;
+import org.ebs.model.repos.InstanceRepository;
+import org.ebs.model.repos.SessionRepository;
+import org.ebs.model.repos.UserRepository;
+import org.ebs.services.to.InstanceTo;
+import org.ebs.services.to.SessionTo;
+import org.ebs.services.to.UserTo;
+import org.ebs.services.to.Input.SessionInput;
 import org.ebs.util.FilterInput;
 import org.ebs.util.PageInput;
-import org.ebs.model.SessionModel;
-import org.ebs.services.to.SessionTo;
-import org.ebs.services.to.Input.SessionInput;
-import org.ebs.services.to.UserTo;
-import org.ebs.services.to.InstanceTo;
+import org.ebs.util.SortInput;
+import org.ebs.util.Utils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author EBRIONES

@@ -1882,7 +1882,7 @@ numValue: Int
 dateValue: Date
 #
 codeValue: Int
-tenant: Int
+tenant: Int!
 id: ID!
 request:RequestInput
 workflownodecf:WorkflowNodeCFInput

@@ -10,16 +10,16 @@ package org.ebs.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+
+import org.ebs.services.to.PersonTo;
+import org.ebs.services.to.ProgramTo;
+import org.ebs.services.to.teamTo;
+import org.ebs.services.to.Input.teamInput;
 import org.ebs.util.FilterInput;
 import org.ebs.util.PageInput;
 import org.ebs.util.SortInput;
 import org.springframework.data.domain.Page;
-import java.util.Set;
-import org.ebs.model.repos.teamRepository;
-import org.ebs.services.to.Input.teamInput;
-import org.ebs.services.to.teamTo;
-import org.ebs.services.to.ProgramTo;
-import org.ebs.services.to.PersonTo;
 
 /**
  * @author EBRIONES
