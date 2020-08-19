@@ -435,7 +435,7 @@ help: String
 #
 sequence: Int
 #
-require_approval: Boolean
+requireApproval: Boolean
 tenant: Int
 id: ID!
 workflowstages:[WorkflowStage]
@@ -1919,7 +1919,7 @@ help: String
 #
 sequence: Int
 #
-require_approval: Boolean
+requireApproval: Boolean
 tenant: Int
 id: ID!
 workflow:WorkflowInput
