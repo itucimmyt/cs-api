@@ -19,11 +19,14 @@ import javax.persistence.criteria.Root;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
+
 class RepositoryExtImpl<T> implements RepositoryExt<T> {
 
     private final int minPageNumber = 0;
     private final int maxPageSize = 50;
     private Pageable defaultPage = PageRequest.of(minPageNumber, 20);
+    private String dotSplit = "\\.";
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -31,12 +34,12 @@ class RepositoryExtImpl<T> implements RepositoryExt<T> {
     @Override
     public Connection<T> findByCriteria(Class<T> entityClass, List<FilterInput> filters, SortInput sort, PageInput pageInput) {
 
-        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+    	CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<T> query = builder.createQuery(entityClass);
         Root<T> queryRoot = query.from(entityClass);
 
         List<Predicate> predicates = createPredicates(builder, queryRoot, filters);
-
+        
         query.select(queryRoot);
         query.where(predicates.toArray(new Predicate[predicates.size()]));
         createSort(builder, query, queryRoot, sort);
@@ -48,7 +51,7 @@ class RepositoryExtImpl<T> implements RepositoryExt<T> {
         long totalCount = countForQuery(builder, predicates, entityClass);
         
         return new Connection<T>(resultList, page, totalCount);
-
+        
     }
 
     private TypedQuery<T> createPagedQuery(EntityManager em, CriteriaQuery<T> criteria, Pageable page) {
@@ -65,25 +68,44 @@ class RepositoryExtImpl<T> implements RepositoryExt<T> {
 
     private List<Predicate> createPredicates(CriteriaBuilder builder, Root<T> queryRoot, List<FilterInput> filters) {
         List<Predicate> predicates = new ArrayList<>();
-
+      
         ofNullable(filters).ifPresent(fs -> {
+        	
             fs.forEach(f -> {
+            	  boolean containNestedFields = false;
+             	 	String [] fieldsNested=null;
+            	if (f.getCol().contains(".")) {
+            		fieldsNested =f.getCol().split(dotSplit);
+            		containNestedFields= true;
+            	}
                 switch (f.getMod()) {
                     case LK:
-                        predicates.add(builder.like(queryRoot.get(f.getCol()), "%"+f.getVal()+"%"));
+                        predicates.add(
+                        		containNestedFields?
+                        				builder.like(queryRoot.get(fieldsNested[0]).get(fieldsNested[1]),"%"+f.getVal()+"%")
+                        				:builder.like(queryRoot.get(f.getCol()), "%"+f.getVal()+"%"));
                         break;
                     case EQ:
                     default: //default is equals
-                        predicates.add(builder.equal(queryRoot.get(f.getCol()), typedValueOf(queryRoot, f)));
+                    	predicates.add(
+                    			containNestedFields?
+                    					   builder.equal(queryRoot.get(fieldsNested[0]).get(fieldsNested[1]),  typedValueOf(queryRoot, f,containNestedFields, fieldsNested))
+                    					: builder.equal(queryRoot.get(f.getCol()), typedValueOf(queryRoot, f,containNestedFields, fieldsNested))
+                    						);
                     break;
             }});
         });
         predicates.add(builder.equal(queryRoot.get("deleted"), false));
         return predicates;
-    }
 
-    private Object typedValueOf(Root<T> root, FilterInput f){
-        Class<?> clazz = root.get(f.getCol()).getJavaType();
+    }
+    
+    private Object typedValueOf(Root<T> root, FilterInput f, boolean containNestedFields, String [] fieldsNested){
+        Class<?> clazz;
+        if (containNestedFields)
+        	clazz = root.get(fieldsNested[0]).get(fieldsNested[1]).getJavaType();
+        else 
+        	clazz = root.get(f.getCol()).getJavaType();
 
         if(clazz == Boolean.class) {
             return Boolean.parseBoolean(f.getVal());
