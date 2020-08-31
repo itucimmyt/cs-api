@@ -73,21 +73,33 @@ import org.ebs.services.to.EntityReferenceTo;
 
 	/**
 	 * 
-	 * @param WorkflowNode
+	 * @param workflowNode
 	 */
 	@Override @Transactional(readOnly = false)
-	public WorkflowNodeTo createWorkflowNode(WorkflowNodeInput WorkflowNode){
-		WorkflowNodeModel model = converter.convert(WorkflowNode,WorkflowNodeModel.class); 
+	public WorkflowNodeTo createWorkflowNode(WorkflowNodeInput workflowNode){
+		WorkflowNodeModel model = converter.convert(workflowNode,WorkflowNodeModel.class); 
+		Optional<WorkflowNodeInput> optWFN = Optional.ofNullable(workflowNode);
+
 		 model.setId(0);
-		 WorkflowModel workflowModel = workflowRepository.findById(WorkflowNode.getWorkflow().getId()).get(); 
+		 WorkflowModel workflowModel = workflowRepository.findById( optWFN.map(wfn -> wfn.getWorkflow())
+			.map(wf -> wf.getId())
+			.orElse(0)).orElse(null); 
 		model.setWorkflow(workflowModel); 
-		EntityReferenceModel entityreferenceModel = entityreferenceRepository.findById(WorkflowNode.getEntityreference().getId()).get(); 
+		EntityReferenceModel entityreferenceModel = entityreferenceRepository.findById(optWFN.map(wfn -> wfn.getEntityreference())
+			.map(er -> er.getId())
+			.orElse(0)).orElse(null);
 		model.setEntityreference(entityreferenceModel); 
-		HtmlTagModel htmltagModel = htmltagRepository.findById(WorkflowNode.getHtmltag().getId()).get(); 
+		HtmlTagModel htmltagModel = htmltagRepository.findById(optWFN.map(wfn -> wfn.getHtmltag())
+		.map(ht -> ht.getId())
+		.orElse(0)).orElse(null);
 		model.setHtmltag(htmltagModel); 
-		ModuleModel moduleModel = moduleRepository.findById(WorkflowNode.getModule().getId()).get(); 
+		ModuleModel moduleModel = moduleRepository.findById(optWFN.map(wfn -> wfn.getModule())
+		.map(m -> m.getId())
+		.orElse(0)).orElse(null);
 		model.setModule(moduleModel); 
-		ProcessModel processModel = processRepository.findById(WorkflowNode.getProcess().getId()).get(); 
+		ProcessModel processModel = processRepository.findById(optWFN.map(wfn -> wfn.getProcess())
+		.map(p -> p.getId())
+		.orElse(0)).orElse(null);
 		model.setProcess(processModel); 
 		 
 		 model= workflownodeRepository.save(model); 
