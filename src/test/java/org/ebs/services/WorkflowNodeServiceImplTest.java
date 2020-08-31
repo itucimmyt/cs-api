@@ -3,6 +3,7 @@ package org.ebs.services;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -11,6 +12,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import org.ebs.model.EntityReferenceModel;
+import org.ebs.model.HtmlTagModel;
+import org.ebs.model.ModuleModel;
+import org.ebs.model.ProcessModel;
+import org.ebs.model.WorkflowModel;
 import org.ebs.model.WorkflowNodeModel;
 import org.ebs.model.repos.ActionRepository;
 import org.ebs.model.repos.EntityReferenceRepository;
@@ -23,6 +29,12 @@ import org.ebs.model.repos.WorkflowNodeRepository;
 import org.ebs.model.repos.WorkflowRepository;
 import org.ebs.model.repos.WorkflowStageRepository;
 import org.ebs.services.to.WorkflowNodeTo;
+import org.ebs.services.to.Input.EntityReferenceInput;
+import org.ebs.services.to.Input.HtmlTagInput;
+import org.ebs.services.to.Input.ModuleInput;
+import org.ebs.services.to.Input.ProcessInput;
+import org.ebs.services.to.Input.WorkflowInput;
+import org.ebs.services.to.Input.WorkflowNodeInput;
 import org.ebs.util.Connection;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -112,6 +124,108 @@ public class WorkflowNodeServiceImplTest {
         verify(mockConverter, times(2)) 
             .convert(any(), any());
         
+    }
+
+    @Test
+    public void givenFullObject_whenCreateWorkflowNode_thenCreateWFNode() {
+        when(mockConverter.convert(any(), eq(WorkflowNodeModel.class)))
+            .thenReturn(new WorkflowNodeModel());
+        when(mockConverter.convert(any(), eq(WorkflowNodeTo.class)))
+            .thenReturn(new WorkflowNodeTo());
+        when(mockWorkflowRepository.findById(anyInt()))
+            .thenReturn(Optional.of(new WorkflowModel()));
+        when(mockEntityreferenceRepository.findById(anyInt()))
+            .thenReturn(Optional.of(new EntityReferenceModel()));
+        when(mockHtmltagRepository.findById(anyInt()))
+            .thenReturn(Optional.of(new HtmlTagModel()));
+        when(mockModuleRepository.findById(anyInt()))
+            .thenReturn(Optional.of(new ModuleModel()));
+        when(mockProcessRepository.findById(anyInt()))
+            .thenReturn(Optional.of(new ProcessModel()));
+        when(mockWorkflownodeRepository.save(any()))
+            .thenReturn(new WorkflowNodeModel());
+
+        WorkflowNodeInput objectInput = initWorkflowNodeInput();
+        subject.createWorkflowNode(objectInput);
+
+        verify(mockConverter, times(1))
+            .convert(eq(objectInput), eq(WorkflowNodeModel.class));
+        verify(mockConverter, times(1))
+            .convert(any(), eq(WorkflowNodeTo.class));
+        verify(mockWorkflowRepository, times(1))
+            .findById(7);
+        verify(mockEntityreferenceRepository, times(1))
+            .findById(3);
+        verify(mockHtmltagRepository, times(1))
+            .findById(4);
+        verify(mockModuleRepository, times(1))
+            .findById(5);
+        verify(mockProcessRepository, times(1))
+            .findById(6);
+        verify(mockWorkflownodeRepository, times(1))
+            .save(any());
+
+    }
+
+    @Test
+    public void givenMinimalObject_whenCreateWorkflowNode_thenCreateWFNode() {
+        when(mockConverter.convert(any(), eq(WorkflowNodeModel.class)))
+            .thenReturn(new WorkflowNodeModel());
+        when(mockConverter.convert(any(), eq(WorkflowNodeTo.class)))
+            .thenReturn(new WorkflowNodeTo());
+        when(mockWorkflowRepository.findById(eq(0)))
+            .thenReturn(Optional.empty());
+        when(mockEntityreferenceRepository.findById(eq(0)))
+            .thenReturn(Optional.empty());
+        when(mockHtmltagRepository.findById(eq(0)))
+            .thenReturn(Optional.empty());
+        when(mockModuleRepository.findById(eq(0)))
+            .thenReturn(Optional.empty());
+        when(mockProcessRepository.findById(eq(0)))
+            .thenReturn(Optional.empty());
+        when(mockWorkflownodeRepository.save(any()))
+            .thenReturn(new WorkflowNodeModel());
+
+        WorkflowNodeInput objectInput = new WorkflowNodeInput();
+        objectInput.setId(1);
+        objectInput.setTenant(2);
+        
+        subject.createWorkflowNode(objectInput);
+
+        verify(mockConverter, times(1))
+            .convert(eq(objectInput), eq(WorkflowNodeModel.class));
+        verify(mockConverter, times(1))
+            .convert(any(), eq(WorkflowNodeTo.class));
+        verify(mockWorkflowRepository, times(1))
+            .findById(0);
+        verify(mockEntityreferenceRepository, times(1))
+            .findById(0);
+        verify(mockHtmltagRepository, times(1))
+            .findById(0);
+        verify(mockModuleRepository, times(1))
+            .findById(0);
+        verify(mockProcessRepository, times(1))
+            .findById(0);
+        verify(mockWorkflownodeRepository, times(1))
+            .save(any());
+
+    }
+
+    private WorkflowNodeInput initWorkflowNodeInput() {
+        WorkflowNodeInput w = new WorkflowNodeInput();
+        w.setEntityreference(new EntityReferenceInput());
+        w.setHtmltag(new HtmlTagInput());
+        w.setModule(new ModuleInput());
+        w.setProcess(new ProcessInput());
+        w.setWorkflow(new WorkflowInput());
+
+        w.getEntityreference().setId(3);
+        w.getHtmltag().setId(4);
+        w.getModule().setId(5);
+        w.getProcess().setId(6);
+        w.getWorkflow().setId(7);
+
+        return w;
     }
 
 }
