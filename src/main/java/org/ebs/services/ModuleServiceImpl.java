@@ -60,9 +60,9 @@ import org.ebs.services.to.WorkflowNodeTo;
 		ModuleModel model = converter.convert(Module,ModuleModel.class); 
 		 model.setId(0);
 		 ComponentModel componentModel = componentRepository.findById(Module.getcomponent().getId()).get(); 
-		model.setcomponent(componentModel); 
+		model.setComponent(componentModel); 
 		HtmlTagModel htmltagModel = htmltagRepository.findById(Module.gethtmltag().getId()).get(); 
-		model.sethtmltag(htmltagModel); 
+		model.setHtmltag(htmltagModel); 
 		 
 		 model= moduleRepository.save(model); 
 		 return converter.convert(model, ModuleTo.class); 
@@ -93,7 +93,7 @@ import org.ebs.services.to.WorkflowNodeTo;
 	 * @param moduleId
 	 */
 	public Optional<ComponentTo> findComponent(int moduleId){
-		return moduleRepository.findById(moduleId).map(r -> converter.convert(r.getcomponent(),ComponentTo.class));
+		return moduleRepository.findById(moduleId).map(r -> converter.convert(r.getComponent(),ComponentTo.class));
 	}
 
 	/**
@@ -101,7 +101,7 @@ import org.ebs.services.to.WorkflowNodeTo;
 	 * @param moduleId
 	 */
 	public Optional<HtmlTagTo> findHtmlTag(int moduleId){
-		return moduleRepository.findById(moduleId).map(r -> converter.convert(r.gethtmltag(),HtmlTagTo.class));
+		return moduleRepository.findById(moduleId).map(r -> converter.convert(r.getHtmltag(),HtmlTagTo.class));
 	}
 
 	/**
