@@ -1883,7 +1883,7 @@ codeValue: Int
 tenant: Int!
 id: ID!
 request:RequestInput
-workflownodecf:WorkflowNodeCFInput
+workflowNodeCF:WorkflowNodeCFInput
 }
 input WorkflowEventInput {
 #
