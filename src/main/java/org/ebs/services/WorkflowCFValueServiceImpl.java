@@ -53,14 +53,22 @@ import org.springframework.transaction.annotation.Transactional;
 	@Override @Transactional(readOnly = false)
 	public WorkflowCFValueTo createWorkflowCFValue(WorkflowCFValueInput WorkflowCFValue){
 		WorkflowCFValueModel model = converter.convert(WorkflowCFValue,WorkflowCFValueModel.class); 
-		 model.setId(0);
-		 RequestModel requestModel = requestRepository.findById(WorkflowCFValue.getRequest().getId()).get(); 
+		model.setId(0);
+		
+		RequestModel requestModel = Optional.of(WorkflowCFValue)
+			 .map(w -> w.getRequest())
+			 .map(r -> requestRepository.findById(r.getId()).get())
+			 .orElse(null); 
 		model.setRequest(requestModel); 
-		WorkflowNodeCFModel workflownodecfModel = workflownodecfRepository.findById(WorkflowCFValue.getWorkflowNodeCF().getId()).get(); 
+		
+		WorkflowNodeCFModel workflownodecfModel = Optional.of(WorkflowCFValue)
+			.map(w -> w.getWorkflowNodeCF())
+			.map(w -> workflownodecfRepository.findById(w.getId()).get())
+			.orElse(null);
 		model.setWorkflowNodeCF(workflownodecfModel); 
 		 
-		 model= workflowcfvalueRepository.save(model); 
-		 return converter.convert(model, WorkflowCFValueTo.class); 
+		model= workflowcfvalueRepository.save(model); 
+		return converter.convert(model, WorkflowCFValueTo.class); 
 	}
 
 	/**
