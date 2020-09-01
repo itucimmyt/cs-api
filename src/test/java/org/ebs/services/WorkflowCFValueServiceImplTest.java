@@ -1,5 +1,6 @@
 package org.ebs.services;
 
+import static org.junit.Assert.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.eq;
@@ -95,6 +96,111 @@ public class WorkflowCFValueServiceImplTest {
         verify(mockWorkflowcfvalueRepository, times(1))
             .save(any());
 
+    }
+
+    @Test
+    public void givenFullObject_whenModifyWorkflowCFValue_thenModifyWFCFValue() {
+
+        WorkflowCFValueInput objectInput = initWorkflowCFValueInput();
+        WorkflowCFValueModel dbObject = new WorkflowCFValueModel();
+        
+        when(mockConverter.convert(any(),eq(WorkflowCFValueModel.class)))
+            .thenReturn(new WorkflowCFValueModel());
+        when(mockConverter.convert(any(),eq(WorkflowCFValueTo.class)))
+            .thenReturn(new WorkflowCFValueTo());
+        when(mockRequestRepository.findById(anyInt()))
+            .thenReturn(Optional.of(new RequestModel()));
+        when(mockWorkflownodecfRepository.findById(anyInt()))
+            .thenReturn((Optional.of(new WorkflowNodeCFModel())));
+        when(mockWorkflowcfvalueRepository.findById(anyInt()))
+            .thenReturn(Optional.of(dbObject));
+        when(mockWorkflowcfvalueRepository.save(any()))
+            .thenReturn(new WorkflowCFValueModel());
+
+        subject.modifyWorkflowCFValue(objectInput);
+
+        verify(mockWorkflowcfvalueRepository, times(1))
+            .findById(anyInt());
+        verify(mockConverter, times(1))
+            .convert(eq(objectInput), eq(WorkflowCFValueModel.class));
+        verify(mockConverter, times(1))
+            .convert(any(), eq(WorkflowCFValueTo.class));
+        verify(mockRequestRepository, times(1))
+            .findById(2);
+        verify(mockWorkflownodecfRepository, times(1))
+            .findById(3);
+        verify(mockWorkflowcfvalueRepository, times(1))
+            .save(eq(dbObject));
+
+    }
+
+
+    @Test
+    public void givenMinimalObject_whenModifyWorkflowCFValue_thenModifyOnlyReferences() {
+
+        WorkflowCFValueModel dbObject = new WorkflowCFValueModel();
+        WorkflowCFValueInput objectInput = new WorkflowCFValueInput();
+        objectInput.setTenant(123);
+        
+        when(mockConverter.convert(any(),eq(WorkflowCFValueModel.class)))
+            .thenReturn(new WorkflowCFValueModel());
+        when(mockConverter.convert(any(),eq(WorkflowCFValueTo.class)))
+            .thenReturn(new WorkflowCFValueTo());
+        when(mockWorkflowcfvalueRepository.findById(anyInt()))
+            .thenReturn(Optional.of(dbObject));
+        when(mockWorkflowcfvalueRepository.save(any()))
+            .thenReturn(new WorkflowCFValueModel());
+
+        subject.modifyWorkflowCFValue(objectInput);
+
+        verify(mockWorkflowcfvalueRepository, times(1))
+            .findById(anyInt());
+        verify(mockConverter, times(1))
+            .convert(eq(objectInput), eq(WorkflowCFValueModel.class));
+        verify(mockConverter, times(1))
+            .convert(any(), eq(WorkflowCFValueTo.class));
+        verify(mockWorkflowcfvalueRepository, times(1))
+            .save(any());
+
+    }
+
+    @Test
+    public void givenIdNotExist_whenModifyWorkflowCFValue_thenThowException() {
+
+        when(mockWorkflowcfvalueRepository.findById(anyInt()))
+            .thenReturn(Optional.empty());
+
+        assertThrows("WorkflowCFValue not found", RuntimeException.class, () -> subject.modifyWorkflowCFValue(new WorkflowCFValueInput()));
+        
+    }
+
+    @Test
+    public void givenRequestNotExist_whenModifyWorkflowCFValue_thenThowException() {
+
+        when(mockWorkflowcfvalueRepository.findById(anyInt()))
+            .thenReturn(Optional.of(new WorkflowCFValueModel()));
+        when(mockConverter.convert(any(),eq(WorkflowCFValueModel.class)))
+            .thenReturn(new WorkflowCFValueModel());
+        when(mockRequestRepository.findById(anyInt()))
+            .thenReturn(Optional.empty());
+
+        assertThrows("passed request id must exist",RuntimeException.class, () -> subject.modifyWorkflowCFValue(initWorkflowCFValueInput()));
+        
+    }
+
+    @Test
+    public void givenWFNodeCFNotExist_whenModifyWorkflowCFValue_thenThowException() {
+        when(mockWorkflowcfvalueRepository.findById(anyInt()))
+            .thenReturn(Optional.of(new WorkflowCFValueModel()));
+        when(mockConverter.convert(any(),eq(WorkflowCFValueModel.class)))
+            .thenReturn(new WorkflowCFValueModel());
+        when(mockRequestRepository.findById(anyInt()))
+            .thenReturn(Optional.of(new RequestModel()));
+        when(mockWorkflownodecfRepository.findById(anyInt()))
+            .thenReturn((Optional.empty()));
+
+        assertThrows("passed workflowNodeCF id must exist",RuntimeException.class, () -> subject.modifyWorkflowCFValue(initWorkflowCFValueInput()));
+        
     }
 
     private WorkflowCFValueInput initWorkflowCFValueInput() {

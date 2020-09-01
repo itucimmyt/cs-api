@@ -128,9 +128,22 @@ import org.springframework.transaction.annotation.Transactional;
 	@Override @Transactional(readOnly = false)
 	public WorkflowCFValueTo modifyWorkflowCFValue(WorkflowCFValueInput workflowcfvalue){
 		WorkflowCFValueModel target= workflowcfvalueRepository.findById(workflowcfvalue.getId()).orElseThrow(() -> new RuntimeException("WorkflowCFValue not found")); 
-		 WorkflowCFValueModel source= converter.convert(workflowcfvalue,WorkflowCFValueModel.class); 
-		 Utils.copyNotNulls(source,target); 
-		 return converter.convert(workflowcfvalueRepository.save(target), WorkflowCFValueTo.class);
+		WorkflowCFValueModel source= converter.convert(workflowcfvalue,WorkflowCFValueModel.class); 
+		Utils.copyNotNulls(source,target); 
+
+		RequestModel requestModel = Optional.of(workflowcfvalue)
+			.map(w -> w.getRequest())
+			.map(r -> requestRepository.findById(r.getId()).orElseThrow(() -> new RuntimeException("request does not exist")))
+			.orElse(null); 
+		target.setRequest(requestModel);
+	
+		WorkflowNodeCFModel workflownodecfModel = Optional.of(workflowcfvalue)
+			.map(w -> w.getWorkflowNodeCF())
+			.map(w -> workflownodecfRepository.findById(w.getId()).orElseThrow(() -> new RuntimeException("workflowNodeCF does not exist")))
+			.orElse(null);
+		target.setWorkflowNodeCF(workflownodecfModel); 
+
+		return converter.convert(workflowcfvalueRepository.save(target), WorkflowCFValueTo.class);
 	}
 
 	/**
