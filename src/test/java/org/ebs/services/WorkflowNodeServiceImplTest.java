@@ -1,6 +1,7 @@
 package org.ebs.services;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.eq;
@@ -173,16 +174,6 @@ public class WorkflowNodeServiceImplTest {
             .thenReturn(new WorkflowNodeModel());
         when(mockConverter.convert(any(), eq(WorkflowNodeTo.class)))
             .thenReturn(new WorkflowNodeTo());
-        when(mockWorkflowRepository.findById(eq(0)))
-            .thenReturn(Optional.empty());
-        when(mockEntityreferenceRepository.findById(eq(0)))
-            .thenReturn(Optional.empty());
-        when(mockHtmltagRepository.findById(eq(0)))
-            .thenReturn(Optional.empty());
-        when(mockModuleRepository.findById(eq(0)))
-            .thenReturn(Optional.empty());
-        when(mockProcessRepository.findById(eq(0)))
-            .thenReturn(Optional.empty());
         when(mockWorkflownodeRepository.save(any()))
             .thenReturn(new WorkflowNodeModel());
 
@@ -196,16 +187,6 @@ public class WorkflowNodeServiceImplTest {
             .convert(eq(objectInput), eq(WorkflowNodeModel.class));
         verify(mockConverter, times(1))
             .convert(any(), eq(WorkflowNodeTo.class));
-        verify(mockWorkflowRepository, times(1))
-            .findById(0);
-        verify(mockEntityreferenceRepository, times(1))
-            .findById(0);
-        verify(mockHtmltagRepository, times(1))
-            .findById(0);
-        verify(mockModuleRepository, times(1))
-            .findById(0);
-        verify(mockProcessRepository, times(1))
-            .findById(0);
         verify(mockWorkflownodeRepository, times(1))
             .save(any());
 
@@ -228,4 +209,68 @@ public class WorkflowNodeServiceImplTest {
         return w;
     }
 
+    @Test
+    public void givenIdNotExist_whenModifyWorkflowNode_thenThowException() {
+
+        when(mockWorkflownodeRepository.findById(anyInt()))
+            .thenReturn(Optional.empty());
+
+        assertThrows("workflownode validation must fail", RuntimeException.class, () -> subject.modifyWorkflowNode(new WorkflowNodeInput()));
+        
+    }
+
+    @Test
+    public void givenWorkflowNotExist_whenInitWorkflowNodeModel_thenThrowException() {
+        when(mockWorkflowRepository.findById(anyInt()))
+            .thenReturn(Optional.empty());
+        
+        WorkflowNodeInput input = new WorkflowNodeInput();
+        input.setWorkflow(new WorkflowInput());
+
+        assertThrows("workflow validation must fail", RuntimeException.class, () -> subject.initWorkflowNodeModel(input, new WorkflowNodeModel()));
+    }
+
+    @Test
+    public void givenEntityReferenceNotExist_whenInitWorkflowNodeModel_thenThrowException() {
+        when(mockEntityreferenceRepository.findById(anyInt()))
+            .thenReturn(Optional.empty());
+
+        WorkflowNodeInput input = new WorkflowNodeInput();
+        input.setEntityreference(new EntityReferenceInput());
+
+        assertThrows("entityreference validation must fail", RuntimeException.class, () -> subject.initWorkflowNodeModel(input, new WorkflowNodeModel()));
+    }
+
+    @Test
+    public void givenHtmlTagNotExist_whenInitWorkflowNodeModel_thenThrowException() {
+        when(mockHtmltagRepository.findById(anyInt()))
+            .thenReturn(Optional.empty());
+
+        WorkflowNodeInput input = new WorkflowNodeInput();
+        input.setHtmltag(new HtmlTagInput());
+
+        assertThrows("htmltag validation must fail", RuntimeException.class, () -> subject.initWorkflowNodeModel(input, new WorkflowNodeModel()));
+    }
+
+    @Test
+    public void givenModuleNotExist_whenInitWorkflowNodeModel_thenThrowException() {
+        when(mockModuleRepository.findById(anyInt()))
+            .thenReturn(Optional.empty());
+
+        WorkflowNodeInput input = new WorkflowNodeInput();
+        input.setModule(new ModuleInput());
+
+        assertThrows("module validation must fail", RuntimeException.class, () -> subject.initWorkflowNodeModel(input, new WorkflowNodeModel()));
+    }
+
+    @Test
+    public void givenProcessNotExist_whenInitWorkflowNodeModel_thenThrowException() {
+        when(mockProcessRepository.findById(anyInt()))
+            .thenReturn(Optional.empty());
+
+        WorkflowNodeInput input = new WorkflowNodeInput();
+        input.setProcess(new ProcessInput());
+
+        assertThrows("process validation must fail", RuntimeException.class, () -> subject.initWorkflowNodeModel(input, new WorkflowNodeModel()));
+    }
 }
