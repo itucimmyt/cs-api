@@ -81,4 +81,36 @@ public class WorkflowStatusServiceImplTest {
             ,() -> subject.initWorkflowStatus(input, new WorkflowStatusModel()));
     }
 
+    @Test
+    public void givenObjectExist_whenModifyWorkflowStatus_thenUpdateWorkflowStatus() {
+        when(mockConverter.convert(any(), eq(WorkflowStatusModel.class)))
+            .thenReturn(new WorkflowStatusModel());
+        when(mockConverter.convert(any(), eq(WorkflowStatusTo.class)))
+            .thenReturn(new WorkflowStatusTo());
+        when(mockWorkflowstatusRepository.findById(anyInt()))
+            .thenReturn(Optional.of(new WorkflowStatusModel()));
+
+        WorkflowStatusInput objectInput = new WorkflowStatusInput();
+        subject.modifyWorkflowStatus(objectInput);
+    
+        verify(mockConverter)
+            .convert(eq(objectInput), eq(WorkflowStatusModel.class));
+        verify(mockConverter)
+            .convert(any(), eq(WorkflowStatusTo.class));
+        verify(mockWorkflowstatusRepository)
+            .findById(anyInt());
+        verify(mockWorkflowstatusRepository).save(any());
+    }
+
+    @Test
+    public void givenObjectNotExist_whenModifyWorkflowStatus_thenThrowException() {
+        when(mockWorkflowstatusRepository.findById(anyInt()))
+            .thenReturn(Optional.empty());
+
+        assertThrows("find workflowstatus must fail", RuntimeException.class
+            ,() -> subject.modifyWorkflowStatus(new WorkflowStatusInput()));
+        
+        verify(mockWorkflowstatusRepository).findById(anyInt());
+
+    }
 }

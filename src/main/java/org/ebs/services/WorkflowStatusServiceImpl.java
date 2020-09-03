@@ -129,9 +129,12 @@ import org.springframework.transaction.annotation.Transactional;
 	 */
 	@Override @Transactional(readOnly = false)
 	public WorkflowStatusTo modifyWorkflowStatus(WorkflowStatusInput workflowstatus){
-		WorkflowStatusModel target= workflowstatusRepository.findById(workflowstatus.getId()).orElseThrow(() -> new RuntimeException("WorkflowStatus not found")); 
-		 WorkflowStatusModel source= converter.convert(workflowstatus,WorkflowStatusModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		WorkflowStatusModel target= workflowstatusRepository.findById(workflowstatus.getId())
+			.orElseThrow(() -> new RuntimeException("WorkflowStatus not found")); 
+		WorkflowStatusModel source= converter.convert(workflowstatus,WorkflowStatusModel.class); 
+		
+		initWorkflowStatus(workflowstatus, source);
+		Utils.copyNotNulls(source,target);
 		 return converter.convert(workflowstatusRepository.save(target), WorkflowStatusTo.class);
 	}
 
