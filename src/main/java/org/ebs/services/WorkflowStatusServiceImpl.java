@@ -13,6 +13,7 @@ import java.util.Optional;
 
 import org.ebs.model.WorkflowInstanceModel;
 import org.ebs.model.WorkflowStatusModel;
+import org.ebs.model.WorkflowStatusTypeModel;
 import org.ebs.model.repos.WorkflowInstanceRepository;
 import org.ebs.model.repos.WorkflowStatusRepository;
 import org.ebs.model.repos.WorkflowStatusTypeRepository;
@@ -45,17 +46,31 @@ import org.springframework.transaction.annotation.Transactional;
 
 	/**
 	 * 
-	 * @param WorkflowStatus
+	 * @param workflowStatus
 	 */
 	@Override @Transactional(readOnly = false)
-	public WorkflowStatusTo createWorkflowStatus(WorkflowStatusInput WorkflowStatus){
-		WorkflowStatusModel model = converter.convert(WorkflowStatus,WorkflowStatusModel.class); 
-		 model.setId(0);
-		 WorkflowInstanceModel workflowinstanceModel = workflowinstanceRepository.findById(WorkflowStatus.getworkflowinstance().getId()).get(); 
-		model.setworkflowinstance(workflowinstanceModel); 
+	public WorkflowStatusTo createWorkflowStatus(WorkflowStatusInput workflowStatus){
+		WorkflowStatusModel model = converter.convert(workflowStatus,WorkflowStatusModel.class); 
+		model.setId(0);
+		initWorkflowStatus(workflowStatus, model);
 		 
-		 model= workflowstatusRepository.save(model); 
-		 return converter.convert(model, WorkflowStatusTo.class); 
+		model = workflowstatusRepository.save(model); 
+		return converter.convert(model, WorkflowStatusTo.class); 
+	}
+
+	void initWorkflowStatus(WorkflowStatusInput input, WorkflowStatusModel model) {
+		Optional<WorkflowStatusInput> optInput = Optional.of(input);
+		WorkflowInstanceModel wfInstance = optInput.map(i -> i.getworkflowinstance())
+			.map(i -> workflowinstanceRepository.findById(i.getId())
+				.orElseThrow(() -> new RuntimeException("workflowinstance does not exist")))
+			.orElse(null);
+		model.setworkflowinstance(wfInstance);
+
+		WorkflowStatusTypeModel wfStatusType = optInput.map(i -> i.getworkflowstatustype())
+			.map(i -> workflowstatustypeRepository.findById(i.getId())
+				.orElseThrow(() -> new RuntimeException("workflowstatustype does not exist")))
+			.orElse(null);
+		model.setworkflowstatustype(wfStatusType);;
 	}
 
 	/**
