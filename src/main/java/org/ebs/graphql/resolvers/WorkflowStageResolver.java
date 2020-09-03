@@ -44,7 +44,7 @@ public class WorkflowStageResolver implements GraphQLResolver<WorkflowStageTo> {
 	 * @param workflowstageTo
 	 */
 	public HtmlTagTo getHtmltag(WorkflowStageTo workflowstageTo){
-		return workflowstageService.findHtmlTag(workflowstageTo.getId()).get();
+		return workflowstageService.findHtmlTag(workflowstageTo.getId()).orElse(null);
 	}
 
 	/**
@@ -68,7 +68,7 @@ public class WorkflowStageResolver implements GraphQLResolver<WorkflowStageTo> {
 	 * @param workflowstageTo
 	 */
 	public WorkflowPhaseTo getWorkflowphase(WorkflowStageTo workflowstageTo){
-		return workflowstageService.findWorkflowPhase(workflowstageTo.getId()).get();
+		return workflowstageService.findWorkflowPhase(workflowstageTo.getId()).orElse(null);
 	}
 
 	/**
