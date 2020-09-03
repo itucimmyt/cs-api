@@ -203,6 +203,7 @@ import org.ebs.services.to.WorkflowNodeTo;
 	public WorkflowTo modifyWorkflow(WorkflowInput workflow){
 		WorkflowModel target= workflowRepository.findById(workflow.getId()).orElseThrow(() -> new RuntimeException("Workflow not found")); 
 		 WorkflowModel source= converter.convert(workflow,WorkflowModel.class); 
+		 initWorkflowModel(workflow, source);
 		 Utils.copyNotNulls(source,target); 
 		 return converter.convert(workflowRepository.save(target), WorkflowTo.class);
 	}

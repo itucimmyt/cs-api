@@ -68,6 +68,40 @@ public class WorkflowServiceImplTest {
     }
 
     @Test
+    public void givenObjectExist_whenModifyWorkflow_thenUpdateWorkflow() {
+        when(mockConverter.convert(any(), eq(WorkflowModel.class)))
+            .thenReturn(new WorkflowModel());
+        when(mockConverter.convert(any(), eq(WorkflowTo.class)))
+            .thenReturn(new WorkflowTo());
+        when(mockWorkflowRepository.findById(anyInt()))
+            .thenReturn(Optional.of(new WorkflowModel()));
+
+        WorkflowInput objectInput = new WorkflowInput();
+        subject.modifyWorkflow(objectInput);
+
+        verify(mockConverter, times(1))
+            .convert(eq(objectInput), eq(WorkflowModel.class));
+        verify(mockConverter, times(1))
+            .convert(any(), eq(WorkflowTo.class));
+        verify(mockWorkflowRepository, times(1))
+            .findById(anyInt());
+        verify(mockWorkflowRepository, times(1))
+            .save(any());
+    }
+
+    @Test
+    public void givenObjectNotExist_whenModifyWorkflow_thenThrowException() {
+        when(mockWorkflowRepository.findById(anyInt()))
+            .thenReturn(Optional.empty());
+
+        assertThrows("find workflow must fail", RuntimeException.class
+            ,() -> subject.modifyWorkflow(new WorkflowInput()));
+        
+        verify(mockWorkflowRepository, times(1))
+            .findById(anyInt());
+    }
+
+    @Test
     public void givenHtmlTagNotExist_whenInitWorkflowModel_thenThrowException() {
         when(mockHtmltagRepository.findById(anyInt()))
             .thenReturn(Optional.empty());
