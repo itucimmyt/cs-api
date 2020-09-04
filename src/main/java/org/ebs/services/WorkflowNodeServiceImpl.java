@@ -13,12 +13,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import java.util.Optional;
-import org.ebs.util.FilterInput;
-import org.ebs.util.PageInput;
-import org.ebs.util.SortInput;
-import org.ebs.util.Utils;
-import org.springframework.core.convert.ConversionService;
-import java.util.stream.Collectors;
 import java.util.Set;
 import org.ebs.model.WorkflowModel;
 import org.ebs.model.repos.WorkflowRepository;
@@ -33,6 +27,10 @@ import org.ebs.model.repos.ModuleRepository;
 import org.ebs.model.repos.WorkflowNodeRepository;
 import org.ebs.model.repos.WorkflowStageRepository;
 import org.ebs.model.repos.ActionRepository;
+import org.ebs.model.repos.EntityReferenceRepository;
+import org.ebs.model.repos.HtmlTagRepository;
+import org.ebs.model.repos.ModuleRepository;
+import org.ebs.model.repos.ProcessRepository;
 import org.ebs.model.repos.WorkflowEventRepository;
 import org.ebs.model.repos.WorkflowNodeCFRepository;
 import org.springframework.transaction.annotation.Transactional;
@@ -71,17 +69,39 @@ import org.ebs.services.to.HtmlTagTo;
 
 	/**
 	 * 
-	 * @param WorkflowNode
+	 * @param workflowNode
 	 */
 	@Override @Transactional(readOnly = false)
 	public WorkflowNodeTo createworkflownode(WorkflowNodeInput WorkflowNode){
 		WorkflowNodeModel model = converter.convert(WorkflowNode,WorkflowNodeModel.class); 
 		 model.setId(0);
-		 WorkflowModel workflowModel = workflowRepository.findById(WorkflowNode.getWorkflow().getId()).get(); 
+		 initWorkflowNodeModel(workflowNode, model);
+		 model = workflownodeRepository.save(model); 
+		 return converter.convert(model, WorkflowNodeTo.class); 
+	}
+
+	void initWorkflowNodeModel(WorkflowNodeInput workflowNode, WorkflowNodeModel model) {
+		Optional<WorkflowNodeInput> optWFN = Optional.of(workflowNode);
+
+		WorkflowModel workflowModel = optWFN
+			.map(wfn -> wfn.getWorkflow())
+			.map(w -> workflowRepository.findById(w.getId())
+				.orElseThrow(() -> new RuntimeException("workflow does not exist")))
+			.orElse(null);
 		model.setWorkflow(workflowModel); 
-		EntityReferenceModel entityreferenceModel = entityreferenceRepository.findById(WorkflowNode.getEntityreference().getId()).get(); 
+
+		EntityReferenceModel entityreferenceModel = optWFN
+			.map(wfn -> wfn.getEntityreference())
+			.map(er -> entityreferenceRepository.findById(er.getId())
+				.orElseThrow(() -> new RuntimeException("entityreference does not exist")))
+			.orElse(null);
 		model.setEntityreference(entityreferenceModel); 
-		HtmlTagModel htmltagModel = htmltagRepository.findById(WorkflowNode.getHtmltag().getId()).get(); 
+		
+		HtmlTagModel htmltagModel = optWFN
+			.map(wfn -> wfn.getHtmltag())
+			.map(ht -> htmltagRepository.findById(ht.getId())
+				.orElseThrow(() -> new RuntimeException("htmltag does not exist")))
+			.orElse(null);
 		model.setHtmltag(htmltagModel); 
 		ProcessModel processModel = processRepository.findById(WorkflowNode.getProcess().getId()).get(); 
 		model.setProcess(processModel); 

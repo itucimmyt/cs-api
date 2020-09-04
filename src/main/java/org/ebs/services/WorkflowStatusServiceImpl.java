@@ -46,7 +46,7 @@ import org.ebs.services.to.WorkflowInstanceTo;
 
 	/**
 	 * 
-	 * @param WorkflowStatus
+	 * @param workflowStatus
 	 */
 	@Override @Transactional(readOnly = false)
 	public WorkflowStatusTo createworkflowstatus(WorkflowStatusInput WorkflowStatus){
@@ -55,8 +55,23 @@ import org.ebs.services.to.WorkflowInstanceTo;
 		 WorkflowInstanceModel workflowinstanceModel = workflowinstanceRepository.findById(WorkflowStatus.getWorkflowinstance().getId()).get(); 
 		model.setWorkflowinstance(workflowinstanceModel); 
 		 
-		 model= workflowstatusRepository.save(model); 
-		 return converter.convert(model, WorkflowStatusTo.class); 
+		model = workflowstatusRepository.save(model); 
+		return converter.convert(model, WorkflowStatusTo.class); 
+	}
+
+	void initWorkflowStatus(WorkflowStatusInput input, WorkflowStatusModel model) {
+		Optional<WorkflowStatusInput> optInput = Optional.of(input);
+		WorkflowInstanceModel wfInstance = optInput.map(i -> i.getworkflowinstance())
+			.map(i -> workflowinstanceRepository.findById(i.getId())
+				.orElseThrow(() -> new RuntimeException("workflowinstance does not exist")))
+			.orElse(null);
+		model.setworkflowinstance(wfInstance);
+
+		WorkflowStatusTypeModel wfStatusType = optInput.map(i -> i.getworkflowstatustype())
+			.map(i -> workflowstatustypeRepository.findById(i.getId())
+				.orElseThrow(() -> new RuntimeException("workflowstatustype does not exist")))
+			.orElse(null);
+		model.setworkflowstatustype(wfStatusType);;
 	}
 
 	/**

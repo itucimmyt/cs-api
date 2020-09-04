@@ -52,14 +52,18 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	@Override @Transactional(readOnly = false)
 	public WorkflowCFValueTo createworkflowcfvalue(WorkflowCFValueInput WorkflowCFValue){
 		WorkflowCFValueModel model = converter.convert(WorkflowCFValue,WorkflowCFValueModel.class); 
-		 model.setId(0);
-		 RequestModel requestModel = requestRepository.findById(WorkflowCFValue.getRequest().getId()).get(); 
+		model.setId(0);
+		
+		RequestModel requestModel = Optional.of(WorkflowCFValue)
+			 .map(w -> w.getRequest())
+			 .map(r -> requestRepository.findById(r.getId()).get())
+			 .orElse(null); 
 		model.setRequest(requestModel); 
 		WorkflowNodeCFModel workflownodecfModel = workflownodecfRepository.findById(WorkflowCFValue.getWorkflownodecf().getId()).get(); 
 		model.setWorkflownodecf(workflownodecfModel); 
 		 
-		 model= workflowcfvalueRepository.save(model); 
-		 return converter.convert(model, WorkflowCFValueTo.class); 
+		model= workflowcfvalueRepository.save(model); 
+		return converter.convert(model, WorkflowCFValueTo.class); 
 	}
 
 	/**
@@ -119,9 +123,22 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	@Override @Transactional(readOnly = false)
 	public WorkflowCFValueTo modifyworkflowcfvalue(WorkflowCFValueInput workflowcfvalue){
 		WorkflowCFValueModel target= workflowcfvalueRepository.findById(workflowcfvalue.getId()).orElseThrow(() -> new RuntimeException("WorkflowCFValue not found")); 
-		 WorkflowCFValueModel source= converter.convert(workflowcfvalue,WorkflowCFValueModel.class); 
-		 Utils.copyNotNulls(source,target); 
-		 return converter.convert(workflowcfvalueRepository.save(target), WorkflowCFValueTo.class);
+		WorkflowCFValueModel source= converter.convert(workflowcfvalue,WorkflowCFValueModel.class); 
+		Utils.copyNotNulls(source,target); 
+
+		RequestModel requestModel = Optional.of(workflowcfvalue)
+			.map(w -> w.getRequest())
+			.map(r -> requestRepository.findById(r.getId()).orElseThrow(() -> new RuntimeException("request does not exist")))
+			.orElse(null); 
+		target.setRequest(requestModel);
+	
+		WorkflowNodeCFModel workflownodecfModel = Optional.of(workflowcfvalue)
+			.map(w -> w.getWorkflowNodeCF())
+			.map(w -> workflownodecfRepository.findById(w.getId()).orElseThrow(() -> new RuntimeException("workflowNodeCF does not exist")))
+			.orElse(null);
+		target.setWorkflowNodeCF(workflownodecfModel); 
+
+		return converter.convert(workflowcfvalueRepository.save(target), WorkflowCFValueTo.class);
 	}
 
 	/**
