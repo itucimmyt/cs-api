@@ -1,431 +1,600 @@
-type Query {findWorkflowCFType(id:ID!):WorkflowCFType
-findWorkflowCFTypeList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowCFTypeConnection
-findWorkflowCFValue(id:ID!):WorkflowCFValue
-findWorkflowCFValueList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowCFValueConnection
-findWorkflowEvent(id:ID!):WorkflowEvent
-findWorkflowEventList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowEventConnection
-findWorkflowInstance(id:ID!):WorkflowInstance
-findWorkflowInstanceList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowInstanceConnection
-findWorkflowNode(id:ID!):WorkflowNode
-findWorkflowNodeList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowNodeConnection
-findWorkflowNodeCF(id:ID!):WorkflowNodeCF
-findWorkflowNodeCFList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowNodeCFConnection
-findWorkflowPhase(id:ID!):WorkflowPhase
-findWorkflowPhaseList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowPhaseConnection
-findWorkflowStage(id:ID!):WorkflowStage
-findWorkflowStageList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowStageConnection
-findWorkflowStatus(id:ID!):WorkflowStatus
-findWorkflowStatusList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowStatusConnection
-findTraitClass(id:ID!):TraitClass
-findTraitClassList( page: PageInput, sort:SortInput,filters:[FilterInput]):TraitClassConnection
-findAssayclass(id:ID!):Assayclass
-findAssayclassList( page: PageInput, sort:SortInput,filters:[FilterInput]):AssayclassConnection
-findAssayGene(id:ID!):AssayGene
-findAssayGeneList( page: PageInput, sort:SortInput,filters:[FilterInput]):AssayGeneConnection
-findDataFormat(id:ID!):DataFormat
-findDataFormatList( page: PageInput, sort:SortInput,filters:[FilterInput]):DataFormatConnection
-findMarker(id:ID!):Marker
-findMarkerList( page: PageInput, sort:SortInput,filters:[FilterInput]):MarkerConnection
-findMarkerSynonym(id:ID!):MarkerSynonym
-findMarkerSynonymList( page: PageInput, sort:SortInput,filters:[FilterInput]):MarkerSynonymConnection
-findPurpose(id:ID!):Purpose
-findPurposeList( page: PageInput, sort:SortInput,filters:[FilterInput]):PurposeConnection
-findService(id:ID!):Service
-findServiceList( page: PageInput, sort:SortInput,filters:[FilterInput]):ServiceConnection
-findServiceProvider(id:ID!):ServiceProvider
-findServiceProviderList( page: PageInput, sort:SortInput,filters:[FilterInput]):ServiceProviderConnection
-findServiceType(id:ID!):ServiceType
-findServiceTypeList( page: PageInput, sort:SortInput,filters:[FilterInput]):ServiceTypeConnection
-findTechnologyPlatform(id:ID!):TechnologyPlatform
-findTechnologyPlatformList( page: PageInput, sort:SortInput,filters:[FilterInput]):TechnologyPlatformConnection
-findTrait(id:ID!):Trait
-findTraitList( page: PageInput, sort:SortInput,filters:[FilterInput]):TraitConnection
-findWorkflowStatusType(id:ID!):WorkflowStatusType
-findWorkflowStatusTypeList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowStatusTypeConnection
-findAction(id:ID!):Action
-findActionList( page: PageInput, sort:SortInput,filters:[FilterInput]):ActionConnection
-findAddress(id:ID!):Address
-findAddressList( page: PageInput, sort:SortInput,filters:[FilterInput]):AddressConnection
-findAlert(id:ID!):Alert
-findAlertList( page: PageInput, sort:SortInput,filters:[FilterInput]):AlertConnection
-findAlertRule(id:ID!):AlertRule
-findAlertRuleList( page: PageInput, sort:SortInput,filters:[FilterInput]):AlertRuleConnection
-findAttributes(id:ID!):Attributes
-findAttributesList( page: PageInput, sort:SortInput,filters:[FilterInput]):AttributesConnection
-findAuditLogs(id:ID!):AuditLogs
-findAuditLogsList( page: PageInput, sort:SortInput,filters:[FilterInput]):AuditLogsConnection
-findAuthenticationType(id:ID!):AuthenticationType
-findAuthenticationTypeList( page: PageInput, sort:SortInput,filters:[FilterInput]):AuthenticationTypeConnection
-findCollaborator(id:ID!):Collaborator
-findCollaboratorList( page: PageInput, sort:SortInput,filters:[FilterInput]):CollaboratorConnection
-findComponent(id:ID!):Component
-findComponentList( page: PageInput, sort:SortInput,filters:[FilterInput]):ComponentConnection
-findCountry(id:ID!):Country
-findCountryList( page: PageInput, sort:SortInput,filters:[FilterInput]):CountryConnection
-findCrop(id:ID!):Crop
-findCropList( page: PageInput, sort:SortInput,filters:[FilterInput]):CropConnection
-findCustomer(id:ID!):Customer
-findCustomerList( page: PageInput, sort:SortInput,filters:[FilterInput]):CustomerConnection
-findDelegation(id:ID!):Delegation
-findDelegationList( page: PageInput, sort:SortInput,filters:[FilterInput]):DelegationConnection
-findDonor(id:ID!):Donor
-findDonorList( page: PageInput, sort:SortInput,filters:[FilterInput]):DonorConnection
-findEmailTemplate(id:ID!):EmailTemplate
-findEmailTemplateList( page: PageInput, sort:SortInput,filters:[FilterInput]):EmailTemplateConnection
-findEntityReference(id:ID!):EntityReference
-findEntityReferenceList( page: PageInput, sort:SortInput,filters:[FilterInput]):EntityReferenceConnection
-findHtmlTag(id:ID!):HtmlTag
-findHtmlTagList( page: PageInput, sort:SortInput,filters:[FilterInput]):HtmlTagConnection
-findInstance(id:ID!):Instance
-findInstanceList( page: PageInput, sort:SortInput,filters:[FilterInput]):InstanceConnection
-findLanguage(id:ID!):Language
-findLanguageList( page: PageInput, sort:SortInput,filters:[FilterInput]):LanguageConnection
-findMessage(id:ID!):Message
-findMessageList( page: PageInput, sort:SortInput,filters:[FilterInput]):MessageConnection
-findModule(id:ID!):Module
-findModuleList( page: PageInput, sort:SortInput,filters:[FilterInput]):ModuleConnection
-findNumberSequenceRule(id:ID!):NumberSequenceRule
-findNumberSequenceRuleList( page: PageInput, sort:SortInput,filters:[FilterInput]):NumberSequenceRuleConnection
-findNumberSequenceRuleSegment(id:ID!):NumberSequenceRuleSegment
-findNumberSequenceRuleSegmentList( page: PageInput, sort:SortInput,filters:[FilterInput]):NumberSequenceRuleSegmentConnection
-findOrganization(id:ID!):Organization
-findOrganizationList( page: PageInput, sort:SortInput,filters:[FilterInput]):OrganizationConnection
-findPartner(id:ID!):Partner
-findPartnerList( page: PageInput, sort:SortInput,filters:[FilterInput]):PartnerConnection
-findPerson(id:ID!):Person
-findPersonList( page: PageInput, sort:SortInput,filters:[FilterInput]):PersonConnection
-findPreference(id:ID!):Preference
-findPreferenceList( page: PageInput, sort:SortInput,filters:[FilterInput]):PreferenceConnection
-findProcess(id:ID!):Process
-findProcessList( page: PageInput, sort:SortInput,filters:[FilterInput]):ProcessConnection
-findProgram(id:ID!):Program
-findProgramList( page: PageInput, sort:SortInput,filters:[FilterInput]):ProgramConnection
-findProject(id:ID!):Project
-findProjectList( page: PageInput, sort:SortInput,filters:[FilterInput]):ProjectConnection
-findRequest(id:ID!):Request
-findRequestList( page: PageInput, sort:SortInput,filters:[FilterInput]):RequestConnection
-findRole(id:ID!):Role
-findRoleList( page: PageInput, sort:SortInput,filters:[FilterInput]):RoleConnection
-findRoleAction(id:ID!):RoleAction
-findRoleActionList( page: PageInput, sort:SortInput,filters:[FilterInput]):RoleActionConnection
-findSeason(id:ID!):Season
-findSeasonList( page: PageInput, sort:SortInput,filters:[FilterInput]):SeasonConnection
-findSegment(id:ID!):Segment
-findSegmentList( page: PageInput, sort:SortInput,filters:[FilterInput]):SegmentConnection
-findSession(id:ID!):Session
-findSessionList( page: PageInput, sort:SortInput,filters:[FilterInput]):SessionConnection
-findStyleTheme(id:ID!):StyleTheme
-findStyleThemeList( page: PageInput, sort:SortInput,filters:[FilterInput]):StyleThemeConnection
-findteam(id:ID!):team
-findteamList( page: PageInput, sort:SortInput,filters:[FilterInput]):teamConnection
-findTenant(id:ID!):Tenant
-findTenantList( page: PageInput, sort:SortInput,filters:[FilterInput]):TenantConnection
-findTranslation(id:ID!):Translation
-findTranslationList( page: PageInput, sort:SortInput,filters:[FilterInput]):TranslationConnection
-findUser(id:ID!):User
-findUserList( page: PageInput, sort:SortInput,filters:[FilterInput]):UserConnection
-findVendor(id:ID!):Vendor
-findVendorList( page: PageInput, sort:SortInput,filters:[FilterInput]):VendorConnection
-findWorkflow(id:ID!):Workflow
-findWorkflowList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowConnection
+type Query {findtrait(id:ID!):Trait
+findtraitList( page: PageInput, sort:SortInput,filters:[FilterInput]):TraitConnection
+findtechnologyplatform(id:ID!):TechnologyPlatform
+findtechnologyplatformList( page: PageInput, sort:SortInput,filters:[FilterInput]):TechnologyPlatformConnection
+findservicetype(id:ID!):ServiceType
+findservicetypeList( page: PageInput, sort:SortInput,filters:[FilterInput]):ServiceTypeConnection
+findserviceprovider(id:ID!):ServiceProvider
+findserviceproviderList( page: PageInput, sort:SortInput,filters:[FilterInput]):ServiceProviderConnection
+findservice(id:ID!):Service
+findserviceList( page: PageInput, sort:SortInput,filters:[FilterInput]):ServiceConnection
+findpurpose(id:ID!):Purpose
+findpurposeList( page: PageInput, sort:SortInput,filters:[FilterInput]):PurposeConnection
+findmarkersynonym(id:ID!):MarkerSynonym
+findmarkersynonymList( page: PageInput, sort:SortInput,filters:[FilterInput]):MarkerSynonymConnection
+findmarker(id:ID!):Marker
+findmarkerList( page: PageInput, sort:SortInput,filters:[FilterInput]):MarkerConnection
+finddataformat(id:ID!):DataFormat
+finddataformatList( page: PageInput, sort:SortInput,filters:[FilterInput]):DataFormatConnection
+findassaygene(id:ID!):AssayGene
+findassaygeneList( page: PageInput, sort:SortInput,filters:[FilterInput]):AssayGeneConnection
+findassayclass(id:ID!):Assayclass
+findassayclassList( page: PageInput, sort:SortInput,filters:[FilterInput]):AssayclassConnection
+findtraitclass(id:ID!):TraitClass
+findtraitclassList( page: PageInput, sort:SortInput,filters:[FilterInput]):TraitClassConnection
+findworkflowstatus(id:ID!):WorkflowStatus
+findworkflowstatusList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowStatusConnection
+findworkflowstage(id:ID!):WorkflowStage
+findworkflowstageList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowStageConnection
+findworkflowphase(id:ID!):WorkflowPhase
+findworkflowphaseList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowPhaseConnection
+findworkflownodecf(id:ID!):WorkflowNodeCF
+findworkflownodecfList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowNodeCFConnection
+findworkflownode(id:ID!):WorkflowNode
+findworkflownodeList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowNodeConnection
+findworkflowinstance(id:ID!):WorkflowInstance
+findworkflowinstanceList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowInstanceConnection
+findworkflowevent(id:ID!):WorkflowEvent
+findworkfloweventList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowEventConnection
+findworkflowcfvalue(id:ID!):WorkflowCFValue
+findworkflowcfvalueList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowCFValueConnection
+findworkflowcftype(id:ID!):WorkflowCFType
+findworkflowcftypeList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowCFTypeConnection
+findworkflow(id:ID!):Workflow
+findworkflowList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowConnection
+findvendor(id:ID!):Vendor
+findvendorList( page: PageInput, sort:SortInput,filters:[FilterInput]):VendorConnection
+finduser(id:ID!):User
+finduserList( page: PageInput, sort:SortInput,filters:[FilterInput]):UserConnection
+findtranslation(id:ID!):Translation
+findtranslationList( page: PageInput, sort:SortInput,filters:[FilterInput]):TranslationConnection
+findtenant(id:ID!):Tenant
+findtenantList( page: PageInput, sort:SortInput,filters:[FilterInput]):TenantConnection
+findteam(id:ID!):Team
+findteamList( page: PageInput, sort:SortInput,filters:[FilterInput]):TeamConnection
+findstyletheme(id:ID!):StyleTheme
+findstylethemeList( page: PageInput, sort:SortInput,filters:[FilterInput]):StyleThemeConnection
+findsession(id:ID!):Session
+findsessionList( page: PageInput, sort:SortInput,filters:[FilterInput]):SessionConnection
+findsegment(id:ID!):Segment
+findsegmentList( page: PageInput, sort:SortInput,filters:[FilterInput]):SegmentConnection
+findseason(id:ID!):Season
+findseasonList( page: PageInput, sort:SortInput,filters:[FilterInput]):SeasonConnection
+findroleaction(id:ID!):RoleAction
+findroleactionList( page: PageInput, sort:SortInput,filters:[FilterInput]):RoleActionConnection
+findrole(id:ID!):Role
+findroleList( page: PageInput, sort:SortInput,filters:[FilterInput]):RoleConnection
+findrequest(id:ID!):Request
+findrequestList( page: PageInput, sort:SortInput,filters:[FilterInput]):RequestConnection
+findproject(id:ID!):Project
+findprojectList( page: PageInput, sort:SortInput,filters:[FilterInput]):ProjectConnection
+findprogram(id:ID!):Program
+findprogramList( page: PageInput, sort:SortInput,filters:[FilterInput]):ProgramConnection
+findprocess(id:ID!):Process
+findprocessList( page: PageInput, sort:SortInput,filters:[FilterInput]):ProcessConnection
+findpreference(id:ID!):Preference
+findpreferenceList( page: PageInput, sort:SortInput,filters:[FilterInput]):PreferenceConnection
+findperson(id:ID!):Person
+findpersonList( page: PageInput, sort:SortInput,filters:[FilterInput]):PersonConnection
+findpartner(id:ID!):Partner
+findpartnerList( page: PageInput, sort:SortInput,filters:[FilterInput]):PartnerConnection
+findorganization(id:ID!):Organization
+findorganizationList( page: PageInput, sort:SortInput,filters:[FilterInput]):OrganizationConnection
+findnumbersequencerulesegment(id:ID!):NumberSequenceRuleSegment
+findnumbersequencerulesegmentList( page: PageInput, sort:SortInput,filters:[FilterInput]):NumberSequenceRuleSegmentConnection
+findnumbersequencerule(id:ID!):NumberSequenceRule
+findnumbersequenceruleList( page: PageInput, sort:SortInput,filters:[FilterInput]):NumberSequenceRuleConnection
+findmodule(id:ID!):Module
+findmoduleList( page: PageInput, sort:SortInput,filters:[FilterInput]):ModuleConnection
+findnotification(id:ID!):Notification
+findnotificationList( page: PageInput, sort:SortInput,filters:[FilterInput]):NotificationConnection
+findlanguage(id:ID!):Language
+findlanguageList( page: PageInput, sort:SortInput,filters:[FilterInput]):LanguageConnection
+findinstance(id:ID!):Instance
+findinstanceList( page: PageInput, sort:SortInput,filters:[FilterInput]):InstanceConnection
+findhtmltag(id:ID!):HtmlTag
+findhtmltagList( page: PageInput, sort:SortInput,filters:[FilterInput]):HtmlTagConnection
+findentityreference(id:ID!):EntityReference
+findentityreferenceList( page: PageInput, sort:SortInput,filters:[FilterInput]):EntityReferenceConnection
+findemailtemplate(id:ID!):EmailTemplate
+findemailtemplateList( page: PageInput, sort:SortInput,filters:[FilterInput]):EmailTemplateConnection
+finddonor(id:ID!):Donor
+finddonorList( page: PageInput, sort:SortInput,filters:[FilterInput]):DonorConnection
+finddelegation(id:ID!):Delegation
+finddelegationList( page: PageInput, sort:SortInput,filters:[FilterInput]):DelegationConnection
+findcustomer(id:ID!):Customer
+findcustomerList( page: PageInput, sort:SortInput,filters:[FilterInput]):CustomerConnection
+findcrop(id:ID!):Crop
+findcropList( page: PageInput, sort:SortInput,filters:[FilterInput]):CropConnection
+findcountry(id:ID!):Country
+findcountryList( page: PageInput, sort:SortInput,filters:[FilterInput]):CountryConnection
+findcomponent(id:ID!):Component
+findcomponentList( page: PageInput, sort:SortInput,filters:[FilterInput]):ComponentConnection
+findcollaborator(id:ID!):Collaborator
+findcollaboratorList( page: PageInput, sort:SortInput,filters:[FilterInput]):CollaboratorConnection
+findauthenticationtype(id:ID!):AuthenticationType
+findauthenticationtypeList( page: PageInput, sort:SortInput,filters:[FilterInput]):AuthenticationTypeConnection
+findauditlogs(id:ID!):AuditLogs
+findauditlogsList( page: PageInput, sort:SortInput,filters:[FilterInput]):AuditLogsConnection
+findattributes(id:ID!):Attributes
+findattributesList( page: PageInput, sort:SortInput,filters:[FilterInput]):AttributesConnection
+findalertrule(id:ID!):AlertRule
+findalertruleList( page: PageInput, sort:SortInput,filters:[FilterInput]):AlertRuleConnection
+findalert(id:ID!):Alert
+findalertList( page: PageInput, sort:SortInput,filters:[FilterInput]):AlertConnection
+findaddress(id:ID!):Address
+findaddressList( page: PageInput, sort:SortInput,filters:[FilterInput]):AddressConnection
+findaction(id:ID!):Action
+findactionList( page: PageInput, sort:SortInput,filters:[FilterInput]):ActionConnection
+findworkflowstatustype(id:ID!):WorkflowStatusType
+findworkflowstatustypeList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowStatusTypeConnection
 }
-type Mutation {createWorkflowCFType(WorkflowCFTypeTo:WorkflowCFTypeInput!):WorkflowCFType
-modifyWorkflowCFType(WorkflowCFTypeTo:WorkflowCFTypeInput!):WorkflowCFType
-deleteWorkflowCFType(idworkflowcftype:Int!):Int
-createWorkflowCFValue(WorkflowCFValue:WorkflowCFValueInput!):WorkflowCFValue
-modifyWorkflowCFValue(WorkflowCFValue:WorkflowCFValueInput!):WorkflowCFValue
-deleteWorkflowCFValue(idworkflowcfvalue:Int!):Int
-createWorkflowEvent(WorkflowEventTo:WorkflowEventInput!):WorkflowEvent
-modifyWorkflowEvent(WorkflowEventTo:WorkflowEventInput!):WorkflowEvent
-deleteWorkflowEvent(idworkflowevent:Int!):Int
-createWorkflowInstance(WorkflowInstanceTo:WorkflowInstanceInput!):WorkflowInstance
-modifyWorkflowInstance(WorkflowInstanceTo:WorkflowInstanceInput!):WorkflowInstance
-deleteWorkflowInstance(idworkflowinstance:Int!):Int
-createWorkflowNode(WorkflowNodeTo:WorkflowNodeInput!):WorkflowNode
-modifyWorkflowNode(WorkflowNodeTo:WorkflowNodeInput!):WorkflowNode
-deleteWorkflowNode(idworkflownode:Int!):Int
-createWorkflowNodeCF(WorkflowNodeCFTo:WorkflowNodeCFInput!):WorkflowNodeCF
-modifyWorkflowNodeCF(WorkflowNodeCFTo:WorkflowNodeCFInput!):WorkflowNodeCF
-deleteWorkflowNodeCF(idworkflownodecf:Int!):Int
-createWorkflowPhase(WorkflowPhaseTo:WorkflowPhaseInput!):WorkflowPhase
-modifyWorkflowPhase(WorkflowPhaseTo:WorkflowPhaseInput!):WorkflowPhase
-deleteWorkflowPhase(idworkflowphase:Int!):Int
-createWorkflowStage(WorkflowStageTo:WorkflowStageInput!):WorkflowStage
-modifyWorkflowStage(WorkflowStageTo:WorkflowStageInput!):WorkflowStage
-deleteWorkflowStage(idworkflowstage:Int!):Int
-createWorkflowStatus(WorkflowStatusTo:WorkflowStatusInput!):WorkflowStatus
-modifyWorkflowStatus(WorkflowStatusTo:WorkflowStatusInput!):WorkflowStatus
-deleteWorkflowStatus(idworkflowstatus:Int!):Int
-createTraitClass(TraitClassTo:TraitClassInput!):TraitClass
-modifyTraitClass(TraitClassTo:TraitClassInput!):TraitClass
-deleteTraitClass(idtraitclass:Int!):Int
-createAssayclass(AssayclassTo:AssayclassInput!):Assayclass
-modifyAssayclass(AssayclassTo:AssayclassInput!):Assayclass
-deleteAssayclass(idassayclass:Int!):Int
-createAssayGene(AssayGeneTo:AssayGeneInput!):AssayGene
-modifyAssayGene(AssayGeneTo:AssayGeneInput!):AssayGene
-deleteAssayGene(idassaygene:Int!):Int
-createDataFormat(DataFormatTo:DataFormatInput!):DataFormat
-modifyDataFormat(DataFormatTo:DataFormatInput!):DataFormat
-deleteDataFormat(iddataformat:Int!):Int
-createMarker(MarkerTo:MarkerInput!):Marker
-modifyMarker(MarkerTo:MarkerInput!):Marker
-deleteMarker(idmarker:Int!):Int
-createMarkerSynonym(MarkerSynonymTo:MarkerSynonymInput!):MarkerSynonym
-modifyMarkerSynonym(MarkerSynonymTo:MarkerSynonymInput!):MarkerSynonym
-deleteMarkerSynonym(idmarkersynonym:Int!):Int
-createPurpose(PurposeTo:PurposeInput!):Purpose
-modifyPurpose(PurposeTo:PurposeInput!):Purpose
-deletePurpose(idpurpose:Int!):Int
-createService(ServiceTo:ServiceInput!):Service
-modifyService(ServiceTo:ServiceInput!):Service
-deleteService(idservice:Int!):Int
-createServiceProvider(ServiceProviderTo:ServiceProviderInput!):ServiceProvider
-modifyServiceProvider(ServiceProviderTo:ServiceProviderInput!):ServiceProvider
-deleteServiceProvider(idserviceprovider:Int!):Int
-createServiceType(ServiceTypeTo:ServiceTypeInput!):ServiceType
-modifyServiceType(ServiceTypeTo:ServiceTypeInput!):ServiceType
-deleteServiceType(idservicetype:Int!):Int
-createTechnologyPlatform(TechnologyPlatformTo:TechnologyPlatformInput!):TechnologyPlatform
-modifyTechnologyPlatform(TechnologyPlatformTo:TechnologyPlatformInput!):TechnologyPlatform
-deleteTechnologyPlatform(idtechnologyplatform:Int!):Int
-createTrait(TraitTo:TraitInput!):Trait
-modifyTrait(TraitTo:TraitInput!):Trait
-deleteTrait(idtrait:Int!):Int
-createWorkflowStatusType(WorkflowStatusTypeTo:WorkflowStatusTypeInput!):WorkflowStatusType
-modifyWorkflowStatusType(WorkflowStatusTypeTo:WorkflowStatusTypeInput!):WorkflowStatusType
-deleteWorkflowStatusType(idworkflowstatustype:Int!):Int
-createAction(ActionTo:ActionInput!):Action
-modifyAction(ActionTo:ActionInput!):Action
-deleteAction(idaction:Int!):Int
-createAddress(AddressTo:AddressInput!):Address
-modifyAddress(AddressTo:AddressInput!):Address
-deleteAddress(idaddress:Int!):Int
-createAlert(AlertTo:AlertInput!):Alert
-modifyAlert(AlertTo:AlertInput!):Alert
-deleteAlert(idalert:Int!):Int
-createAlertRule(AlertRuleTo:AlertRuleInput!):AlertRule
-modifyAlertRule(AlertRuleTo:AlertRuleInput!):AlertRule
-deleteAlertRule(idalertrule:Int!):Int
-createAttributes(AttributesTo:AttributesInput!):Attributes
-modifyAttributes(AttributesTo:AttributesInput!):Attributes
-deleteAttributes(idattributes:Int!):Int
-createAuditLogs(AuditLogsTo:AuditLogsInput!):AuditLogs
-modifyAuditLogs(AuditLogsTo:AuditLogsInput!):AuditLogs
-deleteAuditLogs(idauditlogs:Int!):Int
-createAuthenticationType(AuthenticationTypeTo:AuthenticationTypeInput!):AuthenticationType
-modifyAuthenticationType(AuthenticationTypeTo:AuthenticationTypeInput!):AuthenticationType
-deleteAuthenticationType(idauthenticationtype:Int!):Int
-createCollaborator(CollaboratorTo:CollaboratorInput!):Collaborator
-modifyCollaborator(CollaboratorTo:CollaboratorInput!):Collaborator
-deleteCollaborator(idcollaborator:Int!):Int
-createComponent(ComponentTo:ComponentInput!):Component
-modifyComponent(ComponentTo:ComponentInput!):Component
-deleteComponent(idcomponent:Int!):Int
-createCountry(CountryTo:CountryInput!):Country
-modifyCountry(CountryTo:CountryInput!):Country
-deleteCountry(idcountry:Int!):Int
-createCrop(CropTo:CropInput!):Crop
-modifyCrop(CropTo:CropInput!):Crop
-deleteCrop(idcrop:Int!):Int
-createCustomer(CustomerTo:CustomerInput!):Customer
-modifyCustomer(CustomerTo:CustomerInput!):Customer
-deleteCustomer(idcustomer:Int!):Int
-createDelegation(DelegationTo:DelegationInput!):Delegation
-modifyDelegation(DelegationTo:DelegationInput!):Delegation
-deleteDelegation(iddelegation:Int!):Int
-createDonor(DonorTo:DonorInput!):Donor
-modifyDonor(DonorTo:DonorInput!):Donor
-deleteDonor(iddonor:Int!):Int
-createEmailTemplate(EmailTemplateTo:EmailTemplateInput!):EmailTemplate
-modifyEmailTemplate(EmailTemplateTo:EmailTemplateInput!):EmailTemplate
-deleteEmailTemplate(idemailtemplate:Int!):Int
-createEntityReference(EntityReferenceTo:EntityReferenceInput!):EntityReference
-modifyEntityReference(EntityReferenceTo:EntityReferenceInput!):EntityReference
-deleteEntityReference(identityreference:Int!):Int
-createHtmlTag(HtmlTagTo:HtmlTagInput!):HtmlTag
-modifyHtmlTag(HtmlTagTo:HtmlTagInput!):HtmlTag
-deleteHtmlTag(idhtmltag:Int!):Int
-createInstance(InstanceTo:InstanceInput!):Instance
-modifyInstance(InstanceTo:InstanceInput!):Instance
-deleteInstance(idinstance:Int!):Int
-createLanguage(LanguageTo:LanguageInput!):Language
-modifyLanguage(LanguageTo:LanguageInput!):Language
-deleteLanguage(idlanguage:Int!):Int
-createMessage(MessageTo:MessageInput!):Message
-modifyMessage(MessageTo:MessageInput!):Message
-deleteMessage(idmessage:Int!):Int
-createModule(ModuleTo:ModuleInput!):Module
-modifyModule(ModuleTo:ModuleInput!):Module
-deleteModule(idmodule:Int!):Int
-createNumberSequenceRule(NumberSequenceRuleTo:NumberSequenceRuleInput!):NumberSequenceRule
-modifyNumberSequenceRule(NumberSequenceRuleTo:NumberSequenceRuleInput!):NumberSequenceRule
-deleteNumberSequenceRule(idnumbersequencerule:Int!):Int
-createNumberSequenceRuleSegment(NumberSequenceRuleSegmentTo:NumberSequenceRuleSegmentInput!):NumberSequenceRuleSegment
-modifyNumberSequenceRuleSegment(NumberSequenceRuleSegmentTo:NumberSequenceRuleSegmentInput!):NumberSequenceRuleSegment
-deleteNumberSequenceRuleSegment(idnumbersequencerulesegment:Int!):Int
-createOrganization(OrganizationTo:OrganizationInput!):Organization
-modifyOrganization(OrganizationTo:OrganizationInput!):Organization
-deleteOrganization(idorganization:Int!):Int
-createPartner(PartnerTo:PartnerInput!):Partner
-modifyPartner(PartnerTo:PartnerInput!):Partner
-deletePartner(idpartner:Int!):Int
-createPerson(PersonTo:PersonInput!):Person
-modifyPerson(PersonTo:PersonInput!):Person
-deletePerson(idperson:Int!):Int
-createPreference(PreferenceTo:PreferenceInput!):Preference
-modifyPreference(PreferenceTo:PreferenceInput!):Preference
-deletePreference(idpreference:Int!):Int
-createProcess(ProcessTo:ProcessInput!):Process
-modifyProcess(ProcessTo:ProcessInput!):Process
-deleteProcess(idprocess:Int!):Int
-createProgram(ProgramTo:ProgramInput!):Program
-modifyProgram(ProgramTo:ProgramInput!):Program
-deleteProgram(idprogram:Int!):Int
-createProject(ProjectTo:ProjectInput!):Project
-modifyProject(ProjectTo:ProjectInput!):Project
-deleteProject(idproject:Int!):Int
-createRequest(RequestTo:RequestInput!):Request
-modifyRequest(RequestTo:RequestInput!):Request
-deleteRequest(idrequest:Int!):Int
-createRole(RoleTo:RoleInput!):Role
-modifyRole(RoleTo:RoleInput!):Role
-deleteRole(idrole:Int!):Int
-createRoleAction(RoleActionTo:RoleActionInput!):RoleAction
-modifyRoleAction(RoleActionTo:RoleActionInput!):RoleAction
-deleteRoleAction(idroleaction:Int!):Int
-createSeason(SeasonTo:SeasonInput!):Season
-modifySeason(SeasonTo:SeasonInput!):Season
-deleteSeason(idseason:Int!):Int
-createSegment(SegmentTo:SegmentInput!):Segment
-modifySegment(SegmentTo:SegmentInput!):Segment
-deleteSegment(idsegment:Int!):Int
-createSession(SessionTo:SessionInput!):Session
-modifySession(SessionTo:SessionInput!):Session
-deleteSession(idsession:Int!):Int
-createStyleTheme(StyleThemeTo:StyleThemeInput!):StyleTheme
-modifyStyleTheme(StyleThemeTo:StyleThemeInput!):StyleTheme
-deleteStyleTheme(idstyletheme:Int!):Int
-createteam(teamTo:teamInput!):team
-modifyteam(teamTo:teamInput!):team
+type Mutation {createtrait(TraitTo:TraitInput!):Trait
+modifytrait(TraitTo:TraitInput!):Trait
+deletetrait(idtrait:Int!):Int
+createtechnologyplatform(TechnologyPlatformTo:TechnologyPlatformInput!):TechnologyPlatform
+modifytechnologyplatform(TechnologyPlatformTo:TechnologyPlatformInput!):TechnologyPlatform
+deletetechnologyplatform(idtechnologyplatform:Int!):Int
+createservicetype(ServiceTypeTo:ServiceTypeInput!):ServiceType
+modifyservicetype(ServiceTypeTo:ServiceTypeInput!):ServiceType
+deleteservicetype(idservicetype:Int!):Int
+createserviceprovider(ServiceProviderTo:ServiceProviderInput!):ServiceProvider
+modifyserviceprovider(ServiceProviderTo:ServiceProviderInput!):ServiceProvider
+deleteserviceprovider(idserviceprovider:Int!):Int
+createservice(ServiceTo:ServiceInput!):Service
+modifyservice(ServiceTo:ServiceInput!):Service
+deleteservice(idservice:Int!):Int
+createpurpose(PurposeTo:PurposeInput!):Purpose
+modifypurpose(PurposeTo:PurposeInput!):Purpose
+deletepurpose(idpurpose:Int!):Int
+createmarkersynonym(MarkerSynonymTo:MarkerSynonymInput!):MarkerSynonym
+modifymarkersynonym(MarkerSynonymTo:MarkerSynonymInput!):MarkerSynonym
+deletemarkersynonym(idmarkersynonym:Int!):Int
+createmarker(MarkerTo:MarkerInput!):Marker
+modifymarker(MarkerTo:MarkerInput!):Marker
+deletemarker(idmarker:Int!):Int
+createdataformat(DataFormatTo:DataFormatInput!):DataFormat
+modifydataformat(DataFormatTo:DataFormatInput!):DataFormat
+deletedataformat(iddataformat:Int!):Int
+createassaygene(AssayGeneTo:AssayGeneInput!):AssayGene
+modifyassaygene(AssayGeneTo:AssayGeneInput!):AssayGene
+deleteassaygene(idassaygene:Int!):Int
+createassayclass(AssayclassTo:AssayclassInput!):Assayclass
+modifyassayclass(AssayclassTo:AssayclassInput!):Assayclass
+deleteassayclass(idassayclass:Int!):Int
+createtraitclass(TraitClassTo:TraitClassInput!):TraitClass
+modifytraitclass(TraitClassTo:TraitClassInput!):TraitClass
+deletetraitclass(idtraitclass:Int!):Int
+createworkflowstatus(WorkflowStatusTo:WorkflowStatusInput!):WorkflowStatus
+modifyworkflowstatus(WorkflowStatusTo:WorkflowStatusInput!):WorkflowStatus
+deleteworkflowstatus(idworkflowstatus:Int!):Int
+createworkflowstage(WorkflowStageTo:WorkflowStageInput!):WorkflowStage
+modifyworkflowstage(WorkflowStageTo:WorkflowStageInput!):WorkflowStage
+deleteworkflowstage(idworkflowstage:Int!):Int
+createworkflowphase(WorkflowPhaseTo:WorkflowPhaseInput!):WorkflowPhase
+modifyworkflowphase(WorkflowPhaseTo:WorkflowPhaseInput!):WorkflowPhase
+deleteworkflowphase(idworkflowphase:Int!):Int
+createworkflownodecf(WorkflowNodeCFTo:WorkflowNodeCFInput!):WorkflowNodeCF
+modifyworkflownodecf(WorkflowNodeCFTo:WorkflowNodeCFInput!):WorkflowNodeCF
+deleteworkflownodecf(idworkflownodecf:Int!):Int
+createworkflownode(WorkflowNodeTo:WorkflowNodeInput!):WorkflowNode
+modifyworkflownode(WorkflowNodeTo:WorkflowNodeInput!):WorkflowNode
+deleteworkflownode(idworkflownode:Int!):Int
+createworkflowinstance(WorkflowInstanceTo:WorkflowInstanceInput!):WorkflowInstance
+modifyworkflowinstance(WorkflowInstanceTo:WorkflowInstanceInput!):WorkflowInstance
+deleteworkflowinstance(idworkflowinstance:Int!):Int
+createworkflowevent(WorkflowEventTo:WorkflowEventInput!):WorkflowEvent
+modifyworkflowevent(WorkflowEventTo:WorkflowEventInput!):WorkflowEvent
+deleteworkflowevent(idworkflowevent:Int!):Int
+createworkflowcfvalue(WorkflowCFValueTo:WorkflowCFValueInput!):WorkflowCFValue
+modifyworkflowcfvalue(WorkflowCFValueTo:WorkflowCFValueInput!):WorkflowCFValue
+deleteworkflowcfvalue(idworkflowcfvalue:Int!):Int
+createworkflowcftype(WorkflowCFTypeTo:WorkflowCFTypeInput!):WorkflowCFType
+modifyworkflowcftype(WorkflowCFTypeTo:WorkflowCFTypeInput!):WorkflowCFType
+deleteworkflowcftype(idworkflowcftype:Int!):Int
+createworkflow(WorkflowTo:WorkflowInput!):Workflow
+modifyworkflow(WorkflowTo:WorkflowInput!):Workflow
+deleteworkflow(idworkflow:Int!):Int
+createvendor(VendorTo:VendorInput!):Vendor
+modifyvendor(VendorTo:VendorInput!):Vendor
+deletevendor(idvendor:Int!):Int
+createuser(UserTo:UserInput!):User
+modifyuser(UserTo:UserInput!):User
+deleteuser(iduser:Int!):Int
+createtranslation(TranslationTo:TranslationInput!):Translation
+modifytranslation(TranslationTo:TranslationInput!):Translation
+deletetranslation(idtranslation:Int!):Int
+createtenant(TenantTo:TenantInput!):Tenant
+modifytenant(TenantTo:TenantInput!):Tenant
+deletetenant(idtenant:Int!):Int
+createteam(TeamTo:TeamInput!):Team
+modifyteam(TeamTo:TeamInput!):Team
 deleteteam(idteam:Int!):Int
-createTenant(TenantTo:TenantInput!):Tenant
-modifyTenant(TenantTo:TenantInput!):Tenant
-deleteTenant(idtenant:Int!):Int
-createTranslation(TranslationTo:TranslationInput!):Translation
-modifyTranslation(TranslationTo:TranslationInput!):Translation
-deleteTranslation(idtranslation:Int!):Int
-createUser(UserTo:UserInput!):User
-modifyUser(UserTo:UserInput!):User
-deleteUser(iduser:Int!):Int
-createVendor(VendorTo:VendorInput!):Vendor
-modifyVendor(VendorTo:VendorInput!):Vendor
-deleteVendor(idvendor:Int!):Int
-createWorkflow(WorkflowTo:WorkflowInput!):Workflow
-modifyWorkflow(WorkflowTo:WorkflowInput!):Workflow
-deleteWorkflow(idworkflow:Int!):Int
+createstyletheme(StyleThemeTo:StyleThemeInput!):StyleTheme
+modifystyletheme(StyleThemeTo:StyleThemeInput!):StyleTheme
+deletestyletheme(idstyletheme:Int!):Int
+createsession(SessionTo:SessionInput!):Session
+modifysession(SessionTo:SessionInput!):Session
+deletesession(idsession:Int!):Int
+createsegment(SegmentTo:SegmentInput!):Segment
+modifysegment(SegmentTo:SegmentInput!):Segment
+deletesegment(idsegment:Int!):Int
+createseason(SeasonTo:SeasonInput!):Season
+modifyseason(SeasonTo:SeasonInput!):Season
+deleteseason(idseason:Int!):Int
+createroleaction(RoleActionTo:RoleActionInput!):RoleAction
+modifyroleaction(RoleActionTo:RoleActionInput!):RoleAction
+deleteroleaction(idroleaction:Int!):Int
+createrole(RoleTo:RoleInput!):Role
+modifyrole(RoleTo:RoleInput!):Role
+deleterole(idrole:Int!):Int
+createrequest(RequestTo:RequestInput!):Request
+modifyrequest(RequestTo:RequestInput!):Request
+deleterequest(idrequest:Int!):Int
+createproject(ProjectTo:ProjectInput!):Project
+modifyproject(ProjectTo:ProjectInput!):Project
+deleteproject(idproject:Int!):Int
+createprogram(ProgramTo:ProgramInput!):Program
+modifyprogram(ProgramTo:ProgramInput!):Program
+deleteprogram(idprogram:Int!):Int
+createprocess(ProcessTo:ProcessInput!):Process
+modifyprocess(ProcessTo:ProcessInput!):Process
+deleteprocess(idprocess:Int!):Int
+createpreference(PreferenceTo:PreferenceInput!):Preference
+modifypreference(PreferenceTo:PreferenceInput!):Preference
+deletepreference(idpreference:Int!):Int
+createperson(PersonTo:PersonInput!):Person
+modifyperson(PersonTo:PersonInput!):Person
+deleteperson(idperson:Int!):Int
+createpartner(PartnerTo:PartnerInput!):Partner
+modifypartner(PartnerTo:PartnerInput!):Partner
+deletepartner(idpartner:Int!):Int
+createorganization(OrganizationTo:OrganizationInput!):Organization
+modifyorganization(OrganizationTo:OrganizationInput!):Organization
+deleteorganization(idorganization:Int!):Int
+createnumbersequencerulesegment(NumberSequenceRuleSegmentTo:NumberSequenceRuleSegmentInput!):NumberSequenceRuleSegment
+modifynumbersequencerulesegment(NumberSequenceRuleSegmentTo:NumberSequenceRuleSegmentInput!):NumberSequenceRuleSegment
+deletenumbersequencerulesegment(idnumbersequencerulesegment:Int!):Int
+createnumbersequencerule(NumberSequenceRuleTo:NumberSequenceRuleInput!):NumberSequenceRule
+modifynumbersequencerule(NumberSequenceRuleTo:NumberSequenceRuleInput!):NumberSequenceRule
+deletenumbersequencerule(idnumbersequencerule:Int!):Int
+createmodule(ModuleTo:ModuleInput!):Module
+modifymodule(ModuleTo:ModuleInput!):Module
+deletemodule(idmodule:Int!):Int
+createnotification(NotificationTo:NotificationInput!):Notification
+modifynotification(NotificationTo:NotificationInput!):Notification
+deletenotification(idnotification:Int!):Int
+createlanguage(LanguageTo:LanguageInput!):Language
+modifylanguage(LanguageTo:LanguageInput!):Language
+deletelanguage(idlanguage:Int!):Int
+createinstance(InstanceTo:InstanceInput!):Instance
+modifyinstance(InstanceTo:InstanceInput!):Instance
+deleteinstance(idinstance:Int!):Int
+createhtmltag(HtmlTagTo:HtmlTagInput!):HtmlTag
+modifyhtmltag(HtmlTagTo:HtmlTagInput!):HtmlTag
+deletehtmltag(idhtmltag:Int!):Int
+createentityreference(EntityReferenceTo:EntityReferenceInput!):EntityReference
+modifyentityreference(EntityReferenceTo:EntityReferenceInput!):EntityReference
+deleteentityreference(identityreference:Int!):Int
+createemailtemplate(EmailTemplateTo:EmailTemplateInput!):EmailTemplate
+modifyemailtemplate(EmailTemplateTo:EmailTemplateInput!):EmailTemplate
+deleteemailtemplate(idemailtemplate:Int!):Int
+createdonor(DonorTo:DonorInput!):Donor
+modifydonor(DonorTo:DonorInput!):Donor
+deletedonor(iddonor:Int!):Int
+createdelegation(DelegationTo:DelegationInput!):Delegation
+modifydelegation(DelegationTo:DelegationInput!):Delegation
+deletedelegation(iddelegation:Int!):Int
+createcustomer(CustomerTo:CustomerInput!):Customer
+modifycustomer(CustomerTo:CustomerInput!):Customer
+deletecustomer(idcustomer:Int!):Int
+createcrop(CropTo:CropInput!):Crop
+modifycrop(CropTo:CropInput!):Crop
+deletecrop(idcrop:Int!):Int
+createcountry(CountryTo:CountryInput!):Country
+modifycountry(CountryTo:CountryInput!):Country
+deletecountry(idcountry:Int!):Int
+createcomponent(ComponentTo:ComponentInput!):Component
+modifycomponent(ComponentTo:ComponentInput!):Component
+deletecomponent(idcomponent:Int!):Int
+createcollaborator(CollaboratorTo:CollaboratorInput!):Collaborator
+modifycollaborator(CollaboratorTo:CollaboratorInput!):Collaborator
+deletecollaborator(idcollaborator:Int!):Int
+createauthenticationtype(AuthenticationTypeTo:AuthenticationTypeInput!):AuthenticationType
+modifyauthenticationtype(AuthenticationTypeTo:AuthenticationTypeInput!):AuthenticationType
+deleteauthenticationtype(idauthenticationtype:Int!):Int
+createauditlogs(AuditLogsTo:AuditLogsInput!):AuditLogs
+modifyauditlogs(AuditLogsTo:AuditLogsInput!):AuditLogs
+deleteauditlogs(idauditlogs:Int!):Int
+createattributes(AttributesTo:AttributesInput!):Attributes
+modifyattributes(AttributesTo:AttributesInput!):Attributes
+deleteattributes(idattributes:Int!):Int
+createalertrule(AlertRuleTo:AlertRuleInput!):AlertRule
+modifyalertrule(AlertRuleTo:AlertRuleInput!):AlertRule
+deletealertrule(idalertrule:Int!):Int
+createalert(AlertTo:AlertInput!):Alert
+modifyalert(AlertTo:AlertInput!):Alert
+deletealert(idalert:Int!):Int
+createaddress(AddressTo:AddressInput!):Address
+modifyaddress(AddressTo:AddressInput!):Address
+deleteaddress(idaddress:Int!):Int
+createaction(ActionTo:ActionInput!):Action
+modifyaction(ActionTo:ActionInput!):Action
+deleteaction(idaction:Int!):Int
+createworkflowstatustype(WorkflowStatusTypeTo:WorkflowStatusTypeInput!):WorkflowStatusType
+modifyworkflowstatustype(WorkflowStatusTypeTo:WorkflowStatusTypeInput!):WorkflowStatusType
+deleteworkflowstatustype(idworkflowstatustype:Int!):Int
 }
 
-type WorkflowCFTypeConnection {
+type TraitConnection {
 totalPages: Int
 totalElements: Int
 numberOfElements: Int
 size: Int
 number: Int
-content: [WorkflowCFType]
+content: [Trait]
 }
-#
-type WorkflowCFType {
-#
+#Detailed trait names such as MLN, Rust, Zinc, protein, plant height, 
+type Trait {
+#Name of the trait
 name: String
-#
+#Description of the trait
+
 description: String
-#
-help: String
-#
-type: String
 tenant: Int
 id: ID!
-workflownodecfs:[WorkflowNodeCF]
+traitclass:TraitClass
+assaygenes:[AssayGene]
 }
-type WorkflowCFValueConnection {
+type TechnologyPlatformConnection {
 totalPages: Int
 totalElements: Int
 numberOfElements: Int
 size: Int
 number: Int
-content: [WorkflowCFValue]
+content: [TechnologyPlatform]
 }
-#
-type WorkflowCFValue {
-#
-flagValue: Boolean
-#
-textValue: String
-#
-numValue: Int
-#
-dateValue: Date
-#
-codeValue: Int
+#Technology or platform based on vendor spec
+type TechnologyPlatform {
+#Name of the technology
+name: String
+#Description of the technology 
+description: String
 tenant: Int
 id: ID!
-request:Request
-workflowNodeCF:WorkflowNodeCF
+assayclasss:[Assayclass]
+vendors:[Vendor]
 }
-type WorkflowEventConnection {
+type ServiceTypeConnection {
 totalPages: Int
 totalElements: Int
 numberOfElements: Int
 size: Int
 number: Int
-content: [WorkflowEvent]
+content: [ServiceType]
 }
-#
-type WorkflowEvent {
-#
-completed: Date
-#
-error: String
-#
+#Type of services, such as Genotyping (G), Phytosanitary (P), seed quality (G), pathology including MLN screening
+type ServiceType {
+#Name of the service_type
+name: String
+#Code identifier for the service type
+
+code: String
+#Description of the Service type
 description: String
 tenant: Int
 id: ID!
-workflowstage:WorkflowStage
+purposes:[Purpose]
+serviceproviders:[ServiceProvider]
+}
+type ServiceProviderConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [ServiceProvider]
+}
+#Internal service unit that triage, and/or process clients' service requests.
+type ServiceProvider {
+#Code identifier for the Service Provider
+code: String
+#Name of the Service Provider
+name: String
+tenant: Int
+id: ID!
+servicetypes:[ServiceType]
+country:Country
+crops:[Crop]
+}
+type ServiceConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Service]
+}
+#Service or product name, corresponding to a specific vendor catalog product or service identifier
+type Service {
+#Name of the Service
+
+name: String
+#Description of the Service
+
+description: String
+#
+code: String
+tenant: Int
+id: ID!
+purpose:Purpose
+assayclasss:[Assayclass]
+vendors:[Vendor]
+}
+type PurposeConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Purpose]
+}
+#High level buiness needs that the service to address. For genotyping, values include MAS, QC, GS/GWAS, germplasm characterization
+type Purpose {
+#Name of the purpose
+name: String
+#Identifier for each purpose
+
+code: String
+#description of the purpose
+
+description: String
+tenant: Int
+id: ID!
+ 
+servicetype:ServiceType
+services:[Service]
+}
+type MarkerSynonymConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [MarkerSynonym]
+}
+#Stores the alias of the markers
+type MarkerSynonym {
+#Alias name
+synonym: Int
+tenant: Int
+id: ID!
+marker:Marker
+}
+type MarkerConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Marker]
+}
+#Production marker IDs based on vendor spec
+type Marker {
+#Name of the marker
+name: String
+#Description of the marker
+description: String
+tenant: Int
+id: ID!
+markersynonyms:[MarkerSynonym]
+assaygene:AssayGene
+vendors:[Vendor]
+}
+type DataFormatConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [DataFormat]
+}
+#Data formats preferred to receive per vendor spec, such as CSV, VCF, tab delimited, EXCEL. 
+type DataFormat {
+#Name of the data format
+name: String
+#Description of the data format
+description: String
+tenant: Int
+id: ID!
+vendors:[Vendor]
+}
+type AssayGeneConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [AssayGene]
+}
+#List of genes
+type AssayGene {
+#Name of the assay gene
+name: String
+#Description of the assay gene
+description: String
+tenant: Int
+id: ID!
+trait:Trait
+markers:[Marker]
+}
+type AssayclassConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Assayclass]
+}
+#Fixed assay, user defined assay, random assay
+type Assayclass {
+#Name of the assayClass
+name: String
+#Description of the assay class
+description: String
+tenant: Int
+id: ID!
+technologyplatforms:[TechnologyPlatform]
+service:Service
+}
+type TraitClassConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [TraitClass]
+}
+#Classification of the traits into groups such as agronomic, biotic, abiotic, quality, 
+type TraitClass {
+#name for the trait_class
+name: String
+#description of the trait
+
+description: String
+tenant: Int
+id: ID!
+traits:[Trait]
+}
+type WorkflowStatusConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [WorkflowStatus]
+}
+#
+type WorkflowStatus {
+#
+initiatedate: Date
+#
+completiondate: Date
+tenant: Int
+id: ID!
+workflowstatustype:WorkflowStatusType
 workflowinstance:WorkflowInstance
-workflownode:WorkflowNode
 }
-type WorkflowInstanceConnection {
+type WorkflowStageConnection {
 totalPages: Int
 totalElements: Int
 numberOfElements: Int
 size: Int
 number: Int
-content: [WorkflowInstance]
+content: [WorkflowStage]
 }
 #
-type WorkflowInstance {
-#
-complete: Date
-#
-initiated: Date
-tenant: Int
-id: ID!
-workflowstatuss:[WorkflowStatus]
-workflowevents:[WorkflowEvent]
-workflow:Workflow
-requests:[Request]
-}
-type WorkflowNodeConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [WorkflowNode]
-}
-#
-type WorkflowNode {
+type WorkflowStage {
 #
 name: String
 #
@@ -434,20 +603,37 @@ description: String
 help: String
 #
 sequence: Int
+tenant: Int
+id: ID!
+actions:[Action]
+workflowphase:WorkflowPhase
+workflowevents:[WorkflowEvent]
+htmltag:HtmlTag
+workflownodes:[WorkflowNode]
+}
+type WorkflowPhaseConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [WorkflowPhase]
+}
 #
-requireApproval: Boolean
+type WorkflowPhase {
+#
+name: String
+#
+description: String
+#
+help: String
+#
+sequence: Int
 tenant: Int
 id: ID!
 workflowstages:[WorkflowStage]
 workflow:Workflow
-actions:[Action]
-entityreference:EntityReference
-workflowevents:[WorkflowEvent]
 htmltag:HtmlTag
-workflows:[Workflow]
-module:Module
-workflownodecfs:[WorkflowNodeCF]
-process:Process
 }
 type WorkflowNodeCFConnection {
 totalPages: Int
@@ -475,16 +661,16 @@ htmltag:HtmlTag
 entityreference:EntityReference
 workflownode:WorkflowNode
 }
-type WorkflowPhaseConnection {
+type WorkflowNodeConnection {
 totalPages: Int
 totalElements: Int
 numberOfElements: Int
 size: Int
 number: Int
-content: [WorkflowPhase]
+content: [WorkflowNode]
 }
 #
-type WorkflowPhase {
+type WorkflowNode {
 #
 name: String
 #
@@ -493,1337 +679,110 @@ description: String
 help: String
 #
 sequence: Int
+#
+requireapproval: Boolean
 tenant: Int
 id: ID!
 workflowstages:[WorkflowStage]
 workflow:Workflow
-htmltag:HtmlTag
-}
-type WorkflowStageConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [WorkflowStage]
-}
-#
-type WorkflowStage {
-#
-name: String
-#
-description: String
-#
-help: String
-#
-sequence: Int
-tenant: Int
-id: ID!
-workflowphase:WorkflowPhase
+actions:[Action]
+entityreference:EntityReference
 workflowevents:[WorkflowEvent]
 htmltag:HtmlTag
-workflownodes:[WorkflowNode]
-actions:[Action]
+workflows:[Workflow]
+process:Process
+module:Module
+workflownodecfs:[WorkflowNodeCF]
 }
-type WorkflowStatusConnection {
+type WorkflowInstanceConnection {
 totalPages: Int
 totalElements: Int
 numberOfElements: Int
 size: Int
 number: Int
-content: [WorkflowStatus]
+content: [WorkflowInstance]
 }
 #
-type WorkflowStatus {
+type WorkflowInstance {
 #
-initiate_date: Date
+complete: Date
 #
-completion_date: Date
-tenant: Int
-id: ID!
-workflowstatustype:WorkflowStatusType
-workflowinstance:WorkflowInstance
-}
-type TraitClassConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [TraitClass]
-}
-#Classification of the traits into groups such as agronomic, biotic, abiotic, quality, 
-type TraitClass {
-#name for the trait_class
-name: String
-#description of the trait
-
-description: String
-tenant: Int
-id: ID!
-traits:[Trait]
-}
-type AssayclassConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Assayclass]
-}
-#Fixed assay, user defined assay, random assay
-type Assayclass {
-#Name of the assayClass
-name: String
-#Description of the assay class
-description: String
-tenant: Int
-id: ID!
-technologyplatforms:[TechnologyPlatform]
-service:Service
-}
-type AssayGeneConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [AssayGene]
-}
-#List of genes
-type AssayGene {
-#Name of the assay gene
-name: String
-#Description of the assay gene
-description: String
-tenant: Int
-id: ID!
-trait:Trait
-markers:[Marker]
-}
-type DataFormatConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [DataFormat]
-}
-#Data formats preferred to receive per vendor spec, such as CSV, VCF, tab delimited, EXCEL. 
-type DataFormat {
-#Name of the data format
-name: String
-#Description of the data format
-description: String
-tenant: Int
-id: ID!
-vendors:[Vendor]
-}
-type MarkerConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Marker]
-}
-#Production marker IDs based on vendor spec
-type Marker {
-#Name of the marker
-name: String
-#Description of the marker
-description: String
-tenant: Int
-id: ID!
-markersynonyms:[MarkerSynonym]
-assaygene:AssayGene
-vendors:[Vendor]
-}
-type MarkerSynonymConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [MarkerSynonym]
-}
-#Stores the alias of the markers
-type MarkerSynonym {
-#Alias name
-synonym: Int
-tenant: Int
-id: ID!
-marker:Marker
-}
-type PurposeConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Purpose]
-}
-#High level buiness needs that the service to address. For genotyping, values include MAS, QC, GS/GWAS, germplasm characterization
-type Purpose {
-#Name of the purpose
-name: String
-#Identifier for each purpose
-
-code: String
-#description of the purpose
-
-description: String
-tenant: Int
-id: ID!
-#requests:[Request]
-servicetype:ServiceType
-services:[Service]
-}
-type ServiceConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Service]
-}
-#Service or product name, corresponding to a specific vendor catalog product or service identifier
-type Service {
-#Name of the Service
-
-name: String
-#Description of the Service
-
-description: String
-#
-code: String
-tenant: Int
-id: ID!
-purpose:Purpose
-assayclasss:[Assayclass]
-vendors:[Vendor]
-}
-type ServiceProviderConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [ServiceProvider]
-}
-#Internal service unit that triage, and/or process clients' service requests.
-type ServiceProvider {
-#Code identifier for the Service Provider
-code: String
-#Name of the Service Provider
-name: String
-tenant: Int
-id: ID!
-servicetypes:[ServiceType]
-country:Country
-crops:[Crop]
-}
-type ServiceTypeConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [ServiceType]
-}
-#Type of services, such as Genotyping (G), Phytosanitary (P), seed quality (G), pathology including MLN screening
-type ServiceType {
-#Name of the service_type
-name: String
-#Code identifier for the service type
-
-code: String
-#Description of the Service type
-description: String
-tenant: Int
-id: ID!
-purposes:[Purpose]
-serviceproviders:[ServiceProvider]
-}
-type TechnologyPlatformConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [TechnologyPlatform]
-}
-#Technology or platform based on vendor spec
-type TechnologyPlatform {
-#Name of the technology
-name: String
-#Description of the technology 
-description: String
-tenant: Int
-id: ID!
-assayclasss:[Assayclass]
-vendors:[Vendor]
-}
-type TraitConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Trait]
-}
-#Detailed trait names such as MLN, Rust, Zinc, protein, plant height, 
-type Trait {
-#Name of the trait
-name: String
-#Description of the trait
-
-description: String
-tenant: Int
-id: ID!
-traitclass:TraitClass
-assaygenes:[AssayGene]
-}
-type WorkflowStatusTypeConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [WorkflowStatusType]
-}
-#
-type WorkflowStatusType {
-#
-name: String
-#
-description: String
-#
-help: String
+initiated: Date
 tenant: Int
 id: ID!
 workflowstatuss:[WorkflowStatus]
+workflowevents:[WorkflowEvent]
+workflow:Workflow
+requests:[Request]
 }
-type ActionConnection {
+type WorkflowEventConnection {
 totalPages: Int
 totalElements: Int
 numberOfElements: Int
 size: Int
 number: Int
-content: [Action]
+content: [WorkflowEvent]
 }
 #
-type Action {
+type WorkflowEvent {
+#
+completed: Date
+#
+error: String
 #
 description: String
-#
-actionType: Boolean
-#
-action: String
+tenant: Int
 id: ID!
-roleactions:[RoleAction]
-workflownode:WorkflowNode
-module:Module
-roles:[Role]
 workflowstage:WorkflowStage
-}
-type AddressConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Address]
-}
-#
-type Address {
-#
-locality: String
-#
-region: String
-#
-postOfficeBoxNumber: String
-#
-postalCode: String
-#
-streetAddress: String
-tenant: Int
-id: ID!
-country:Country
-persons:[Person]
-}
-type AlertConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Alert]
-}
-#Management of the user alerts
-type Alert {
-#
-description: String
-tenant: Int
-id: ID!
-alertrules:[AlertRule]
-htmltag:HtmlTag
-preferences:[Preference]
-}
-type AlertRuleConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [AlertRule]
-}
-#
-type AlertRule {
-#
-name: String
-#
-sql: String
-#
-filterClause: String
-tenant: Int
-id: ID!
-alert:Alert
-}
-type AttributesConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Attributes]
-}
-#
-type Attributes {
-#
-name: String
-#
-description: String
-#
-help: String
-#
-sortno: Int
-#
-attComponent: String
-#
-is_multiline: Boolean
-#
-is_required: Boolean
-#
-defaultValue: String
-#
-sm: Int
-#
-md: Int
-id: ID!
-entityreference:EntityReference
-htmltag:HtmlTag
-}
-type AuditLogsConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [AuditLogs]
-}
-#register events of the users and applications
-type AuditLogs {
-#
-correlationId: String
-#
-message: String
-tenant: Int
-id: ID!
-instance:Instance
-}
-type AuthenticationTypeConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [AuthenticationType]
-}
-#
-type AuthenticationType {
-#
-name: String
-#
-protocol: String
-#
-clientId: String
-#
-tenantId: String
-#
-keySecret: String
-#
-objectId: String
-#
-isDefault: Boolean
-tenant: Int
-id: ID!
-tenants:[Tenant]
-}
-type CollaboratorConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Collaborator]
-}
-#
-type Collaborator {
-#
-affiliation: String
-#
-contactPoint: String
-#
-identifier: String
-tenant: Int
-id: ID!
-person:Person
-}
-type ComponentConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Component]
-}
-#register all components or microservices availables for the user
-type Component {
-#
-name: String
-#
-version: String
-#
-releaseNo: String
-#
-info: String
-#
-icon: String
-id: ID!
-instances:[Instance]
-htmltag:HtmlTag
-modules:[Module]
-}
-type CountryConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Country]
-}
-#Country names
-type Country {
-#Name of the Country
-name: String
-#Abbreviation of the country
-iso3: String
-#
-number: Int
-#
-full_name: String
-#
-code: String
-id: ID!
-serviceproviders:[ServiceProvider]
-addresss:[Address]
-}
-type CropConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Crop]
-}
-#Cultivated plant that is grown as food and is the subject of research and development conducted by various programs.
-type Crop {
-#
-crop_code: String
-#
-crop_name: String
-#
-description: String
-id: ID!
-programs:[Program]
-serviceproviders:[ServiceProvider]
-seasons:[Season]
-}
-type CustomerConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Customer]
-}
-#register a client of the application, that client can be a individual or a company
-type Customer {
-#
-name: String
-#
-phone: String
-#
-officialEmail: String
-#
-alternateEmail: String
-#
-jobTitle: String
-#
-languagePreference: String
-#
-phoneExtension: String
-#
-isActive: String
-id: ID!
-organizations:[Organization]
-organization:Organization
-tenants:[Tenant]
-}
-type DelegationConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Delegation]
-}
-#
-type Delegation {
-#
-startDate: Date
-#
-endDate: Date
-#
-DelegateTo: String
-tenant: Int
-id: ID!
-user:User
-}
-type DonorConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Donor]
-}
-#
-type Donor {
-#
-affiliation: String
-#
-contactPoint: String
-#
-indentifier: String
-tenant: Int
-id: ID!
-person:Person
-}
-type EmailTemplateConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [EmailTemplate]
-}
-#
-type EmailTemplate {
-#
-name: String
-#
-subject: String
-#
-template: String
-id: ID!
-entityreferences:[EntityReference]
-tenant:Tenant
-}
-type EntityReferenceConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [EntityReference]
-}
-#
-type EntityReference {
-#
-entity: String
-#
-textfield: String
-#
-valuefield: String
-#
-storefield: String
-#
-entityschema: String
-tenant: Int
-id: ID!
-attributess:[Attributes]
-emailtemplates:[EmailTemplate]
-workflows:[Workflow]
-segments:[Segment]
-workflownodes:[WorkflowNode]
-numbersequencerules:[NumberSequenceRule]
-workflownodecfs:[WorkflowNodeCF]
-}
-type HtmlTagConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [HtmlTag]
-}
-#
-type HtmlTag {
-#
-tagName: String
-id: ID!
-attributess:[Attributes]
-messages:[Message]
-components:[Component]
-workflows:[Workflow]
-workflowphases:[WorkflowPhase]
-alerts:[Alert]
-workflowstages:[WorkflowStage]
-translations:[Translation]
-workflownodes:[WorkflowNode]
-modules:[Module]
-workflownodecfs:[WorkflowNodeCF]
-}
-type InstanceConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Instance]
-}
-#instance management of all services liked with the client
-type Instance {
-#
-server: String
-#
-port: String
-#
-health: String
-id: ID!
-sessions:[Session]
-auditlogss:[AuditLogs]
-components:[Component]
-tenant:Tenant
-}
-type LanguageConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Language]
-}
-#management the globalization of the application
-type Language {
-#
-name: String
-#
-codeISO: String
-#
-isbase: String
-id: ID!
-translations:[Translation]
-}
-type MessageConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Message]
-}
-#management the message text that the user receive from application
-type Message {
-#
-Description: String
-#
-sql: String
-#
-filterClause: String
-id: ID!
-htmltag:HtmlTag
-}
-type ModuleConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Module]
-}
-#register the menu list of each component or services depend of the component registers
-type Module {
-#
-name: String
-#
-description: String
-#
-help: String
-#
-route: String
-#
-MainEntity: String
-#
-icon: String
-#
-container: String
-id: ID!
-actions:[Action]
-component:Component
-htmltag:HtmlTag
-workflownodes:[WorkflowNode]
-}
-type NumberSequenceRuleConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [NumberSequenceRule]
-}
-#
-type NumberSequenceRule {
-#
-name: String
-#
-lowest: Int
-#
-nextrec: Int
-#
-format: String
-#
-lastcode: String
-id: ID!
-numbersequencerulesegments:[NumberSequenceRuleSegment]
-tenant:Tenant
-entityreferences:[EntityReference]
-}
-type NumberSequenceRuleSegmentConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [NumberSequenceRuleSegment]
-}
-#
-type NumberSequenceRuleSegment {
-#
-Length: Int
-#
-FieldOrigin: String
-#
-Position: Int
-tenant: Int
-id: ID!
-segment:Segment
-numbersequencerule:NumberSequenceRule
-}
-type OrganizationConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Organization]
-}
-#
-type Organization {
-#
-legalName: String
-#
-phone: String
-#
-webpage: String
-#
-slogan: String
-#
-name: String
-#
-taxID: String
-#
-logo: String
-#
-isActive: String
-#
-defaultAuthentication: Int
-#
-defaultTheme: Int
-#
-organization_code: Int
-id: ID!
-tenants:[Tenant]
-customer:Customer
-customers:[Customer]
-}
-type PartnerConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Partner]
-}
-#
-type Partner {
-#
-affiliation: String
-#
-contactPoint: String
-#
-indentifier: String
-tenant: Int
-id: ID!
-person:Person
-}
-type PersonConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Person]
-}
-#
-type Person {
-#
-giveName: String
-#
-familyName: String
-#
-additionalName: String
-#
-email: String
-#
-officialEmail: String
-#
-gender: String
-#
-hasCredential: Boolean
-#
-jobTitle: String
-#
-knowsAbout: String
-#
-language: Int
-#
-phone: String
-#
-status: String
-id: ID!
-addresss:[Address]
-tenant:Tenant
-collaborators:[Collaborator]
-donors:[Donor]
-partners:[Partner]
-vendors:[Vendor]
-projects:[Project]
-users:[User]
-teams:[team]
-}
-type PreferenceConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Preference]
-}
-#
-type Preference {
-#
-comment: String
-tenant: Int
-id: ID!
-user:User
-alert:Alert
-styletheme:StyleTheme
-}
-type ProcessConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Process]
-}
-#register all process that can be executed by any component or workflow
-type Process {
-#
-name: String
-#
-description: String
-#
-code: String
-#
-isBackground: Boolean
-#
-dbFunction: String
-#
-callReport: Boolean
-#
-path: String
-tenant: Int
-id: ID!
-workflownodes:[WorkflowNode]
-}
-type ProgramConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Program]
-}
-#Entity that conducts defined objectives for the production of the next generation of crops with desired characteristics
-type Program {
-#Textual identifier of the program 
-program_code: String
-#Full name of the program
-program_name: String
-#Type of the program {breeding, molecular, seed health, etc.}
-program_type: String
-#Status of the program
-program_status: String
-#Additional information about the program
-description: String
-id: ID!
-projects:[Project]
-tenant:Tenant
-teams:[team]
-crop:Crop
-}
-type ProjectConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Project]
-}
-#
-type Project {
-#
-leader_id: Int
-#
-project_code: String
-#
-project_name: String
-#
-project_status: String
-#
-description: String
-tenant: Int
-id: ID!
-program:Program
-person:Person
-}
-type RequestConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Request]
-}
-#Stores all the requests made for different services to different units.
-type Request {
-#Id of the person who is making a request
-requester: String
-#Date when the request was submitted
-submition_date: Date
-#ID of the admin contact for the request
-admin_contact: String
-#
-charge_account: String
-#Additional information about the request
-description: String
-tenant: Int
-id: ID!
-#purpose:Purpose
-workflowcfvalues:[WorkflowCFValue]
 workflowinstance:WorkflowInstance
-requestcode: String
+workflownode:WorkflowNode
 }
-type RoleConnection {
+type WorkflowCFValueConnection {
 totalPages: Int
 totalElements: Int
 numberOfElements: Int
 size: Int
 number: Int
-content: [Role]
+content: [WorkflowCFValue]
 }
 #
-type Role {
+type WorkflowCFValue {
 #
-description: String
+flagvalue: Boolean
 #
-securityGroup: String
+textvalue: String
+#
+numvalue: Int
+#
+datevalue: Date
+#
+codevalue: Int
 tenant: Int
 id: ID!
-roleactions:[RoleAction]
-users:[User]
-actions:[Action]
+request:Request
+workflownodecf:WorkflowNodeCF
 }
-type RoleActionConnection {
+type WorkflowCFTypeConnection {
 totalPages: Int
 totalElements: Int
 numberOfElements: Int
 size: Int
 number: Int
-content: [RoleAction]
+content: [WorkflowCFType]
 }
 #
-type RoleAction {
-#
-allow: Int
-tenant: Int
-id: ID!
-action:Action
-role:Role
-}
-type SeasonConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Season]
-}
-#
-type Season {
-#
-season_code: String
-#
-season_name: String
-#
-description: String
-tenant: Int
-id: ID!
-crops:[Crop]
-}
-type SegmentConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Segment]
-}
-#
-type Segment {
+type WorkflowCFType {
 #
 name: String
 #
-tag: String
-#
-isAPI: Boolean
-#
-isDatabase: Boolean
-#
-IsAutoNum: Boolean
-#
-IsStatic: Boolean
-#
-IsFormule: Boolean
-#
-Formule: String
-#
-IsOrigin: Boolean
-tenant: Int
-id: ID!
-entityreference:EntityReference
-numbersequencerulesegments:[NumberSequenceRuleSegment]
-}
-type SessionConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Session]
-}
-#management the user sessions
-type Session {
-#
-webSession: String
-#
-remote_Address: String
-#
-remote_host: String
-tenant: Int
-id: ID!
-user:User
-instance:Instance
-}
-type StyleThemeConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [StyleTheme]
-}
-#
-type StyleTheme {
-#
 description: String
 #
-path: String
+help: String
 #
-physicalName: String
-#
-isDefault: Boolean
+type: String
 tenant: Int
 id: ID!
-preferences:[Preference]
-}
-type teamConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [team]
-}
-#
-type team {
-#
-team_code: String
-#
-team_name: String
-#
-description: String
-#
-notes: String
-#
-event_log: String
-tenant: Int
-id: ID!
-programs:[Program]
-persons:[Person]
-}
-type TenantConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Tenant]
-}
-#
-type Tenant {
-#
-name: String
-#
-expiration: Date
-#
-expire: Boolean
-id: ID!
-emailtemplates:[EmailTemplate]
-programs:[Program]
-users:[User]
-instances:[Instance]
-workflows:[Workflow]
-organization:Organization
-authenticationtype:AuthenticationType
-numbersequencerules:[NumberSequenceRule]
-customer:Customer
-persons:[Person]
-}
-type TranslationConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Translation]
-}
-#
-type Translation {
-#
-translation: String
-#
-languageTo: Int
-id: ID!
-language:Language
-htmltag:HtmlTag
-}
-type UserConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [User]
-}
-#user management 
-type User {
-#
-userName: String
-#
-userPassword: String
-#
-lastAccess: Date
-#
-defaultRole: Int
-#
-isIS: Int
-id: ID!
-sessions:[Session]
-delegations:[Delegation]
-tenant:Tenant
-preferences:[Preference]
-roles:[Role]
-person:Person
-}
-type VendorConnection {
-totalPages: Int
-totalElements: Int
-numberOfElements: Int
-size: Int
-number: Int
-content: [Vendor]
-}
-#External Service Units that process clients' service requests.
-type Vendor {
-#Code identifier for the Vendor
-
-code: String
-#Reference for the Vendor
-reference: String
-#
-status: String
-tenant: Int
-id: ID!
-dataformat:DataFormat
-services:[Service]
-markers:[Marker]
-person:Person
-technologyplatform:TechnologyPlatform
+workflownodecfs:[WorkflowNodeCF]
 }
 type WorkflowConnection {
 totalPages: Int
@@ -1858,8 +817,547 @@ workflowinstances:[WorkflowInstance]
 workflownodes:[WorkflowNode]
 workflownode:WorkflowNode
 }
+type VendorConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Vendor]
+}
+#External Service Units that process clients' service requests.
+type Vendor {
+#Code identifier for the Vendor
 
-input WorkflowCFTypeInput {
+code: String
+#Reference for the Vendor
+reference: String
+#
+status: String
+tenant: Int
+id: ID!
+dataformat:DataFormat
+services:[Service]
+technologyplatform:TechnologyPlatform
+markers:[Marker]
+person:Person
+}
+type UserConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [User]
+}
+#user management 
+type User {
+#
+username: String
+#
+userpassword: String
+#
+lastaccess: Date
+#
+defaultrole: Int
+#
+isis: Int
+id: ID!
+sessions:[Session]
+delegations:[Delegation]
+tenant:Tenant
+preferences:[Preference]
+roles:[Role]
+person:Person
+}
+type TranslationConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Translation]
+}
+#
+type Translation {
+#
+translation: String
+#
+languageto: Int
+id: ID!
+language:Language
+htmltag:HtmlTag
+}
+type TenantConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Tenant]
+}
+#
+type Tenant {
+#
+name: String
+#
+expiration: Date
+#
+expire: Boolean
+id: ID!
+emailtemplates:[EmailTemplate]
+programs:[Program]
+users:[User]
+instances:[Instance]
+workflows:[Workflow]
+organization:Organization
+authenticationtype:AuthenticationType
+numbersequencerules:[NumberSequenceRule]
+customer:Customer
+persons:[Person]
+}
+type TeamConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Team]
+}
+#
+type Team {
+#
+teamcode: String
+#
+teamname: String
+#
+description: String
+#
+notes: String
+#
+eventlog: String
+tenant: Int
+id: ID!
+programs:[Program]
+persons:[Person]
+}
+type StyleThemeConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [StyleTheme]
+}
+#
+type StyleTheme {
+#
+description: String
+#
+path: String
+#
+physicalname: String
+#
+isdefault: Boolean
+tenant: Int
+id: ID!
+preferences:[Preference]
+}
+type SessionConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Session]
+}
+#management the user sessions
+type Session {
+#
+websession: String
+#
+remoteaddress: String
+#
+remotehost: String
+tenant: Int
+id: ID!
+user:User
+instance:Instance
+}
+type SegmentConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Segment]
+}
+#
+type Segment {
+#
+name: String
+#
+tag: String
+#
+isapi: Boolean
+#
+isdatabase: Boolean
+#
+isautonum: Boolean
+#
+isstatic: Boolean
+#
+isformule: Boolean
+#
+formule: String
+#
+isorigin: Boolean
+tenant: Int
+id: ID!
+entityreference:EntityReference
+numbersequencerulesegments:[NumberSequenceRuleSegment]
+}
+type SeasonConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Season]
+}
+#
+type Season {
+#
+seasoncode: String
+#
+seasonname: String
+#
+description: String
+tenant: Int
+id: ID!
+crops:[Crop]
+}
+type RoleActionConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [RoleAction]
+}
+#
+type RoleAction {
+#
+allow: Int
+tenant: Int
+id: ID!
+action:Action
+role:Role
+}
+type RoleConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Role]
+}
+#
+type Role {
+#
+description: String
+#
+securitygroup: String
+tenant: Int
+id: ID!
+roleactions:[RoleAction]
+actions:[Action]
+users:[User]
+}
+type RequestConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Request]
+}
+#Stores all the requests made for different services to different units.
+type Request {
+#Id of the person who is making a request
+requester: String
+#
+requestcode: String
+#Date when the request was submitted
+submitiondate: Date
+#
+admincontact: String
+#
+chargeaccount: String
+#Additional information about the request
+description: String
+tenant: Int
+id: ID!
+ 
+workflowcfvalues:[WorkflowCFValue]
+workflowinstance:WorkflowInstance
+person:Person
+}
+type ProjectConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Project]
+}
+#
+type Project {
+#
+leaderid: Int
+#
+projectcode: String
+#
+projectname: String
+#
+projectstatus: String
+#
+description: String
+tenant: Int
+id: ID!
+program:Program
+person:Person
+}
+type ProgramConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Program]
+}
+#Entity that conducts defined objectives for the production of the next generation of crops with desired characteristics
+type Program {
+#Textual identifier of the program 
+programcode: String
+#Full name of the program
+programname: String
+#Type of the program {breeding, molecular, seed health, etc.}
+programtype: String
+#Status of the program
+programstatus: String
+#Additional information about the program
+description: String
+id: ID!
+projects:[Project]
+tenant:Tenant
+teams:[Team]
+crop:Crop
+}
+type ProcessConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Process]
+}
+#register all process that can be executed by any component or workflow
+type Process {
+#
+name: String
+#
+description: String
+#
+code: String
+#
+isbackground: Boolean
+#
+dbfunction: String
+#
+callreport: Boolean
+#
+path: String
+tenant: Int
+id: ID!
+workflownodes:[WorkflowNode]
+}
+type PreferenceConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Preference]
+}
+#
+type Preference {
+#
+comment: String
+tenant: Int
+id: ID!
+user:User
+alert:Alert
+styletheme:StyleTheme
+}
+type PersonConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Person]
+}
+#
+type Person {
+#
+givename: String
+#
+familyname: String
+#
+additionalname: String
+#
+email: String
+#
+officialemail: String
+#
+gender: String
+#
+hascredential: Boolean
+#
+jobtitle: String
+#
+knowsabout: String
+#
+phone: String
+#
+status: String
+id: ID!
+requests:[Request]
+addresss:[Address]
+tenant:Tenant
+collaborators:[Collaborator]
+language:Language
+donors:[Donor]
+partners:[Partner]
+vendors:[Vendor]
+projects:[Project]
+users:[User]
+teams:[Team]
+}
+type PartnerConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Partner]
+}
+#
+type Partner {
+#
+affiliation: String
+#
+contactpoint: String
+#
+indentifier: String
+tenant: Int
+id: ID!
+person:Person
+}
+type OrganizationConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Organization]
+}
+#
+type Organization {
+#
+legalname: String
+#
+phone: String
+#
+webpage: String
+#
+slogan: String
+#
+name: String
+#
+taxid: String
+#
+logo: String
+#
+isactive: String
+#
+defaultauthentication: Int
+#
+defaulttheme: Int
+#
+organizationcode: String
+id: ID!
+tenants:[Tenant]
+customer:Customer
+customers:[Customer]
+}
+type NumberSequenceRuleSegmentConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [NumberSequenceRuleSegment]
+}
+#
+type NumberSequenceRuleSegment {
+#
+length: Int
+#
+fieldorigin: String
+#
+position: Int
+tenant: Int
+id: ID!
+segment:Segment
+numbersequencerule:NumberSequenceRule
+}
+type NumberSequenceRuleConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [NumberSequenceRule]
+}
+#
+type NumberSequenceRule {
+#
+name: String
+#
+lowest: Int
+#
+nextrec: Int
+#
+format: String
+#
+lastcode: String
+id: ID!
+numbersequencerulesegments:[NumberSequenceRuleSegment]
+tenant:Tenant
+entityreferences:[EntityReference]
+}
+type ModuleConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Module]
+}
+#register the menu list of each component or services depend of the component registers
+type Module {
 #
 name: String
 #
@@ -1867,49 +1365,634 @@ description: String
 #
 help: String
 #
-type: String
+route: String
+#
+mainentity: String
+#
+icon: String
+#
+container: String
+id: ID!
+actions:[Action]
+component:Component
+htmltag:HtmlTag
+workflownodes:[WorkflowNode]
+}
+type NotificationConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Notification]
+}
+#management the message text that the user receive from application
+type Notification {
+#
+description: String
+#
+sql: String
+#
+filterclause: String
 tenant: Int
 id: ID!
+htmltag:HtmlTag
 }
-input WorkflowCFValueInput {
+type LanguageConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Language]
+}
+#management the globalization of the application
+type Language {
 #
-flagValue: Boolean
+name: String
 #
-textValue: String
+codeiso: String
 #
-numValue: Int
-#
-dateValue: Date
-#
-codeValue: Int
-tenant: Int!
+isbase: String
 id: ID!
-request:RequestInput
-workflownodecf:WorkflowNodeCFInput
+translations:[Translation]
+persons:[Person]
 }
-input WorkflowEventInput {
+type InstanceConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Instance]
+}
+#instance management of all services liked with the client
+type Instance {
 #
-completed: Date
+server: String
 #
-error: String
+port: String
+#
+health: String
+id: ID!
+sessions:[Session]
+auditlogss:[AuditLogs]
+components:[Component]
+tenant:Tenant
+}
+type HtmlTagConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [HtmlTag]
+}
+#
+type HtmlTag {
+#
+tagname: String
+id: ID!
+attributess:[Attributes]
+notifications:[Notification]
+components:[Component]
+workflows:[Workflow]
+workflowphases:[WorkflowPhase]
+alerts:[Alert]
+workflowstages:[WorkflowStage]
+translations:[Translation]
+workflownodes:[WorkflowNode]
+modules:[Module]
+workflownodecfs:[WorkflowNodeCF]
+}
+type EntityReferenceConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [EntityReference]
+}
+#
+type EntityReference {
+#
+entity: String
+#
+textfield: String
+#
+valuefield: String
+#
+storefield: String
+#
+entityschema: String
+tenant: Int
+id: ID!
+attributess:[Attributes]
+emailtemplates:[EmailTemplate]
+workflows:[Workflow]
+segments:[Segment]
+workflownodes:[WorkflowNode]
+numbersequencerules:[NumberSequenceRule]
+workflownodecfs:[WorkflowNodeCF]
+}
+type EmailTemplateConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [EmailTemplate]
+}
+#
+type EmailTemplate {
+#
+name: String
+#
+subject: String
+#
+template: String
+id: ID!
+entityreferences:[EntityReference]
+tenant:Tenant
+}
+type DonorConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Donor]
+}
+#
+type Donor {
+#
+affiliation: String
+#
+contactpoint: String
+#
+indentifier: String
+tenant: Int
+id: ID!
+person:Person
+}
+type DelegationConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Delegation]
+}
+#
+type Delegation {
+#
+startdate: Date
+#
+enddate: Date
+#
+delegateto: String
+tenant: Int
+id: ID!
+user:User
+}
+type CustomerConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Customer]
+}
+#register a client of the application, that client can be a individual or a company
+type Customer {
+#
+name: String
+#
+phone: String
+#
+officialemail: String
+#
+alternateemail: String
+#
+jobtitle: String
+#
+languagepreference: String
+#
+phoneextension: String
+#
+isactive: String
+id: ID!
+organizations:[Organization]
+organization:Organization
+tenants:[Tenant]
+}
+type CropConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Crop]
+}
+#Cultivated plant that is grown as food and is the subject of research and development conducted by various programs.
+type Crop {
+#
+cropcode: String
+#
+cropname: String
+#
+description: String
+id: ID!
+programs:[Program]
+serviceproviders:[ServiceProvider]
+seasons:[Season]
+}
+type CountryConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Country]
+}
+#Country names
+type Country {
+#Name of the Country
+name: String
+#Abbreviation of the country
+iso3: String
+#
+number: Int
+#
+fullname: String
+#
+code: String
+id: ID!
+serviceproviders:[ServiceProvider]
+addresss:[Address]
+}
+type ComponentConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Component]
+}
+#register all components or microservices availables for the user
+type Component {
+#
+name: String
+#
+version: String
+#
+releaseno: String
+#
+info: String
+#
+icon: String
+id: ID!
+instances:[Instance]
+htmltag:HtmlTag
+modules:[Module]
+}
+type CollaboratorConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Collaborator]
+}
+#
+type Collaborator {
+#
+affiliation: String
+#
+contactpoint: String
+#
+identifier: String
+tenant: Int
+id: ID!
+person:Person
+}
+type AuthenticationTypeConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [AuthenticationType]
+}
+#
+type AuthenticationType {
+#
+name: String
+#
+protocol: String
+#
+clientid: String
+#
+tenantid: String
+#
+keysecret: String
+#
+objectid: String
+#
+isdefault: Boolean
+tenant: Int
+id: ID!
+tenants:[Tenant]
+}
+type AuditLogsConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [AuditLogs]
+}
+#register events of the users and applications
+type AuditLogs {
+#
+correlationid: String
+#
+message: String
+tenant: Int
+id: ID!
+instance:Instance
+}
+type AttributesConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Attributes]
+}
+#
+type Attributes {
+#
+name: String
+#
+description: String
+#
+help: String
+#
+sortno: Int
+#
+attcomponent: String
+#
+ismultiline: Boolean
+#
+isrequired: Boolean
+#
+defaultvalue: String
+#
+sm: Int
+#
+md: Int
+id: ID!
+entityreference:EntityReference
+htmltag:HtmlTag
+}
+type AlertRuleConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [AlertRule]
+}
+#
+type AlertRule {
+#
+name: String
+#
+sql: String
+#
+filterclause: String
+tenant: Int
+id: ID!
+alert:Alert
+}
+type AlertConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Alert]
+}
+#Management of the user alerts
+type Alert {
 #
 description: String
 tenant: Int
 id: ID!
-workflowstage:WorkflowStageInput
-workflowinstance:WorkflowInstanceInput
-workflownode:WorkflowNodeInput
+alertrules:[AlertRule]
+htmltag:HtmlTag
+preferences:[Preference]
 }
-input WorkflowInstanceInput {
+type AddressConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Address]
+}
 #
-complete: Date
+type Address {
 #
-initiated: Date
+locality: String
+#
+region: String
+#
+postofficeboxnumber: String
+#
+postalcode: String
+#
+streetaddress: String
 tenant: Int
 id: ID!
-workflow:WorkflowInput
+country:Country
+persons:[Person]
 }
-input WorkflowNodeInput {
+type ActionConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Action]
+}
+#
+type Action {
+#
+description: String
+#
+actiontype: Boolean
+#
+action: String
+id: ID!
+workflowstage:WorkflowStage
+roleactions:[RoleAction]
+workflownode:WorkflowNode
+roles:[Role]
+module:Module
+}
+type WorkflowStatusTypeConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [WorkflowStatusType]
+}
+#
+type WorkflowStatusType {
+#
+name: String
+#
+description: String
+#
+help: String
+tenant: Int
+id: ID!
+workflowstatuss:[WorkflowStatus]
+}
+
+input TraitInput {
+#Name of the trait
+name: String
+#Description of the trait
+
+description: String
+tenant: Int
+id: ID!
+traitclass:TraitClassInput
+}
+input TechnologyPlatformInput {
+#Name of the technology
+name: String
+#Description of the technology 
+description: String
+tenant: Int
+id: ID!
+}
+input ServiceTypeInput {
+#Name of the service_type
+name: String
+#Code identifier for the service type
+
+code: String
+#Description of the Service type
+description: String
+tenant: Int
+id: ID!
+serviceproviders:[ServiceProviderInput]
+}
+input ServiceProviderInput {
+#Code identifier for the Service Provider
+code: String
+#Name of the Service Provider
+name: String
+tenant: Int
+id: ID!
+country:CountryInput
+crops:[CropInput]
+}
+input ServiceInput {
+#Name of the Service
+
+name: String
+#Description of the Service
+
+description: String
+#
+code: String
+tenant: Int
+id: ID!
+purpose:PurposeInput
+}
+input PurposeInput {
+#Name of the purpose
+name: String
+#Identifier for each purpose
+
+code: String
+#description of the purpose
+
+description: String
+tenant: Int
+id: ID!
+servicetype:ServiceTypeInput
+}
+input MarkerSynonymInput {
+#Alias name
+synonym: Int
+tenant: Int
+id: ID!
+marker:MarkerInput
+}
+input MarkerInput {
+#Name of the marker
+name: String
+#Description of the marker
+description: String
+tenant: Int
+id: ID!
+assaygene:AssayGeneInput
+vendors:[VendorInput]
+}
+input DataFormatInput {
+#Name of the data format
+name: String
+#Description of the data format
+description: String
+tenant: Int
+id: ID!
+}
+input AssayGeneInput {
+#Name of the assay gene
+name: String
+#Description of the assay gene
+description: String
+tenant: Int
+id: ID!
+trait:TraitInput
+}
+input AssayclassInput {
+#Name of the assayClass
+name: String
+#Description of the assay class
+description: String
+tenant: Int
+id: ID!
+technologyplatforms:[TechnologyPlatformInput]
+service:ServiceInput
+}
+input TraitClassInput {
+#name for the trait_class
+name: String
+#description of the trait
+
+description: String
+tenant: Int
+id: ID!
+}
+input WorkflowStatusInput {
+#
+initiatedate: Date
+#
+completiondate: Date
+tenant: Int
+id: ID!
+workflowstatustype:WorkflowStatusTypeInput
+workflowinstance:WorkflowInstanceInput
+}
+input WorkflowStageInput {
 #
 name: String
 #
@@ -1918,15 +2001,25 @@ description: String
 help: String
 #
 sequence: Int
+tenant: Int
+id: ID!
+workflowphase:WorkflowPhaseInput
+htmltag:HtmlTagInput
+workflownodes:[WorkflowNodeInput]
+}
+input WorkflowPhaseInput {
 #
-requireApproval: Boolean
+name: String
+#
+description: String
+#
+help: String
+#
+sequence: Int
 tenant: Int
 id: ID!
 workflow:WorkflowInput
-entityreference:EntityReferenceInput
 htmltag:HtmlTagInput
-module:ModuleInput
-process:ProcessInput
 }
 input WorkflowNodeCFInput {
 #
@@ -1944,7 +2037,7 @@ htmltag:HtmlTagInput
 entityreference:EntityReferenceInput
 workflownode:WorkflowNodeInput
 }
-input WorkflowPhaseInput {
+input WorkflowNodeInput {
 #
 name: String
 #
@@ -1953,740 +2046,65 @@ description: String
 help: String
 #
 sequence: Int
+#
+requireapproval: Boolean
 tenant: Int
 id: ID!
 workflow:WorkflowInput
+entityreference:EntityReferenceInput
 htmltag:HtmlTagInput
-}
-input WorkflowStageInput {
-#
-name: String
-#
-description: String
-#
-help: String
-#
-sequence: Int
-tenant: Int
-id: ID!
-workflowphase:WorkflowPhaseInput
-htmltag:HtmlTagInput
-workflownodes:[WorkflowNodeInput]
-}
-input WorkflowStatusInput {
-#
-initiate_date: Date
-#
-completion_date: Date
-tenant: Int
-id: ID!
-workflowstatustype:WorkflowStatusTypeInput
-workflowinstance:WorkflowInstanceInput
-}
-input TraitClassInput {
-#name for the trait_class
-name: String
-#description of the trait
-
-description: String
-tenant: Int
-id: ID!
-}
-input AssayclassInput {
-#Name of the assayClass
-name: String
-#Description of the assay class
-description: String
-tenant: Int
-id: ID!
-technologyplatforms:[TechnologyPlatformInput]
-service:ServiceInput
-}
-input AssayGeneInput {
-#Name of the assay gene
-name: String
-#Description of the assay gene
-description: String
-tenant: Int
-id: ID!
-trait:TraitInput
-}
-input DataFormatInput {
-#Name of the data format
-name: String
-#Description of the data format
-description: String
-tenant: Int
-id: ID!
-}
-input MarkerInput {
-#Name of the marker
-name: String
-#Description of the marker
-description: String
-tenant: Int
-id: ID!
-assaygene:AssayGeneInput
-vendors:[VendorInput]
-}
-input MarkerSynonymInput {
-#Alias name
-synonym: Int
-tenant: Int
-id: ID!
-marker:MarkerInput
-}
-input PurposeInput {
-#Name of the purpose
-name: String
-#Identifier for each purpose
-
-code: String
-#description of the purpose
-
-description: String
-tenant: Int
-id: ID!
-servicetype:ServiceTypeInput
-}
-input ServiceInput {
-#Name of the Service
-
-name: String
-#Description of the Service
-
-description: String
-#
-code: String
-tenant: Int
-id: ID!
-purpose:PurposeInput
-}
-input ServiceProviderInput {
-#Code identifier for the Service Provider
-code: String
-#Name of the Service Provider
-name: String
-tenant: Int
-id: ID!
-country:CountryInput
-crops:[CropInput]
-}
-input ServiceTypeInput {
-#Name of the service_type
-name: String
-#Code identifier for the service type
-
-code: String
-#Description of the Service type
-description: String
-tenant: Int
-id: ID!
-serviceproviders:[ServiceProviderInput]
-}
-input TechnologyPlatformInput {
-#Name of the technology
-name: String
-#Description of the technology 
-description: String
-tenant: Int
-id: ID!
-}
-input TraitInput {
-#Name of the trait
-name: String
-#Description of the trait
-
-description: String
-tenant: Int
-id: ID!
-traitclass:TraitClassInput
-}
-input WorkflowStatusTypeInput {
-#
-name: String
-#
-description: String
-#
-help: String
-tenant: Int
-id: ID!
-}
-input ActionInput {
-#
-description: String
-#
-actionType: Boolean
-#
-action: String
-id: ID!
-workflownode:WorkflowNodeInput
+process:ProcessInput
 module:ModuleInput
-roles:[RoleInput]
+}
+input WorkflowInstanceInput {
+#
+complete: Date
+#
+initiated: Date
+tenant: Int
+id: ID!
+workflow:WorkflowInput
+}
+input WorkflowEventInput {
+#
+completed: Date
+#
+error: String
+#
+description: String
+tenant: Int
+id: ID!
 workflowstage:WorkflowStageInput
-}
-input AddressInput {
-#
-locality: String
-#
-region: String
-#
-postOfficeBoxNumber: String
-#
-postalCode: String
-#
-streetAddress: String
-tenant: Int
-id: ID!
-country:CountryInput
-}
-input AlertInput {
-#
-description: String
-tenant: Int
-id: ID!
-htmltag:HtmlTagInput
-}
-input AlertRuleInput {
-#
-name: String
-#
-sql: String
-#
-filterClause: String
-tenant: Int
-id: ID!
-alert:AlertInput
-}
-input AttributesInput {
-#
-name: String
-#
-description: String
-#
-help: String
-#
-sortno: Int
-#
-attComponent: String
-#
-is_multiline: Boolean
-#
-is_required: Boolean
-#
-defaultValue: String
-#
-sm: Int
-#
-md: Int
-id: ID!
-entityreference:EntityReferenceInput
-htmltag:HtmlTagInput
-}
-input AuditLogsInput {
-#
-correlationId: String
-#
-message: String
-tenant: Int
-id: ID!
-instance:InstanceInput
-}
-input AuthenticationTypeInput {
-#
-name: String
-#
-protocol: String
-#
-clientId: String
-#
-tenantId: String
-#
-keySecret: String
-#
-objectId: String
-#
-isDefault: Boolean
-tenant: Int
-id: ID!
-}
-input CollaboratorInput {
-#
-affiliation: String
-#
-contactPoint: String
-#
-identifier: String
-tenant: Int
-id: ID!
-person:PersonInput
-}
-input ComponentInput {
-#
-name: String
-#
-version: String
-#
-releaseNo: String
-#
-info: String
-#
-icon: String
-id: ID!
-htmltag:HtmlTagInput
-}
-input CountryInput {
-#Name of the Country
-name: String
-#Abbreviation of the country
-iso3: String
-#
-number: Int
-#
-full_name: String
-#
-code: String
-id: ID!
-}
-input CropInput {
-#
-crop_code: String
-#
-crop_name: String
-#
-description: String
-id: ID!
-}
-input CustomerInput {
-#
-name: String
-#
-phone: String
-#
-officialEmail: String
-#
-alternateEmail: String
-#
-jobTitle: String
-#
-languagePreference: String
-#
-phoneExtension: String
-#
-isActive: String
-id: ID!
-organization:OrganizationInput
-}
-input DelegationInput {
-#
-startDate: Date
-#
-endDate: Date
-#
-DelegateTo: String
-tenant: Int
-id: ID!
-user:UserInput
-}
-input DonorInput {
-#
-affiliation: String
-#
-contactPoint: String
-#
-indentifier: String
-tenant: Int
-id: ID!
-person:PersonInput
-}
-input EmailTemplateInput {
-#
-name: String
-#
-subject: String
-#
-template: String
-id: ID!
-tenant:TenantInput
-}
-input EntityReferenceInput {
-#
-entity: String
-#
-textfield: String
-#
-valuefield: String
-#
-storefield: String
-#
-entityschema: String
-tenant: Int
-id: ID!
-emailtemplates:[EmailTemplateInput]
-numbersequencerules:[NumberSequenceRuleInput]
-}
-input HtmlTagInput {
-#
-tagName: String
-id: ID!
-}
-input InstanceInput {
-#
-server: String
-#
-port: String
-#
-health: String
-id: ID!
-components:[ComponentInput]
-tenant:TenantInput
-}
-input LanguageInput {
-#
-name: String
-#
-codeISO: String
-#
-isbase: String
-id: ID!
-}
-input MessageInput {
-#
-Description: String
-#
-sql: String
-#
-filterClause: String
-id: ID!
-htmltag:HtmlTagInput
-}
-input ModuleInput {
-#
-name: String
-#
-description: String
-#
-help: String
-#
-route: String
-#
-MainEntity: String
-#
-icon: String
-#
-container: String
-id: ID!
-component:ComponentInput
-htmltag:HtmlTagInput
-}
-input NumberSequenceRuleInput {
-#
-name: String
-#
-lowest: Int
-#
-nextrec: Int
-#
-format: String
-#
-lastcode: String
-id: ID!
-tenant:TenantInput
-}
-input NumberSequenceRuleSegmentInput {
-#
-Length: Int
-#
-FieldOrigin: String
-#
-Position: Int
-tenant: Int
-id: ID!
-segment:SegmentInput
-numbersequencerule:NumberSequenceRuleInput
-}
-input OrganizationInput {
-#
-legalName: String
-#
-phone: String
-#
-webpage: String
-#
-slogan: String
-#
-name: String
-#
-taxID: String
-#
-logo: String
-#
-isActive: String
-#
-defaultAuthentication: Int
-#
-defaultTheme: Int
-#
-organization_code: Int
-id: ID!
-customer:CustomerInput
-}
-input PartnerInput {
-#
-affiliation: String
-#
-contactPoint: String
-#
-indentifier: String
-tenant: Int
-id: ID!
-person:PersonInput
-}
-input PersonInput {
-#
-giveName: String
-#
-familyName: String
-#
-additionalName: String
-#
-email: String
-#
-officialEmail: String
-#
-gender: String
-#
-hasCredential: Boolean
-#
-jobTitle: String
-#
-knowsAbout: String
-#
-language: Int
-#
-phone: String
-#
-status: String
-id: ID!
-addresss:[AddressInput]
-tenant:TenantInput
-teams:[teamInput]
-}
-input PreferenceInput {
-#
-comment: String
-tenant: Int
-id: ID!
-user:UserInput
-alert:AlertInput
-styletheme:StyleThemeInput
-}
-input ProcessInput {
-#
-name: String
-#
-description: String
-#
-code: String
-#
-isBackground: Boolean
-#
-dbFunction: String
-#
-callReport: Boolean
-#
-path: String
-tenant: Int
-id: ID!
-}
-input ProgramInput {
-#Textual identifier of the program 
-program_code: String
-#Full name of the program
-program_name: String
-#Type of the program {breeding, molecular, seed health, etc.}
-program_type: String
-#Status of the program
-program_status: String
-#Additional information about the program
-description: String
-id: ID!
-tenant:TenantInput
-crop:CropInput
-}
-input ProjectInput {
-#
-leader_id: Int
-#
-project_code: String
-#
-project_name: String
-#
-project_status: String
-#
-description: String
-tenant: Int
-id: ID!
-program:ProgramInput
-person:PersonInput
-}
-input RequestInput {
-#Id of the person who is making a request
-requester: String
-#Date when the request was submitted
-submition_date: Date
-#ID of the admin contact for the request
-admin_contact: String
-#
-charge_account: String
-#Additional information about the request
-description: String
-tenant: Int
-id: ID!
-#purpose:PurposeInput
 workflowinstance:WorkflowInstanceInput
-requestcode: String
+workflownode:WorkflowNodeInput
 }
-input RoleInput {
+input WorkflowCFValueInput {
 #
-description: String
+flagvalue: Boolean
 #
-securityGroup: String
+textvalue: String
+#
+numvalue: Int
+#
+datevalue: Date
+#
+codevalue: Int
 tenant: Int
 id: ID!
-users:[UserInput]
+request:RequestInput
+workflownodecf:WorkflowNodeCFInput
 }
-input RoleActionInput {
-#
-allow: Int
-tenant: Int
-id: ID!
-action:ActionInput
-role:RoleInput
-}
-input SeasonInput {
-#
-season_code: String
-#
-season_name: String
-#
-description: String
-tenant: Int
-id: ID!
-crops:[CropInput]
-}
-input SegmentInput {
+input WorkflowCFTypeInput {
 #
 name: String
 #
-tag: String
-#
-isAPI: Boolean
-#
-isDatabase: Boolean
-#
-IsAutoNum: Boolean
-#
-IsStatic: Boolean
-#
-IsFormule: Boolean
-#
-Formule: String
-#
-IsOrigin: Boolean
-tenant: Int
-id: ID!
-entityreference:EntityReferenceInput
-}
-input SessionInput {
-#
-webSession: String
-#
-remote_Address: String
-#
-remote_host: String
-tenant: Int
-id: ID!
-user:UserInput
-instance:InstanceInput
-}
-input StyleThemeInput {
-#
 description: String
 #
-path: String
+help: String
 #
-physicalName: String
-#
-isDefault: Boolean
+type: String
 tenant: Int
 id: ID!
-}
-input teamInput {
-#
-team_code: String
-#
-team_name: String
-#
-description: String
-#
-notes: String
-#
-event_log: String
-tenant: Int
-id: ID!
-programs:[ProgramInput]
-}
-input TenantInput {
-#
-name: String
-#
-expiration: Date
-#
-expire: Boolean
-id: ID!
-organization:OrganizationInput
-authenticationtype:AuthenticationTypeInput
-customer:CustomerInput
-}
-input TranslationInput {
-#
-translation: String
-#
-languageTo: Int
-id: ID!
-language:LanguageInput
-htmltag:HtmlTagInput
-}
-input UserInput {
-#
-userName: String
-#
-userPassword: String
-#
-lastAccess: Date
-#
-defaultRole: Int
-#
-isIS: Int
-id: ID!
-tenant:TenantInput
-person:PersonInput
-}
-input VendorInput {
-#Code identifier for the Vendor
-
-code: String
-#Reference for the Vendor
-reference: String
-#
-status: String
-tenant: Int
-id: ID!
-dataformat:DataFormatInput
-services:[ServiceInput]
-person:PersonInput
-technologyplatform:TechnologyPlatformInput
 }
 input WorkflowInput {
 #
@@ -2708,6 +2126,594 @@ entityreference:EntityReferenceInput
 tenant:TenantInput
 htmltag:HtmlTagInput
 workflownode:WorkflowNodeInput
+}
+input VendorInput {
+#Code identifier for the Vendor
+
+code: String
+#Reference for the Vendor
+reference: String
+#
+status: String
+tenant: Int
+id: ID!
+dataformat:DataFormatInput
+services:[ServiceInput]
+technologyplatform:TechnologyPlatformInput
+person:PersonInput
+}
+input UserInput {
+#
+username: String
+#
+userpassword: String
+#
+lastaccess: Date
+#
+defaultrole: Int
+#
+isis: Int
+id: ID!
+tenant:TenantInput
+person:PersonInput
+}
+input TranslationInput {
+#
+translation: String
+#
+languageto: Int
+id: ID!
+language:LanguageInput
+htmltag:HtmlTagInput
+}
+input TenantInput {
+#
+name: String
+#
+expiration: Date
+#
+expire: Boolean
+id: ID!
+organization:OrganizationInput
+authenticationtype:AuthenticationTypeInput
+customer:CustomerInput
+}
+input TeamInput {
+#
+teamcode: String
+#
+teamname: String
+#
+description: String
+#
+notes: String
+#
+eventlog: String
+tenant: Int
+id: ID!
+programs:[ProgramInput]
+}
+input StyleThemeInput {
+#
+description: String
+#
+path: String
+#
+physicalname: String
+#
+isdefault: Boolean
+tenant: Int
+id: ID!
+}
+input SessionInput {
+#
+websession: String
+#
+remoteaddress: String
+#
+remotehost: String
+tenant: Int
+id: ID!
+user:UserInput
+instance:InstanceInput
+}
+input SegmentInput {
+#
+name: String
+#
+tag: String
+#
+isapi: Boolean
+#
+isdatabase: Boolean
+#
+isautonum: Boolean
+#
+isstatic: Boolean
+#
+isformule: Boolean
+#
+formule: String
+#
+isorigin: Boolean
+tenant: Int
+id: ID!
+entityreference:EntityReferenceInput
+}
+input SeasonInput {
+#
+seasoncode: String
+#
+seasonname: String
+#
+description: String
+tenant: Int
+id: ID!
+crops:[CropInput]
+}
+input RoleActionInput {
+#
+allow: Int
+tenant: Int
+id: ID!
+action:ActionInput
+role:RoleInput
+}
+input RoleInput {
+#
+description: String
+#
+securitygroup: String
+tenant: Int
+id: ID!
+users:[UserInput]
+}
+input RequestInput {
+#Id of the person who is making a request
+requester: String
+#
+requestcode: String
+#Date when the request was submitted
+submitiondate: Date
+#
+admincontact: String
+#
+chargeaccount: String
+#Additional information about the request
+description: String
+tenant: Int
+id: ID!
+ 
+workflowinstance:WorkflowInstanceInput
+person:PersonInput
+}
+input ProjectInput {
+#
+leaderid: Int
+#
+projectcode: String
+#
+projectname: String
+#
+projectstatus: String
+#
+description: String
+tenant: Int
+id: ID!
+program:ProgramInput
+person:PersonInput
+}
+input ProgramInput {
+#Textual identifier of the program 
+programcode: String
+#Full name of the program
+programname: String
+#Type of the program {breeding, molecular, seed health, etc.}
+programtype: String
+#Status of the program
+programstatus: String
+#Additional information about the program
+description: String
+id: ID!
+tenant:TenantInput
+crop:CropInput
+}
+input ProcessInput {
+#
+name: String
+#
+description: String
+#
+code: String
+#
+isbackground: Boolean
+#
+dbfunction: String
+#
+callreport: Boolean
+#
+path: String
+tenant: Int
+id: ID!
+}
+input PreferenceInput {
+#
+comment: String
+tenant: Int
+id: ID!
+user:UserInput
+alert:AlertInput
+styletheme:StyleThemeInput
+}
+input PersonInput {
+#
+givename: String
+#
+familyname: String
+#
+additionalname: String
+#
+email: String
+#
+officialemail: String
+#
+gender: String
+#
+hascredential: Boolean
+#
+jobtitle: String
+#
+knowsabout: String
+#
+phone: String
+#
+status: String
+id: ID!
+addresss:[AddressInput]
+tenant:TenantInput
+language:LanguageInput
+teams:[TeamInput]
+}
+input PartnerInput {
+#
+affiliation: String
+#
+contactpoint: String
+#
+indentifier: String
+tenant: Int
+id: ID!
+person:PersonInput
+}
+input OrganizationInput {
+#
+legalname: String
+#
+phone: String
+#
+webpage: String
+#
+slogan: String
+#
+name: String
+#
+taxid: String
+#
+logo: String
+#
+isactive: String
+#
+defaultauthentication: Int
+#
+defaulttheme: Int
+#
+organizationcode: String
+id: ID!
+customer:CustomerInput
+}
+input NumberSequenceRuleSegmentInput {
+#
+length: Int
+#
+fieldorigin: String
+#
+position: Int
+tenant: Int
+id: ID!
+segment:SegmentInput
+numbersequencerule:NumberSequenceRuleInput
+}
+input NumberSequenceRuleInput {
+#
+name: String
+#
+lowest: Int
+#
+nextrec: Int
+#
+format: String
+#
+lastcode: String
+id: ID!
+tenant:TenantInput
+}
+input ModuleInput {
+#
+name: String
+#
+description: String
+#
+help: String
+#
+route: String
+#
+mainentity: String
+#
+icon: String
+#
+container: String
+id: ID!
+component:ComponentInput
+htmltag:HtmlTagInput
+}
+input NotificationInput {
+#
+description: String
+#
+sql: String
+#
+filterclause: String
+tenant: Int
+id: ID!
+htmltag:HtmlTagInput
+}
+input LanguageInput {
+#
+name: String
+#
+codeiso: String
+#
+isbase: String
+id: ID!
+}
+input InstanceInput {
+#
+server: String
+#
+port: String
+#
+health: String
+id: ID!
+components:[ComponentInput]
+tenant:TenantInput
+}
+input HtmlTagInput {
+#
+tagname: String
+id: ID!
+}
+input EntityReferenceInput {
+#
+entity: String
+#
+textfield: String
+#
+valuefield: String
+#
+storefield: String
+#
+entityschema: String
+tenant: Int
+id: ID!
+emailtemplates:[EmailTemplateInput]
+numbersequencerules:[NumberSequenceRuleInput]
+}
+input EmailTemplateInput {
+#
+name: String
+#
+subject: String
+#
+template: String
+id: ID!
+tenant:TenantInput
+}
+input DonorInput {
+#
+affiliation: String
+#
+contactpoint: String
+#
+indentifier: String
+tenant: Int
+id: ID!
+person:PersonInput
+}
+input DelegationInput {
+#
+startdate: Date
+#
+enddate: Date
+#
+delegateto: String
+tenant: Int
+id: ID!
+user:UserInput
+}
+input CustomerInput {
+#
+name: String
+#
+phone: String
+#
+officialemail: String
+#
+alternateemail: String
+#
+jobtitle: String
+#
+languagepreference: String
+#
+phoneextension: String
+#
+isactive: String
+id: ID!
+organization:OrganizationInput
+}
+input CropInput {
+#
+cropcode: String
+#
+cropname: String
+#
+description: String
+id: ID!
+}
+input CountryInput {
+#Name of the Country
+name: String
+#Abbreviation of the country
+iso3: String
+#
+number: Int
+#
+fullname: String
+#
+code: String
+id: ID!
+}
+input ComponentInput {
+#
+name: String
+#
+version: String
+#
+releaseno: String
+#
+info: String
+#
+icon: String
+id: ID!
+htmltag:HtmlTagInput
+}
+input CollaboratorInput {
+#
+affiliation: String
+#
+contactpoint: String
+#
+identifier: String
+tenant: Int
+id: ID!
+person:PersonInput
+}
+input AuthenticationTypeInput {
+#
+name: String
+#
+protocol: String
+#
+clientid: String
+#
+tenantid: String
+#
+keysecret: String
+#
+objectid: String
+#
+isdefault: Boolean
+tenant: Int
+id: ID!
+}
+input AuditLogsInput {
+#
+correlationid: String
+#
+message: String
+tenant: Int
+id: ID!
+instance:InstanceInput
+}
+input AttributesInput {
+#
+name: String
+#
+description: String
+#
+help: String
+#
+sortno: Int
+#
+attcomponent: String
+#
+ismultiline: Boolean
+#
+isrequired: Boolean
+#
+defaultvalue: String
+#
+sm: Int
+#
+md: Int
+id: ID!
+entityreference:EntityReferenceInput
+htmltag:HtmlTagInput
+}
+input AlertRuleInput {
+#
+name: String
+#
+sql: String
+#
+filterclause: String
+tenant: Int
+id: ID!
+alert:AlertInput
+}
+input AlertInput {
+#
+description: String
+tenant: Int
+id: ID!
+htmltag:HtmlTagInput
+}
+input AddressInput {
+#
+locality: String
+#
+region: String
+#
+postofficeboxnumber: String
+#
+postalcode: String
+#
+streetaddress: String
+tenant: Int
+id: ID!
+country:CountryInput
+}
+input ActionInput {
+#
+description: String
+#
+actiontype: Boolean
+#
+action: String
+id: ID!
+workflowstage:WorkflowStageInput
+workflownode:WorkflowNodeInput
+roles:[RoleInput]
+module:ModuleInput
+}
+input WorkflowStatusTypeInput {
+#
+name: String
+#
+description: String
+#
+help: String
+tenant: Int
+id: ID!
 }
 
 input FilterInput { 
