@@ -3,7 +3,7 @@ logging:
     org:
       springframework: INFO
       hibernate: INFO
-      ebs: TRACE
+      ebs: INFO
 server:
   port: 8080
 spring:
