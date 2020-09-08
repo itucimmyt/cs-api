@@ -29,12 +29,8 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 /**
  * @author EBRIONES
  * @version 1.0
-<<<<<<< HEAD
- * @created 04-Sep-2020 10:06:41 AM
-=======
  * @created 09-Aug-2020 4:52:02 PM
  * modified by JAROJAS 31-Aug-2020
->>>>>>> f19e7f586d59b8422ec475dca4847f2e1b8149f6
  */
 @Component @Validated
 public class WorkflowNodeResolver implements GraphQLResolver<WorkflowNodeTo> {
@@ -62,11 +58,7 @@ public class WorkflowNodeResolver implements GraphQLResolver<WorkflowNodeTo> {
 	 * @param workflownodeTo
 	 */
 	public HtmlTagTo getHtmltag(WorkflowNodeTo workflownodeTo){
-<<<<<<< HEAD
-		return workflownodeService.findhtmltag(workflownodeTo.getId()).get();
-=======
-		return workflownodeService.findHtmlTag(workflownodeTo.getId()).orElse(null);
->>>>>>> f19e7f586d59b8422ec475dca4847f2e1b8149f6
+		return workflownodeService.findhtmltag(workflownodeTo.getId()).orElse(null);
 	}
 
 	/**
@@ -74,11 +66,7 @@ public class WorkflowNodeResolver implements GraphQLResolver<WorkflowNodeTo> {
 	 * @param workflownodeTo
 	 */
 	public ModuleTo getModule(WorkflowNodeTo workflownodeTo){
-<<<<<<< HEAD
-		return workflownodeService.findmodule(workflownodeTo.getId()).get();
-=======
-		return workflownodeService.findModule(workflownodeTo.getId()).orElse(null);
->>>>>>> f19e7f586d59b8422ec475dca4847f2e1b8149f6
+		return workflownodeService.findmodule(workflownodeTo.getId()).orElse(null);
 	}
 
 	/**
@@ -86,11 +74,7 @@ public class WorkflowNodeResolver implements GraphQLResolver<WorkflowNodeTo> {
 	 * @param workflownodeTo
 	 */
 	public ProcessTo getProcess(WorkflowNodeTo workflownodeTo){
-<<<<<<< HEAD
-		return workflownodeService.findprocess(workflownodeTo.getId()).get();
-=======
-		return workflownodeService.findProcess(workflownodeTo.getId()).orElse(null);
->>>>>>> f19e7f586d59b8422ec475dca4847f2e1b8149f6
+		return workflownodeService.findprocess(workflownodeTo.getId()).orElse(null);
 	}
 
 	/**
@@ -98,11 +82,7 @@ public class WorkflowNodeResolver implements GraphQLResolver<WorkflowNodeTo> {
 	 * @param workflownodeTo
 	 */
 	public WorkflowTo getWorkflow(WorkflowNodeTo workflownodeTo){
-<<<<<<< HEAD
-		return workflownodeService.findworkflow(workflownodeTo.getId()).get();
-=======
-		return workflownodeService.findWorkflow(workflownodeTo.getId()).orElse(null);
->>>>>>> f19e7f586d59b8422ec475dca4847f2e1b8149f6
+		return workflownodeService.findworkflow(workflownodeTo.getId()).orElse(null);
 	}
 
 	/**
@@ -143,8 +123,7 @@ public class WorkflowNodeResolver implements GraphQLResolver<WorkflowNodeTo> {
 	 */
 	@Autowired
 	public WorkflowNodeResolver(WorkflowNodeService workflownodeService){
-		this.workflownodeService = workflownodeService; 
-	
+		this.workflownodeService = workflownodeService;
 	}
 
 }

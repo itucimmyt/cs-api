@@ -25,13 +25,13 @@ public class WorkflowInputConverterTest {
     private WorkflowInput initWorkflowInput() {
         final WorkflowInput w = new WorkflowInput();
         w.setId(123);
-        w.setdefinition("a definition");
-        w.setdescription("a description");
-        w.sethelp("a help");
-        w.seticon("an icon");
-        w.setname("a name");
-        w.setsortno(12);
-        w.settitle("a title");
+        w.setDefinition("a definition");
+        w.setDescription("a description");
+        w.setHelp("a help");
+        w.setIcon("an icon");
+        w.setName("a name");
+        w.setSortno(12);
+        w.setTitle("a title");
         return w;
     }
 }

@@ -8,29 +8,28 @@
 
 package org.ebs.services;
 
-import org.ebs.model.ProgramModel;
-import org.ebs.model.repos.ProgramRepository;
-import org.ebs.model.PersonModel;
-import org.ebs.model.repos.PersonRepository;
-import org.ebs.model.repos.ProjectRepository;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
-import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import java.util.Optional;
+
+import org.ebs.model.PersonModel;
+import org.ebs.model.ProgramModel;
+import org.ebs.model.ProjectModel;
+import org.ebs.model.repos.PersonRepository;
+import org.ebs.model.repos.ProgramRepository;
+import org.ebs.model.repos.ProjectRepository;
+import org.ebs.services.to.PersonTo;
+import org.ebs.services.to.ProgramTo;
+import org.ebs.services.to.ProjectTo;
+import org.ebs.services.to.Input.ProjectInput;
 import org.ebs.util.FilterInput;
 import org.ebs.util.PageInput;
 import org.ebs.util.SortInput;
 import org.ebs.util.Utils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
-import java.util.stream.Collectors;
-import java.util.Set;
-import org.ebs.services.to.ProjectTo;
-import org.ebs.services.to.Input.ProjectInput;
-import org.ebs.model.ProjectModel;
-import org.ebs.services.to.ProgramTo;
-import org.ebs.services.to.PersonTo;
+import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author EBRIONES

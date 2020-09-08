@@ -8,28 +8,28 @@
 
 package org.ebs.services;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.ebs.model.WorkflowInstanceModel;
+import org.ebs.model.WorkflowStatusModel;
+import org.ebs.model.WorkflowStatusTypeModel;
 import org.ebs.model.repos.WorkflowInstanceRepository;
 import org.ebs.model.repos.WorkflowStatusRepository;
 import org.ebs.model.repos.WorkflowStatusTypeRepository;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
-import org.springframework.beans.factory.annotation.Autowired;
-import java.util.List;
-import java.util.Optional;
+import org.ebs.services.to.WorkflowInstanceTo;
+import org.ebs.services.to.WorkflowStatusTo;
+import org.ebs.services.to.WorkflowStatusTypeTo;
+import org.ebs.services.to.Input.WorkflowStatusInput;
 import org.ebs.util.FilterInput;
 import org.ebs.util.PageInput;
 import org.ebs.util.SortInput;
 import org.ebs.util.Utils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
-import java.util.stream.Collectors;
-import java.util.Set;
-import org.ebs.services.to.WorkflowStatusTo;
-import org.ebs.services.to.Input.WorkflowStatusInput;
-import org.ebs.model.WorkflowStatusModel;
-import org.ebs.services.to.WorkflowStatusTypeTo;
-import org.ebs.services.to.WorkflowInstanceTo;
+import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author EBRIONES
@@ -61,17 +61,17 @@ import org.ebs.services.to.WorkflowInstanceTo;
 
 	void initWorkflowStatus(WorkflowStatusInput input, WorkflowStatusModel model) {
 		Optional<WorkflowStatusInput> optInput = Optional.of(input);
-		WorkflowInstanceModel wfInstance = optInput.map(i -> i.getworkflowinstance())
+		WorkflowInstanceModel wfInstance = optInput.map(i -> i.getWorkflowinstance())
 			.map(i -> workflowinstanceRepository.findById(i.getId())
 				.orElseThrow(() -> new RuntimeException("workflowinstance does not exist")))
 			.orElse(null);
-		model.setworkflowinstance(wfInstance);
+		model.setWorkflowinstance(wfInstance);
 
-		WorkflowStatusTypeModel wfStatusType = optInput.map(i -> i.getworkflowstatustype())
+		WorkflowStatusTypeModel wfStatusType = optInput.map(i -> i.getWorkflowstatustype())
 			.map(i -> workflowstatustypeRepository.findById(i.getId())
 				.orElseThrow(() -> new RuntimeException("workflowstatustype does not exist")))
 			.orElse(null);
-		model.setworkflowstatustype(wfStatusType);;
+		model.setWorkflowstatustype(wfStatusType);
 	}
 
 	/**

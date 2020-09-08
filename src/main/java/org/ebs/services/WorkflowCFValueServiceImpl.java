@@ -8,29 +8,28 @@
 
 package org.ebs.services;
 
-import org.ebs.model.RequestModel;
-import org.ebs.model.repos.RequestRepository;
-import org.ebs.model.WorkflowNodeCFModel;
-import org.ebs.model.repos.WorkflowNodeCFRepository;
-import org.ebs.model.repos.WorkflowCFValueRepository;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
-import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import java.util.Optional;
+
+import org.ebs.model.RequestModel;
+import org.ebs.model.WorkflowCFValueModel;
+import org.ebs.model.WorkflowNodeCFModel;
+import org.ebs.model.repos.RequestRepository;
+import org.ebs.model.repos.WorkflowCFValueRepository;
+import org.ebs.model.repos.WorkflowNodeCFRepository;
+import org.ebs.services.to.RequestTo;
+import org.ebs.services.to.WorkflowCFValueTo;
+import org.ebs.services.to.WorkflowNodeCFTo;
+import org.ebs.services.to.Input.WorkflowCFValueInput;
 import org.ebs.util.FilterInput;
 import org.ebs.util.PageInput;
 import org.ebs.util.SortInput;
 import org.ebs.util.Utils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
-import java.util.stream.Collectors;
-import java.util.Set;
-import org.ebs.services.to.WorkflowCFValueTo;
-import org.ebs.services.to.Input.WorkflowCFValueInput;
-import org.ebs.model.WorkflowCFValueModel;
-import org.ebs.services.to.RequestTo;
-import org.ebs.services.to.WorkflowNodeCFTo;
+import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author EBRIONES
@@ -133,10 +132,10 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 		target.setRequest(requestModel);
 	
 		WorkflowNodeCFModel workflownodecfModel = Optional.of(workflowcfvalue)
-			.map(w -> w.getWorkflowNodeCF())
+			.map(w -> w.getWorkflownodecf())
 			.map(w -> workflownodecfRepository.findById(w.getId()).orElseThrow(() -> new RuntimeException("workflowNodeCF does not exist")))
 			.orElse(null);
-		target.setWorkflowNodeCF(workflownodecfModel); 
+		target.setWorkflownodecf(workflownodecfModel); 
 
 		return converter.convert(workflowcfvalueRepository.save(target), WorkflowCFValueTo.class);
 	}

@@ -19,8 +19,6 @@ import javax.persistence.criteria.Root;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
-
 class RepositoryExtImpl<T> implements RepositoryExt<T> {
 
     private final int minPageNumber = 0;

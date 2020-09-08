@@ -4,19 +4,16 @@ import static org.junit.Assert.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.Optional;
 
-import org.ebs.model.WorkflowModel;
 import org.ebs.model.WorkflowStatusModel;
 import org.ebs.model.repos.WorkflowInstanceRepository;
 import org.ebs.model.repos.WorkflowStatusRepository;
 import org.ebs.model.repos.WorkflowStatusTypeRepository;
 import org.ebs.services.to.WorkflowStatusTo;
-import org.ebs.services.to.WorkflowTo;
 import org.ebs.services.to.Input.WorkflowInstanceInput;
 import org.ebs.services.to.Input.WorkflowStatusInput;
 import org.ebs.services.to.Input.WorkflowStatusTypeInput;
@@ -49,7 +46,7 @@ public class WorkflowStatusServiceImplTest {
             .thenReturn(new WorkflowStatusTo());
 
         WorkflowStatusInput objectInput = new WorkflowStatusInput();
-        subject.createWorkflowStatus(objectInput);
+        subject.createworkflowstatus(objectInput);
 
         verify(mockConverter).convert(eq(objectInput), eq(WorkflowStatusModel.class));
         verify(mockConverter).convert(any(), eq(WorkflowStatusTo.class));
@@ -63,7 +60,7 @@ public class WorkflowStatusServiceImplTest {
             .thenReturn(Optional.empty());
         
         WorkflowStatusInput input = new WorkflowStatusInput();
-        input.setworkflowinstance(new WorkflowInstanceInput());;
+        input.setWorkflowinstance(new WorkflowInstanceInput());;
 
         assertThrows("workflowinstance validation must fail", RuntimeException.class
             ,() -> subject.initWorkflowStatus(input, new WorkflowStatusModel()));
@@ -75,7 +72,7 @@ public class WorkflowStatusServiceImplTest {
             .thenReturn(Optional.empty());
         
         WorkflowStatusInput input = new WorkflowStatusInput();
-        input.setworkflowstatustype(new WorkflowStatusTypeInput());;
+        input.setWorkflowstatustype(new WorkflowStatusTypeInput());;
 
         assertThrows("workflowStatustype validation must fail", RuntimeException.class
             ,() -> subject.initWorkflowStatus(input, new WorkflowStatusModel()));
@@ -91,7 +88,7 @@ public class WorkflowStatusServiceImplTest {
             .thenReturn(Optional.of(new WorkflowStatusModel()));
 
         WorkflowStatusInput objectInput = new WorkflowStatusInput();
-        subject.modifyWorkflowStatus(objectInput);
+        subject.modifyworkflowstatus(objectInput);
     
         verify(mockConverter)
             .convert(eq(objectInput), eq(WorkflowStatusModel.class));
@@ -108,7 +105,7 @@ public class WorkflowStatusServiceImplTest {
             .thenReturn(Optional.empty());
 
         assertThrows("find workflowstatus must fail", RuntimeException.class
-            ,() -> subject.modifyWorkflowStatus(new WorkflowStatusInput()));
+            ,() -> subject.modifyworkflowstatus(new WorkflowStatusInput()));
         
         verify(mockWorkflowstatusRepository).findById(anyInt());
 

@@ -35,6 +35,7 @@ import java.util.Set;
 import org.ebs.services.to.WorkflowTo;
 import org.ebs.services.to.Input.WorkflowInput;
 import org.ebs.model.WorkflowModel;
+import org.ebs.model.WorkflowNodeModel;
 import org.ebs.services.to.WorkflowInstanceTo;
 import org.ebs.services.to.WorkflowNodeTo;
 import org.ebs.services.to.WorkflowPhaseTo;
@@ -177,6 +178,35 @@ import org.ebs.services.to.HtmlTagTo;
 		 initWorkflowModel(workflow, source);
 		 Utils.copyNotNulls(source,target); 
 		 return converter.convert(workflowRepository.save(target), WorkflowTo.class);
+	}
+
+	void initWorkflowModel(WorkflowInput input, WorkflowModel model) {
+		Optional<WorkflowInput> optInput = Optional.of(input);
+
+		HtmlTagModel htmltag = optInput.map(i -> i.getHtmltag())
+			.map(h -> htmltagRepository.findById(h.getId())
+				.orElseThrow(() -> new RuntimeException("htmltag does not exist")))
+			.orElse(null);
+		model.setHtmltag(htmltag);
+
+		EntityReferenceModel eref = optInput.map(i -> i.getEntityreference())
+			.map(e -> entityreferenceRepository.findById(e.getId())
+				.orElseThrow(() -> new RuntimeException("entityreference does not exist")))
+			.orElse(null);
+		model.setEntityreference(eref);
+
+		TenantModel tenant = optInput.map(i -> i.getTenant())
+		.map(t -> tenantRepository.findById(t.getId())
+			.orElseThrow(() -> new RuntimeException("tenant does not exist")))
+		.orElse(null);
+		model.setTenant(tenant);
+
+		WorkflowNodeModel wfNode = optInput.map(w -> w.getWorkflownode())
+		.map(e -> workflownodeRepository.findById(e.getId())
+			.orElseThrow(() -> new RuntimeException("workflownode does not exist")))
+		.orElse(null);
+		model.setWorkflownode(wfNode);
+
 	}
 
 	/**
