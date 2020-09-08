@@ -15,6 +15,9 @@ import org.ebs.services.to.WorkflowPhaseTo;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
+
+import lombok.RequiredArgsConstructor;
+
 import java.util.Set;
 import org.ebs.services.WorkflowPhaseService;
 import org.ebs.services.to.WorkflowStageTo;
@@ -23,18 +26,20 @@ import org.ebs.services.to.WorkflowStageTo;
  * @author EBRIONES
  * @version 1.0
  * @created 04-Sep-2020 10:06:44 AM
+ * Modified JAROJAS
  */
 @Component @Validated
+@RequiredArgsConstructor(onConstructor = @__({@Autowired}))
 public class WorkflowPhaseResolver implements GraphQLResolver<WorkflowPhaseTo> {
 
-	private WorkflowPhaseService workflowphaseService;
+	private final WorkflowPhaseService workflowphaseService;
 
 	/**
 	 * 
 	 * @param workflowphaseTo
 	 */
 	public HtmlTagTo getHtmltag(WorkflowPhaseTo workflowphaseTo){
-		return workflowphaseService.findhtmltag(workflowphaseTo.getId()).get();
+		return workflowphaseService.findhtmltag(workflowphaseTo.getId()).orElse(null);
 	}
 
 	/**
@@ -52,15 +57,4 @@ public class WorkflowPhaseResolver implements GraphQLResolver<WorkflowPhaseTo> {
 	public Set<WorkflowStageTo> getWorkflowstages(WorkflowPhaseTo workflowphase){
 		return workflowphaseService.findworkflowstages(workflowphase.getId());
 	}
-
-	/**
-	 * 
-	 * @param workflowphaseService
-	 */
-	@Autowired
-	public WorkflowPhaseResolver(WorkflowPhaseService workflowphaseService){
-		this.workflowphaseService = workflowphaseService; 
-	
-	}
-
 }
