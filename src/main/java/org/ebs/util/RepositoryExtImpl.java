@@ -36,10 +36,10 @@ class RepositoryExtImpl<T> implements RepositoryExt<T> {
         CriteriaQuery<T> query = builder.createQuery(entityClass);
         Root<T> queryRoot = query.from(entityClass);
 
-        List<Predicate> predicates = createPredicates(builder, queryRoot, filters);
+        Predicate[] predicates = createPredicates(builder, queryRoot, filters);
         
         query.select(queryRoot);
-        query.where(predicates.toArray(new Predicate[predicates.size()]));
+        query.where(predicates);
         createSort(builder, query, queryRoot, sort);
 
         Pageable page = createPage(pageInput);
@@ -64,7 +64,7 @@ class RepositoryExtImpl<T> implements RepositoryExt<T> {
                             Math.min(maxPageSize, pageInput.getSize()));
     }
 
-    private List<Predicate> createPredicates(CriteriaBuilder builder, Root<T> queryRoot, List<FilterInput> filters) {
+    private Predicate[] createPredicates(CriteriaBuilder builder, Root<T> queryRoot, List<FilterInput> filters) {
         List<Predicate> predicates = new ArrayList<>();
       
         ofNullable(filters).ifPresent(fs -> {
@@ -94,8 +94,7 @@ class RepositoryExtImpl<T> implements RepositoryExt<T> {
             }});
         });
         predicates.add(builder.equal(queryRoot.get("deleted"), false));
-        return predicates;
-
+        return predicates.toArray(new Predicate[predicates.size()]);
     }
     
     private Object typedValueOf(Root<T> root, FilterInput f, boolean containNestedFields, String [] fieldsNested){
@@ -129,12 +128,12 @@ class RepositoryExtImpl<T> implements RepositoryExt<T> {
         });
     }
 
-    private long countForQuery(CriteriaBuilder builder, List<Predicate> predicates, Class<T> entityClass){
+    private long countForQuery(CriteriaBuilder builder, Predicate[] predicates, Class<T> entityClass){
         CriteriaQuery<Long> queryCount = builder.createQuery(Long.class);
         
         queryCount
             .select(builder.count(queryCount.from(entityClass)))
-            .where(predicates.toArray(new Predicate[predicates.size()]));
+            .where(predicates);
         
         long totalCount = entityManager.createQuery(queryCount)
             .getSingleResult();

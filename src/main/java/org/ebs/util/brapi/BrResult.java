@@ -2,30 +2,21 @@ package org.ebs.util.brapi;
 
 import java.util.List;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  * 
  * @author JAROJAS
  *
  * @param <T> the payload data type
  */
-class BrResult<T> {
-
-	public BrResult () {
-		
-	}
+@Getter @Setter
+@AllArgsConstructor @NoArgsConstructor
+public class BrResult<T> {
 
 	private List<T> data;
 
-	public BrResult(List<T> data) {
-		super();
-		this.data = data;
-	}
-
-	public List<T> getData() {
-		return data;
-	}
-
-	public void setData(List<T> data) {
-		this.data = data;
-	}
 }
