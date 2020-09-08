@@ -15,6 +15,9 @@ import org.ebs.model.repos.HtmlTagRepository;
 import org.ebs.model.repos.WorkflowPhaseRepository;
 import org.ebs.model.repos.WorkflowStageRepository;
 import org.springframework.transaction.annotation.Transactional;
+
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,31 +41,46 @@ import org.ebs.services.to.HtmlTagTo;
  * @author EBRIONES
  * @version 1.0
  * @created 04-Sep-2020 10:06:44 AM
+ * Modified JAROJAS 2020-09-08
  */
 @Service @Transactional(readOnly = true)
+@RequiredArgsConstructor(onConstructor = @__({@Autowired}))
   class WorkflowPhaseServiceImpl implements WorkflowPhaseService {
 
-	private WorkflowPhaseRepository workflowphaseRepository;
-	private ConversionService converter;
-	private WorkflowRepository workflowRepository;
-	private HtmlTagRepository htmltagRepository;
-	public WorkflowStageRepository workflowstageRepository;
+	private final WorkflowPhaseRepository workflowphaseRepository;
+	private final ConversionService converter;
+	private final WorkflowRepository workflowRepository;
+	private final HtmlTagRepository htmltagRepository;
+	private final WorkflowStageRepository workflowstageRepository;
 
 	/**
 	 * 
-	 * @param WorkflowPhase
+	 * @param workflowPhase
 	 */
 	@Override @Transactional(readOnly = false)
-	public WorkflowPhaseTo createworkflowphase(WorkflowPhaseInput WorkflowPhase){
-		WorkflowPhaseModel model = converter.convert(WorkflowPhase,WorkflowPhaseModel.class); 
-		 model.setId(0);
-		 WorkflowModel workflowModel = workflowRepository.findById(WorkflowPhase.getWorkflow().getId()).get(); 
-		model.setWorkflow(workflowModel); 
-		HtmlTagModel htmltagModel = htmltagRepository.findById(WorkflowPhase.getHtmltag().getId()).get(); 
+	public WorkflowPhaseTo createworkflowphase(WorkflowPhaseInput workflowPhase){
+		WorkflowPhaseModel model = converter.convert(workflowPhase,WorkflowPhaseModel.class); 
+		model.setId(0);
+		initWorkflowPhaseModel(workflowPhase, model);
+				 
+		model= workflowphaseRepository.save(model); 
+		return converter.convert(model, WorkflowPhaseTo.class); 
+	}
+
+	void initWorkflowPhaseModel(WorkflowPhaseInput input, WorkflowPhaseModel model) {
+		Optional<WorkflowPhaseInput> optInput = Optional.of(input);
+
+		WorkflowModel workflowModel = optInput.map(i -> i.getWorkflow())
+			.map(w -> workflowRepository.findById(w.getId())
+				.orElseThrow(() -> new RuntimeException("workflow does not exist")))
+			.orElse(null);
+		model.setWorkflow(workflowModel);
+		
+		HtmlTagModel htmltagModel = optInput.map(i -> i.getHtmltag())
+			.map(w -> htmltagRepository.findById(w.getId())
+				.orElseThrow(() -> new RuntimeException("htmltag does not exist")))
+			.orElse(null);
 		model.setHtmltag(htmltagModel); 
-		 
-		 model= workflowphaseRepository.save(model); 
-		 return converter.convert(model, WorkflowPhaseTo.class); 
 	}
 
 	/**
@@ -131,25 +149,8 @@ import org.ebs.services.to.HtmlTagTo;
 	public WorkflowPhaseTo modifyworkflowphase(WorkflowPhaseInput workflowphase){
 		WorkflowPhaseModel target= workflowphaseRepository.findById(workflowphase.getId()).orElseThrow(() -> new RuntimeException("WorkflowPhase not found")); 
 		 WorkflowPhaseModel source= converter.convert(workflowphase,WorkflowPhaseModel.class); 
+		 initWorkflowPhaseModel(workflowphase, source);
 		 Utils.copyNotNulls(source,target); 
 		 return converter.convert(workflowphaseRepository.save(target), WorkflowPhaseTo.class);
 	}
-
-	/**
-	 * 
-	 * @param htmltagRepository
-	 * @param workflowRepository
-	 * @param workflowstageRepository
-	 * @param converter
-	 * @param workflowphaseRepository
-	 */
-	@Autowired
-	public WorkflowPhaseServiceImpl(HtmlTagRepository htmltagRepository, WorkflowRepository workflowRepository, WorkflowStageRepository workflowstageRepository, ConversionService converter, WorkflowPhaseRepository workflowphaseRepository){
-		this.workflowphaseRepository =workflowphaseRepository; 
-		 this.converter = converter;
-		 this.workflowstageRepository = workflowstageRepository;
-		 this.workflowRepository = workflowRepository;
-		 this.htmltagRepository = htmltagRepository;
-	}
-
 }

@@ -2016,7 +2016,7 @@ help: String
 sequence: Int
 tenant: Int
 id: ID!
-workflow:WorkflowInput
+workflow:WorkflowInput!
 htmltag:HtmlTagInput
 }
 input WorkflowNodeCFInput {
