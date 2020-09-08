@@ -58,7 +58,7 @@ public class WorkflowNodeCFServiceImplTest {
             .thenReturn(new WorkflowNodeCFTo());
         
         Optional<WorkflowNodeCFTo> result = subject.findworkflownodecf(1);
-            assertThat(result.isEmpty()).isFalse();
+            assertThat(result.isPresent()).isTrue();
         
     }
 
@@ -71,14 +71,14 @@ public class WorkflowNodeCFServiceImplTest {
             .thenReturn(Optional.of(object));
         
         Optional<WorkflowNodeCFTo>result = subject.findworkflownodecf(1);
-        assertThat(result.isEmpty()).isTrue();
+        assertThat(result.isPresent()).isFalse();
 
     }
 
     @Test
     public void givenInvalidId_whenFindWorkflowNodeCF_thenReturnEmpty() {
         Optional<WorkflowNodeCFTo> result = subject.findworkflownodecf(0);
-        assertThat(result.isEmpty()).isTrue();
+        assertThat(result.isPresent()).isFalse();
 
     }
 
