@@ -1987,7 +1987,7 @@ initiatedate: Date
 completiondate: Date
 tenant: Int
 id: ID!
-workflowstatustype:WorkflowStatusTypeInput
+workflowstatustype:WorkflowStatusTypeInput!
 workflowinstance:WorkflowInstanceInput
 }
 input WorkflowStageInput {

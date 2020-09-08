@@ -38,7 +38,7 @@ public class WorkflowResolver implements GraphQLResolver<WorkflowTo> {
 	 * @param workflowTo
 	 */
 	public EntityReferenceTo getEntityreference(WorkflowTo workflowTo){
-		return workflowService.findentityreference(workflowTo.getId()).get();
+		return workflowService.findentityreference(workflowTo.getId()).orElse(null);
 	}
 
 	/**
@@ -46,7 +46,7 @@ public class WorkflowResolver implements GraphQLResolver<WorkflowTo> {
 	 * @param workflowTo
 	 */
 	public HtmlTagTo getHtmltag(WorkflowTo workflowTo){
-		return workflowService.findhtmltag(workflowTo.getId()).get();
+		return workflowService.findhtmltag(workflowTo.getId()).orElse(null);
 	}
 
 	/**
@@ -54,7 +54,7 @@ public class WorkflowResolver implements GraphQLResolver<WorkflowTo> {
 	 * @param workflowTo
 	 */
 	public TenantTo getTenant(WorkflowTo workflowTo){
-		return workflowService.findtenant(workflowTo.getId()).get();
+		return workflowService.findtenant(workflowTo.getId()).orElse(null);
 	}
 
 	/**
@@ -70,7 +70,7 @@ public class WorkflowResolver implements GraphQLResolver<WorkflowTo> {
 	 * @param workflowTo
 	 */
 	public WorkflowNodeTo getWorkflownode(WorkflowTo workflowTo){
-		return workflowService.findworkflownode(workflowTo.getId()).get();
+		return workflowService.findworkflownode(workflowTo.getId()).orElse(null);
 	}
 
 	/**

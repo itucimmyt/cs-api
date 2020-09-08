@@ -49,11 +49,10 @@ import org.springframework.transaction.annotation.Transactional;
 	 * @param workflowStatus
 	 */
 	@Override @Transactional(readOnly = false)
-	public WorkflowStatusTo createworkflowstatus(WorkflowStatusInput WorkflowStatus){
-		WorkflowStatusModel model = converter.convert(WorkflowStatus,WorkflowStatusModel.class); 
-		 model.setId(0);
-		 WorkflowInstanceModel workflowinstanceModel = workflowinstanceRepository.findById(WorkflowStatus.getWorkflowinstance().getId()).get(); 
-		model.setWorkflowinstance(workflowinstanceModel); 
+	public WorkflowStatusTo createworkflowstatus(WorkflowStatusInput workflowStatus){
+		WorkflowStatusModel model = converter.convert(workflowStatus,WorkflowStatusModel.class); 
+		model.setId(0);
+		initWorkflowStatus(workflowStatus, model);
 		 
 		model = workflowstatusRepository.save(model); 
 		return converter.convert(model, WorkflowStatusTo.class); 
@@ -130,9 +129,12 @@ import org.springframework.transaction.annotation.Transactional;
 	 */
 	@Override @Transactional(readOnly = false)
 	public WorkflowStatusTo modifyworkflowstatus(WorkflowStatusInput workflowstatus){
-		WorkflowStatusModel target= workflowstatusRepository.findById(workflowstatus.getId()).orElseThrow(() -> new RuntimeException("WorkflowStatus not found")); 
-		 WorkflowStatusModel source= converter.convert(workflowstatus,WorkflowStatusModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		WorkflowStatusModel target= workflowstatusRepository.findById(workflowstatus.getId())
+			.orElseThrow(() -> new RuntimeException("WorkflowStatus not found")); 
+		WorkflowStatusModel source= converter.convert(workflowstatus,WorkflowStatusModel.class); 
+		
+		initWorkflowStatus(workflowstatus, source);
+		Utils.copyNotNulls(source,target);
 		 return converter.convert(workflowstatusRepository.save(target), WorkflowStatusTo.class);
 	}
 

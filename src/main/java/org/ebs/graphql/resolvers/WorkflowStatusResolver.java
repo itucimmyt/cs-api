@@ -33,7 +33,7 @@ public class WorkflowStatusResolver implements GraphQLResolver<WorkflowStatusTo>
 	 * @param workflowstatusTo
 	 */
 	public WorkflowInstanceTo getWorkflowinstance(WorkflowStatusTo workflowstatusTo){
-		return workflowstatusService.findworkflowinstance(workflowstatusTo.getId()).get();
+		return workflowstatusService.findworkflowinstance(workflowstatusTo.getId()).orElse(null);
 	}
 
 	/**

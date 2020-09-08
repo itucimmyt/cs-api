@@ -65,16 +65,14 @@ import org.ebs.services.to.HtmlTagTo;
 	 * @param workflow
 	 */
 	@Override @Transactional(readOnly = false)
-	public WorkflowTo createworkflow(WorkflowInput Workflow){
-		WorkflowModel model = converter.convert(Workflow,WorkflowModel.class); 
-		 model.setId(0);
-		 EntityReferenceModel entityreferenceModel = entityreferenceRepository.findById(Workflow.getEntityreference().getId()).get(); 
-		model.setEntityreference(entityreferenceModel); 
-		TenantModel tenantModel = tenantRepository.findById(Workflow.getTenant().getId()).get(); 
-		model.setTenant(tenantModel); 
-		 
-		 model= workflowRepository.save(model); 
-		 return converter.convert(model, WorkflowTo.class); 
+	public WorkflowTo createworkflow(WorkflowInput workflow){
+		WorkflowModel model = converter.convert(workflow,WorkflowModel.class); 
+		model.setId(0);
+
+		initWorkflowModel(workflow, model);
+		
+	 	model= workflowRepository.save(model); 
+		return converter.convert(model, WorkflowTo.class); 
 	}
 
 	/**
