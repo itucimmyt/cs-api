@@ -13,37 +13,37 @@ import static java.util.stream.Collectors.toSet;
 
 import java.util.Collections;
 import java.util.HashSet;
-
-import org.ebs.model.WorkflowPhaseModel;
-import org.ebs.model.repos.WorkflowPhaseRepository;
-import org.ebs.model.HtmlTagModel;
-import org.ebs.model.WorkflowNodeModel;
-import org.ebs.model.repos.HtmlTagRepository;
-import org.ebs.model.repos.WorkflowStageRepository;
-import org.ebs.model.repos.ActionRepository;
-import org.ebs.model.repos.WorkflowEventRepository;
-import org.ebs.model.repos.WorkflowNodeRepository;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
-import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import org.ebs.model.HtmlTagModel;
+import org.ebs.model.WorkflowNodeModel;
+import org.ebs.model.WorkflowPhaseModel;
+import org.ebs.model.WorkflowStageModel;
+import org.ebs.model.repos.ActionRepository;
+import org.ebs.model.repos.HtmlTagRepository;
+import org.ebs.model.repos.WorkflowEventRepository;
+import org.ebs.model.repos.WorkflowNodeRepository;
+import org.ebs.model.repos.WorkflowPhaseRepository;
+import org.ebs.model.repos.WorkflowStageRepository;
+import org.ebs.services.to.ActionTo;
+import org.ebs.services.to.HtmlTagTo;
+import org.ebs.services.to.WorkflowEventTo;
+import org.ebs.services.to.WorkflowNodeTo;
+import org.ebs.services.to.WorkflowPhaseTo;
+import org.ebs.services.to.WorkflowStageTo;
+import org.ebs.services.to.Input.WorkflowStageInput;
 import org.ebs.util.FilterInput;
 import org.ebs.util.PageInput;
 import org.ebs.util.SortInput;
 import org.ebs.util.Utils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
-import java.util.stream.Collectors;
-import java.util.Set;
-import org.ebs.services.to.WorkflowStageTo;
-import org.ebs.services.to.Input.WorkflowStageInput;
-import org.ebs.model.WorkflowStageModel;
-import org.ebs.services.to.ActionTo;
-import org.ebs.services.to.WorkflowPhaseTo;
-import org.ebs.services.to.WorkflowEventTo;
-import org.ebs.services.to.HtmlTagTo;
-import org.ebs.services.to.WorkflowNodeTo;
+import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author EBRIONES
@@ -183,6 +183,31 @@ import org.ebs.services.to.WorkflowNodeTo;
 		 this.workfloweventRepository = workfloweventRepository;
 		 this.htmltagRepository = htmltagRepository;
 		 this.workflownodeRepository = workflownodeRepository;
+	}
+
+	void initWorkflowStage(WorkflowStageInput input, WorkflowStageModel model) {
+		Optional<WorkflowStageInput> optInput = Optional.of(input);
+		WorkflowPhaseModel wfPhase = optInput.map(i -> i.getWorkflowphase())
+			.map(i -> workflowphaseRepository.findById(i.getId())
+				.orElseThrow(() -> new RuntimeException("workflowphase does not exist")))
+			.orElse(null);
+		model.setWorkflowphase(wfPhase);
+
+		HtmlTagModel htmltag = optInput.map(i -> i.getHtmltag())
+			.map(i -> htmltagRepository.findById(i.getId())
+				.orElseThrow(() -> new RuntimeException("htmltag does not exist")))
+			.orElse(null);
+		model.setHtmltag(htmltag);
+
+		List<WorkflowNodeModel> wfNodes = optInput
+			.map(i -> i.getWorkflownodes())
+			.map(n -> n.stream()
+				.map(i -> i.getId())
+				.collect(toSet()))
+			.map(l -> workflownodeRepository.findAllById(l))
+			.orElse(Collections.emptyList());
+
+		model.setWorkflownodes(new HashSet<>(wfNodes));
 	}
 
 }

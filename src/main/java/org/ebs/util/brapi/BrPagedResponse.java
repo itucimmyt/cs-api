@@ -1,34 +1,26 @@
 package org.ebs.util.brapi;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * Global format for any paged BrAPI call.
+ * 
  * @author JAROJAS
  *
  * @param <T> the payload type in this response
  */
+@Getter @Setter
 public class BrPagedResponse<T> {
 
-	private BrMetadata metadata;
 	/**
 	 * Contains the payload
 	 */
 	private BrResult<T> result;
-	
-	public BrPagedResponse() {
-		metadata = new BrMetadata();
+	private BrMetadata metadata = new BrMetadata();
+
+	@Override
+	public String toString() {
+		return String.format("BrPagedResponse [%s,%s]", metadata, result );
 	}
-	
-	public BrMetadata getMetadata() {
-		return metadata;
-	}
-	public void setMetadata(BrMetadata metadata) {
-		this.metadata = metadata;
-	}
-	public  BrResult<T> getResult() {
-		return result;
-	}
-	public void setResult(BrResult<T> result) {
-		this.result = result;
-	}
-	
 }

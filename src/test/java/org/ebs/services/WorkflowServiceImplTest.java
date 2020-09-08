@@ -57,7 +57,7 @@ public class WorkflowServiceImplTest {
             .thenReturn(new WorkflowTo());
 
         WorkflowInput objectInput = new WorkflowInput();
-        subject.createWorkflow(objectInput);
+        subject.createworkflow(objectInput);
 
         verify(mockConverter, times(1))
             .convert(eq(objectInput), eq(WorkflowModel.class));
@@ -77,7 +77,7 @@ public class WorkflowServiceImplTest {
             .thenReturn(Optional.of(new WorkflowModel()));
 
         WorkflowInput objectInput = new WorkflowInput();
-        subject.modifyWorkflow(objectInput);
+        subject.modifyworkflow(objectInput);
 
         verify(mockConverter, times(1))
             .convert(eq(objectInput), eq(WorkflowModel.class));
@@ -95,7 +95,7 @@ public class WorkflowServiceImplTest {
             .thenReturn(Optional.empty());
 
         assertThrows("find workflow must fail", RuntimeException.class
-            ,() -> subject.modifyWorkflow(new WorkflowInput()));
+            ,() -> subject.modifyworkflow(new WorkflowInput()));
         
         verify(mockWorkflowRepository, times(1))
             .findById(anyInt());
@@ -107,7 +107,7 @@ public class WorkflowServiceImplTest {
             .thenReturn(Optional.empty());
         
         WorkflowInput input = new WorkflowInput();
-        input.sethtmltag(new HtmlTagInput());
+        input.setHtmltag(new HtmlTagInput());
 
         assertThrows("htmltag validation must fail", RuntimeException.class
             ,() -> subject.initWorkflowModel(input, new WorkflowModel()));
@@ -119,7 +119,7 @@ public class WorkflowServiceImplTest {
             .thenReturn(Optional.empty());
         
         WorkflowInput input = new WorkflowInput();
-        input.setentityreference(new EntityReferenceInput());
+        input.setEntityreference(new EntityReferenceInput());
 
         assertThrows("entityreference validation must fail", RuntimeException.class
             ,() -> subject.initWorkflowModel(input, new WorkflowModel()));
@@ -131,7 +131,7 @@ public class WorkflowServiceImplTest {
             .thenReturn(Optional.empty());
         
         WorkflowInput input = new WorkflowInput();
-        input.settenant(new TenantInput());
+        input.setTenant(new TenantInput());
 
         assertThrows("tenant validation must fail", RuntimeException.class
             ,() -> subject.initWorkflowModel(input, new WorkflowModel()));
@@ -143,7 +143,7 @@ public class WorkflowServiceImplTest {
             .thenReturn(Optional.empty());
         
         WorkflowInput input = new WorkflowInput();
-        input.setworkflownode(new WorkflowNodeInput());
+        input.setWorkflownode(new WorkflowNodeInput());
 
         assertThrows("WorkflowNode validation must fail", RuntimeException.class
             ,() -> subject.initWorkflowModel(input, new WorkflowModel()));

@@ -41,7 +41,8 @@ public class WorkflowStageServiceImplTest {
 
     @BeforeEach
     public void init() {
-        subject = new WorkflowStageServiceImpl(mockActionRepository, mockWorkflowstageRepository, mockConverter, mockWorkflowphaseRepository, mockWorkfloweventRepository, mockHtmltagRepository, mockWorkflownodeRepository);
+        subject = new WorkflowStageServiceImpl(mockWorkflownodeRepository, mockWorkflowstageRepository, mockConverter
+            ,mockActionRepository, mockWorkflowphaseRepository, mockWorkfloweventRepository, mockHtmltagRepository);
     }
 
     @Test
@@ -50,7 +51,7 @@ public class WorkflowStageServiceImplTest {
             .thenReturn(Optional.empty());
         
         WorkflowStageInput input = new WorkflowStageInput();
-        input.setworkflowphase(new WorkflowPhaseInput());;
+        input.setWorkflowphase(new WorkflowPhaseInput());;
 
         assertThrows("workflowphase validation must fail", RuntimeException.class
             ,() -> subject.initWorkflowStage(input, new WorkflowStageModel()));
@@ -62,7 +63,7 @@ public class WorkflowStageServiceImplTest {
             .thenReturn(Optional.empty());
         
         WorkflowStageInput input = new WorkflowStageInput();
-        input.sethtmltag(new HtmlTagInput());;
+        input.setHtmltag(new HtmlTagInput());;
 
         assertThrows("htmltag validation must fail", RuntimeException.class
             ,() -> subject.initWorkflowStage(input, new WorkflowStageModel()));
@@ -78,7 +79,7 @@ public class WorkflowStageServiceImplTest {
             .thenReturn(Optional.of(new WorkflowStageModel()));
 
         WorkflowStageInput objectInput = new WorkflowStageInput();
-        subject.modifyWorkflowStage(objectInput);
+        subject.modifyworkflowstage(objectInput);
     
         verify(mockConverter)
             .convert(eq(objectInput), eq(WorkflowStageModel.class));
@@ -95,7 +96,7 @@ public class WorkflowStageServiceImplTest {
             .thenReturn(Optional.empty());
 
         assertThrows("find workflowstage must fail", RuntimeException.class
-            ,() -> subject.modifyWorkflowStage(new WorkflowStageInput()));
+            ,() -> subject.modifyworkflowstage(new WorkflowStageInput()));
         
         verify(mockWorkflowstageRepository).findById(anyInt());
 
