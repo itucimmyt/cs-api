@@ -18,4 +18,9 @@ public class BrPagedResponse<T> {
 	 */
 	private BrResult<T> result;
 	private BrMetadata metadata = new BrMetadata();
+
+	@Override
+	public String toString() {
+		return String.format("BrPagedResponse [%s,%s]", metadata, result );
+	}
 }
