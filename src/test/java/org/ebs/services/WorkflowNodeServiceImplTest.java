@@ -82,7 +82,7 @@ public class WorkflowNodeServiceImplTest {
             .thenReturn(new WorkflowNodeTo());
         
         Optional<WorkflowNodeTo> result = subject.findworkflownode(1);
-            assertThat(result.isEmpty()).isFalse();
+            assertThat(result.isPresent()).isTrue();
         
     }
 
@@ -95,14 +95,14 @@ public class WorkflowNodeServiceImplTest {
             .thenReturn(Optional.of(object));
         
         Optional<WorkflowNodeTo>result = subject.findworkflownode(1);
-        assertThat(result.isEmpty()).isTrue();
+        assertThat(result.isPresent()).isFalse();
 
     }
 
     @Test
     public void givenInvalidId_whenFindWorkflowNodeCF_thenReturnEmpty() {
         Optional<WorkflowNodeTo> result = subject.findworkflownode(0);
-        assertThat(result.isEmpty()).isTrue();
+        assertThat(result.isPresent()).isFalse();
 
     }
 
