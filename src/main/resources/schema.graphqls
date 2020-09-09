@@ -1368,8 +1368,6 @@ route: String
 mainEntity: String
 #
 icon: String
-#
-container: String
 id: ID!
 actions:[Action]
 component:Component

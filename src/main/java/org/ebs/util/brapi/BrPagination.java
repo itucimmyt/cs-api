@@ -1,49 +1,29 @@
 package org.ebs.util.brapi;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  * Models pagination section of a BrAPI response
+ * 
  * @author JAROJAS
  *
  */
+@Getter @Setter
+@AllArgsConstructor @NoArgsConstructor
 class BrPagination {
 
 	private int pageSize;
 	private int currentPage;
 	private long totalCount;
 	private int totalPages;
-	
-	public BrPagination(){}
-	
-	public BrPagination(int pageSize, int currentPage, long totalCount,
-			int totalPages) {
-		this.pageSize = pageSize;
-		this.currentPage = currentPage;
-		this.totalCount = totalCount;
-		this.totalPages = totalPages;
+
+	@Override
+	public String toString() {
+		
+		return String.format("BrPagination [pageSize=%s, currentPage=%s, totalCount=%s, totalPages=%s]", pageSize, currentPage, totalCount, totalPages);
 	}
-	
-	public int getPageSize() {
-		return pageSize;
-	}
-	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
-	}
-	public int getCurrentPage() {
-		return currentPage;
-	}
-	public void setCurrentPage(int currentPage) {
-		this.currentPage = currentPage;
-	}
-	public long getTotalCount() {
-		return totalCount;
-	}
-	public void setTotalCount(long totalCount) {
-		this.totalCount = totalCount;
-	}
-	public int getTotalPages() {
-		return totalPages;
-	}
-	public void setTotalPages(int totalPages) {
-		this.totalPages = totalPages;
-	}
+
 }

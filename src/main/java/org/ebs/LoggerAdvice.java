@@ -7,6 +7,7 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Component;
  * The log works at TRACE level
  * 
  */
-@Aspect
+@Aspect @Order(0)
 @Component
 public class LoggerAdvice {
 
@@ -38,6 +39,9 @@ public class LoggerAdvice {
     @Pointcut("within(org.ebs.graphql..*)")
     private void anyGraphqlResolver() { }
 
+    @Pointcut("within(org.ebs.security..*)")
+    private void anySecurityClass() { }
+
     @Before("anyGraphqlResolver() && anyComponent()")
     void logResolverInputs(JoinPoint joinPoint) {
         traceSignatureAndArgs(joinPoint);
@@ -48,12 +52,12 @@ public class LoggerAdvice {
         traceSignatureAndArgs(joinPoint);
     }
 
-    @Before("anyService()")
+    @Before("anyService() && !anySecurityClass()")
     void logServiceInputs(JoinPoint joinPoint) {
         traceSignatureAndArgs(joinPoint);
     }
     
-    @AfterReturning(pointcut="anyService()", returning="returned")
+    @AfterReturning(pointcut="anyService() && !anySecurityClass()", returning="returned")
     void logServiceOutputs(JoinPoint joinPoint, Object returned) {
         traceReturningObject(joinPoint, returned);
     }

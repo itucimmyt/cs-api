@@ -11,16 +11,16 @@ package org.ebs.services;
 import org.ebs.model.WorkflowModel;
 import org.ebs.model.repos.WorkflowRepository;
 import org.ebs.model.EntityReferenceModel;
-import org.ebs.model.repos.EntityReferenceRepository;
 import org.ebs.model.HtmlTagModel;
-import org.ebs.model.repos.HtmlTagRepository;
-import org.ebs.model.ProcessModel;
-import org.ebs.model.repos.ProcessRepository;
 import org.ebs.model.ModuleModel;
-import org.ebs.model.repos.ModuleRepository;
-import org.ebs.model.repos.WorkflowNodeRepository;
-import org.ebs.model.repos.WorkflowStageRepository;
+import org.ebs.model.ProcessModel;
+import org.ebs.model.WorkflowModel;
+import org.ebs.model.WorkflowNodeModel;
 import org.ebs.model.repos.ActionRepository;
+import org.ebs.model.repos.EntityReferenceRepository;
+import org.ebs.model.repos.HtmlTagRepository;
+import org.ebs.model.repos.ModuleRepository;
+import org.ebs.model.repos.ProcessRepository;
 import org.ebs.model.repos.WorkflowEventRepository;
 import org.ebs.model.repos.WorkflowNodeCFRepository;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,7 +41,6 @@ import org.ebs.services.to.Input.WorkflowNodeInput;
 import org.ebs.model.WorkflowNodeModel;
 import org.ebs.services.to.ActionTo;
 import org.ebs.services.to.EntityReferenceTo;
-import org.ebs.services.to.WorkflowEventTo;
 import org.ebs.services.to.HtmlTagTo;
 import org.ebs.services.to.ProcessTo;
 import org.ebs.services.to.ModuleTo;
@@ -73,13 +72,25 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 
 	/**
 	 * 
-	 * @param WorkflowNode
+	 * @param workflowNode
 	 */
 	@Override @Transactional(readOnly = false)
 	public WorkflowNodeTo createWorkflowNode(WorkflowNodeInput WorkflowNode){
 		WorkflowNodeModel model = converter.convert(WorkflowNode,WorkflowNodeModel.class); 
 		 model.setId(0);
-		 WorkflowModel workflowModel = workflowRepository.findById(WorkflowNode.getWorkflow().getId()).get(); 
+		 initWorkflowNodeModel(workflowNode, model);
+		 model = workflownodeRepository.save(model); 
+		 return converter.convert(model, WorkflowNodeTo.class); 
+	}
+
+	void initWorkflowNodeModel(WorkflowNodeInput workflowNode, WorkflowNodeModel model) {
+		Optional<WorkflowNodeInput> optWFN = Optional.of(workflowNode);
+
+		WorkflowModel workflowModel = optWFN
+			.map(wfn -> wfn.getWorkflow())
+			.map(w -> workflowRepository.findById(w.getId())
+				.orElseThrow(() -> new RuntimeException("workflow does not exist")))
+			.orElse(null);
 		model.setWorkflow(workflowModel); 
 		EntityReferenceModel entityreferenceModel = entityreferenceRepository.findById(WorkflowNode.getEntityReference().getId()).get(); 
 		model.setEntityReference(entityreferenceModel); 

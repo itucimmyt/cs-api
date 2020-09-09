@@ -8,6 +8,10 @@
 
 package org.ebs.services;
 
+import java.util.List;
+import java.util.Optional;
+
+import org.ebs.model.CollaboratorModel;
 import org.ebs.model.PersonModel;
 import org.ebs.model.repos.PersonRepository;
 import org.ebs.model.repos.CollaboratorRepository;

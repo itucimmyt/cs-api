@@ -9,6 +9,7 @@
 package org.ebs.model;
 
 import org.ebs.util.Auditable;
+
 import lombok.Getter;
 import lombok.Setter;
 import javax.persistence.JoinColumn;

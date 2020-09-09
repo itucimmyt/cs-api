@@ -15,6 +15,9 @@ import org.ebs.model.repos.HtmlTagRepository;
 import org.ebs.model.repos.WorkflowPhaseRepository;
 import org.ebs.model.repos.WorkflowStageRepository;
 import org.springframework.transaction.annotation.Transactional;
+
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +43,7 @@ import org.ebs.services.to.HtmlTagTo;
  * @created 07-Sep-2020 8:12:46 AM
  */
 @Service @Transactional(readOnly = true)
+@RequiredArgsConstructor(onConstructor = @__({@Autowired}))
   class WorkflowPhaseServiceImpl implements WorkflowPhaseService {
 
 	private WorkflowPhaseRepository workflowPhaseRepository;
@@ -51,7 +55,7 @@ import org.ebs.services.to.HtmlTagTo;
 
 	/**
 	 * 
-	 * @param WorkflowPhase
+	 * @param workflowPhase
 	 */
 	@Override @Transactional(readOnly = false)
 	public WorkflowPhaseTo createWorkflowPhase(WorkflowPhaseInput WorkflowPhase){
