@@ -559,7 +559,7 @@ type TraitClass {
 #name for the trait_class
 name: String
 #description of the trait
-_class
+
 description: String
 tenant: Int
 id: ID!
@@ -1975,7 +1975,7 @@ input TraitClassInput {
 #name for the trait_class
 name: String
 #description of the trait
-_class
+
 description: String
 tenant: Int
 id: ID!
