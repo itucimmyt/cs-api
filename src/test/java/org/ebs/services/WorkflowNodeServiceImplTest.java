@@ -81,7 +81,7 @@ public class WorkflowNodeServiceImplTest {
         when(mockConverter.convert(any(), any()))
             .thenReturn(new WorkflowNodeTo());
         
-        Optional<WorkflowNodeTo> result = subject.findworkflownode(1);
+        Optional<WorkflowNodeTo> result = subject.findWorkflowNode(1);
             assertThat(result.isPresent()).isTrue();
         
     }
@@ -94,14 +94,14 @@ public class WorkflowNodeServiceImplTest {
         when(mockWorkflownodeRepository.findById(anyInt()))
             .thenReturn(Optional.of(object));
         
-        Optional<WorkflowNodeTo>result = subject.findworkflownode(1);
+        Optional<WorkflowNodeTo>result = subject.findWorkflowNode(1);
         assertThat(result.isPresent()).isFalse();
 
     }
 
     @Test
     public void givenInvalidId_whenFindWorkflowNodeCF_thenReturnEmpty() {
-        Optional<WorkflowNodeTo> result = subject.findworkflownode(0);
+        Optional<WorkflowNodeTo> result = subject.findWorkflowNode(0);
         assertThat(result.isPresent()).isFalse();
 
     }
@@ -118,7 +118,7 @@ public class WorkflowNodeServiceImplTest {
         when(mockConverter.convert(any(), any()))
             .thenReturn(new WorkflowNodeTo());
             
-        Page<WorkflowNodeTo> result = subject.findworkflownodes(null, null, null);
+        Page<WorkflowNodeTo> result = subject.findWorkflowNodes(null, null, null);
 
         assertThat(result).isNotNull();
         assertThat(result.getTotalElements()).isEqualTo(2);
@@ -150,7 +150,7 @@ public class WorkflowNodeServiceImplTest {
             .thenReturn(new WorkflowNodeModel());
 
         WorkflowNodeInput objectInput = initWorkflowNodeInput();
-        subject.createworkflownode(objectInput);
+        subject.createWorkflowNode(objectInput);
 
         verify(mockConverter, times(1))
             .convert(eq(objectInput), eq(WorkflowNodeModel.class));
@@ -184,7 +184,7 @@ public class WorkflowNodeServiceImplTest {
         objectInput.setId(1);
         objectInput.setTenant(2);
         
-        subject.createworkflownode(objectInput);
+        subject.createWorkflowNode(objectInput);
 
         verify(mockConverter, times(1))
             .convert(eq(objectInput), eq(WorkflowNodeModel.class));

@@ -57,7 +57,7 @@ public class WorkflowServiceImplTest {
             .thenReturn(new WorkflowTo());
 
         WorkflowInput objectInput = new WorkflowInput();
-        subject.createworkflow(objectInput);
+        subject.createWorkflow(objectInput);
 
         verify(mockConverter, times(1))
             .convert(eq(objectInput), eq(WorkflowModel.class));
@@ -77,7 +77,7 @@ public class WorkflowServiceImplTest {
             .thenReturn(Optional.of(new WorkflowModel()));
 
         WorkflowInput objectInput = new WorkflowInput();
-        subject.modifyworkflow(objectInput);
+        subject.modifyWorkflow(objectInput);
 
         verify(mockConverter, times(1))
             .convert(eq(objectInput), eq(WorkflowModel.class));
@@ -95,7 +95,7 @@ public class WorkflowServiceImplTest {
             .thenReturn(Optional.empty());
 
         assertThrows("find workflow must fail", RuntimeException.class
-            ,() -> subject.modifyworkflow(new WorkflowInput()));
+            ,() -> subject.modifyWorkflow(new WorkflowInput()));
         
         verify(mockWorkflowRepository, times(1))
             .findById(anyInt());
@@ -143,7 +143,7 @@ public class WorkflowServiceImplTest {
             .thenReturn(Optional.empty());
         
         WorkflowInput input = new WorkflowInput();
-        input.setWorkflownode(new WorkflowNodeInput());
+        input.setWorkflowNode(new WorkflowNodeInput());
 
         assertThrows("WorkflowNode validation must fail", RuntimeException.class
             ,() -> subject.initWorkflowModel(input, new WorkflowModel()));

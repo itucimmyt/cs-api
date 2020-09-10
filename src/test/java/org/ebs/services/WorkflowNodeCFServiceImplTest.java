@@ -57,7 +57,7 @@ public class WorkflowNodeCFServiceImplTest {
         when(mockConverter.convert(any(), any()))
             .thenReturn(new WorkflowNodeCFTo());
         
-        Optional<WorkflowNodeCFTo> result = subject.findworkflownodecf(1);
+        Optional<WorkflowNodeCFTo> result = subject.findWorkflowNodeCF(1);
             assertThat(result.isPresent()).isTrue();
         
     }
@@ -70,14 +70,14 @@ public class WorkflowNodeCFServiceImplTest {
         when(mockWorkflownodecfRepository.findById(anyInt()))
             .thenReturn(Optional.of(object));
         
-        Optional<WorkflowNodeCFTo>result = subject.findworkflownodecf(1);
+        Optional<WorkflowNodeCFTo>result = subject.findWorkflowNodeCF(1);
         assertThat(result.isPresent()).isFalse();
 
     }
 
     @Test
     public void givenInvalidId_whenFindWorkflowNodeCF_thenReturnEmpty() {
-        Optional<WorkflowNodeCFTo> result = subject.findworkflownodecf(0);
+        Optional<WorkflowNodeCFTo> result = subject.findWorkflowNodeCF(0);
         assertThat(result.isPresent()).isFalse();
 
     }
@@ -94,7 +94,7 @@ public class WorkflowNodeCFServiceImplTest {
         when(mockConverter.convert(any(), any()))
             .thenReturn(new WorkflowNodeCFTo());
             
-        Page<WorkflowNodeCFTo> result = subject.findworkflownodecfs(null, null, null);
+        Page<WorkflowNodeCFTo> result = subject.findWorkflowNodeCFs(null, null, null);
 
         assertThat(result).isNotNull();
         assertThat(result.getTotalElements()).isEqualTo(2);

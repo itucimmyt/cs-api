@@ -79,7 +79,7 @@ public class WorkflowPhaseServiceImplTest {
             .thenReturn(new WorkflowPhaseTo());
 
         WorkflowPhaseInput objectInput = new WorkflowPhaseInput();
-        subject.createworkflowphase(objectInput);
+        subject.createWorkflowPhase(objectInput);
 
         verify(mockConverter).convert(eq(objectInput), eq(WorkflowPhaseModel.class));
         verify(mockConverter).convert(any(), eq(WorkflowPhaseTo.class));
@@ -97,7 +97,7 @@ public class WorkflowPhaseServiceImplTest {
             .thenReturn(Optional.of(new WorkflowPhaseModel()));
 
         WorkflowPhaseInput objectInput = new WorkflowPhaseInput();
-        subject.modifyworkflowphase(objectInput);
+        subject.modifyWorkflowPhase(objectInput);
     
         verify(mockConverter)
             .convert(eq(objectInput), eq(WorkflowPhaseModel.class));
@@ -114,7 +114,7 @@ public class WorkflowPhaseServiceImplTest {
             .thenReturn(Optional.empty());
 
         assertThrows("find workflowphase must fail", RuntimeException.class
-            ,() -> subject.modifyworkflowphase(new WorkflowPhaseInput()));
+            ,() -> subject.modifyWorkflowPhase(new WorkflowPhaseInput()));
         
         verify(mockWorkflowphaseRepository).findById(anyInt());
 

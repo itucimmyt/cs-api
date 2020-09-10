@@ -79,7 +79,7 @@ public class WorkflowStageServiceImplTest {
             .thenReturn(Optional.of(new WorkflowStageModel()));
 
         WorkflowStageInput objectInput = new WorkflowStageInput();
-        subject.modifyworkflowstage(objectInput);
+        subject.modifyWorkflowStage(objectInput);
     
         verify(mockConverter)
             .convert(eq(objectInput), eq(WorkflowStageModel.class));
@@ -96,7 +96,7 @@ public class WorkflowStageServiceImplTest {
             .thenReturn(Optional.empty());
 
         assertThrows("find workflowstage must fail", RuntimeException.class
-            ,() -> subject.modifyworkflowstage(new WorkflowStageInput()));
+            ,() -> subject.modifyWorkflowStage(new WorkflowStageInput()));
         
         verify(mockWorkflowstageRepository).findById(anyInt());
 

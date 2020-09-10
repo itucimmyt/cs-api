@@ -58,7 +58,7 @@ public class WorkflowCFValueServiceImplTest {
         when(mockWorkflowcfvalueRepository.save(any()))
             .thenReturn(new WorkflowCFValueModel());
 
-        subject.createworkflowcfvalue(objectInput);
+        subject.createWorkflowCFValue(objectInput);
 
         verify(mockConverter, times(1))
             .convert(eq(objectInput), eq(WorkflowCFValueModel.class));
@@ -87,7 +87,7 @@ public class WorkflowCFValueServiceImplTest {
         when(mockWorkflowcfvalueRepository.save(any()))
             .thenReturn(new WorkflowCFValueModel());
 
-        subject.createworkflowcfvalue(objectInput);
+        subject.createWorkflowCFValue(objectInput);
 
         verify(mockConverter, times(1))
             .convert(eq(objectInput), eq(WorkflowCFValueModel.class));
@@ -117,7 +117,7 @@ public class WorkflowCFValueServiceImplTest {
         when(mockWorkflowcfvalueRepository.save(any()))
             .thenReturn(new WorkflowCFValueModel());
 
-        subject.modifyworkflowcfvalue(objectInput);
+        subject.modifyWorkflowCFValue(objectInput);
 
         verify(mockWorkflowcfvalueRepository, times(1))
             .findById(anyInt());
@@ -151,7 +151,7 @@ public class WorkflowCFValueServiceImplTest {
         when(mockWorkflowcfvalueRepository.save(any()))
             .thenReturn(new WorkflowCFValueModel());
 
-        subject.modifyworkflowcfvalue(objectInput);
+        subject.modifyWorkflowCFValue(objectInput);
 
         verify(mockWorkflowcfvalueRepository, times(1))
             .findById(anyInt());
@@ -170,7 +170,7 @@ public class WorkflowCFValueServiceImplTest {
         when(mockWorkflowcfvalueRepository.findById(anyInt()))
             .thenReturn(Optional.empty());
 
-        assertThrows("WorkflowCFValue not found", RuntimeException.class, () -> subject.modifyworkflowcfvalue(new WorkflowCFValueInput()));
+        assertThrows("WorkflowCFValue not found", RuntimeException.class, () -> subject.modifyWorkflowCFValue(new WorkflowCFValueInput()));
         
     }
 
@@ -184,7 +184,7 @@ public class WorkflowCFValueServiceImplTest {
         when(mockRequestRepository.findById(anyInt()))
             .thenReturn(Optional.empty());
 
-        assertThrows("passed request id must exist",RuntimeException.class, () -> subject.modifyworkflowcfvalue(initWorkflowCFValueInput()));
+        assertThrows("passed request id must exist",RuntimeException.class, () -> subject.modifyWorkflowCFValue(initWorkflowCFValueInput()));
         
     }
 
@@ -199,7 +199,7 @@ public class WorkflowCFValueServiceImplTest {
         when(mockWorkflownodecfRepository.findById(anyInt()))
             .thenReturn((Optional.empty()));
 
-        assertThrows("passed workflowNodeCF id must exist",RuntimeException.class, () -> subject.modifyworkflowcfvalue(initWorkflowCFValueInput()));
+        assertThrows("passed workflowNodeCF id must exist",RuntimeException.class, () -> subject.modifyWorkflowCFValue(initWorkflowCFValueInput()));
         
     }
 

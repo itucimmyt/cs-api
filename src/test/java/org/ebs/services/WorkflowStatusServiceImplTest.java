@@ -46,7 +46,7 @@ public class WorkflowStatusServiceImplTest {
             .thenReturn(new WorkflowStatusTo());
 
         WorkflowStatusInput objectInput = new WorkflowStatusInput();
-        subject.createworkflowstatus(objectInput);
+        subject.createWorkflowStatus(objectInput);
 
         verify(mockConverter).convert(eq(objectInput), eq(WorkflowStatusModel.class));
         verify(mockConverter).convert(any(), eq(WorkflowStatusTo.class));
@@ -88,7 +88,7 @@ public class WorkflowStatusServiceImplTest {
             .thenReturn(Optional.of(new WorkflowStatusModel()));
 
         WorkflowStatusInput objectInput = new WorkflowStatusInput();
-        subject.modifyworkflowstatus(objectInput);
+        subject.modifyWorkflowStatus(objectInput);
     
         verify(mockConverter)
             .convert(eq(objectInput), eq(WorkflowStatusModel.class));
@@ -105,7 +105,7 @@ public class WorkflowStatusServiceImplTest {
             .thenReturn(Optional.empty());
 
         assertThrows("find workflowstatus must fail", RuntimeException.class
-            ,() -> subject.modifyworkflowstatus(new WorkflowStatusInput()));
+            ,() -> subject.modifyWorkflowStatus(new WorkflowStatusInput()));
         
         verify(mockWorkflowstatusRepository).findById(anyInt());
 
