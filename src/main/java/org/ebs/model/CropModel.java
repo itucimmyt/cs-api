@@ -44,7 +44,7 @@ public class CropModel extends Auditable {
 	private int id;
 	@OneToMany(mappedBy = "crop",fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<ProgramModel> programs;
-	@ManyToMany(cascade =CascadeType.ALL) @JoinTable(name = "crop_serviceprovider", schema="tenant", joinColumns  = @JoinColumn(name="crop_id",referencedColumnName = "id"),inverseJoinColumns = @JoinColumn(name="serviceprovider_id",referencedColumnName = "id"))
+	@ManyToMany(cascade =CascadeType.ALL) @JoinTable(name = "crop_serviceprovider", schema="analyticalsampling", joinColumns  = @JoinColumn(name="crop_id",referencedColumnName = "id"),inverseJoinColumns = @JoinColumn(name="serviceprovider_id",referencedColumnName = "id"))
 	private Set<ServiceProviderModel> serviceproviders;
 	@ManyToMany(cascade =CascadeType.ALL) @JoinTable(name = "crop_season", schema="tenant", joinColumns  = @JoinColumn(name="crop_id",referencedColumnName = "id"),inverseJoinColumns = @JoinColumn(name="season_id",referencedColumnName = "id"))
 	private Set<SeasonModel> seasons;
