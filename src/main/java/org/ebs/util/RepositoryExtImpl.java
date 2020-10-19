@@ -1,6 +1,7 @@
 package org.ebs.util;
 
 import static java.util.Optional.ofNullable;
+import static javax.persistence.criteria.JoinType.LEFT;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Expression;
+import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
@@ -24,20 +26,28 @@ class RepositoryExtImpl<T> implements RepositoryExt<T> {
     private final int minPageNumber = 0;
     private final int maxPageSize = 50;
     private Pageable defaultPage = PageRequest.of(minPageNumber, 20);
-    private String dotSplit = "\\.";
+    private final String dotExpr = "\\.";
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
     public Connection<T> findByCriteria(Class<T> entityClass, List<FilterInput> filters, SortInput sort, PageInput pageInput) {
+        return doFindByCriteria(entityClass, filters, sort, pageInput, false);
+    }
+    @Override
+    public Connection<T> findByCriteria(Class<T> entityClass, List<FilterInput> filters, SortInput sort, PageInput pageInput, boolean disjuntionFilters) {
+        return doFindByCriteria(entityClass, filters, sort, pageInput, disjuntionFilters);
+    }
+
+    Connection<T> doFindByCriteria(Class<T> entityClass, List<FilterInput> filters, SortInput sort, PageInput pageInput, boolean disjuntionFilters) {
 
     	CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<T> query = builder.createQuery(entityClass);
         Root<T> queryRoot = query.from(entityClass);
 
-        Predicate[] predicates = createPredicates(builder, queryRoot, filters);
-        
+        Predicate predicates = createWherePredicate(builder, queryRoot, filters, disjuntionFilters);
+
         query.select(queryRoot);
         query.where(predicates);
         createSort(builder, query, queryRoot, sort);
@@ -47,9 +57,9 @@ class RepositoryExtImpl<T> implements RepositoryExt<T> {
         List<T> resultList = createPagedQuery(entityManager, query, page).getResultList();
 
         long totalCount = countForQuery(builder, predicates, entityClass);
-        
+
         return new Connection<T>(resultList, page, totalCount);
-        
+
     }
 
     private TypedQuery<T> createPagedQuery(EntityManager em, CriteriaQuery<T> criteria, Pageable page) {
@@ -59,57 +69,57 @@ class RepositoryExtImpl<T> implements RepositoryExt<T> {
     }
 
     private Pageable createPage(PageInput pageInput) {
-        return pageInput == null ? defaultPage : 
+        return pageInput == null ? defaultPage :
             PageRequest.of(Math.max( minPageNumber, pageInput.getNumber()-1),
                             Math.min(maxPageSize, pageInput.getSize()));
     }
 
-    private Predicate[] createPredicates(CriteriaBuilder builder, Root<T> queryRoot, List<FilterInput> filters) {
-        List<Predicate> predicates = new ArrayList<>();
-      
+    private Predicate createWherePredicate(CriteriaBuilder builder, Root<T> queryRoot, List<FilterInput> filters, boolean disjuntionFilters) {
+        List<Predicate> predicateList = new ArrayList<>();
+
         ofNullable(filters).ifPresent(fs -> {
-        	
+
             fs.forEach(f -> {
-            	  boolean containNestedFields = false;
-             	 	String [] fieldsNested=null;
-            	if (f.getCol().contains(".")) {
-            		fieldsNested =f.getCol().split(dotSplit);
-            		containNestedFields= true;
-            	}
+                Path<String> filterPath = createFilterPath(f, queryRoot);
                 switch (f.getMod()) {
                     case LK:
-                        predicates.add(
-                        		containNestedFields?
-                        				builder.like(queryRoot.get(fieldsNested[0]).get(fieldsNested[1]),"%"+f.getVal()+"%")
-                        				:builder.like(queryRoot.get(f.getCol()), "%"+f.getVal()+"%"));
+                        predicateList.add(
+                            builder.like( filterPath, "%"+f.getVal()+"%"));
                         break;
                     case EQ:
                     default: //default is equals
-                    	predicates.add(
-                    			containNestedFields?
-                    					   builder.equal(queryRoot.get(fieldsNested[0]).get(fieldsNested[1]),  typedValueOf(queryRoot, f,containNestedFields, fieldsNested))
-                    					: builder.equal(queryRoot.get(f.getCol()), typedValueOf(queryRoot, f,containNestedFields, fieldsNested))
-                    						);
+                    	predicateList.add(
+                            builder.equal(filterPath, typedValueOf(f, filterPath)));
                     break;
             }});
         });
-        predicates.add(builder.equal(queryRoot.get("deleted"), false));
-        return predicates.toArray(new Predicate[predicates.size()]);
+
+        Predicate[] predicates = predicateList.toArray(new Predicate[0]);
+        Predicate allFiltersPredicate = disjuntionFilters ? builder.or(predicates) : builder.and(predicates)
+            ,notDeletedPredicate = builder.equal(queryRoot.get("deleted"), false);
+
+        return builder.and(allFiltersPredicate, notDeletedPredicate);
     }
-    
-    private Object typedValueOf(Root<T> root, FilterInput f, boolean containNestedFields, String [] fieldsNested){
-        Class<?> clazz;
-        if (containNestedFields)
-        	clazz = root.get(fieldsNested[0]).get(fieldsNested[1]).getJavaType();
-        else 
-        	clazz = root.get(f.getCol()).getJavaType();
+
+    private Path<String> createFilterPath(FilterInput f, Root<T> root) {
+        String[] filterPaths = f.getCol().split(dotExpr);
+        Path<String> path = root.get(filterPaths[0]);
+        if(filterPaths.length > 1) {
+            root.join(filterPaths[0], LEFT);
+            path = path.get(filterPaths[1]);
+        }
+        return path;
+    }
+
+    private Object typedValueOf(FilterInput filter, Path<String> filterPath){
+        Class<?> clazz = filterPath.getJavaType();
 
         if(clazz == Boolean.class) {
-            return Boolean.parseBoolean(f.getVal());
+            return Boolean.parseBoolean(filter.getVal());
         } else if (clazz == UUID.class) {
-            return UUID.fromString(f.getVal());
+            return UUID.fromString(filter.getVal());
         }
-        return f.getVal();
+        return filter.getVal();
 
     }
 
@@ -128,13 +138,13 @@ class RepositoryExtImpl<T> implements RepositoryExt<T> {
         });
     }
 
-    private long countForQuery(CriteriaBuilder builder, Predicate[] predicates, Class<T> entityClass){
+    private long countForQuery(CriteriaBuilder builder, Predicate predicates, Class<T> entityClass){
         CriteriaQuery<Long> queryCount = builder.createQuery(Long.class);
-        
+
         queryCount
             .select(builder.count(queryCount.from(entityClass)))
             .where(predicates);
-        
+
         long totalCount = entityManager.createQuery(queryCount)
             .getSingleResult();
 
