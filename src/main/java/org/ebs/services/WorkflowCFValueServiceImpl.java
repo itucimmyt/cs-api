@@ -45,44 +45,44 @@ import org.springframework.transaction.annotation.Transactional;
 	private WorkflowNodeCFRepository workflownodecfRepository;
 
 	/**
-	 * 
+	 *
 	 * @param workflowCFValue
 	 */
 	@Override @Transactional(readOnly = false)
 	public WorkflowCFValueTo createworkflowcfvalue(WorkflowCFValueInput workflowCFValue){
-		WorkflowCFValueModel model = converter.convert(workflowCFValue,WorkflowCFValueModel.class); 
+		WorkflowCFValueModel model = converter.convert(workflowCFValue,WorkflowCFValueModel.class);
 		model.setId(0);
-		
+
 		RequestModel requestModel = Optional.of(workflowCFValue)
 			 .map(w -> w.getRequest())
 			 .map(r -> requestRepository.findById(r.getId()).get())
-			 .orElse(null); 
-		model.setRequest(requestModel); 
-		
+			 .orElse(null);
+		model.setRequest(requestModel);
+
 		WorkflowNodeCFModel workflownodecfModel = Optional.of(workflowCFValue)
 			.map(w -> w.getWorkflownodecf())
 			.map(w -> workflownodecfRepository.findById(w.getId()).get())
 			.orElse(null);
-		model.setWorkflownodecf(workflownodecfModel); 
-		 
-		model= workflowcfvalueRepository.save(model); 
-		return converter.convert(model, WorkflowCFValueTo.class); 
+		model.setWorkflownodecf(workflownodecfModel);
+
+		model= workflowcfvalueRepository.save(model);
+		return converter.convert(model, WorkflowCFValueTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowcfvalueId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteworkflowcfvalue(int workflowcfvalueId){
-		WorkflowCFValueModel workflowcfvalue = workflowcfvalueRepository.findById(workflowcfvalueId).orElseThrow(() -> new RuntimeException("WorkflowCFValue not found")); 
-		 workflowcfvalue.setDeleted(true); 
-		  workflowcfvalueRepository.save(workflowcfvalue); 
+		WorkflowCFValueModel workflowcfvalue = workflowcfvalueRepository.findById(workflowcfvalueId).orElseThrow(() -> new RuntimeException("WorkflowCFValue not found"));
+		 workflowcfvalue.setDeleted(true);
+		  workflowcfvalueRepository.save(workflowcfvalue);
 		 return workflowcfvalueId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowcfvalueId
 	 */
 	public Optional<RequestTo> findrequest(int workflowcfvalueId){
@@ -90,29 +90,29 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowcfvalueId
 	 */
 	@Override
 	public Optional<WorkflowCFValueTo> findworkflowcfvalue(int workflowcfvalueId){
-		if(workflowcfvalueId <1) 
-		 {return Optional.empty();} 
+		if(workflowcfvalueId <1)
+		 {return Optional.empty();}
 		 return workflowcfvalueRepository.findById(workflowcfvalueId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,WorkflowCFValueTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<WorkflowCFValueTo> findworkflowcfvalues(PageInput page, SortInput sort, List<FilterInput> filters){
-		return workflowcfvalueRepository.findByCriteria(WorkflowCFValueModel.class,filters,sort,page).map(r -> converter.convert(r,WorkflowCFValueTo.class));
+	public Page<WorkflowCFValueTo> findworkflowcfvalues(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return workflowcfvalueRepository.findByCriteria(WorkflowCFValueModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,WorkflowCFValueTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowcfvalueId
 	 */
 	public Optional<WorkflowNodeCFTo> findworkflownodecf(int workflowcfvalueId){
@@ -120,32 +120,32 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowcfvalue
 	 */
 	@Override @Transactional(readOnly = false)
 	public WorkflowCFValueTo modifyworkflowcfvalue(WorkflowCFValueInput workflowcfvalue){
-		WorkflowCFValueModel target= workflowcfvalueRepository.findById(workflowcfvalue.getId()).orElseThrow(() -> new RuntimeException("WorkflowCFValue not found")); 
-		WorkflowCFValueModel source= converter.convert(workflowcfvalue,WorkflowCFValueModel.class); 
-		Utils.copyNotNulls(source,target); 
+		WorkflowCFValueModel target= workflowcfvalueRepository.findById(workflowcfvalue.getId()).orElseThrow(() -> new RuntimeException("WorkflowCFValue not found"));
+		WorkflowCFValueModel source= converter.convert(workflowcfvalue,WorkflowCFValueModel.class);
+		Utils.copyNotNulls(source,target);
 
 		RequestModel requestModel = Optional.of(workflowcfvalue)
 			.map(w -> w.getRequest())
 			.map(r -> requestRepository.findById(r.getId()).orElseThrow(() -> new RuntimeException("request does not exist")))
-			.orElse(null); 
+			.orElse(null);
 		target.setRequest(requestModel);
-	
+
 		WorkflowNodeCFModel workflownodecfModel = Optional.of(workflowcfvalue)
 			.map(w -> w.getWorkflownodecf())
 			.map(w -> workflownodecfRepository.findById(w.getId()).orElseThrow(() -> new RuntimeException("workflowNodeCF does not exist")))
 			.orElse(null);
-		target.setWorkflownodecf(workflownodecfModel); 
+		target.setWorkflownodecf(workflownodecfModel);
 
 		return converter.convert(workflowcfvalueRepository.save(target), WorkflowCFValueTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodecfRepository
 	 * @param requestRepository
 	 * @param converter
@@ -153,7 +153,7 @@ import org.springframework.transaction.annotation.Transactional;
 	 */
 	@Autowired
 	public WorkflowCFValueServiceImpl(WorkflowNodeCFRepository workflownodecfRepository, RequestRepository requestRepository, ConversionService converter, WorkflowCFValueRepository workflowcfvalueRepository){
-		this.workflowcfvalueRepository =workflowcfvalueRepository; 
+		this.workflowcfvalueRepository =workflowcfvalueRepository;
 		 this.converter = converter;
 		 this.requestRepository = requestRepository;
 		 this.workflownodecfRepository = workflownodecfRepository;

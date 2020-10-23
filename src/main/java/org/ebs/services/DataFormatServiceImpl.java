@@ -41,67 +41,67 @@ import org.ebs.services.to.VendorTo;
 	private VendorRepository vendorRepository;
 
 	/**
-	 * 
+	 *
 	 * @param DataFormat
 	 */
 	@Override @Transactional(readOnly = false)
 	public DataFormatTo createdataformat(DataFormatInput DataFormat){
-		DataFormatModel model = converter.convert(DataFormat,DataFormatModel.class); 
+		DataFormatModel model = converter.convert(DataFormat,DataFormatModel.class);
 		 model.setId(0);
-		  
-		 model= dataformatRepository.save(model); 
-		 return converter.convert(model, DataFormatTo.class); 
+
+		 model= dataformatRepository.save(model);
+		 return converter.convert(model, DataFormatTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param vendorRepository
 	 * @param converter
 	 * @param dataformatRepository
 	 */
 	@Autowired
 	public DataFormatServiceImpl(VendorRepository vendorRepository, ConversionService converter, DataFormatRepository dataformatRepository){
-		this.dataformatRepository =dataformatRepository; 
+		this.dataformatRepository =dataformatRepository;
 		 this.converter = converter;
 		 this.vendorRepository = vendorRepository;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param dataformatId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deletedataformat(int dataformatId){
-		DataFormatModel dataformat = dataformatRepository.findById(dataformatId).orElseThrow(() -> new RuntimeException("DataFormat not found")); 
-		 dataformat.setDeleted(true); 
-		  dataformatRepository.save(dataformat); 
+		DataFormatModel dataformat = dataformatRepository.findById(dataformatId).orElseThrow(() -> new RuntimeException("DataFormat not found"));
+		 dataformat.setDeleted(true);
+		  dataformatRepository.save(dataformat);
 		 return dataformatId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param dataformatId
 	 */
 	@Override
 	public Optional<DataFormatTo> finddataformat(int dataformatId){
-		if(dataformatId <1) 
-		 {return Optional.empty();} 
+		if(dataformatId <1)
+		 {return Optional.empty();}
 		 return dataformatRepository.findById(dataformatId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,DataFormatTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<DataFormatTo> finddataformats(PageInput page, SortInput sort, List<FilterInput> filters){
-		return dataformatRepository.findByCriteria(DataFormatModel.class,filters,sort,page).map(r -> converter.convert(r,DataFormatTo.class));
+	public Page<DataFormatTo> finddataformats(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return dataformatRepository.findByCriteria(DataFormatModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,DataFormatTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param dataformatId
 	 */
 	public Set<VendorTo> findvendors(int dataformatId){
@@ -109,14 +109,14 @@ import org.ebs.services.to.VendorTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param dataformat
 	 */
 	@Override @Transactional(readOnly = false)
 	public DataFormatTo modifydataformat(DataFormatInput dataformat){
-		DataFormatModel target= dataformatRepository.findById(dataformat.getId()).orElseThrow(() -> new RuntimeException("DataFormat not found")); 
-		 DataFormatModel source= converter.convert(dataformat,DataFormatModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		DataFormatModel target= dataformatRepository.findById(dataformat.getId()).orElseThrow(() -> new RuntimeException("DataFormat not found"));
+		 DataFormatModel source= converter.convert(dataformat,DataFormatModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(dataformatRepository.save(target), DataFormatTo.class);
 	}
 

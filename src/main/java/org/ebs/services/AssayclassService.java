@@ -29,45 +29,45 @@ import org.springframework.data.domain.Page;
 public interface AssayclassService {
 
 	/**
-	 * 
+	 *
 	 * @param Assayclass
 	 */
 	public AssayclassTo createassayclass(AssayclassInput Assayclass);
 
 	/**
-	 * 
+	 *
 	 * @param assayclassId
 	 */
 	public int deleteassayclass(int assayclassId);
 
 	/**
-	 * 
+	 *
 	 * @param assayclassId
 	 */
 	public Optional<AssayclassTo> findassayclass(int assayclassId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<AssayclassTo> findassayclasss(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<AssayclassTo> findassayclasss(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param assayclassId
 	 */
 	public Optional<ServiceTo> findservice(int assayclassId);
 
 	/**
-	 * 
+	 *
 	 * @param assayclassId
 	 */
 	public Set<TechnologyPlatformTo> findtechnologyplatforms(int assayclassId);
 
 	/**
-	 * 
+	 *
 	 * @param assayclass
 	 */
 	public AssayclassTo modifyassayclass(AssayclassInput assayclass);

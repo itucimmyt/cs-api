@@ -28,45 +28,45 @@ import org.ebs.services.to.AssayGeneTo;
 public interface TraitService {
 
 	/**
-	 * 
+	 *
 	 * @param Trait
 	 */
 	public TraitTo createtrait(TraitInput Trait);
 
 	/**
-	 * 
+	 *
 	 * @param traitId
 	 */
 	public int deletetrait(int traitId);
 
 	/**
-	 * 
+	 *
 	 * @param traitId
 	 */
 	public Set<AssayGeneTo> findassaygenes(int traitId);
 
 	/**
-	 * 
+	 *
 	 * @param traitId
 	 */
 	public Optional<TraitTo> findtrait(int traitId);
 
 	/**
-	 * 
+	 *
 	 * @param traitId
 	 */
 	public Optional<TraitClassTo> findtraitclass(int traitId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<TraitTo> findtraits(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<TraitTo> findtraits(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param trait
 	 */
 	public TraitTo modifytrait(TraitInput trait);

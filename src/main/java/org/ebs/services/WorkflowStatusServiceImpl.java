@@ -45,17 +45,17 @@ import org.springframework.transaction.annotation.Transactional;
 	public WorkflowStatusTypeRepository workflowstatustypeRepository;
 
 	/**
-	 * 
+	 *
 	 * @param workflowStatus
 	 */
 	@Override @Transactional(readOnly = false)
 	public WorkflowStatusTo createworkflowstatus(WorkflowStatusInput workflowStatus){
-		WorkflowStatusModel model = converter.convert(workflowStatus,WorkflowStatusModel.class); 
+		WorkflowStatusModel model = converter.convert(workflowStatus,WorkflowStatusModel.class);
 		model.setId(0);
 		initWorkflowStatus(workflowStatus, model);
-		 
-		model = workflowstatusRepository.save(model); 
-		return converter.convert(model, WorkflowStatusTo.class); 
+
+		model = workflowstatusRepository.save(model);
+		return converter.convert(model, WorkflowStatusTo.class);
 	}
 
 	void initWorkflowStatus(WorkflowStatusInput input, WorkflowStatusModel model) {
@@ -74,19 +74,19 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowstatusId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteworkflowstatus(int workflowstatusId){
-		WorkflowStatusModel workflowstatus = workflowstatusRepository.findById(workflowstatusId).orElseThrow(() -> new RuntimeException("WorkflowStatus not found")); 
-		 workflowstatus.setDeleted(true); 
-		  workflowstatusRepository.save(workflowstatus); 
+		WorkflowStatusModel workflowstatus = workflowstatusRepository.findById(workflowstatusId).orElseThrow(() -> new RuntimeException("WorkflowStatus not found"));
+		 workflowstatus.setDeleted(true);
+		  workflowstatusRepository.save(workflowstatus);
 		 return workflowstatusId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowstatusId
 	 */
 	public Optional<WorkflowInstanceTo> findworkflowinstance(int workflowstatusId){
@@ -94,29 +94,29 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowstatusId
 	 */
 	@Override
 	public Optional<WorkflowStatusTo> findworkflowstatus(int workflowstatusId){
-		if(workflowstatusId <1) 
-		 {return Optional.empty();} 
+		if(workflowstatusId <1)
+		 {return Optional.empty();}
 		 return workflowstatusRepository.findById(workflowstatusId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,WorkflowStatusTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<WorkflowStatusTo> findworkflowstatuss(PageInput page, SortInput sort, List<FilterInput> filters){
-		return workflowstatusRepository.findByCriteria(WorkflowStatusModel.class,filters,sort,page).map(r -> converter.convert(r,WorkflowStatusTo.class));
+	public Page<WorkflowStatusTo> findworkflowstatuss(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return workflowstatusRepository.findByCriteria(WorkflowStatusModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,WorkflowStatusTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowstatusId
 	 */
 	public Optional<WorkflowStatusTypeTo> findworkflowstatustype(int workflowstatusId){
@@ -124,22 +124,22 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowstatus
 	 */
 	@Override @Transactional(readOnly = false)
 	public WorkflowStatusTo modifyworkflowstatus(WorkflowStatusInput workflowstatus){
 		WorkflowStatusModel target= workflowstatusRepository.findById(workflowstatus.getId())
-			.orElseThrow(() -> new RuntimeException("WorkflowStatus not found")); 
-		WorkflowStatusModel source= converter.convert(workflowstatus,WorkflowStatusModel.class); 
-		
+			.orElseThrow(() -> new RuntimeException("WorkflowStatus not found"));
+		WorkflowStatusModel source= converter.convert(workflowstatus,WorkflowStatusModel.class);
+
 		initWorkflowStatus(workflowstatus, source);
 		Utils.copyNotNulls(source,target);
 		 return converter.convert(workflowstatusRepository.save(target), WorkflowStatusTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowinstanceRepository
 	 * @param workflowstatustypeRepository
 	 * @param converter
@@ -147,7 +147,7 @@ import org.springframework.transaction.annotation.Transactional;
 	 */
 	@Autowired
 	public WorkflowStatusServiceImpl(WorkflowInstanceRepository workflowinstanceRepository, WorkflowStatusTypeRepository workflowstatustypeRepository, ConversionService converter, WorkflowStatusRepository workflowstatusRepository){
-		this.workflowstatusRepository =workflowstatusRepository; 
+		this.workflowstatusRepository =workflowstatusRepository;
 		 this.converter = converter;
 		 this.workflowstatustypeRepository = workflowstatustypeRepository;
 		 this.workflowinstanceRepository = workflowinstanceRepository;

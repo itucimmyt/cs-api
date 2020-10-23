@@ -49,60 +49,60 @@ import org.springframework.transaction.annotation.Transactional;
 	private WorkflowNodeRepository workflownodeRepository;
 
 	/**
-	 * 
+	 *
 	 * @param WorkflowEvent
 	 */
 	@Override @Transactional(readOnly = false)
 	public WorkflowEventTo createworkflowevent(WorkflowEventInput WorkflowEvent){
-		WorkflowEventModel model = converter.convert(WorkflowEvent,WorkflowEventModel.class); 
+		WorkflowEventModel model = converter.convert(WorkflowEvent,WorkflowEventModel.class);
 		 model.setId(0);
-		 WorkflowStageModel workflowstageModel = workflowstageRepository.findById(WorkflowEvent.getWorkflowstage().getId()).get(); 
-		model.setWorkflowstage(workflowstageModel); 
-		WorkflowInstanceModel workflowinstanceModel = workflowinstanceRepository.findById(WorkflowEvent.getWorkflowinstance().getId()).get(); 
-		model.setWorkflowinstance(workflowinstanceModel); 
-		WorkflowNodeModel workflownodeModel = workflownodeRepository.findById(WorkflowEvent.getWorkflownode().getId()).get(); 
-		model.setWorkflownode(workflownodeModel); 
-		 
-		 model= workfloweventRepository.save(model); 
-		 return converter.convert(model, WorkflowEventTo.class); 
+		 WorkflowStageModel workflowstageModel = workflowstageRepository.findById(WorkflowEvent.getWorkflowstage().getId()).get();
+		model.setWorkflowstage(workflowstageModel);
+		WorkflowInstanceModel workflowinstanceModel = workflowinstanceRepository.findById(WorkflowEvent.getWorkflowinstance().getId()).get();
+		model.setWorkflowinstance(workflowinstanceModel);
+		WorkflowNodeModel workflownodeModel = workflownodeRepository.findById(WorkflowEvent.getWorkflownode().getId()).get();
+		model.setWorkflownode(workflownodeModel);
+
+		 model= workfloweventRepository.save(model);
+		 return converter.convert(model, WorkflowEventTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workfloweventId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteworkflowevent(int workfloweventId){
-		WorkflowEventModel workflowevent = workfloweventRepository.findById(workfloweventId).orElseThrow(() -> new RuntimeException("WorkflowEvent not found")); 
-		 workflowevent.setDeleted(true); 
-		  workfloweventRepository.save(workflowevent); 
+		WorkflowEventModel workflowevent = workfloweventRepository.findById(workfloweventId).orElseThrow(() -> new RuntimeException("WorkflowEvent not found"));
+		 workflowevent.setDeleted(true);
+		  workfloweventRepository.save(workflowevent);
 		 return workfloweventId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workfloweventId
 	 */
 	@Override
 	public Optional<WorkflowEventTo> findworkflowevent(int workfloweventId){
-		if(workfloweventId <1) 
-		 {return Optional.empty();} 
+		if(workfloweventId <1)
+		 {return Optional.empty();}
 		 return workfloweventRepository.findById(workfloweventId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,WorkflowEventTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<WorkflowEventTo> findworkflowevents(PageInput page, SortInput sort, List<FilterInput> filters){
-		return workfloweventRepository.findByCriteria(WorkflowEventModel.class,filters,sort,page).map(r -> converter.convert(r,WorkflowEventTo.class));
+	public Page<WorkflowEventTo> findworkflowevents(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return workfloweventRepository.findByCriteria(WorkflowEventModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,WorkflowEventTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workfloweventId
 	 */
 	public Optional<WorkflowInstanceTo> findworkflowinstance(int workfloweventId){
@@ -110,7 +110,7 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workfloweventId
 	 */
 	public Optional<WorkflowNodeTo> findworkflownode(int workfloweventId){
@@ -118,7 +118,7 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workfloweventId
 	 */
 	public Optional<WorkflowStageTo> findworkflowstage(int workfloweventId){
@@ -126,19 +126,19 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowevent
 	 */
 	@Override @Transactional(readOnly = false)
 	public WorkflowEventTo modifyworkflowevent(WorkflowEventInput workflowevent){
-		WorkflowEventModel target= workfloweventRepository.findById(workflowevent.getId()).orElseThrow(() -> new RuntimeException("WorkflowEvent not found")); 
-		 WorkflowEventModel source= converter.convert(workflowevent,WorkflowEventModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		WorkflowEventModel target= workfloweventRepository.findById(workflowevent.getId()).orElseThrow(() -> new RuntimeException("WorkflowEvent not found"));
+		 WorkflowEventModel source= converter.convert(workflowevent,WorkflowEventModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(workfloweventRepository.save(target), WorkflowEventTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeRepository
 	 * @param workflowinstanceRepository
 	 * @param workflowstageRepository
@@ -147,7 +147,7 @@ import org.springframework.transaction.annotation.Transactional;
 	 */
 	@Autowired
 	public WorkflowEventServiceImpl(WorkflowNodeRepository workflownodeRepository, WorkflowInstanceRepository workflowinstanceRepository, WorkflowStageRepository workflowstageRepository, ConversionService converter, WorkflowEventRepository workfloweventRepository){
-		this.workfloweventRepository =workfloweventRepository; 
+		this.workfloweventRepository =workfloweventRepository;
 		 this.converter = converter;
 		 this.workflowstageRepository = workflowstageRepository;
 		 this.workflowinstanceRepository = workflowinstanceRepository;

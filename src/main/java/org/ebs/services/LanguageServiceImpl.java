@@ -44,54 +44,54 @@ import org.ebs.services.to.PersonTo;
 	public PersonRepository personRepository;
 
 	/**
-	 * 
+	 *
 	 * @param Language
 	 */
 	@Override @Transactional(readOnly = false)
 	public LanguageTo createlanguage(LanguageInput Language){
-		LanguageModel model = converter.convert(Language,LanguageModel.class); 
+		LanguageModel model = converter.convert(Language,LanguageModel.class);
 		 model.setId(0);
-		  
-		 model= languageRepository.save(model); 
-		 return converter.convert(model, LanguageTo.class); 
+
+		 model= languageRepository.save(model);
+		 return converter.convert(model, LanguageTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param languageId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deletelanguage(int languageId){
-		LanguageModel language = languageRepository.findById(languageId).orElseThrow(() -> new RuntimeException("Language not found")); 
-		 language.setDeleted(true); 
-		  languageRepository.save(language); 
+		LanguageModel language = languageRepository.findById(languageId).orElseThrow(() -> new RuntimeException("Language not found"));
+		 language.setDeleted(true);
+		  languageRepository.save(language);
 		 return languageId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param languageId
 	 */
 	@Override
 	public Optional<LanguageTo> findlanguage(int languageId){
-		if(languageId <1) 
-		 {return Optional.empty();} 
+		if(languageId <1)
+		 {return Optional.empty();}
 		 return languageRepository.findById(languageId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,LanguageTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<LanguageTo> findlanguages(PageInput page, SortInput sort, List<FilterInput> filters){
-		return languageRepository.findByCriteria(LanguageModel.class,filters,sort,page).map(r -> converter.convert(r,LanguageTo.class));
+	public Page<LanguageTo> findlanguages(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return languageRepository.findByCriteria(LanguageModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,LanguageTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param languageId
 	 */
 	public Set<PersonTo> findpersons(int languageId){
@@ -99,7 +99,7 @@ import org.ebs.services.to.PersonTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param languageId
 	 */
 	public Set<TranslationTo> findtranslations(int languageId){
@@ -107,7 +107,7 @@ import org.ebs.services.to.PersonTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param personRepository
 	 * @param translationRepository
 	 * @param converter
@@ -115,21 +115,21 @@ import org.ebs.services.to.PersonTo;
 	 */
 	@Autowired
 	public LanguageServiceImpl(PersonRepository personRepository, TranslationRepository translationRepository, ConversionService converter, LanguageRepository languageRepository){
-		this.languageRepository =languageRepository; 
+		this.languageRepository =languageRepository;
 		 this.converter = converter;
 		 this.translationRepository = translationRepository;
 		 this.personRepository = personRepository;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param language
 	 */
 	@Override @Transactional(readOnly = false)
 	public LanguageTo modifylanguage(LanguageInput language){
-		LanguageModel target= languageRepository.findById(language.getId()).orElseThrow(() -> new RuntimeException("Language not found")); 
-		 LanguageModel source= converter.convert(language,LanguageModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		LanguageModel target= languageRepository.findById(language.getId()).orElseThrow(() -> new RuntimeException("Language not found"));
+		 LanguageModel source= converter.convert(language,LanguageModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(languageRepository.save(target), LanguageTo.class);
 	}
 

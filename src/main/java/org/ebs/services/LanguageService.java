@@ -28,45 +28,45 @@ import org.ebs.services.to.PersonTo;
 public interface LanguageService {
 
 	/**
-	 * 
+	 *
 	 * @param Language
 	 */
 	public LanguageTo createlanguage(LanguageInput Language);
 
 	/**
-	 * 
+	 *
 	 * @param languageId
 	 */
 	public int deletelanguage(int languageId);
 
 	/**
-	 * 
+	 *
 	 * @param languageId
 	 */
 	public Optional<LanguageTo> findlanguage(int languageId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<LanguageTo> findlanguages(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<LanguageTo> findlanguages(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param languageId
 	 */
 	public Set<PersonTo> findpersons(int languageId);
 
 	/**
-	 * 
+	 *
 	 * @param languageId
 	 */
 	public Set<TranslationTo> findtranslations(int languageId);
 
 	/**
-	 * 
+	 *
 	 * @param language
 	 */
 	public LanguageTo modifylanguage(LanguageInput language);

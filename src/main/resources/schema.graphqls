@@ -1,133 +1,133 @@
 type Query {findtrait(id:ID!):Trait
-findtraitList( page: PageInput, sort:SortInput,filters:[FilterInput]):TraitConnection
+findtraitList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):TraitConnection
 findtechnologyplatform(id:ID!):TechnologyPlatform
-findtechnologyplatformList( page: PageInput, sort:SortInput,filters:[FilterInput]):TechnologyPlatformConnection
+findtechnologyplatformList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):TechnologyPlatformConnection
 findservicetype(id:ID!):ServiceType
-findservicetypeList( page: PageInput, sort:SortInput,filters:[FilterInput]):ServiceTypeConnection
+findservicetypeList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):ServiceTypeConnection
 findserviceprovider(id:ID!):ServiceProvider
-findserviceproviderList( page: PageInput, sort:SortInput,filters:[FilterInput]):ServiceProviderConnection
+findserviceproviderList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):ServiceProviderConnection
 findservice(id:ID!):Service
-findserviceList( page: PageInput, sort:SortInput,filters:[FilterInput]):ServiceConnection
+findserviceList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):ServiceConnection
 findpurpose(id:ID!):Purpose
-findpurposeList( page: PageInput, sort:SortInput,filters:[FilterInput]):PurposeConnection
+findpurposeList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):PurposeConnection
 findmarkersynonym(id:ID!):MarkerSynonym
-findmarkersynonymList( page: PageInput, sort:SortInput,filters:[FilterInput]):MarkerSynonymConnection
+findmarkersynonymList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):MarkerSynonymConnection
 findmarker(id:ID!):Marker
-findmarkerList( page: PageInput, sort:SortInput,filters:[FilterInput]):MarkerConnection
+findmarkerList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):MarkerConnection
 finddataformat(id:ID!):DataFormat
-finddataformatList( page: PageInput, sort:SortInput,filters:[FilterInput]):DataFormatConnection
+finddataformatList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):DataFormatConnection
 findassaygene(id:ID!):AssayGene
-findassaygeneList( page: PageInput, sort:SortInput,filters:[FilterInput]):AssayGeneConnection
+findassaygeneList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):AssayGeneConnection
 findassayclass(id:ID!):Assayclass
-findassayclassList( page: PageInput, sort:SortInput,filters:[FilterInput]):AssayclassConnection
+findassayclassList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):AssayclassConnection
 findtraitclass(id:ID!):TraitClass
-findtraitclassList( page: PageInput, sort:SortInput,filters:[FilterInput]):TraitClassConnection
+findtraitclassList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):TraitClassConnection
 findworkflowstatus(id:ID!):WorkflowStatus
-findworkflowstatusList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowStatusConnection
+findworkflowstatusList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):WorkflowStatusConnection
 findworkflowstage(id:ID!):WorkflowStage
-findworkflowstageList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowStageConnection
+findworkflowstageList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):WorkflowStageConnection
 findworkflowphase(id:ID!):WorkflowPhase
-findworkflowphaseList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowPhaseConnection
+findworkflowphaseList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):WorkflowPhaseConnection
 findworkflownodecf(id:ID!):WorkflowNodeCF
-findworkflownodecfList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowNodeCFConnection
+findworkflownodecfList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):WorkflowNodeCFConnection
 findworkflownode(id:ID!):WorkflowNode
-findworkflownodeList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowNodeConnection
+findworkflownodeList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):WorkflowNodeConnection
 findworkflowinstance(id:ID!):WorkflowInstance
-findworkflowinstanceList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowInstanceConnection
+findworkflowinstanceList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):WorkflowInstanceConnection
 findworkflowevent(id:ID!):WorkflowEvent
-findworkfloweventList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowEventConnection
+findworkfloweventList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):WorkflowEventConnection
 findworkflowcfvalue(id:ID!):WorkflowCFValue
-findworkflowcfvalueList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowCFValueConnection
+findworkflowcfvalueList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):WorkflowCFValueConnection
 findworkflowcftype(id:ID!):WorkflowCFType
-findworkflowcftypeList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowCFTypeConnection
+findworkflowcftypeList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):WorkflowCFTypeConnection
 findworkflow(id:ID!):Workflow
-findworkflowList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowConnection
+findworkflowList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):WorkflowConnection
 findvendor(id:ID!):Vendor
-findvendorList( page: PageInput, sort:SortInput,filters:[FilterInput]):VendorConnection
+findvendorList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):VendorConnection
 finduser(id:ID!):User
-finduserList( page: PageInput, sort:SortInput,filters:[FilterInput]):UserConnection
+finduserList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):UserConnection
 findtranslation(id:ID!):Translation
-findtranslationList( page: PageInput, sort:SortInput,filters:[FilterInput]):TranslationConnection
+findtranslationList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):TranslationConnection
 findtenant(id:ID!):Tenant
-findtenantList( page: PageInput, sort:SortInput,filters:[FilterInput]):TenantConnection
+findtenantList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):TenantConnection
 findteam(id:ID!):Team
-findteamList( page: PageInput, sort:SortInput,filters:[FilterInput]):TeamConnection
+findteamList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):TeamConnection
 findstyletheme(id:ID!):StyleTheme
-findstylethemeList( page: PageInput, sort:SortInput,filters:[FilterInput]):StyleThemeConnection
+findstylethemeList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):StyleThemeConnection
 findsession(id:ID!):Session
-findsessionList( page: PageInput, sort:SortInput,filters:[FilterInput]):SessionConnection
+findsessionList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):SessionConnection
 findsegment(id:ID!):Segment
-findsegmentList( page: PageInput, sort:SortInput,filters:[FilterInput]):SegmentConnection
+findsegmentList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):SegmentConnection
 findseason(id:ID!):Season
-findseasonList( page: PageInput, sort:SortInput,filters:[FilterInput]):SeasonConnection
+findseasonList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):SeasonConnection
 findroleaction(id:ID!):RoleAction
-findroleactionList( page: PageInput, sort:SortInput,filters:[FilterInput]):RoleActionConnection
+findroleactionList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):RoleActionConnection
 findrole(id:ID!):Role
-findroleList( page: PageInput, sort:SortInput,filters:[FilterInput]):RoleConnection
+findroleList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):RoleConnection
 findrequest(id:ID!):Request
-findrequestList( page: PageInput, sort:SortInput,filters:[FilterInput]):RequestConnection
+findrequestList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):RequestConnection
 findproject(id:ID!):Project
-findprojectList( page: PageInput, sort:SortInput,filters:[FilterInput]):ProjectConnection
+findprojectList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):ProjectConnection
 findprogram(id:ID!):Program
-findprogramList( page: PageInput, sort:SortInput,filters:[FilterInput]):ProgramConnection
+findprogramList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):ProgramConnection
 findprocess(id:ID!):Process
-findprocessList( page: PageInput, sort:SortInput,filters:[FilterInput]):ProcessConnection
+findprocessList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):ProcessConnection
 findpreference(id:ID!):Preference
-findpreferenceList( page: PageInput, sort:SortInput,filters:[FilterInput]):PreferenceConnection
+findpreferenceList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):PreferenceConnection
 findperson(id:ID!):Person
-findpersonList( page: PageInput, sort:SortInput,filters:[FilterInput]):PersonConnection
+findpersonList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):PersonConnection
 findpartner(id:ID!):Partner
-findpartnerList( page: PageInput, sort:SortInput,filters:[FilterInput]):PartnerConnection
+findpartnerList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):PartnerConnection
 findorganization(id:ID!):Organization
-findorganizationList( page: PageInput, sort:SortInput,filters:[FilterInput]):OrganizationConnection
+findorganizationList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):OrganizationConnection
 findnumbersequencerulesegment(id:ID!):NumberSequenceRuleSegment
-findnumbersequencerulesegmentList( page: PageInput, sort:SortInput,filters:[FilterInput]):NumberSequenceRuleSegmentConnection
+findnumbersequencerulesegmentList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):NumberSequenceRuleSegmentConnection
 findnumbersequencerule(id:ID!):NumberSequenceRule
-findnumbersequenceruleList( page: PageInput, sort:SortInput,filters:[FilterInput]):NumberSequenceRuleConnection
+findnumbersequenceruleList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):NumberSequenceRuleConnection
 findmodule(id:ID!):Module
-findmoduleList( page: PageInput, sort:SortInput,filters:[FilterInput]):ModuleConnection
+findmoduleList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):ModuleConnection
 findnotification(id:ID!):Notification
-findnotificationList( page: PageInput, sort:SortInput,filters:[FilterInput]):NotificationConnection
+findnotificationList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):NotificationConnection
 findlanguage(id:ID!):Language
-findlanguageList( page: PageInput, sort:SortInput,filters:[FilterInput]):LanguageConnection
+findlanguageList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):LanguageConnection
 findinstance(id:ID!):Instance
-findinstanceList( page: PageInput, sort:SortInput,filters:[FilterInput]):InstanceConnection
+findinstanceList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):InstanceConnection
 findhtmltag(id:ID!):HtmlTag
-findhtmltagList( page: PageInput, sort:SortInput,filters:[FilterInput]):HtmlTagConnection
+findhtmltagList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):HtmlTagConnection
 findentityreference(id:ID!):EntityReference
-findentityreferenceList( page: PageInput, sort:SortInput,filters:[FilterInput]):EntityReferenceConnection
+findentityreferenceList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):EntityReferenceConnection
 findemailtemplate(id:ID!):EmailTemplate
-findemailtemplateList( page: PageInput, sort:SortInput,filters:[FilterInput]):EmailTemplateConnection
+findemailtemplateList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):EmailTemplateConnection
 finddonor(id:ID!):Donor
-finddonorList( page: PageInput, sort:SortInput,filters:[FilterInput]):DonorConnection
+finddonorList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):DonorConnection
 finddelegation(id:ID!):Delegation
-finddelegationList( page: PageInput, sort:SortInput,filters:[FilterInput]):DelegationConnection
+finddelegationList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):DelegationConnection
 findcustomer(id:ID!):Customer
-findcustomerList( page: PageInput, sort:SortInput,filters:[FilterInput]):CustomerConnection
+findcustomerList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):CustomerConnection
 findcrop(id:ID!):Crop
-findcropList( page: PageInput, sort:SortInput,filters:[FilterInput]):CropConnection
+findcropList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):CropConnection
 findcountry(id:ID!):Country
-findcountryList( page: PageInput, sort:SortInput,filters:[FilterInput]):CountryConnection
+findcountryList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):CountryConnection
 findcomponent(id:ID!):Component
-findcomponentList( page: PageInput, sort:SortInput,filters:[FilterInput]):ComponentConnection
+findcomponentList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):ComponentConnection
 findcollaborator(id:ID!):Collaborator
-findcollaboratorList( page: PageInput, sort:SortInput,filters:[FilterInput]):CollaboratorConnection
+findcollaboratorList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):CollaboratorConnection
 findauthenticationtype(id:ID!):AuthenticationType
-findauthenticationtypeList( page: PageInput, sort:SortInput,filters:[FilterInput]):AuthenticationTypeConnection
+findauthenticationtypeList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):AuthenticationTypeConnection
 findauditlogs(id:ID!):AuditLogs
-findauditlogsList( page: PageInput, sort:SortInput,filters:[FilterInput]):AuditLogsConnection
+findauditlogsList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):AuditLogsConnection
 findattributes(id:ID!):Attributes
-findattributesList( page: PageInput, sort:SortInput,filters:[FilterInput]):AttributesConnection
+findattributesList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):AttributesConnection
 findalertrule(id:ID!):AlertRule
-findalertruleList( page: PageInput, sort:SortInput,filters:[FilterInput]):AlertRuleConnection
+findalertruleList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):AlertRuleConnection
 findalert(id:ID!):Alert
-findalertList( page: PageInput, sort:SortInput,filters:[FilterInput]):AlertConnection
+findalertList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):AlertConnection
 findaddress(id:ID!):Address
-findaddressList( page: PageInput, sort:SortInput,filters:[FilterInput]):AddressConnection
+findaddressList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):AddressConnection
 findaction(id:ID!):Action
-findactionList( page: PageInput, sort:SortInput,filters:[FilterInput]):ActionConnection
+findactionList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):ActionConnection
 findworkflowstatustype(id:ID!):WorkflowStatusType
-findworkflowstatustypeList( page: PageInput, sort:SortInput,filters:[FilterInput]):WorkflowStatusTypeConnection
+findworkflowstatustypeList( page: PageInput, sort:SortInput,filters:[FilterInput], disjunctionFilters: Boolean=false):WorkflowStatusTypeConnection
 }
 type Mutation {createtrait(TraitTo:TraitInput!):Trait
 modifytrait(TraitTo:TraitInput!):Trait
@@ -334,7 +334,7 @@ size: Int
 number: Int
 content: [Trait]
 }
-#Detailed trait names such as MLN, Rust, Zinc, protein, plant height, 
+#Detailed trait names such as MLN, Rust, Zinc, protein, plant height,
 type Trait {
 #Name of the trait
 name: String
@@ -358,7 +358,7 @@ content: [TechnologyPlatform]
 type TechnologyPlatform {
 #Name of the technology
 name: String
-#Description of the technology 
+#Description of the technology
 description: String
 tenant: Int
 id: ID!
@@ -451,7 +451,7 @@ code: String
 description: String
 tenant: Int
 id: ID!
- 
+
 servicetype:ServiceType
 services:[Service]
 }
@@ -499,7 +499,7 @@ size: Int
 number: Int
 content: [DataFormat]
 }
-#Data formats preferred to receive per vendor spec, such as CSV, VCF, tab delimited, EXCEL. 
+#Data formats preferred to receive per vendor spec, such as CSV, VCF, tab delimited, EXCEL.
 type DataFormat {
 #Name of the data format
 name: String
@@ -555,7 +555,7 @@ size: Int
 number: Int
 content: [TraitClass]
 }
-#Classification of the traits into groups such as agronomic, biotic, abiotic, quality, 
+#Classification of the traits into groups such as agronomic, biotic, abiotic, quality,
 type TraitClass {
 #name for the trait_class
 name: String
@@ -850,7 +850,7 @@ size: Int
 number: Int
 content: [User]
 }
-#user management 
+#user management
 type User {
 #
 username: String
@@ -1098,7 +1098,7 @@ chargeaccount: String
 description: String
 tenant: Int
 id: ID!
- 
+
 workflowcfvalues:[WorkflowCFValue]
 workflowinstance:WorkflowInstance
 person:Person
@@ -1138,7 +1138,7 @@ content: [Program]
 }
 #Entity that conducts defined objectives for the production of the next generation of crops with desired characteristics
 type Program {
-#Textual identifier of the program 
+#Textual identifier of the program
 programcode: String
 #Full name of the program
 programname: String
@@ -1874,7 +1874,7 @@ traitclass:TraitClassInput
 input TechnologyPlatformInput {
 #Name of the technology
 name: String
-#Description of the technology 
+#Description of the technology
 description: String
 tenant: Int
 id: ID!
@@ -2281,7 +2281,7 @@ chargeaccount: String
 description: String
 tenant: Int
 id: ID!
- 
+
 workflowinstance:WorkflowInstanceInput
 person:PersonInput
 }
@@ -2302,7 +2302,7 @@ program:ProgramInput
 person:PersonInput
 }
 input ProgramInput {
-#Textual identifier of the program 
+#Textual identifier of the program
 programcode: String
 #Full name of the program
 programname: String
@@ -2714,7 +2714,7 @@ tenant: Int
 id: ID!
 }
 
-input FilterInput { 
+input FilterInput {
 mod: FilterMod = EQ
 col: String!
 val: String!
@@ -2741,4 +2741,3 @@ DES
 }
 
 scalar Date
-

@@ -32,69 +32,69 @@ import org.ebs.services.to.PersonTo;
 public interface UserService {
 
 	/**
-	 * 
+	 *
 	 * @param User
 	 */
 	public UserTo createuser(UserInput User);
 
 	/**
-	 * 
+	 *
 	 * @param userId
 	 */
 	public int deleteuser(int userId);
 
 	/**
-	 * 
+	 *
 	 * @param userId
 	 */
 	public Set<DelegationTo> finddelegations(int userId);
 
 	/**
-	 * 
+	 *
 	 * @param userId
 	 */
 	public Optional<PersonTo> findperson(int userId);
 
 	/**
-	 * 
+	 *
 	 * @param userId
 	 */
 	public Set<PreferenceTo> findpreferences(int userId);
 
 	/**
-	 * 
+	 *
 	 * @param userId
 	 */
 	public Set<RoleTo> findroles(int userId);
 
 	/**
-	 * 
+	 *
 	 * @param userId
 	 */
 	public Set<SessionTo> findsessions(int userId);
 
 	/**
-	 * 
+	 *
 	 * @param userId
 	 */
 	public Optional<TenantTo> findtenant(int userId);
 
 	/**
-	 * 
+	 *
 	 * @param userId
 	 */
 	public Optional<UserTo> finduser(int userId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<UserTo> findusers(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<UserTo> findusers(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param user
 	 */
 	public UserTo modifyuser(UserInput user);

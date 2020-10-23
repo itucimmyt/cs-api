@@ -26,39 +26,39 @@ import org.ebs.services.to.MarkerTo;
 public interface MarkerSynonymService {
 
 	/**
-	 * 
+	 *
 	 * @param MarkerSynonym
 	 */
 	public MarkerSynonymTo createmarkersynonym(MarkerSynonymInput MarkerSynonym);
 
 	/**
-	 * 
+	 *
 	 * @param markersynonymId
 	 */
 	public int deletemarkersynonym(int markersynonymId);
 
 	/**
-	 * 
+	 *
 	 * @param markersynonymId
 	 */
 	public Optional<MarkerTo> findmarker(int markersynonymId);
 
 	/**
-	 * 
+	 *
 	 * @param markersynonymId
 	 */
 	public Optional<MarkerSynonymTo> findmarkersynonym(int markersynonymId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<MarkerSynonymTo> findmarkersynonyms(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<MarkerSynonymTo> findmarkersynonyms(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param markersynonym
 	 */
 	public MarkerSynonymTo modifymarkersynonym(MarkerSynonymInput markersynonym);

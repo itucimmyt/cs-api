@@ -30,57 +30,57 @@ import org.ebs.services.to.CropTo;
 public interface ProgramService {
 
 	/**
-	 * 
+	 *
 	 * @param Program
 	 */
 	public ProgramTo createprogram(ProgramInput Program);
 
 	/**
-	 * 
+	 *
 	 * @param programId
 	 */
 	public int deleteprogram(int programId);
 
 	/**
-	 * 
+	 *
 	 * @param programId
 	 */
 	public Optional<CropTo> findcrop(int programId);
 
 	/**
-	 * 
+	 *
 	 * @param programId
 	 */
 	public Optional<ProgramTo> findprogram(int programId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<ProgramTo> findprograms(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<ProgramTo> findprograms(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param programId
 	 */
 	public Set<ProjectTo> findprojects(int programId);
 
 	/**
-	 * 
+	 *
 	 * @param programId
 	 */
 	public Set<TeamTo> findteams(int programId);
 
 	/**
-	 * 
+	 *
 	 * @param programId
 	 */
 	public Optional<TenantTo> findtenant(int programId);
 
 	/**
-	 * 
+	 *
 	 * @param program
 	 */
 	public ProgramTo modifyprogram(ProgramInput program);

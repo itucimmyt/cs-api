@@ -45,36 +45,36 @@ import org.springframework.transaction.annotation.Transactional;
 	private NumberSequenceRuleRepository numbersequenceruleRepository;
 
 	/**
-	 * 
+	 *
 	 * @param NumberSequenceRuleSegment
 	 */
 	@Override @Transactional(readOnly = false)
 	public NumberSequenceRuleSegmentTo createnumbersequencerulesegment(NumberSequenceRuleSegmentInput NumberSequenceRuleSegment){
-		NumberSequenceRuleSegmentModel model = converter.convert(NumberSequenceRuleSegment,NumberSequenceRuleSegmentModel.class); 
+		NumberSequenceRuleSegmentModel model = converter.convert(NumberSequenceRuleSegment,NumberSequenceRuleSegmentModel.class);
 		 model.setId(0);
-		 SegmentModel segmentModel = segmentRepository.findById(NumberSequenceRuleSegment.getSegment().getId()).get(); 
-		model.setSegment(segmentModel); 
-		NumberSequenceRuleModel numbersequenceruleModel = numbersequenceruleRepository.findById(NumberSequenceRuleSegment.getNumbersequencerule().getId()).get(); 
-		model.setNumbersequencerule(numbersequenceruleModel); 
-		 
-		 model= numbersequencerulesegmentRepository.save(model); 
-		 return converter.convert(model, NumberSequenceRuleSegmentTo.class); 
+		 SegmentModel segmentModel = segmentRepository.findById(NumberSequenceRuleSegment.getSegment().getId()).get();
+		model.setSegment(segmentModel);
+		NumberSequenceRuleModel numbersequenceruleModel = numbersequenceruleRepository.findById(NumberSequenceRuleSegment.getNumbersequencerule().getId()).get();
+		model.setNumbersequencerule(numbersequenceruleModel);
+
+		 model= numbersequencerulesegmentRepository.save(model);
+		 return converter.convert(model, NumberSequenceRuleSegmentTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param numbersequencerulesegmentId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deletenumbersequencerulesegment(int numbersequencerulesegmentId){
-		NumberSequenceRuleSegmentModel numbersequencerulesegment = numbersequencerulesegmentRepository.findById(numbersequencerulesegmentId).orElseThrow(() -> new RuntimeException("NumberSequenceRuleSegment not found")); 
-		 numbersequencerulesegment.setDeleted(true); 
-		  numbersequencerulesegmentRepository.save(numbersequencerulesegment); 
+		NumberSequenceRuleSegmentModel numbersequencerulesegment = numbersequencerulesegmentRepository.findById(numbersequencerulesegmentId).orElseThrow(() -> new RuntimeException("NumberSequenceRuleSegment not found"));
+		 numbersequencerulesegment.setDeleted(true);
+		  numbersequencerulesegmentRepository.save(numbersequencerulesegment);
 		 return numbersequencerulesegmentId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param numbersequencerulesegmentId
 	 */
 	public Optional<NumberSequenceRuleTo> findnumbersequencerule(int numbersequencerulesegmentId){
@@ -82,29 +82,29 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param numbersequencerulesegmentId
 	 */
 	@Override
 	public Optional<NumberSequenceRuleSegmentTo> findnumbersequencerulesegment(int numbersequencerulesegmentId){
-		if(numbersequencerulesegmentId <1) 
-		 {return Optional.empty();} 
+		if(numbersequencerulesegmentId <1)
+		 {return Optional.empty();}
 		 return numbersequencerulesegmentRepository.findById(numbersequencerulesegmentId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,NumberSequenceRuleSegmentTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<NumberSequenceRuleSegmentTo> findnumbersequencerulesegments(PageInput page, SortInput sort, List<FilterInput> filters){
-		return numbersequencerulesegmentRepository.findByCriteria(NumberSequenceRuleSegmentModel.class,filters,sort,page).map(r -> converter.convert(r,NumberSequenceRuleSegmentTo.class));
+	public Page<NumberSequenceRuleSegmentTo> findnumbersequencerulesegments(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return numbersequencerulesegmentRepository.findByCriteria(NumberSequenceRuleSegmentModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,NumberSequenceRuleSegmentTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param numbersequencerulesegmentId
 	 */
 	public Optional<SegmentTo> findsegment(int numbersequencerulesegmentId){
@@ -112,19 +112,19 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param numbersequencerulesegment
 	 */
 	@Override @Transactional(readOnly = false)
 	public NumberSequenceRuleSegmentTo modifynumbersequencerulesegment(NumberSequenceRuleSegmentInput numbersequencerulesegment){
-		NumberSequenceRuleSegmentModel target= numbersequencerulesegmentRepository.findById(numbersequencerulesegment.getId()).orElseThrow(() -> new RuntimeException("NumberSequenceRuleSegment not found")); 
-		 NumberSequenceRuleSegmentModel source= converter.convert(numbersequencerulesegment,NumberSequenceRuleSegmentModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		NumberSequenceRuleSegmentModel target= numbersequencerulesegmentRepository.findById(numbersequencerulesegment.getId()).orElseThrow(() -> new RuntimeException("NumberSequenceRuleSegment not found"));
+		 NumberSequenceRuleSegmentModel source= converter.convert(numbersequencerulesegment,NumberSequenceRuleSegmentModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(numbersequencerulesegmentRepository.save(target), NumberSequenceRuleSegmentTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param numbersequenceruleRepository
 	 * @param segmentRepository
 	 * @param converter
@@ -132,7 +132,7 @@ import org.springframework.transaction.annotation.Transactional;
 	 */
 	@Autowired
 	public NumberSequenceRuleSegmentServiceImpl(NumberSequenceRuleRepository numbersequenceruleRepository, SegmentRepository segmentRepository, ConversionService converter, NumberSequenceRuleSegmentRepository numbersequencerulesegmentRepository){
-		this.numbersequencerulesegmentRepository =numbersequencerulesegmentRepository; 
+		this.numbersequencerulesegmentRepository =numbersequencerulesegmentRepository;
 		 this.converter = converter;
 		 this.numbersequenceruleRepository = numbersequenceruleRepository;
 	}

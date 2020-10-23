@@ -41,54 +41,54 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	public WorkflowNodeCFRepository workflownodecfRepository;
 
 	/**
-	 * 
+	 *
 	 * @param WorkflowCFType
 	 */
 	@Override @Transactional(readOnly = false)
 	public WorkflowCFTypeTo createworkflowcftype(WorkflowCFTypeInput WorkflowCFType){
-		WorkflowCFTypeModel model = converter.convert(WorkflowCFType,WorkflowCFTypeModel.class); 
+		WorkflowCFTypeModel model = converter.convert(WorkflowCFType,WorkflowCFTypeModel.class);
 		 model.setId(0);
-		  
-		 model= workflowcftypeRepository.save(model); 
-		 return converter.convert(model, WorkflowCFTypeTo.class); 
+
+		 model= workflowcftypeRepository.save(model);
+		 return converter.convert(model, WorkflowCFTypeTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowcftypeId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteworkflowcftype(int workflowcftypeId){
-		WorkflowCFTypeModel workflowcftype = workflowcftypeRepository.findById(workflowcftypeId).orElseThrow(() -> new RuntimeException("WorkflowCFType not found")); 
-		 workflowcftype.setDeleted(true); 
-		  workflowcftypeRepository.save(workflowcftype); 
+		WorkflowCFTypeModel workflowcftype = workflowcftypeRepository.findById(workflowcftypeId).orElseThrow(() -> new RuntimeException("WorkflowCFType not found"));
+		 workflowcftype.setDeleted(true);
+		  workflowcftypeRepository.save(workflowcftype);
 		 return workflowcftypeId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowcftypeId
 	 */
 	@Override
 	public Optional<WorkflowCFTypeTo> findworkflowcftype(int workflowcftypeId){
-		if(workflowcftypeId <1) 
-		 {return Optional.empty();} 
+		if(workflowcftypeId <1)
+		 {return Optional.empty();}
 		 return workflowcftypeRepository.findById(workflowcftypeId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,WorkflowCFTypeTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<WorkflowCFTypeTo> findworkflowcftypes(PageInput page, SortInput sort, List<FilterInput> filters){
-		return workflowcftypeRepository.findByCriteria(WorkflowCFTypeModel.class,filters,sort,page).map(r -> converter.convert(r,WorkflowCFTypeTo.class));
+	public Page<WorkflowCFTypeTo> findworkflowcftypes(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return workflowcftypeRepository.findByCriteria(WorkflowCFTypeModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,WorkflowCFTypeTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowcftypeId
 	 */
 	public Set<WorkflowNodeCFTo> findworkflownodecfs(int workflowcftypeId){
@@ -96,26 +96,26 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowcftype
 	 */
 	@Override @Transactional(readOnly = false)
 	public WorkflowCFTypeTo modifyworkflowcftype(WorkflowCFTypeInput workflowcftype){
-		WorkflowCFTypeModel target= workflowcftypeRepository.findById(workflowcftype.getId()).orElseThrow(() -> new RuntimeException("WorkflowCFType not found")); 
-		 WorkflowCFTypeModel source= converter.convert(workflowcftype,WorkflowCFTypeModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		WorkflowCFTypeModel target= workflowcftypeRepository.findById(workflowcftype.getId()).orElseThrow(() -> new RuntimeException("WorkflowCFType not found"));
+		 WorkflowCFTypeModel source= converter.convert(workflowcftype,WorkflowCFTypeModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(workflowcftypeRepository.save(target), WorkflowCFTypeTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodecfRepository
 	 * @param converter
 	 * @param workflowcftypeRepository
 	 */
 	@Autowired
 	public WorkflowCFTypeServiceImpl(WorkflowNodeCFRepository workflownodecfRepository, ConversionService converter, WorkflowCFTypeRepository workflowcftypeRepository){
-		this.workflowcftypeRepository =workflowcftypeRepository; 
+		this.workflowcftypeRepository =workflowcftypeRepository;
 		 this.converter = converter;
 		 this.workflownodecfRepository = workflownodecfRepository;
 	}

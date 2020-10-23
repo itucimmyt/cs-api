@@ -41,69 +41,69 @@ import org.springframework.transaction.annotation.Transactional;
 	private PersonRepository personRepository;
 
 	/**
-	 * 
+	 *
 	 * @param personRepository
 	 * @param converter
 	 * @param collaboratorRepository
 	 */
 	@Autowired
 	public CollaboratorServiceImpl(PersonRepository personRepository, ConversionService converter, CollaboratorRepository collaboratorRepository){
-		this.collaboratorRepository =collaboratorRepository; 
+		this.collaboratorRepository =collaboratorRepository;
 		 this.converter = converter;
 		 this.personRepository = personRepository;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param Collaborator
 	 */
 	@Override @Transactional(readOnly = false)
 	public CollaboratorTo createcollaborator(CollaboratorInput Collaborator){
-		CollaboratorModel model = converter.convert(Collaborator,CollaboratorModel.class); 
+		CollaboratorModel model = converter.convert(Collaborator,CollaboratorModel.class);
 		 model.setId(0);
-		 PersonModel personModel = personRepository.findById(Collaborator.getPerson().getId()).get(); 
-		model.setPerson(personModel); 
-		 
-		 model= collaboratorRepository.save(model); 
-		 return converter.convert(model, CollaboratorTo.class); 
+		 PersonModel personModel = personRepository.findById(Collaborator.getPerson().getId()).get();
+		model.setPerson(personModel);
+
+		 model= collaboratorRepository.save(model);
+		 return converter.convert(model, CollaboratorTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param collaboratorId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deletecollaborator(int collaboratorId){
-		CollaboratorModel collaborator = collaboratorRepository.findById(collaboratorId).orElseThrow(() -> new RuntimeException("Collaborator not found")); 
-		 collaborator.setDeleted(true); 
-		  collaboratorRepository.save(collaborator); 
+		CollaboratorModel collaborator = collaboratorRepository.findById(collaboratorId).orElseThrow(() -> new RuntimeException("Collaborator not found"));
+		 collaborator.setDeleted(true);
+		  collaboratorRepository.save(collaborator);
 		 return collaboratorId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param collaboratorId
 	 */
 	@Override
 	public Optional<CollaboratorTo> findcollaborator(int collaboratorId){
-		if(collaboratorId <1) 
-		 {return Optional.empty();} 
+		if(collaboratorId <1)
+		 {return Optional.empty();}
 		 return collaboratorRepository.findById(collaboratorId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,CollaboratorTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<CollaboratorTo> findcollaborators(PageInput page, SortInput sort, List<FilterInput> filters){
-		return collaboratorRepository.findByCriteria(CollaboratorModel.class,filters,sort,page).map(r -> converter.convert(r,CollaboratorTo.class));
+	public Page<CollaboratorTo> findcollaborators(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return collaboratorRepository.findByCriteria(CollaboratorModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,CollaboratorTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param collaboratorId
 	 */
 	public Optional<PersonTo> findperson(int collaboratorId){
@@ -111,14 +111,14 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param collaborator
 	 */
 	@Override @Transactional(readOnly = false)
 	public CollaboratorTo modifycollaborator(CollaboratorInput collaborator){
-		CollaboratorModel target= collaboratorRepository.findById(collaborator.getId()).orElseThrow(() -> new RuntimeException("Collaborator not found")); 
-		 CollaboratorModel source= converter.convert(collaborator,CollaboratorModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		CollaboratorModel target= collaboratorRepository.findById(collaborator.getId()).orElseThrow(() -> new RuntimeException("Collaborator not found"));
+		 CollaboratorModel source= converter.convert(collaborator,CollaboratorModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(collaboratorRepository.save(target), CollaboratorTo.class);
 	}
 

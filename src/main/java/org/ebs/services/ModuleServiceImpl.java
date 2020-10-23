@@ -52,36 +52,36 @@ import org.ebs.services.to.WorkflowNodeTo;
 	public WorkflowNodeRepository workflownodeRepository;
 
 	/**
-	 * 
+	 *
 	 * @param Module
 	 */
 	@Override @Transactional(readOnly = false)
 	public ModuleTo createmodule(ModuleInput Module){
-		ModuleModel model = converter.convert(Module,ModuleModel.class); 
+		ModuleModel model = converter.convert(Module,ModuleModel.class);
 		 model.setId(0);
-		 ComponentModel componentModel = componentRepository.findById(Module.getComponent().getId()).get(); 
-		model.setComponent(componentModel); 
-		HtmlTagModel htmltagModel = htmltagRepository.findById(Module.getHtmltag().getId()).get(); 
-		model.setHtmltag(htmltagModel); 
-		 
-		 model= moduleRepository.save(model); 
-		 return converter.convert(model, ModuleTo.class); 
+		 ComponentModel componentModel = componentRepository.findById(Module.getComponent().getId()).get();
+		model.setComponent(componentModel);
+		HtmlTagModel htmltagModel = htmltagRepository.findById(Module.getHtmltag().getId()).get();
+		model.setHtmltag(htmltagModel);
+
+		 model= moduleRepository.save(model);
+		 return converter.convert(model, ModuleTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param moduleId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deletemodule(int moduleId){
-		ModuleModel module = moduleRepository.findById(moduleId).orElseThrow(() -> new RuntimeException("Module not found")); 
-		 module.setDeleted(true); 
-		  moduleRepository.save(module); 
+		ModuleModel module = moduleRepository.findById(moduleId).orElseThrow(() -> new RuntimeException("Module not found"));
+		 module.setDeleted(true);
+		  moduleRepository.save(module);
 		 return moduleId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param moduleId
 	 */
 	public Set<ActionTo> findactions(int moduleId){
@@ -89,7 +89,7 @@ import org.ebs.services.to.WorkflowNodeTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param moduleId
 	 */
 	public Optional<ComponentTo> findcomponent(int moduleId){
@@ -97,7 +97,7 @@ import org.ebs.services.to.WorkflowNodeTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param moduleId
 	 */
 	public Optional<HtmlTagTo> findhtmltag(int moduleId){
@@ -105,29 +105,29 @@ import org.ebs.services.to.WorkflowNodeTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param moduleId
 	 */
 	@Override
 	public Optional<ModuleTo> findmodule(int moduleId){
-		if(moduleId <1) 
-		 {return Optional.empty();} 
+		if(moduleId <1)
+		 {return Optional.empty();}
 		 return moduleRepository.findById(moduleId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,ModuleTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<ModuleTo> findmodules(PageInput page, SortInput sort, List<FilterInput> filters){
-		return moduleRepository.findByCriteria(ModuleModel.class,filters,sort,page).map(r -> converter.convert(r,ModuleTo.class));
+	public Page<ModuleTo> findmodules(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return moduleRepository.findByCriteria(ModuleModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,ModuleTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param moduleId
 	 */
 	public Set<WorkflowNodeTo> findworkflownodes(int moduleId){
@@ -135,19 +135,19 @@ import org.ebs.services.to.WorkflowNodeTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param module
 	 */
 	@Override @Transactional(readOnly = false)
 	public ModuleTo modifymodule(ModuleInput module){
-		ModuleModel target= moduleRepository.findById(module.getId()).orElseThrow(() -> new RuntimeException("Module not found")); 
-		 ModuleModel source= converter.convert(module,ModuleModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		ModuleModel target= moduleRepository.findById(module.getId()).orElseThrow(() -> new RuntimeException("Module not found"));
+		 ModuleModel source= converter.convert(module,ModuleModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(moduleRepository.save(target), ModuleTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeRepository
 	 * @param moduleRepository
 	 * @param converter
@@ -157,7 +157,7 @@ import org.ebs.services.to.WorkflowNodeTo;
 	 */
 	@Autowired
 	public ModuleServiceImpl(WorkflowNodeRepository workflownodeRepository, ModuleRepository moduleRepository, ConversionService converter, ActionRepository actionRepository, ComponentRepository componentRepository, HtmlTagRepository htmltagRepository){
-		this.moduleRepository =moduleRepository; 
+		this.moduleRepository =moduleRepository;
 		 this.converter = converter;
 		 this.actionRepository = actionRepository;
 		 this.componentRepository = componentRepository;

@@ -27,39 +27,39 @@ import org.ebs.services.to.WorkflowNodeTo;
 public interface ProcessService {
 
 	/**
-	 * 
+	 *
 	 * @param Process
 	 */
 	public ProcessTo createprocess(ProcessInput Process);
 
 	/**
-	 * 
+	 *
 	 * @param processId
 	 */
 	public int deleteprocess(int processId);
 
 	/**
-	 * 
+	 *
 	 * @param processId
 	 */
 	public Optional<ProcessTo> findprocess(int processId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<ProcessTo> findprocesss(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<ProcessTo> findprocesss(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param processId
 	 */
 	public Set<WorkflowNodeTo> findworkflownodes(int processId);
 
 	/**
-	 * 
+	 *
 	 * @param process
 	 */
 	public ProcessTo modifyprocess(ProcessInput process);

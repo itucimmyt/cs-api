@@ -71,32 +71,32 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	public WorkflowNodeCFRepository workflownodecfRepository;
 
 	/**
-	 * 
+	 *
 	 * @param HtmlTag
 	 */
 	@Override @Transactional(readOnly = false)
 	public HtmlTagTo createhtmltag(HtmlTagInput HtmlTag){
-		HtmlTagModel model = converter.convert(HtmlTag,HtmlTagModel.class); 
+		HtmlTagModel model = converter.convert(HtmlTag,HtmlTagModel.class);
 		 model.setId(0);
-		  
-		 model= htmltagRepository.save(model); 
-		 return converter.convert(model, HtmlTagTo.class); 
+
+		 model= htmltagRepository.save(model);
+		 return converter.convert(model, HtmlTagTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deletehtmltag(int htmltagId){
-		HtmlTagModel htmltag = htmltagRepository.findById(htmltagId).orElseThrow(() -> new RuntimeException("HtmlTag not found")); 
-		 htmltag.setDeleted(true); 
-		  htmltagRepository.save(htmltag); 
+		HtmlTagModel htmltag = htmltagRepository.findById(htmltagId).orElseThrow(() -> new RuntimeException("HtmlTag not found"));
+		 htmltag.setDeleted(true);
+		  htmltagRepository.save(htmltag);
 		 return htmltagId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	public Set<AlertTo> findalerts(int htmltagId){
@@ -104,7 +104,7 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	public Set<AttributesTo> findattributess(int htmltagId){
@@ -112,7 +112,7 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	public Set<ComponentTo> findcomponents(int htmltagId){
@@ -120,29 +120,29 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	@Override
 	public Optional<HtmlTagTo> findhtmltag(int htmltagId){
-		if(htmltagId <1) 
-		 {return Optional.empty();} 
+		if(htmltagId <1)
+		 {return Optional.empty();}
 		 return htmltagRepository.findById(htmltagId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,HtmlTagTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<HtmlTagTo> findhtmltags(PageInput page, SortInput sort, List<FilterInput> filters){
-		return htmltagRepository.findByCriteria(HtmlTagModel.class,filters,sort,page).map(r -> converter.convert(r,HtmlTagTo.class));
+	public Page<HtmlTagTo> findhtmltags(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return htmltagRepository.findByCriteria(HtmlTagModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,HtmlTagTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	public Set<ModuleTo> findmodules(int htmltagId){
@@ -150,7 +150,7 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	public Set<NotificationTo> findnotifications(int htmltagId){
@@ -158,7 +158,7 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	public Set<TranslationTo> findtranslations(int htmltagId){
@@ -166,7 +166,7 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	public Set<WorkflowNodeCFTo> findworkflownodecfs(int htmltagId){
@@ -174,7 +174,7 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	public Set<WorkflowNodeTo> findworkflownodes(int htmltagId){
@@ -182,7 +182,7 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	public Set<WorkflowPhaseTo> findworkflowphases(int htmltagId){
@@ -190,7 +190,7 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	public Set<WorkflowTo> findworkflows(int htmltagId){
@@ -198,7 +198,7 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	public Set<WorkflowStageTo> findworkflowstages(int htmltagId){
@@ -206,7 +206,7 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param componentRepository
 	 * @param moduleRepository
 	 * @param workflownodeRepository
@@ -223,7 +223,7 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	 */
 	@Autowired
 	public HtmlTagServiceImpl(ComponentRepository componentRepository, ModuleRepository moduleRepository, WorkflowNodeRepository workflownodeRepository, TranslationRepository translationRepository, WorkflowStageRepository workflowstageRepository, AlertRepository alertRepository, WorkflowRepository workflowRepository, NotificationRepository notificationRepository, AttributesRepository attributesRepository, ConversionService converter, HtmlTagRepository htmltagRepository, WorkflowNodeCFRepository workflownodecfRepository, WorkflowPhaseRepository workflowphaseRepository){
-		this.htmltagRepository =htmltagRepository; 
+		this.htmltagRepository =htmltagRepository;
 		 this.converter = converter;
 		 this.attributesRepository = attributesRepository;
 		 this.notificationRepository = notificationRepository;
@@ -239,14 +239,14 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param htmltag
 	 */
 	@Override @Transactional(readOnly = false)
 	public HtmlTagTo modifyhtmltag(HtmlTagInput htmltag){
-		HtmlTagModel target= htmltagRepository.findById(htmltag.getId()).orElseThrow(() -> new RuntimeException("HtmlTag not found")); 
-		 HtmlTagModel source= converter.convert(htmltag,HtmlTagModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		HtmlTagModel target= htmltagRepository.findById(htmltag.getId()).orElseThrow(() -> new RuntimeException("HtmlTag not found"));
+		 HtmlTagModel source= converter.convert(htmltag,HtmlTagModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(htmltagRepository.save(target), HtmlTagTo.class);
 	}
 

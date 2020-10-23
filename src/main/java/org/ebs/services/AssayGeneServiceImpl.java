@@ -45,7 +45,7 @@ import org.ebs.services.to.MarkerTo;
 	private MarkerRepository markerRepository;
 
 	/**
-	 * 
+	 *
 	 * @param converter
 	 * @param assaygeneRepository
 	 * @param markerRepository
@@ -53,63 +53,63 @@ import org.ebs.services.to.MarkerTo;
 	 */
 	@Autowired
 	public AssayGeneServiceImpl(ConversionService converter, AssayGeneRepository assaygeneRepository, MarkerRepository markerRepository, TraitRepository traitRepository){
-		this.assaygeneRepository =assaygeneRepository; 
+		this.assaygeneRepository =assaygeneRepository;
 		 this.converter = converter;
 		 this.traitRepository = traitRepository;
 		 this.markerRepository = markerRepository;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param AssayGene
 	 */
 	@Override @Transactional(readOnly = false)
 	public AssayGeneTo createassaygene(AssayGeneInput AssayGene){
-		AssayGeneModel model = converter.convert(AssayGene,AssayGeneModel.class); 
+		AssayGeneModel model = converter.convert(AssayGene,AssayGeneModel.class);
 		 model.setId(0);
-		 TraitModel traitModel = traitRepository.findById(AssayGene.getTrait().getId()).get(); 
-		model.setTrait(traitModel); 
-		 
-		 model= assaygeneRepository.save(model); 
-		 return converter.convert(model, AssayGeneTo.class); 
+		 TraitModel traitModel = traitRepository.findById(AssayGene.getTrait().getId()).get();
+		model.setTrait(traitModel);
+
+		 model= assaygeneRepository.save(model);
+		 return converter.convert(model, AssayGeneTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param assaygeneId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteassaygene(int assaygeneId){
-		AssayGeneModel assaygene = assaygeneRepository.findById(assaygeneId).orElseThrow(() -> new RuntimeException("AssayGene not found")); 
-		 assaygene.setDeleted(true); 
-		  assaygeneRepository.save(assaygene); 
+		AssayGeneModel assaygene = assaygeneRepository.findById(assaygeneId).orElseThrow(() -> new RuntimeException("AssayGene not found"));
+		 assaygene.setDeleted(true);
+		  assaygeneRepository.save(assaygene);
 		 return assaygeneId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param assaygeneId
 	 */
 	@Override
 	public Optional<AssayGeneTo> findassaygene(int assaygeneId){
-		if(assaygeneId <1) 
-		 {return Optional.empty();} 
+		if(assaygeneId <1)
+		 {return Optional.empty();}
 		 return assaygeneRepository.findById(assaygeneId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,AssayGeneTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<AssayGeneTo> findassaygenes(PageInput page, SortInput sort, List<FilterInput> filters){
-		return assaygeneRepository.findByCriteria(AssayGeneModel.class,filters,sort,page).map(r -> converter.convert(r,AssayGeneTo.class));
+	public Page<AssayGeneTo> findassaygenes(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return assaygeneRepository.findByCriteria(AssayGeneModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,AssayGeneTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param assaygeneId
 	 */
 	public Set<MarkerTo> findmarkers(int assaygeneId){
@@ -117,7 +117,7 @@ import org.ebs.services.to.MarkerTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param assaygeneId
 	 */
 	public Optional<TraitTo> findtrait(int assaygeneId){
@@ -125,14 +125,14 @@ import org.ebs.services.to.MarkerTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param assaygene
 	 */
 	@Override @Transactional(readOnly = false)
 	public AssayGeneTo modifyassaygene(AssayGeneInput assaygene){
-		AssayGeneModel target= assaygeneRepository.findById(assaygene.getId()).orElseThrow(() -> new RuntimeException("AssayGene not found")); 
-		 AssayGeneModel source= converter.convert(assaygene,AssayGeneModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		AssayGeneModel target= assaygeneRepository.findById(assaygene.getId()).orElseThrow(() -> new RuntimeException("AssayGene not found"));
+		 AssayGeneModel source= converter.convert(assaygene,AssayGeneModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(assaygeneRepository.save(target), AssayGeneTo.class);
 	}
 

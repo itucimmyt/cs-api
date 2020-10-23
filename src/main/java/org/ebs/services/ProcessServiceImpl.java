@@ -41,54 +41,54 @@ import org.ebs.services.to.WorkflowNodeTo;
 	public WorkflowNodeRepository workflownodeRepository;
 
 	/**
-	 * 
+	 *
 	 * @param Process
 	 */
 	@Override @Transactional(readOnly = false)
 	public ProcessTo createprocess(ProcessInput Process){
-		ProcessModel model = converter.convert(Process,ProcessModel.class); 
+		ProcessModel model = converter.convert(Process,ProcessModel.class);
 		 model.setId(0);
-		  
-		 model= processRepository.save(model); 
-		 return converter.convert(model, ProcessTo.class); 
+
+		 model= processRepository.save(model);
+		 return converter.convert(model, ProcessTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param processId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteprocess(int processId){
-		ProcessModel process = processRepository.findById(processId).orElseThrow(() -> new RuntimeException("Process not found")); 
-		 process.setDeleted(true); 
-		  processRepository.save(process); 
+		ProcessModel process = processRepository.findById(processId).orElseThrow(() -> new RuntimeException("Process not found"));
+		 process.setDeleted(true);
+		  processRepository.save(process);
 		 return processId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param processId
 	 */
 	@Override
 	public Optional<ProcessTo> findprocess(int processId){
-		if(processId <1) 
-		 {return Optional.empty();} 
+		if(processId <1)
+		 {return Optional.empty();}
 		 return processRepository.findById(processId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,ProcessTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<ProcessTo> findprocesss(PageInput page, SortInput sort, List<FilterInput> filters){
-		return processRepository.findByCriteria(ProcessModel.class,filters,sort,page).map(r -> converter.convert(r,ProcessTo.class));
+	public Page<ProcessTo> findprocesss(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return processRepository.findByCriteria(ProcessModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,ProcessTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param processId
 	 */
 	public Set<WorkflowNodeTo> findworkflownodes(int processId){
@@ -96,26 +96,26 @@ import org.ebs.services.to.WorkflowNodeTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param process
 	 */
 	@Override @Transactional(readOnly = false)
 	public ProcessTo modifyprocess(ProcessInput process){
-		ProcessModel target= processRepository.findById(process.getId()).orElseThrow(() -> new RuntimeException("Process not found")); 
-		 ProcessModel source= converter.convert(process,ProcessModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		ProcessModel target= processRepository.findById(process.getId()).orElseThrow(() -> new RuntimeException("Process not found"));
+		 ProcessModel source= converter.convert(process,ProcessModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(processRepository.save(target), ProcessTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeRepository
 	 * @param converter
 	 * @param processRepository
 	 */
 	@Autowired
 	public ProcessServiceImpl(WorkflowNodeRepository workflownodeRepository, ConversionService converter, ProcessRepository processRepository){
-		this.processRepository =processRepository; 
+		this.processRepository =processRepository;
 		 this.converter = converter;
 		 this.workflownodeRepository = workflownodeRepository;
 	}

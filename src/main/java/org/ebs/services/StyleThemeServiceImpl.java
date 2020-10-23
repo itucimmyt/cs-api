@@ -41,32 +41,32 @@ import org.ebs.services.to.PreferenceTo;
 	public PreferenceRepository preferenceRepository;
 
 	/**
-	 * 
+	 *
 	 * @param StyleTheme
 	 */
 	@Override @Transactional(readOnly = false)
 	public StyleThemeTo createstyletheme(StyleThemeInput StyleTheme){
-		StyleThemeModel model = converter.convert(StyleTheme,StyleThemeModel.class); 
+		StyleThemeModel model = converter.convert(StyleTheme,StyleThemeModel.class);
 		 model.setId(0);
-		  
-		 model= stylethemeRepository.save(model); 
-		 return converter.convert(model, StyleThemeTo.class); 
+
+		 model= stylethemeRepository.save(model);
+		 return converter.convert(model, StyleThemeTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param stylethemeId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deletestyletheme(int stylethemeId){
-		StyleThemeModel styletheme = stylethemeRepository.findById(stylethemeId).orElseThrow(() -> new RuntimeException("StyleTheme not found")); 
-		 styletheme.setDeleted(true); 
-		  stylethemeRepository.save(styletheme); 
+		StyleThemeModel styletheme = stylethemeRepository.findById(stylethemeId).orElseThrow(() -> new RuntimeException("StyleTheme not found"));
+		 styletheme.setDeleted(true);
+		  stylethemeRepository.save(styletheme);
 		 return stylethemeId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param stylethemeId
 	 */
 	public Set<PreferenceTo> findpreferences(int stylethemeId){
@@ -74,48 +74,48 @@ import org.ebs.services.to.PreferenceTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param stylethemeId
 	 */
 	@Override
 	public Optional<StyleThemeTo> findstyletheme(int stylethemeId){
-		if(stylethemeId <1) 
-		 {return Optional.empty();} 
+		if(stylethemeId <1)
+		 {return Optional.empty();}
 		 return stylethemeRepository.findById(stylethemeId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,StyleThemeTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<StyleThemeTo> findstylethemes(PageInput page, SortInput sort, List<FilterInput> filters){
-		return stylethemeRepository.findByCriteria(StyleThemeModel.class,filters,sort,page).map(r -> converter.convert(r,StyleThemeTo.class));
+	public Page<StyleThemeTo> findstylethemes(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return stylethemeRepository.findByCriteria(StyleThemeModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,StyleThemeTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param styletheme
 	 */
 	@Override @Transactional(readOnly = false)
 	public StyleThemeTo modifystyletheme(StyleThemeInput styletheme){
-		StyleThemeModel target= stylethemeRepository.findById(styletheme.getId()).orElseThrow(() -> new RuntimeException("StyleTheme not found")); 
-		 StyleThemeModel source= converter.convert(styletheme,StyleThemeModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		StyleThemeModel target= stylethemeRepository.findById(styletheme.getId()).orElseThrow(() -> new RuntimeException("StyleTheme not found"));
+		 StyleThemeModel source= converter.convert(styletheme,StyleThemeModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(stylethemeRepository.save(target), StyleThemeTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param preferenceRepository
 	 * @param converter
 	 * @param stylethemeRepository
 	 */
 	@Autowired
 	public StyleThemeServiceImpl(PreferenceRepository preferenceRepository, ConversionService converter, StyleThemeRepository stylethemeRepository){
-		this.stylethemeRepository =stylethemeRepository; 
+		this.stylethemeRepository =stylethemeRepository;
 		 this.converter = converter;
 		 this.preferenceRepository = preferenceRepository;
 	}

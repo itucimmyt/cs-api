@@ -41,69 +41,69 @@ import org.springframework.transaction.annotation.Transactional;
 	private InstanceRepository instanceRepository;
 
 	/**
-	 * 
+	 *
 	 * @param instanceRepository
 	 * @param converter
 	 * @param auditlogsRepository
 	 */
 	@Autowired
 	public AuditLogsServiceImpl(InstanceRepository instanceRepository, ConversionService converter, AuditLogsRepository auditlogsRepository){
-		this.auditlogsRepository =auditlogsRepository; 
+		this.auditlogsRepository =auditlogsRepository;
 		 this.converter = converter;
 		 this.instanceRepository = instanceRepository;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param AuditLogs
 	 */
 	@Override @Transactional(readOnly = false)
 	public AuditLogsTo createauditlogs(AuditLogsInput AuditLogs){
-		AuditLogsModel model = converter.convert(AuditLogs,AuditLogsModel.class); 
+		AuditLogsModel model = converter.convert(AuditLogs,AuditLogsModel.class);
 		 model.setId(0);
-		 InstanceModel instanceModel = instanceRepository.findById(AuditLogs.getInstance().getId()).get(); 
-		model.setInstance(instanceModel); 
-		 
-		 model= auditlogsRepository.save(model); 
-		 return converter.convert(model, AuditLogsTo.class); 
+		 InstanceModel instanceModel = instanceRepository.findById(AuditLogs.getInstance().getId()).get();
+		model.setInstance(instanceModel);
+
+		 model= auditlogsRepository.save(model);
+		 return converter.convert(model, AuditLogsTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param auditlogsId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteauditlogs(int auditlogsId){
-		AuditLogsModel auditlogs = auditlogsRepository.findById(auditlogsId).orElseThrow(() -> new RuntimeException("AuditLogs not found")); 
-		 auditlogs.setDeleted(true); 
-		  auditlogsRepository.save(auditlogs); 
+		AuditLogsModel auditlogs = auditlogsRepository.findById(auditlogsId).orElseThrow(() -> new RuntimeException("AuditLogs not found"));
+		 auditlogs.setDeleted(true);
+		  auditlogsRepository.save(auditlogs);
 		 return auditlogsId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param auditlogsId
 	 */
 	@Override
 	public Optional<AuditLogsTo> findauditlogs(int auditlogsId){
-		if(auditlogsId <1) 
-		 {return Optional.empty();} 
+		if(auditlogsId <1)
+		 {return Optional.empty();}
 		 return auditlogsRepository.findById(auditlogsId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,AuditLogsTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<AuditLogsTo> findauditlogss(PageInput page, SortInput sort, List<FilterInput> filters){
-		return auditlogsRepository.findByCriteria(AuditLogsModel.class,filters,sort,page).map(r -> converter.convert(r,AuditLogsTo.class));
+	public Page<AuditLogsTo> findauditlogss(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return auditlogsRepository.findByCriteria(AuditLogsModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,AuditLogsTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param auditlogsId
 	 */
 	public Optional<InstanceTo> findinstance(int auditlogsId){
@@ -111,14 +111,14 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param auditlogs
 	 */
 	@Override @Transactional(readOnly = false)
 	public AuditLogsTo modifyauditlogs(AuditLogsInput auditlogs){
-		AuditLogsModel target= auditlogsRepository.findById(auditlogs.getId()).orElseThrow(() -> new RuntimeException("AuditLogs not found")); 
-		 AuditLogsModel source= converter.convert(auditlogs,AuditLogsModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		AuditLogsModel target= auditlogsRepository.findById(auditlogs.getId()).orElseThrow(() -> new RuntimeException("AuditLogs not found"));
+		 AuditLogsModel source= converter.convert(auditlogs,AuditLogsModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(auditlogsRepository.save(target), AuditLogsTo.class);
 	}
 

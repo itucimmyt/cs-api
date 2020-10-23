@@ -29,51 +29,51 @@ import org.ebs.services.to.AlertRuleTo;
 public interface AlertService {
 
 	/**
-	 * 
+	 *
 	 * @param Alert
 	 */
 	public AlertTo createalert(AlertInput Alert);
 
 	/**
-	 * 
+	 *
 	 * @param alertId
 	 */
 	public int deletealert(int alertId);
 
 	/**
-	 * 
+	 *
 	 * @param alertId
 	 */
 	public Optional<AlertTo> findalert(int alertId);
 
 	/**
-	 * 
+	 *
 	 * @param alertId
 	 */
 	public Set<AlertRuleTo> findalertrules(int alertId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<AlertTo> findalerts(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<AlertTo> findalerts(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param alertId
 	 */
 	public Optional<HtmlTagTo> findhtmltag(int alertId);
 
 	/**
-	 * 
+	 *
 	 * @param alertId
 	 */
 	public Set<PreferenceTo> findpreferences(int alertId);
 
 	/**
-	 * 
+	 *
 	 * @param alert
 	 */
 	public AlertTo modifyalert(AlertInput alert);

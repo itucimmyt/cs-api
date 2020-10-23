@@ -45,7 +45,7 @@ import org.ebs.services.to.PersonTo;
 	public PersonRepository personRepository;
 
 	/**
-	 * 
+	 *
 	 * @param personRepository
 	 * @param countryRepository
 	 * @param converter
@@ -53,63 +53,63 @@ import org.ebs.services.to.PersonTo;
 	 */
 	@Autowired
 	public AddressServiceImpl(PersonRepository personRepository, CountryRepository countryRepository, ConversionService converter, AddressRepository addressRepository){
-		this.addressRepository =addressRepository; 
+		this.addressRepository =addressRepository;
 		 this.converter = converter;
 		 this.countryRepository = countryRepository;
 		 this.personRepository = personRepository;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param Address
 	 */
 	@Override @Transactional(readOnly = false)
 	public AddressTo createaddress(AddressInput Address){
-		AddressModel model = converter.convert(Address,AddressModel.class); 
+		AddressModel model = converter.convert(Address,AddressModel.class);
 		 model.setId(0);
-		 CountryModel countryModel = countryRepository.findById(Address.getCountry().getId()).get(); 
-		model.setCountry(countryModel); 
-		 
-		 model= addressRepository.save(model); 
-		 return converter.convert(model, AddressTo.class); 
+		 CountryModel countryModel = countryRepository.findById(Address.getCountry().getId()).get();
+		model.setCountry(countryModel);
+
+		 model= addressRepository.save(model);
+		 return converter.convert(model, AddressTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param addressId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteaddress(int addressId){
-		AddressModel address = addressRepository.findById(addressId).orElseThrow(() -> new RuntimeException("Address not found")); 
-		 address.setDeleted(true); 
-		  addressRepository.save(address); 
+		AddressModel address = addressRepository.findById(addressId).orElseThrow(() -> new RuntimeException("Address not found"));
+		 address.setDeleted(true);
+		  addressRepository.save(address);
 		 return addressId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param addressId
 	 */
 	@Override
 	public Optional<AddressTo> findaddress(int addressId){
-		if(addressId <1) 
-		 {return Optional.empty();} 
+		if(addressId <1)
+		 {return Optional.empty();}
 		 return addressRepository.findById(addressId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,AddressTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<AddressTo> findaddresss(PageInput page, SortInput sort, List<FilterInput> filters){
-		return addressRepository.findByCriteria(AddressModel.class,filters,sort,page).map(r -> converter.convert(r,AddressTo.class));
+	public Page<AddressTo> findaddresss(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return addressRepository.findByCriteria(AddressModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,AddressTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param addressId
 	 */
 	public Optional<CountryTo> findcountry(int addressId){
@@ -117,7 +117,7 @@ import org.ebs.services.to.PersonTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param addressId
 	 */
 	public Set<PersonTo> findpersons(int addressId){
@@ -125,14 +125,14 @@ import org.ebs.services.to.PersonTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param address
 	 */
 	@Override @Transactional(readOnly = false)
 	public AddressTo modifyaddress(AddressInput address){
-		AddressModel target= addressRepository.findById(address.getId()).orElseThrow(() -> new RuntimeException("Address not found")); 
-		 AddressModel source= converter.convert(address,AddressModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		AddressModel target= addressRepository.findById(address.getId()).orElseThrow(() -> new RuntimeException("Address not found"));
+		 AddressModel source= converter.convert(address,AddressModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(addressRepository.save(target), AddressTo.class);
 	}
 

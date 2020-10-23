@@ -56,38 +56,38 @@ import org.ebs.services.to.PersonTo;
 	public MarkerRepository markerRepository;
 
 	/**
-	 * 
+	 *
 	 * @param Vendor
 	 */
 	@Override @Transactional(readOnly = false)
 	public VendorTo createvendor(VendorInput Vendor){
-		VendorModel model = converter.convert(Vendor,VendorModel.class); 
+		VendorModel model = converter.convert(Vendor,VendorModel.class);
 		 model.setId(0);
-		 DataFormatModel dataformatModel = dataformatRepository.findById(Vendor.getDataformat().getId()).get(); 
-		model.setDataformat(dataformatModel); 
-		TechnologyPlatformModel technologyplatformModel = technologyplatformRepository.findById(Vendor.getTechnologyplatform().getId()).get(); 
-		model.setTechnologyplatform(technologyplatformModel); 
-		PersonModel personModel = personRepository.findById(Vendor.getPerson().getId()).get(); 
-		model.setPerson(personModel); 
-		 
-		 model= vendorRepository.save(model); 
-		 return converter.convert(model, VendorTo.class); 
+		 DataFormatModel dataformatModel = dataformatRepository.findById(Vendor.getDataformat().getId()).get();
+		model.setDataformat(dataformatModel);
+		TechnologyPlatformModel technologyplatformModel = technologyplatformRepository.findById(Vendor.getTechnologyplatform().getId()).get();
+		model.setTechnologyplatform(technologyplatformModel);
+		PersonModel personModel = personRepository.findById(Vendor.getPerson().getId()).get();
+		model.setPerson(personModel);
+
+		 model= vendorRepository.save(model);
+		 return converter.convert(model, VendorTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param vendorId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deletevendor(int vendorId){
-		VendorModel vendor = vendorRepository.findById(vendorId).orElseThrow(() -> new RuntimeException("Vendor not found")); 
-		 vendor.setDeleted(true); 
-		  vendorRepository.save(vendor); 
+		VendorModel vendor = vendorRepository.findById(vendorId).orElseThrow(() -> new RuntimeException("Vendor not found"));
+		 vendor.setDeleted(true);
+		  vendorRepository.save(vendor);
 		 return vendorId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param vendorId
 	 */
 	public Optional<DataFormatTo> finddataformat(int vendorId){
@@ -95,7 +95,7 @@ import org.ebs.services.to.PersonTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param vendorId
 	 */
 	public Set<MarkerTo> findmarkers(int vendorId){
@@ -103,7 +103,7 @@ import org.ebs.services.to.PersonTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param vendorId
 	 */
 	public Optional<PersonTo> findperson(int vendorId){
@@ -111,7 +111,7 @@ import org.ebs.services.to.PersonTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param vendorId
 	 */
 	public Set<ServiceTo> findservices(int vendorId){
@@ -119,7 +119,7 @@ import org.ebs.services.to.PersonTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param vendorId
 	 */
 	public Optional<TechnologyPlatformTo> findtechnologyplatform(int vendorId){
@@ -127,41 +127,41 @@ import org.ebs.services.to.PersonTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param vendorId
 	 */
 	@Override
 	public Optional<VendorTo> findvendor(int vendorId){
-		if(vendorId <1) 
-		 {return Optional.empty();} 
+		if(vendorId <1)
+		 {return Optional.empty();}
 		 return vendorRepository.findById(vendorId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,VendorTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<VendorTo> findvendors(PageInput page, SortInput sort, List<FilterInput> filters){
-		return vendorRepository.findByCriteria(VendorModel.class,filters,sort,page).map(r -> converter.convert(r,VendorTo.class));
+	public Page<VendorTo> findvendors(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return vendorRepository.findByCriteria(VendorModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,VendorTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param vendor
 	 */
 	@Override @Transactional(readOnly = false)
 	public VendorTo modifyvendor(VendorInput vendor){
-		VendorModel target= vendorRepository.findById(vendor.getId()).orElseThrow(() -> new RuntimeException("Vendor not found")); 
-		 VendorModel source= converter.convert(vendor,VendorModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		VendorModel target= vendorRepository.findById(vendor.getId()).orElseThrow(() -> new RuntimeException("Vendor not found"));
+		 VendorModel source= converter.convert(vendor,VendorModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(vendorRepository.save(target), VendorTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param personRepository
 	 * @param vendorRepository
 	 * @param converter
@@ -172,7 +172,7 @@ import org.ebs.services.to.PersonTo;
 	 */
 	@Autowired
 	public VendorServiceImpl(PersonRepository personRepository, VendorRepository vendorRepository, ConversionService converter, DataFormatRepository dataformatRepository, ServiceRepository serviceRepository, TechnologyPlatformRepository technologyplatformRepository, MarkerRepository markerRepository){
-		this.vendorRepository =vendorRepository; 
+		this.vendorRepository =vendorRepository;
 		 this.converter = converter;
 		 this.dataformatRepository = dataformatRepository;
 		 this.serviceRepository = serviceRepository;

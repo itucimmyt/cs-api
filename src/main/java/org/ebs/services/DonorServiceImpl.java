@@ -41,69 +41,69 @@ import org.springframework.transaction.annotation.Transactional;
 	private PersonRepository personRepository;
 
 	/**
-	 * 
+	 *
 	 * @param Donor
 	 */
 	@Override @Transactional(readOnly = false)
 	public DonorTo createdonor(DonorInput Donor){
-		DonorModel model = converter.convert(Donor,DonorModel.class); 
+		DonorModel model = converter.convert(Donor,DonorModel.class);
 		 model.setId(0);
-		 PersonModel personModel = personRepository.findById(Donor.getPerson().getId()).get(); 
-		model.setPerson(personModel); 
-		 
-		 model= donorRepository.save(model); 
-		 return converter.convert(model, DonorTo.class); 
+		 PersonModel personModel = personRepository.findById(Donor.getPerson().getId()).get();
+		model.setPerson(personModel);
+
+		 model= donorRepository.save(model);
+		 return converter.convert(model, DonorTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param donorId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deletedonor(int donorId){
-		DonorModel donor = donorRepository.findById(donorId).orElseThrow(() -> new RuntimeException("Donor not found")); 
-		 donor.setDeleted(true); 
-		  donorRepository.save(donor); 
+		DonorModel donor = donorRepository.findById(donorId).orElseThrow(() -> new RuntimeException("Donor not found"));
+		 donor.setDeleted(true);
+		  donorRepository.save(donor);
 		 return donorId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param personRepository
 	 * @param converter
 	 * @param donorRepository
 	 */
 	@Autowired
 	public DonorServiceImpl(PersonRepository personRepository, ConversionService converter, DonorRepository donorRepository){
-		this.donorRepository =donorRepository; 
+		this.donorRepository =donorRepository;
 		 this.converter = converter;
 		 this.personRepository = personRepository;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param donorId
 	 */
 	@Override
 	public Optional<DonorTo> finddonor(int donorId){
-		if(donorId <1) 
-		 {return Optional.empty();} 
+		if(donorId <1)
+		 {return Optional.empty();}
 		 return donorRepository.findById(donorId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,DonorTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<DonorTo> finddonors(PageInput page, SortInput sort, List<FilterInput> filters){
-		return donorRepository.findByCriteria(DonorModel.class,filters,sort,page).map(r -> converter.convert(r,DonorTo.class));
+	public Page<DonorTo> finddonors(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return donorRepository.findByCriteria(DonorModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,DonorTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param donorId
 	 */
 	public Optional<PersonTo> findperson(int donorId){
@@ -111,14 +111,14 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param donor
 	 */
 	@Override @Transactional(readOnly = false)
 	public DonorTo modifydonor(DonorInput donor){
-		DonorModel target= donorRepository.findById(donor.getId()).orElseThrow(() -> new RuntimeException("Donor not found")); 
-		 DonorModel source= converter.convert(donor,DonorModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		DonorModel target= donorRepository.findById(donor.getId()).orElseThrow(() -> new RuntimeException("Donor not found"));
+		 DonorModel source= converter.convert(donor,DonorModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(donorRepository.save(target), DonorTo.class);
 	}
 

@@ -57,40 +57,40 @@ import org.ebs.services.to.WorkflowNodeTo;
 	public WorkflowCFValueRepository workflowcfvalueRepository;
 
 	/**
-	 * 
+	 *
 	 * @param WorkflowNodeCF
 	 */
 	@Override @Transactional(readOnly = false)
 	public WorkflowNodeCFTo createworkflownodecf(WorkflowNodeCFInput WorkflowNodeCF){
-		WorkflowNodeCFModel model = converter.convert(WorkflowNodeCF,WorkflowNodeCFModel.class); 
+		WorkflowNodeCFModel model = converter.convert(WorkflowNodeCF,WorkflowNodeCFModel.class);
 		 model.setId(0);
-		 WorkflowCFTypeModel workflowcftypeModel = workflowcftypeRepository.findById(WorkflowNodeCF.getWorkflowcftype().getId()).get(); 
-		model.setWorkflowcftype(workflowcftypeModel); 
-		HtmlTagModel htmltagModel = htmltagRepository.findById(WorkflowNodeCF.getHtmltag().getId()).get(); 
-		model.setHtmltag(htmltagModel); 
-		EntityReferenceModel entityreferenceModel = entityreferenceRepository.findById(WorkflowNodeCF.getEntityreference().getId()).get(); 
-		model.setEntityreference(entityreferenceModel); 
-		WorkflowNodeModel workflownodeModel = workflownodeRepository.findById(WorkflowNodeCF.getWorkflownode().getId()).get(); 
-		model.setWorkflownode(workflownodeModel); 
-		 
-		 model= workflownodecfRepository.save(model); 
-		 return converter.convert(model, WorkflowNodeCFTo.class); 
+		 WorkflowCFTypeModel workflowcftypeModel = workflowcftypeRepository.findById(WorkflowNodeCF.getWorkflowcftype().getId()).get();
+		model.setWorkflowcftype(workflowcftypeModel);
+		HtmlTagModel htmltagModel = htmltagRepository.findById(WorkflowNodeCF.getHtmltag().getId()).get();
+		model.setHtmltag(htmltagModel);
+		EntityReferenceModel entityreferenceModel = entityreferenceRepository.findById(WorkflowNodeCF.getEntityreference().getId()).get();
+		model.setEntityreference(entityreferenceModel);
+		WorkflowNodeModel workflownodeModel = workflownodeRepository.findById(WorkflowNodeCF.getWorkflownode().getId()).get();
+		model.setWorkflownode(workflownodeModel);
+
+		 model= workflownodecfRepository.save(model);
+		 return converter.convert(model, WorkflowNodeCFTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodecfId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteworkflownodecf(int workflownodecfId){
-		WorkflowNodeCFModel workflownodecf = workflownodecfRepository.findById(workflownodecfId).orElseThrow(() -> new RuntimeException("WorkflowNodeCF not found")); 
-		 workflownodecf.setDeleted(true); 
-		  workflownodecfRepository.save(workflownodecf); 
+		WorkflowNodeCFModel workflownodecf = workflownodecfRepository.findById(workflownodecfId).orElseThrow(() -> new RuntimeException("WorkflowNodeCF not found"));
+		 workflownodecf.setDeleted(true);
+		  workflownodecfRepository.save(workflownodecf);
 		 return workflownodecfId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodecfId
 	 */
 	public Optional<EntityReferenceTo> findentityreference(int workflownodecfId){
@@ -98,7 +98,7 @@ import org.ebs.services.to.WorkflowNodeTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodecfId
 	 */
 	public Optional<HtmlTagTo> findhtmltag(int workflownodecfId){
@@ -106,7 +106,7 @@ import org.ebs.services.to.WorkflowNodeTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodecfId
 	 */
 	public Optional<WorkflowCFTypeTo> findworkflowcftype(int workflownodecfId){
@@ -114,7 +114,7 @@ import org.ebs.services.to.WorkflowNodeTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodecfId
 	 */
 	public Set<WorkflowCFValueTo> findworkflowcfvalues(int workflownodecfId){
@@ -122,7 +122,7 @@ import org.ebs.services.to.WorkflowNodeTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodecfId
 	 */
 	public Optional<WorkflowNodeTo> findworkflownode(int workflownodecfId){
@@ -130,41 +130,41 @@ import org.ebs.services.to.WorkflowNodeTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodecfId
 	 */
 	@Override
 	public Optional<WorkflowNodeCFTo> findworkflownodecf(int workflownodecfId){
-		if(workflownodecfId <1) 
-		 {return Optional.empty();} 
+		if(workflownodecfId <1)
+		 {return Optional.empty();}
 		 return workflownodecfRepository.findById(workflownodecfId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,WorkflowNodeCFTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<WorkflowNodeCFTo> findworkflownodecfs(PageInput page, SortInput sort, List<FilterInput> filters){
-		return workflownodecfRepository.findByCriteria(WorkflowNodeCFModel.class,filters,sort,page).map(r -> converter.convert(r,WorkflowNodeCFTo.class));
+	public Page<WorkflowNodeCFTo> findworkflownodecfs(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return workflownodecfRepository.findByCriteria(WorkflowNodeCFModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,WorkflowNodeCFTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodecf
 	 */
 	@Override @Transactional(readOnly = false)
 	public WorkflowNodeCFTo modifyworkflownodecf(WorkflowNodeCFInput workflownodecf){
-		WorkflowNodeCFModel target= workflownodecfRepository.findById(workflownodecf.getId()).orElseThrow(() -> new RuntimeException("WorkflowNodeCF not found")); 
-		 WorkflowNodeCFModel source= converter.convert(workflownodecf,WorkflowNodeCFModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		WorkflowNodeCFModel target= workflownodecfRepository.findById(workflownodecf.getId()).orElseThrow(() -> new RuntimeException("WorkflowNodeCF not found"));
+		 WorkflowNodeCFModel source= converter.convert(workflownodecf,WorkflowNodeCFModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(workflownodecfRepository.save(target), WorkflowNodeCFTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeRepository
 	 * @param workflownodecfRepository
 	 * @param converter
@@ -175,7 +175,7 @@ import org.ebs.services.to.WorkflowNodeTo;
 	 */
 	@Autowired
 	public WorkflowNodeCFServiceImpl(WorkflowNodeRepository workflownodeRepository, WorkflowNodeCFRepository workflownodecfRepository, ConversionService converter, WorkflowCFValueRepository workflowcfvalueRepository, WorkflowCFTypeRepository workflowcftypeRepository, HtmlTagRepository htmltagRepository, EntityReferenceRepository entityreferenceRepository){
-		this.workflownodecfRepository =workflownodecfRepository; 
+		this.workflownodecfRepository =workflownodecfRepository;
 		 this.converter = converter;
 		 this.workflowcfvalueRepository = workflowcfvalueRepository;
 		 this.workflowcftypeRepository = workflowcftypeRepository;

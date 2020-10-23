@@ -32,63 +32,63 @@ import org.springframework.data.domain.Page;
 public interface VendorService {
 
 	/**
-	 * 
+	 *
 	 * @param Vendor
 	 */
 	public VendorTo createvendor(VendorInput Vendor);
 
 	/**
-	 * 
+	 *
 	 * @param vendorId
 	 */
 	public int deletevendor(int vendorId);
 
 	/**
-	 * 
+	 *
 	 * @param vendorId
 	 */
 	public Optional<DataFormatTo> finddataformat(int vendorId);
 
 	/**
-	 * 
+	 *
 	 * @param vendorId
 	 */
 	public Set<MarkerTo> findmarkers(int vendorId);
 
 	/**
-	 * 
+	 *
 	 * @param vendorId
 	 */
 	public Optional<PersonTo> findperson(int vendorId);
 
 	/**
-	 * 
+	 *
 	 * @param vendorId
 	 */
 	public Set<ServiceTo> findservices(int vendorId);
 
 	/**
-	 * 
+	 *
 	 * @param vendorId
 	 */
 	public Optional<TechnologyPlatformTo> findtechnologyplatform(int vendorId);
 
 	/**
-	 * 
+	 *
 	 * @param vendorId
 	 */
 	public Optional<VendorTo> findvendor(int vendorId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<VendorTo> findvendors(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<VendorTo> findvendors(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param vendor
 	 */
 	public VendorTo modifyvendor(VendorInput vendor);

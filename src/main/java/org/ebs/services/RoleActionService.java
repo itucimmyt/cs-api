@@ -27,45 +27,45 @@ import org.ebs.services.to.RoleTo;
 public interface RoleActionService {
 
 	/**
-	 * 
+	 *
 	 * @param RoleAction
 	 */
 	public RoleActionTo createroleaction(RoleActionInput RoleAction);
 
 	/**
-	 * 
+	 *
 	 * @param roleactionId
 	 */
 	public int deleteroleaction(int roleactionId);
 
 	/**
-	 * 
+	 *
 	 * @param roleactionId
 	 */
 	public Optional<ActionTo> findaction(int roleactionId);
 
 	/**
-	 * 
+	 *
 	 * @param roleactionId
 	 */
 	public Optional<RoleTo> findrole(int roleactionId);
 
 	/**
-	 * 
+	 *
 	 * @param roleactionId
 	 */
 	public Optional<RoleActionTo> findroleaction(int roleactionId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<RoleActionTo> findroleactions(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<RoleActionTo> findroleactions(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param roleaction
 	 */
 	public RoleActionTo modifyroleaction(RoleActionInput roleaction);

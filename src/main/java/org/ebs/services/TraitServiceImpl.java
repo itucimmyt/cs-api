@@ -44,32 +44,32 @@ import org.ebs.services.to.AssayGeneTo;
 	public AssayGeneRepository assaygeneRepository;
 
 	/**
-	 * 
+	 *
 	 * @param Trait
 	 */
 	@Override @Transactional(readOnly = false)
 	public TraitTo createtrait(TraitInput Trait){
-		TraitModel model = converter.convert(Trait,TraitModel.class); 
+		TraitModel model = converter.convert(Trait,TraitModel.class);
 		 model.setId(0);
-		  
-		 model= traitRepository.save(model); 
-		 return converter.convert(model, TraitTo.class); 
+
+		 model= traitRepository.save(model);
+		 return converter.convert(model, TraitTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param traitId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deletetrait(int traitId){
-		TraitModel trait = traitRepository.findById(traitId).orElseThrow(() -> new RuntimeException("Trait not found")); 
-		 trait.setDeleted(true); 
-		  traitRepository.save(trait); 
+		TraitModel trait = traitRepository.findById(traitId).orElseThrow(() -> new RuntimeException("Trait not found"));
+		 trait.setDeleted(true);
+		  traitRepository.save(trait);
 		 return traitId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param traitId
 	 */
 	public Set<AssayGeneTo> findassaygenes(int traitId){
@@ -77,18 +77,18 @@ import org.ebs.services.to.AssayGeneTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param traitId
 	 */
 	@Override
 	public Optional<TraitTo> findtrait(int traitId){
-		if(traitId <1) 
-		 {return Optional.empty();} 
+		if(traitId <1)
+		 {return Optional.empty();}
 		 return traitRepository.findById(traitId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,TraitTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param traitId
 	 */
 	public Optional<TraitClassTo> findtraitclass(int traitId){
@@ -96,30 +96,30 @@ import org.ebs.services.to.AssayGeneTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<TraitTo> findtraits(PageInput page, SortInput sort, List<FilterInput> filters){
-		return traitRepository.findByCriteria(TraitModel.class,filters,sort,page).map(r -> converter.convert(r,TraitTo.class));
+	public Page<TraitTo> findtraits(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return traitRepository.findByCriteria(TraitModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,TraitTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param trait
 	 */
 	@Override @Transactional(readOnly = false)
 	public TraitTo modifytrait(TraitInput trait){
-		TraitModel target= traitRepository.findById(trait.getId()).orElseThrow(() -> new RuntimeException("Trait not found")); 
-		 TraitModel source= converter.convert(trait,TraitModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		TraitModel target= traitRepository.findById(trait.getId()).orElseThrow(() -> new RuntimeException("Trait not found"));
+		 TraitModel source= converter.convert(trait,TraitModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(traitRepository.save(target), TraitTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param assaygeneRepository
 	 * @param traitclassRepository
 	 * @param converter
@@ -127,7 +127,7 @@ import org.ebs.services.to.AssayGeneTo;
 	 */
 	@Autowired
 	public TraitServiceImpl(AssayGeneRepository assaygeneRepository, TraitClassRepository traitclassRepository, ConversionService converter, TraitRepository traitRepository){
-		this.traitRepository =traitRepository; 
+		this.traitRepository =traitRepository;
 		 this.converter = converter;
 		 this.traitclassRepository = traitclassRepository;
 		 this.assaygeneRepository = assaygeneRepository;

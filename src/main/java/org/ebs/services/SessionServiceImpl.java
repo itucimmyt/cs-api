@@ -45,36 +45,36 @@ import org.springframework.transaction.annotation.Transactional;
 	private InstanceRepository instanceRepository;
 
 	/**
-	 * 
+	 *
 	 * @param Session
 	 */
 	@Override @Transactional(readOnly = false)
 	public SessionTo createsession(SessionInput Session){
-		SessionModel model = converter.convert(Session,SessionModel.class); 
+		SessionModel model = converter.convert(Session,SessionModel.class);
 		 model.setId(0);
-		 UserModel userModel = userRepository.findById(Session.getUser().getId()).get(); 
-		model.setUser(userModel); 
-		InstanceModel instanceModel = instanceRepository.findById(Session.getInstance().getId()).get(); 
-		model.setInstance(instanceModel); 
-		 
-		 model= sessionRepository.save(model); 
-		 return converter.convert(model, SessionTo.class); 
+		 UserModel userModel = userRepository.findById(Session.getUser().getId()).get();
+		model.setUser(userModel);
+		InstanceModel instanceModel = instanceRepository.findById(Session.getInstance().getId()).get();
+		model.setInstance(instanceModel);
+
+		 model= sessionRepository.save(model);
+		 return converter.convert(model, SessionTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param sessionId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deletesession(int sessionId){
-		SessionModel session = sessionRepository.findById(sessionId).orElseThrow(() -> new RuntimeException("Session not found")); 
-		 session.setDeleted(true); 
-		  sessionRepository.save(session); 
+		SessionModel session = sessionRepository.findById(sessionId).orElseThrow(() -> new RuntimeException("Session not found"));
+		 session.setDeleted(true);
+		  sessionRepository.save(session);
 		 return sessionId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param sessionId
 	 */
 	public Optional<InstanceTo> findinstance(int sessionId){
@@ -82,29 +82,29 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param sessionId
 	 */
 	@Override
 	public Optional<SessionTo> findsession(int sessionId){
-		if(sessionId <1) 
-		 {return Optional.empty();} 
+		if(sessionId <1)
+		 {return Optional.empty();}
 		 return sessionRepository.findById(sessionId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,SessionTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<SessionTo> findsessions(PageInput page, SortInput sort, List<FilterInput> filters){
-		return sessionRepository.findByCriteria(SessionModel.class,filters,sort,page).map(r -> converter.convert(r,SessionTo.class));
+	public Page<SessionTo> findsessions(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return sessionRepository.findByCriteria(SessionModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,SessionTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param sessionId
 	 */
 	public Optional<UserTo> finduser(int sessionId){
@@ -112,19 +112,19 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param session
 	 */
 	@Override @Transactional(readOnly = false)
 	public SessionTo modifysession(SessionInput session){
-		SessionModel target= sessionRepository.findById(session.getId()).orElseThrow(() -> new RuntimeException("Session not found")); 
-		 SessionModel source= converter.convert(session,SessionModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		SessionModel target= sessionRepository.findById(session.getId()).orElseThrow(() -> new RuntimeException("Session not found"));
+		 SessionModel source= converter.convert(session,SessionModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(sessionRepository.save(target), SessionTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param instanceRepository
 	 * @param userRepository
 	 * @param converter
@@ -132,7 +132,7 @@ import org.springframework.transaction.annotation.Transactional;
 	 */
 	@Autowired
 	public SessionServiceImpl(InstanceRepository instanceRepository, UserRepository userRepository, ConversionService converter, SessionRepository sessionRepository){
-		this.sessionRepository =sessionRepository; 
+		this.sessionRepository =sessionRepository;
 		 this.converter = converter;
 		 this.userRepository = userRepository;
 		 this.instanceRepository = instanceRepository;

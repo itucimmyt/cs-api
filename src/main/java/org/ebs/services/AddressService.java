@@ -28,45 +28,45 @@ import org.ebs.services.to.PersonTo;
 public interface AddressService {
 
 	/**
-	 * 
+	 *
 	 * @param Address
 	 */
 	public AddressTo createaddress(AddressInput Address);
 
 	/**
-	 * 
+	 *
 	 * @param addressId
 	 */
 	public int deleteaddress(int addressId);
 
 	/**
-	 * 
+	 *
 	 * @param addressId
 	 */
 	public Optional<AddressTo> findaddress(int addressId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<AddressTo> findaddresss(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<AddressTo> findaddresss(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param addressId
 	 */
 	public Optional<CountryTo> findcountry(int addressId);
 
 	/**
-	 * 
+	 *
 	 * @param addressId
 	 */
 	public Set<PersonTo> findpersons(int addressId);
 
 	/**
-	 * 
+	 *
 	 * @param address
 	 */
 	public AddressTo modifyaddress(AddressInput address);

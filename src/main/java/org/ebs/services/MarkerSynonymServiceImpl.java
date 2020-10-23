@@ -41,34 +41,34 @@ import org.springframework.transaction.annotation.Transactional;
 	private MarkerRepository markerRepository;
 
 	/**
-	 * 
+	 *
 	 * @param MarkerSynonym
 	 */
 	@Override @Transactional(readOnly = false)
 	public MarkerSynonymTo createmarkersynonym(MarkerSynonymInput MarkerSynonym){
-		MarkerSynonymModel model = converter.convert(MarkerSynonym,MarkerSynonymModel.class); 
+		MarkerSynonymModel model = converter.convert(MarkerSynonym,MarkerSynonymModel.class);
 		 model.setId(0);
-		 MarkerModel markerModel = markerRepository.findById(MarkerSynonym.getMarker().getId()).get(); 
-		model.setMarker(markerModel); 
-		 
-		 model= markersynonymRepository.save(model); 
-		 return converter.convert(model, MarkerSynonymTo.class); 
+		 MarkerModel markerModel = markerRepository.findById(MarkerSynonym.getMarker().getId()).get();
+		model.setMarker(markerModel);
+
+		 model= markersynonymRepository.save(model);
+		 return converter.convert(model, MarkerSynonymTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param markersynonymId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deletemarkersynonym(int markersynonymId){
-		MarkerSynonymModel markersynonym = markersynonymRepository.findById(markersynonymId).orElseThrow(() -> new RuntimeException("MarkerSynonym not found")); 
-		 markersynonym.setDeleted(true); 
-		  markersynonymRepository.save(markersynonym); 
+		MarkerSynonymModel markersynonym = markersynonymRepository.findById(markersynonymId).orElseThrow(() -> new RuntimeException("MarkerSynonym not found"));
+		 markersynonym.setDeleted(true);
+		  markersynonymRepository.save(markersynonym);
 		 return markersynonymId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param markersynonymId
 	 */
 	public Optional<MarkerTo> findmarker(int markersynonymId){
@@ -76,49 +76,49 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param markersynonymId
 	 */
 	@Override
 	public Optional<MarkerSynonymTo> findmarkersynonym(int markersynonymId){
-		if(markersynonymId <1) 
-		 {return Optional.empty();} 
+		if(markersynonymId <1)
+		 {return Optional.empty();}
 		 return markersynonymRepository.findById(markersynonymId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,MarkerSynonymTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<MarkerSynonymTo> findmarkersynonyms(PageInput page, SortInput sort, List<FilterInput> filters){
-		return markersynonymRepository.findByCriteria(MarkerSynonymModel.class,filters,sort,page).map(r -> converter.convert(r,MarkerSynonymTo.class));
+	public Page<MarkerSynonymTo> findmarkersynonyms(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return markersynonymRepository.findByCriteria(MarkerSynonymModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,MarkerSynonymTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param markerRepository
 	 * @param converter
 	 * @param markersynonymRepository
 	 */
 	@Autowired
 	public MarkerSynonymServiceImpl(MarkerRepository markerRepository, ConversionService converter, MarkerSynonymRepository markersynonymRepository){
-		this.markersynonymRepository =markersynonymRepository; 
+		this.markersynonymRepository =markersynonymRepository;
 		 this.converter = converter;
 		 this.markerRepository = markerRepository;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param markersynonym
 	 */
 	@Override @Transactional(readOnly = false)
 	public MarkerSynonymTo modifymarkersynonym(MarkerSynonymInput markersynonym){
-		MarkerSynonymModel target= markersynonymRepository.findById(markersynonym.getId()).orElseThrow(() -> new RuntimeException("MarkerSynonym not found")); 
-		 MarkerSynonymModel source= converter.convert(markersynonym,MarkerSynonymModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		MarkerSynonymModel target= markersynonymRepository.findById(markersynonym.getId()).orElseThrow(() -> new RuntimeException("MarkerSynonym not found"));
+		 MarkerSynonymModel source= converter.convert(markersynonym,MarkerSynonymModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(markersynonymRepository.save(target), MarkerSynonymTo.class);
 	}
 

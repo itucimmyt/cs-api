@@ -41,47 +41,47 @@ import org.springframework.transaction.annotation.Transactional;
 	private AlertRepository alertRepository;
 
 	/**
-	 * 
+	 *
 	 * @param alertRepository
 	 * @param converter
 	 * @param alertruleRepository
 	 */
 	@Autowired
 	public AlertRuleServiceImpl(AlertRepository alertRepository, ConversionService converter, AlertRuleRepository alertruleRepository){
-		this.alertruleRepository =alertruleRepository; 
+		this.alertruleRepository =alertruleRepository;
 		 this.converter = converter;
 		 this.alertRepository = alertRepository;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param AlertRule
 	 */
 	@Override @Transactional(readOnly = false)
 	public AlertRuleTo createalertrule(AlertRuleInput AlertRule){
-		AlertRuleModel model = converter.convert(AlertRule,AlertRuleModel.class); 
+		AlertRuleModel model = converter.convert(AlertRule,AlertRuleModel.class);
 		 model.setId(0);
-		 AlertModel alertModel = alertRepository.findById(AlertRule.getAlert().getId()).get(); 
-		model.setAlert(alertModel); 
-		 
-		 model= alertruleRepository.save(model); 
-		 return converter.convert(model, AlertRuleTo.class); 
+		 AlertModel alertModel = alertRepository.findById(AlertRule.getAlert().getId()).get();
+		model.setAlert(alertModel);
+
+		 model= alertruleRepository.save(model);
+		 return converter.convert(model, AlertRuleTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param alertruleId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deletealertrule(int alertruleId){
-		AlertRuleModel alertrule = alertruleRepository.findById(alertruleId).orElseThrow(() -> new RuntimeException("AlertRule not found")); 
-		 alertrule.setDeleted(true); 
-		  alertruleRepository.save(alertrule); 
+		AlertRuleModel alertrule = alertruleRepository.findById(alertruleId).orElseThrow(() -> new RuntimeException("AlertRule not found"));
+		 alertrule.setDeleted(true);
+		  alertruleRepository.save(alertrule);
 		 return alertruleId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param alertruleId
 	 */
 	public Optional<AlertTo> findalert(int alertruleId){
@@ -89,36 +89,36 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param alertruleId
 	 */
 	@Override
 	public Optional<AlertRuleTo> findalertrule(int alertruleId){
-		if(alertruleId <1) 
-		 {return Optional.empty();} 
+		if(alertruleId <1)
+		 {return Optional.empty();}
 		 return alertruleRepository.findById(alertruleId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,AlertRuleTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<AlertRuleTo> findalertrules(PageInput page, SortInput sort, List<FilterInput> filters){
-		return alertruleRepository.findByCriteria(AlertRuleModel.class,filters,sort,page).map(r -> converter.convert(r,AlertRuleTo.class));
+	public Page<AlertRuleTo> findalertrules(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return alertruleRepository.findByCriteria(AlertRuleModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,AlertRuleTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param alertrule
 	 */
 	@Override @Transactional(readOnly = false)
 	public AlertRuleTo modifyalertrule(AlertRuleInput alertrule){
-		AlertRuleModel target= alertruleRepository.findById(alertrule.getId()).orElseThrow(() -> new RuntimeException("AlertRule not found")); 
-		 AlertRuleModel source= converter.convert(alertrule,AlertRuleModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		AlertRuleModel target= alertruleRepository.findById(alertrule.getId()).orElseThrow(() -> new RuntimeException("AlertRule not found"));
+		 AlertRuleModel source= converter.convert(alertrule,AlertRuleModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(alertruleRepository.save(target), AlertRuleTo.class);
 	}
 

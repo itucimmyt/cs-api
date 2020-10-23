@@ -44,7 +44,7 @@ import org.ebs.services.to.ServiceProviderTo;
 	public AddressRepository addressRepository;
 
 	/**
-	 * 
+	 *
 	 * @param addressRepository
 	 * @param serviceproviderRepository
 	 * @param converter
@@ -52,39 +52,39 @@ import org.ebs.services.to.ServiceProviderTo;
 	 */
 	@Autowired
 	public CountryServiceImpl(AddressRepository addressRepository, ServiceProviderRepository serviceproviderRepository, ConversionService converter, CountryRepository countryRepository){
-		this.countryRepository =countryRepository; 
+		this.countryRepository =countryRepository;
 		 this.converter = converter;
 		 this.serviceproviderRepository = serviceproviderRepository;
 		 this.addressRepository = addressRepository;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param Country
 	 */
 	@Override @Transactional(readOnly = false)
 	public CountryTo createcountry(CountryInput Country){
-		CountryModel model = converter.convert(Country,CountryModel.class); 
+		CountryModel model = converter.convert(Country,CountryModel.class);
 		 model.setId(0);
-		  
-		 model= countryRepository.save(model); 
-		 return converter.convert(model, CountryTo.class); 
+
+		 model= countryRepository.save(model);
+		 return converter.convert(model, CountryTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param countryId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deletecountry(int countryId){
-		CountryModel country = countryRepository.findById(countryId).orElseThrow(() -> new RuntimeException("Country not found")); 
-		 country.setDeleted(true); 
-		  countryRepository.save(country); 
+		CountryModel country = countryRepository.findById(countryId).orElseThrow(() -> new RuntimeException("Country not found"));
+		 country.setDeleted(true);
+		  countryRepository.save(country);
 		 return countryId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param countryId
 	 */
 	public Set<AddressTo> findaddresss(int countryId){
@@ -92,29 +92,29 @@ import org.ebs.services.to.ServiceProviderTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param countryId
 	 */
 	@Override
 	public Optional<CountryTo> findcountry(int countryId){
-		if(countryId <1) 
-		 {return Optional.empty();} 
+		if(countryId <1)
+		 {return Optional.empty();}
 		 return countryRepository.findById(countryId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,CountryTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<CountryTo> findcountrys(PageInput page, SortInput sort, List<FilterInput> filters){
-		return countryRepository.findByCriteria(CountryModel.class,filters,sort,page).map(r -> converter.convert(r,CountryTo.class));
+	public Page<CountryTo> findcountrys(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return countryRepository.findByCriteria(CountryModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,CountryTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param countryId
 	 */
 	public Set<ServiceProviderTo> findserviceproviders(int countryId){
@@ -122,14 +122,14 @@ import org.ebs.services.to.ServiceProviderTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param country
 	 */
 	@Override @Transactional(readOnly = false)
 	public CountryTo modifycountry(CountryInput country){
-		CountryModel target= countryRepository.findById(country.getId()).orElseThrow(() -> new RuntimeException("Country not found")); 
-		 CountryModel source= converter.convert(country,CountryModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		CountryModel target= countryRepository.findById(country.getId()).orElseThrow(() -> new RuntimeException("Country not found"));
+		 CountryModel source= converter.convert(country,CountryModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(countryRepository.save(target), CountryTo.class);
 	}
 

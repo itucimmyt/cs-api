@@ -27,45 +27,45 @@ import org.ebs.services.to.HtmlTagTo;
 public interface AttributesService {
 
 	/**
-	 * 
+	 *
 	 * @param Attributes
 	 */
 	public AttributesTo createattributes(AttributesInput Attributes);
 
 	/**
-	 * 
+	 *
 	 * @param attributesId
 	 */
 	public int deleteattributes(int attributesId);
 
 	/**
-	 * 
+	 *
 	 * @param attributesId
 	 */
 	public Optional<AttributesTo> findattributes(int attributesId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<AttributesTo> findattributess(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<AttributesTo> findattributess(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param attributesId
 	 */
 	public Optional<EntityReferenceTo> findentityreference(int attributesId);
 
 	/**
-	 * 
+	 *
 	 * @param attributesId
 	 */
 	public Optional<HtmlTagTo> findhtmltag(int attributesId);
 
 	/**
-	 * 
+	 *
 	 * @param attributes
 	 */
 	public AttributesTo modifyattributes(AttributesInput attributes);
