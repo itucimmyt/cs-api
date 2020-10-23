@@ -26,39 +26,39 @@ import org.ebs.services.to.UserTo;
 public interface DelegationService {
 
 	/**
-	 * 
+	 *
 	 * @param Delegation
 	 */
 	public DelegationTo createdelegation(DelegationInput Delegation);
 
 	/**
-	 * 
+	 *
 	 * @param delegationId
 	 */
 	public int deletedelegation(int delegationId);
 
 	/**
-	 * 
+	 *
 	 * @param delegationId
 	 */
 	public Optional<DelegationTo> finddelegation(int delegationId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<DelegationTo> finddelegations(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<DelegationTo> finddelegations(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param delegationId
 	 */
 	public Optional<UserTo> finduser(int delegationId);
 
 	/**
-	 * 
+	 *
 	 * @param delegation
 	 */
 	public DelegationTo modifydelegation(DelegationInput delegation);

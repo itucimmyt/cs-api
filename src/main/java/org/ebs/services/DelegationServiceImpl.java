@@ -41,69 +41,69 @@ import org.springframework.transaction.annotation.Transactional;
 	private UserRepository userRepository;
 
 	/**
-	 * 
+	 *
 	 * @param Delegation
 	 */
 	@Override @Transactional(readOnly = false)
 	public DelegationTo createdelegation(DelegationInput Delegation){
-		DelegationModel model = converter.convert(Delegation,DelegationModel.class); 
+		DelegationModel model = converter.convert(Delegation,DelegationModel.class);
 		 model.setId(0);
-		 UserModel userModel = userRepository.findById(Delegation.getUser().getId()).get(); 
-		model.setUser(userModel); 
-		 
-		 model= delegationRepository.save(model); 
-		 return converter.convert(model, DelegationTo.class); 
+		 UserModel userModel = userRepository.findById(Delegation.getUser().getId()).get();
+		model.setUser(userModel);
+
+		 model= delegationRepository.save(model);
+		 return converter.convert(model, DelegationTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param userRepository
 	 * @param converter
 	 * @param delegationRepository
 	 */
 	@Autowired
 	public DelegationServiceImpl(UserRepository userRepository, ConversionService converter, DelegationRepository delegationRepository){
-		this.delegationRepository =delegationRepository; 
+		this.delegationRepository =delegationRepository;
 		 this.converter = converter;
 		 this.userRepository = userRepository;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param delegationId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deletedelegation(int delegationId){
-		DelegationModel delegation = delegationRepository.findById(delegationId).orElseThrow(() -> new RuntimeException("Delegation not found")); 
-		 delegation.setDeleted(true); 
-		  delegationRepository.save(delegation); 
+		DelegationModel delegation = delegationRepository.findById(delegationId).orElseThrow(() -> new RuntimeException("Delegation not found"));
+		 delegation.setDeleted(true);
+		  delegationRepository.save(delegation);
 		 return delegationId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param delegationId
 	 */
 	@Override
 	public Optional<DelegationTo> finddelegation(int delegationId){
-		if(delegationId <1) 
-		 {return Optional.empty();} 
+		if(delegationId <1)
+		 {return Optional.empty();}
 		 return delegationRepository.findById(delegationId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,DelegationTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<DelegationTo> finddelegations(PageInput page, SortInput sort, List<FilterInput> filters){
-		return delegationRepository.findByCriteria(DelegationModel.class,filters,sort,page).map(r -> converter.convert(r,DelegationTo.class));
+	public Page<DelegationTo> finddelegations(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return delegationRepository.findByCriteria(DelegationModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,DelegationTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param delegationId
 	 */
 	public Optional<UserTo> finduser(int delegationId){
@@ -111,14 +111,14 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param delegation
 	 */
 	@Override @Transactional(readOnly = false)
 	public DelegationTo modifydelegation(DelegationInput delegation){
-		DelegationModel target= delegationRepository.findById(delegation.getId()).orElseThrow(() -> new RuntimeException("Delegation not found")); 
-		 DelegationModel source= converter.convert(delegation,DelegationModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		DelegationModel target= delegationRepository.findById(delegation.getId()).orElseThrow(() -> new RuntimeException("Delegation not found"));
+		 DelegationModel source= converter.convert(delegation,DelegationModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(delegationRepository.save(target), DelegationTo.class);
 	}
 

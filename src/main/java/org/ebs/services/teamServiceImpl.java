@@ -44,32 +44,32 @@ import org.ebs.services.to.PersonTo;
 	public PersonRepository personRepository;
 
 	/**
-	 * 
+	 *
 	 * @param Team
 	 */
 	@Override @Transactional(readOnly = false)
 	public TeamTo createteam(TeamInput Team){
-		TeamModel model = converter.convert(Team,TeamModel.class); 
+		TeamModel model = converter.convert(Team,TeamModel.class);
 		 model.setId(0);
-		  
-		 model= teamRepository.save(model); 
-		 return converter.convert(model, TeamTo.class); 
+
+		 model= teamRepository.save(model);
+		 return converter.convert(model, TeamTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param teamId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteteam(int teamId){
-		TeamModel team = teamRepository.findById(teamId).orElseThrow(() -> new RuntimeException("Team not found")); 
-		 team.setDeleted(true); 
-		  teamRepository.save(team); 
+		TeamModel team = teamRepository.findById(teamId).orElseThrow(() -> new RuntimeException("Team not found"));
+		 team.setDeleted(true);
+		  teamRepository.save(team);
 		 return teamId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param teamId
 	 */
 	public Set<PersonTo> findpersons(int teamId){
@@ -77,7 +77,7 @@ import org.ebs.services.to.PersonTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param teamId
 	 */
 	public Set<ProgramTo> findprograms(int teamId){
@@ -85,41 +85,41 @@ import org.ebs.services.to.PersonTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param teamId
 	 */
 	@Override
 	public Optional<TeamTo> findteam(int teamId){
-		if(teamId <1) 
-		 {return Optional.empty();} 
+		if(teamId <1)
+		 {return Optional.empty();}
 		 return teamRepository.findById(teamId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,TeamTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<TeamTo> findteams(PageInput page, SortInput sort, List<FilterInput> filters){
-		return teamRepository.findByCriteria(TeamModel.class,filters,sort,page).map(r -> converter.convert(r,TeamTo.class));
+	public Page<TeamTo> findteams(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return teamRepository.findByCriteria(TeamModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,TeamTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param team
 	 */
 	@Override @Transactional(readOnly = false)
 	public TeamTo modifyteam(TeamInput team){
-		TeamModel target= teamRepository.findById(team.getId()).orElseThrow(() -> new RuntimeException("Team not found")); 
-		 TeamModel source= converter.convert(team,TeamModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		TeamModel target= teamRepository.findById(team.getId()).orElseThrow(() -> new RuntimeException("Team not found"));
+		 TeamModel source= converter.convert(team,TeamModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(teamRepository.save(target), TeamTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param personRepository
 	 * @param programRepository
 	 * @param converter
@@ -127,7 +127,7 @@ import org.ebs.services.to.PersonTo;
 	 */
 	@Autowired
 	public TeamServiceImpl(PersonRepository personRepository, ProgramRepository programRepository, ConversionService converter, TeamRepository teamRepository){
-		this.teamRepository =teamRepository; 
+		this.teamRepository =teamRepository;
 		 this.converter = converter;
 		 this.programRepository = programRepository;
 		 this.personRepository = personRepository;

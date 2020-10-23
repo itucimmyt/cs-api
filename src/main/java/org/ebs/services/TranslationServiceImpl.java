@@ -45,36 +45,36 @@ import org.springframework.transaction.annotation.Transactional;
 	private HtmlTagRepository htmltagRepository;
 
 	/**
-	 * 
+	 *
 	 * @param Translation
 	 */
 	@Override @Transactional(readOnly = false)
 	public TranslationTo createtranslation(TranslationInput Translation){
-		TranslationModel model = converter.convert(Translation,TranslationModel.class); 
+		TranslationModel model = converter.convert(Translation,TranslationModel.class);
 		 model.setId(0);
-		 LanguageModel languageModel = languageRepository.findById(Translation.getLanguage().getId()).get(); 
-		model.setLanguage(languageModel); 
-		HtmlTagModel htmltagModel = htmltagRepository.findById(Translation.getHtmltag().getId()).get(); 
-		model.setHtmltag(htmltagModel); 
-		 
-		 model= translationRepository.save(model); 
-		 return converter.convert(model, TranslationTo.class); 
+		 LanguageModel languageModel = languageRepository.findById(Translation.getLanguage().getId()).get();
+		model.setLanguage(languageModel);
+		HtmlTagModel htmltagModel = htmltagRepository.findById(Translation.getHtmltag().getId()).get();
+		model.setHtmltag(htmltagModel);
+
+		 model= translationRepository.save(model);
+		 return converter.convert(model, TranslationTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param translationId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deletetranslation(int translationId){
-		TranslationModel translation = translationRepository.findById(translationId).orElseThrow(() -> new RuntimeException("Translation not found")); 
-		 translation.setDeleted(true); 
-		  translationRepository.save(translation); 
+		TranslationModel translation = translationRepository.findById(translationId).orElseThrow(() -> new RuntimeException("Translation not found"));
+		 translation.setDeleted(true);
+		  translationRepository.save(translation);
 		 return translationId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param translationId
 	 */
 	public Optional<HtmlTagTo> findhtmltag(int translationId){
@@ -82,7 +82,7 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param translationId
 	 */
 	public Optional<LanguageTo> findlanguage(int translationId){
@@ -90,41 +90,41 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param translationId
 	 */
 	@Override
 	public Optional<TranslationTo> findtranslation(int translationId){
-		if(translationId <1) 
-		 {return Optional.empty();} 
+		if(translationId <1)
+		 {return Optional.empty();}
 		 return translationRepository.findById(translationId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,TranslationTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<TranslationTo> findtranslations(PageInput page, SortInput sort, List<FilterInput> filters){
-		return translationRepository.findByCriteria(TranslationModel.class,filters,sort,page).map(r -> converter.convert(r,TranslationTo.class));
+	public Page<TranslationTo> findtranslations(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return translationRepository.findByCriteria(TranslationModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,TranslationTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param translation
 	 */
 	@Override @Transactional(readOnly = false)
 	public TranslationTo modifytranslation(TranslationInput translation){
-		TranslationModel target= translationRepository.findById(translation.getId()).orElseThrow(() -> new RuntimeException("Translation not found")); 
-		 TranslationModel source= converter.convert(translation,TranslationModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		TranslationModel target= translationRepository.findById(translation.getId()).orElseThrow(() -> new RuntimeException("Translation not found"));
+		 TranslationModel source= converter.convert(translation,TranslationModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(translationRepository.save(target), TranslationTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param htmltagRepository
 	 * @param languageRepository
 	 * @param converter
@@ -132,7 +132,7 @@ import org.springframework.transaction.annotation.Transactional;
 	 */
 	@Autowired
 	public TranslationServiceImpl(HtmlTagRepository htmltagRepository, LanguageRepository languageRepository, ConversionService converter, TranslationRepository translationRepository){
-		this.translationRepository =translationRepository; 
+		this.translationRepository =translationRepository;
 		 this.converter = converter;
 		 this.languageRepository = languageRepository;
 		 this.htmltagRepository = htmltagRepository;

@@ -28,51 +28,51 @@ import org.ebs.services.to.WorkflowNodeTo;
 public interface WorkflowEventService {
 
 	/**
-	 * 
+	 *
 	 * @param WorkflowEvent
 	 */
 	public WorkflowEventTo createworkflowevent(WorkflowEventInput WorkflowEvent);
 
 	/**
-	 * 
+	 *
 	 * @param workfloweventId
 	 */
 	public int deleteworkflowevent(int workfloweventId);
 
 	/**
-	 * 
+	 *
 	 * @param workfloweventId
 	 */
 	public Optional<WorkflowEventTo> findworkflowevent(int workfloweventId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<WorkflowEventTo> findworkflowevents(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<WorkflowEventTo> findworkflowevents(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param workfloweventId
 	 */
 	public Optional<WorkflowInstanceTo> findworkflowinstance(int workfloweventId);
 
 	/**
-	 * 
+	 *
 	 * @param workfloweventId
 	 */
 	public Optional<WorkflowNodeTo> findworkflownode(int workfloweventId);
 
 	/**
-	 * 
+	 *
 	 * @param workfloweventId
 	 */
 	public Optional<WorkflowStageTo> findworkflowstage(int workfloweventId);
 
 	/**
-	 * 
+	 *
 	 * @param workflowevent
 	 */
 	public WorkflowEventTo modifyworkflowevent(WorkflowEventInput workflowevent);

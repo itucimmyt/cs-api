@@ -61,34 +61,34 @@ import org.ebs.services.to.HtmlTagTo;
 	public WorkflowNodeRepository workflownodeRepository;
 
 	/**
-	 * 
+	 *
 	 * @param workflow
 	 */
 	@Override @Transactional(readOnly = false)
 	public WorkflowTo createworkflow(WorkflowInput workflow){
-		WorkflowModel model = converter.convert(workflow,WorkflowModel.class); 
+		WorkflowModel model = converter.convert(workflow,WorkflowModel.class);
 		model.setId(0);
 
 		initWorkflowModel(workflow, model);
-		
-	 	model= workflowRepository.save(model); 
-		return converter.convert(model, WorkflowTo.class); 
+
+	 	model= workflowRepository.save(model);
+		return converter.convert(model, WorkflowTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteworkflow(int workflowId){
-		WorkflowModel workflow = workflowRepository.findById(workflowId).orElseThrow(() -> new RuntimeException("Workflow not found")); 
-		 workflow.setDeleted(true); 
-		  workflowRepository.save(workflow); 
+		WorkflowModel workflow = workflowRepository.findById(workflowId).orElseThrow(() -> new RuntimeException("Workflow not found"));
+		 workflow.setDeleted(true);
+		  workflowRepository.save(workflow);
 		 return workflowId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowId
 	 */
 	public Optional<EntityReferenceTo> findentityreference(int workflowId){
@@ -96,7 +96,7 @@ import org.ebs.services.to.HtmlTagTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowId
 	 */
 	public Optional<HtmlTagTo> findhtmltag(int workflowId){
@@ -104,7 +104,7 @@ import org.ebs.services.to.HtmlTagTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowId
 	 */
 	public Optional<TenantTo> findtenant(int workflowId){
@@ -112,18 +112,18 @@ import org.ebs.services.to.HtmlTagTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowId
 	 */
 	@Override
 	public Optional<WorkflowTo> findworkflow(int workflowId){
-		if(workflowId <1) 
-		 {return Optional.empty();} 
+		if(workflowId <1)
+		 {return Optional.empty();}
 		 return workflowRepository.findById(workflowId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,WorkflowTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowId
 	 */
 	public Set<WorkflowInstanceTo> findworkflowinstances(int workflowId){
@@ -131,7 +131,7 @@ import org.ebs.services.to.HtmlTagTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowId
 	 */
 	public Optional<WorkflowNodeTo> findworkflownode(int workflowId){
@@ -139,7 +139,7 @@ import org.ebs.services.to.HtmlTagTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowId
 	 */
 	public Set<WorkflowNodeTo> findworkflownodes(int workflowId){
@@ -147,7 +147,7 @@ import org.ebs.services.to.HtmlTagTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowId
 	 */
 	public Set<WorkflowPhaseTo> findworkflowphases(int workflowId){
@@ -155,26 +155,26 @@ import org.ebs.services.to.HtmlTagTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<WorkflowTo> findworkflows(PageInput page, SortInput sort, List<FilterInput> filters){
-		return workflowRepository.findByCriteria(WorkflowModel.class,filters,sort,page).map(r -> converter.convert(r,WorkflowTo.class));
+	public Page<WorkflowTo> findworkflows(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return workflowRepository.findByCriteria(WorkflowModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,WorkflowTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflow
 	 */
 	@Override @Transactional(readOnly = false)
 	public WorkflowTo modifyworkflow(WorkflowInput workflow){
-		WorkflowModel target= workflowRepository.findById(workflow.getId()).orElseThrow(() -> new RuntimeException("Workflow not found")); 
-		 WorkflowModel source= converter.convert(workflow,WorkflowModel.class); 
+		WorkflowModel target= workflowRepository.findById(workflow.getId()).orElseThrow(() -> new RuntimeException("Workflow not found"));
+		 WorkflowModel source= converter.convert(workflow,WorkflowModel.class);
 		 initWorkflowModel(workflow, source);
-		 Utils.copyNotNulls(source,target); 
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(workflowRepository.save(target), WorkflowTo.class);
 	}
 
@@ -208,7 +208,7 @@ import org.ebs.services.to.HtmlTagTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeRepository
 	 * @param workflowRepository
 	 * @param converter
@@ -220,7 +220,7 @@ import org.ebs.services.to.HtmlTagTo;
 	 */
 	@Autowired
 	public WorkflowServiceImpl(WorkflowNodeRepository workflownodeRepository, WorkflowRepository workflowRepository, ConversionService converter, WorkflowPhaseRepository workflowphaseRepository, EntityReferenceRepository entityreferenceRepository, TenantRepository tenantRepository, HtmlTagRepository htmltagRepository, WorkflowInstanceRepository workflowinstanceRepository){
-		this.workflowRepository =workflowRepository; 
+		this.workflowRepository =workflowRepository;
 		 this.converter = converter;
 		 this.workflowphaseRepository = workflowphaseRepository;
 		 this.entityreferenceRepository = entityreferenceRepository;

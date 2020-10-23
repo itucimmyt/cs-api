@@ -45,34 +45,34 @@ import org.ebs.services.to.CustomerTo;
 	private CustomerRepository customerRepository;
 
 	/**
-	 * 
+	 *
 	 * @param Organization
 	 */
 	@Override @Transactional(readOnly = false)
 	public OrganizationTo createorganization(OrganizationInput Organization){
-		OrganizationModel model = converter.convert(Organization,OrganizationModel.class); 
+		OrganizationModel model = converter.convert(Organization,OrganizationModel.class);
 		 model.setId(0);
-		 CustomerModel customerModel = customerRepository.findById(Organization.getCustomer().getId()).get(); 
-		model.setCustomer(customerModel); 
-		 
-		 model= organizationRepository.save(model); 
-		 return converter.convert(model, OrganizationTo.class); 
+		 CustomerModel customerModel = customerRepository.findById(Organization.getCustomer().getId()).get();
+		model.setCustomer(customerModel);
+
+		 model= organizationRepository.save(model);
+		 return converter.convert(model, OrganizationTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param organizationId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteorganization(int organizationId){
-		OrganizationModel organization = organizationRepository.findById(organizationId).orElseThrow(() -> new RuntimeException("Organization not found")); 
-		 organization.setDeleted(true); 
-		  organizationRepository.save(organization); 
+		OrganizationModel organization = organizationRepository.findById(organizationId).orElseThrow(() -> new RuntimeException("Organization not found"));
+		 organization.setDeleted(true);
+		  organizationRepository.save(organization);
 		 return organizationId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param organizationId
 	 */
 	public Optional<CustomerTo> findcustomer(int organizationId){
@@ -80,7 +80,7 @@ import org.ebs.services.to.CustomerTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param organizationId
 	 */
 	public Set<CustomerTo> findcustomers(int organizationId){
@@ -88,29 +88,29 @@ import org.ebs.services.to.CustomerTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param organizationId
 	 */
 	@Override
 	public Optional<OrganizationTo> findorganization(int organizationId){
-		if(organizationId <1) 
-		 {return Optional.empty();} 
+		if(organizationId <1)
+		 {return Optional.empty();}
 		 return organizationRepository.findById(organizationId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,OrganizationTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<OrganizationTo> findorganizations(PageInput page, SortInput sort, List<FilterInput> filters){
-		return organizationRepository.findByCriteria(OrganizationModel.class,filters,sort,page).map(r -> converter.convert(r,OrganizationTo.class));
+	public Page<OrganizationTo> findorganizations(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return organizationRepository.findByCriteria(OrganizationModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,OrganizationTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param organizationId
 	 */
 	public Set<TenantTo> findtenants(int organizationId){
@@ -118,19 +118,19 @@ import org.ebs.services.to.CustomerTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param organization
 	 */
 	@Override @Transactional(readOnly = false)
 	public OrganizationTo modifyorganization(OrganizationInput organization){
-		OrganizationModel target= organizationRepository.findById(organization.getId()).orElseThrow(() -> new RuntimeException("Organization not found")); 
-		 OrganizationModel source= converter.convert(organization,OrganizationModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		OrganizationModel target= organizationRepository.findById(organization.getId()).orElseThrow(() -> new RuntimeException("Organization not found"));
+		 OrganizationModel source= converter.convert(organization,OrganizationModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(organizationRepository.save(target), OrganizationTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param customerRepository
 	 * @param tenantRepository
 	 * @param converter
@@ -138,7 +138,7 @@ import org.ebs.services.to.CustomerTo;
 	 */
 	@Autowired
 	public OrganizationServiceImpl(CustomerRepository customerRepository, TenantRepository tenantRepository, ConversionService converter, OrganizationRepository organizationRepository){
-		this.organizationRepository =organizationRepository; 
+		this.organizationRepository =organizationRepository;
 		 this.converter = converter;
 		 this.tenantRepository = tenantRepository;
 		 this.customerRepository = customerRepository;

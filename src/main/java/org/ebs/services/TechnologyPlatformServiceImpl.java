@@ -44,32 +44,32 @@ import org.ebs.services.to.VendorTo;
 	public VendorRepository vendorRepository;
 
 	/**
-	 * 
+	 *
 	 * @param TechnologyPlatform
 	 */
 	@Override @Transactional(readOnly = false)
 	public TechnologyPlatformTo createtechnologyplatform(TechnologyPlatformInput TechnologyPlatform){
-		TechnologyPlatformModel model = converter.convert(TechnologyPlatform,TechnologyPlatformModel.class); 
+		TechnologyPlatformModel model = converter.convert(TechnologyPlatform,TechnologyPlatformModel.class);
 		 model.setId(0);
-		  
-		 model= technologyplatformRepository.save(model); 
-		 return converter.convert(model, TechnologyPlatformTo.class); 
+
+		 model= technologyplatformRepository.save(model);
+		 return converter.convert(model, TechnologyPlatformTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param technologyplatformId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deletetechnologyplatform(int technologyplatformId){
-		TechnologyPlatformModel technologyplatform = technologyplatformRepository.findById(technologyplatformId).orElseThrow(() -> new RuntimeException("TechnologyPlatform not found")); 
-		 technologyplatform.setDeleted(true); 
-		  technologyplatformRepository.save(technologyplatform); 
+		TechnologyPlatformModel technologyplatform = technologyplatformRepository.findById(technologyplatformId).orElseThrow(() -> new RuntimeException("TechnologyPlatform not found"));
+		 technologyplatform.setDeleted(true);
+		  technologyplatformRepository.save(technologyplatform);
 		 return technologyplatformId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param technologyplatformId
 	 */
 	public Set<AssayclassTo> findassayclasss(int technologyplatformId){
@@ -77,29 +77,29 @@ import org.ebs.services.to.VendorTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param technologyplatformId
 	 */
 	@Override
 	public Optional<TechnologyPlatformTo> findtechnologyplatform(int technologyplatformId){
-		if(technologyplatformId <1) 
-		 {return Optional.empty();} 
+		if(technologyplatformId <1)
+		 {return Optional.empty();}
 		 return technologyplatformRepository.findById(technologyplatformId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,TechnologyPlatformTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<TechnologyPlatformTo> findtechnologyplatforms(PageInput page, SortInput sort, List<FilterInput> filters){
-		return technologyplatformRepository.findByCriteria(TechnologyPlatformModel.class,filters,sort,page).map(r -> converter.convert(r,TechnologyPlatformTo.class));
+	public Page<TechnologyPlatformTo> findtechnologyplatforms(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return technologyplatformRepository.findByCriteria(TechnologyPlatformModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,TechnologyPlatformTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param technologyplatformId
 	 */
 	public Set<VendorTo> findvendors(int technologyplatformId){
@@ -107,19 +107,19 @@ import org.ebs.services.to.VendorTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param technologyplatform
 	 */
 	@Override @Transactional(readOnly = false)
 	public TechnologyPlatformTo modifytechnologyplatform(TechnologyPlatformInput technologyplatform){
-		TechnologyPlatformModel target= technologyplatformRepository.findById(technologyplatform.getId()).orElseThrow(() -> new RuntimeException("TechnologyPlatform not found")); 
-		 TechnologyPlatformModel source= converter.convert(technologyplatform,TechnologyPlatformModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		TechnologyPlatformModel target= technologyplatformRepository.findById(technologyplatform.getId()).orElseThrow(() -> new RuntimeException("TechnologyPlatform not found"));
+		 TechnologyPlatformModel source= converter.convert(technologyplatform,TechnologyPlatformModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(technologyplatformRepository.save(target), TechnologyPlatformTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param vendorRepository
 	 * @param assayclassRepository
 	 * @param converter
@@ -127,7 +127,7 @@ import org.ebs.services.to.VendorTo;
 	 */
 	@Autowired
 	public TechnologyPlatformServiceImpl(VendorRepository vendorRepository, AssayclassRepository assayclassRepository, ConversionService converter, TechnologyPlatformRepository technologyplatformRepository){
-		this.technologyplatformRepository =technologyplatformRepository; 
+		this.technologyplatformRepository =technologyplatformRepository;
 		 this.converter = converter;
 		 this.assayclassRepository = assayclassRepository;
 		 this.vendorRepository = vendorRepository;

@@ -54,17 +54,17 @@ import org.ebs.services.to.HtmlTagTo;
 	private final WorkflowStageRepository workflowstageRepository;
 
 	/**
-	 * 
+	 *
 	 * @param workflowPhase
 	 */
 	@Override @Transactional(readOnly = false)
 	public WorkflowPhaseTo createworkflowphase(WorkflowPhaseInput workflowPhase){
-		WorkflowPhaseModel model = converter.convert(workflowPhase,WorkflowPhaseModel.class); 
+		WorkflowPhaseModel model = converter.convert(workflowPhase,WorkflowPhaseModel.class);
 		model.setId(0);
 		initWorkflowPhaseModel(workflowPhase, model);
-				 
-		model= workflowphaseRepository.save(model); 
-		return converter.convert(model, WorkflowPhaseTo.class); 
+
+		model= workflowphaseRepository.save(model);
+		return converter.convert(model, WorkflowPhaseTo.class);
 	}
 
 	void initWorkflowPhaseModel(WorkflowPhaseInput input, WorkflowPhaseModel model) {
@@ -75,28 +75,28 @@ import org.ebs.services.to.HtmlTagTo;
 				.orElseThrow(() -> new RuntimeException("workflow does not exist")))
 			.orElse(null);
 		model.setWorkflow(workflowModel);
-		
+
 		HtmlTagModel htmltagModel = optInput.map(i -> i.getHtmltag())
 			.map(w -> htmltagRepository.findById(w.getId())
 				.orElseThrow(() -> new RuntimeException("htmltag does not exist")))
 			.orElse(null);
-		model.setHtmltag(htmltagModel); 
+		model.setHtmltag(htmltagModel);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowphaseId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteworkflowphase(int workflowphaseId){
-		WorkflowPhaseModel workflowphase = workflowphaseRepository.findById(workflowphaseId).orElseThrow(() -> new RuntimeException("WorkflowPhase not found")); 
-		 workflowphase.setDeleted(true); 
-		  workflowphaseRepository.save(workflowphase); 
+		WorkflowPhaseModel workflowphase = workflowphaseRepository.findById(workflowphaseId).orElseThrow(() -> new RuntimeException("WorkflowPhase not found"));
+		 workflowphase.setDeleted(true);
+		  workflowphaseRepository.save(workflowphase);
 		 return workflowphaseId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowphaseId
 	 */
 	public Optional<HtmlTagTo> findhtmltag(int workflowphaseId){
@@ -104,7 +104,7 @@ import org.ebs.services.to.HtmlTagTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowphaseId
 	 */
 	public Optional<WorkflowTo> findworkflow(int workflowphaseId){
@@ -112,29 +112,29 @@ import org.ebs.services.to.HtmlTagTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowphaseId
 	 */
 	@Override
 	public Optional<WorkflowPhaseTo> findworkflowphase(int workflowphaseId){
-		if(workflowphaseId <1) 
-		 {return Optional.empty();} 
+		if(workflowphaseId <1)
+		 {return Optional.empty();}
 		 return workflowphaseRepository.findById(workflowphaseId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,WorkflowPhaseTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<WorkflowPhaseTo> findworkflowphases(PageInput page, SortInput sort, List<FilterInput> filters){
-		return workflowphaseRepository.findByCriteria(WorkflowPhaseModel.class,filters,sort,page).map(r -> converter.convert(r,WorkflowPhaseTo.class));
+	public Page<WorkflowPhaseTo> findworkflowphases(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return workflowphaseRepository.findByCriteria(WorkflowPhaseModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,WorkflowPhaseTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowphaseId
 	 */
 	public Set<WorkflowStageTo> findworkflowstages(int workflowphaseId){
@@ -142,15 +142,15 @@ import org.ebs.services.to.HtmlTagTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowphase
 	 */
 	@Override @Transactional(readOnly = false)
 	public WorkflowPhaseTo modifyworkflowphase(WorkflowPhaseInput workflowphase){
-		WorkflowPhaseModel target= workflowphaseRepository.findById(workflowphase.getId()).orElseThrow(() -> new RuntimeException("WorkflowPhase not found")); 
-		 WorkflowPhaseModel source= converter.convert(workflowphase,WorkflowPhaseModel.class); 
+		WorkflowPhaseModel target= workflowphaseRepository.findById(workflowphase.getId()).orElseThrow(() -> new RuntimeException("WorkflowPhase not found"));
+		 WorkflowPhaseModel source= converter.convert(workflowphase,WorkflowPhaseModel.class);
 		 initWorkflowPhaseModel(workflowphase, source);
-		 Utils.copyNotNulls(source,target); 
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(workflowphaseRepository.save(target), WorkflowPhaseTo.class);
 	}
 }

@@ -27,45 +27,45 @@ import org.ebs.services.to.HtmlTagTo;
 public interface TranslationService {
 
 	/**
-	 * 
+	 *
 	 * @param Translation
 	 */
 	public TranslationTo createtranslation(TranslationInput Translation);
 
 	/**
-	 * 
+	 *
 	 * @param translationId
 	 */
 	public int deletetranslation(int translationId);
 
 	/**
-	 * 
+	 *
 	 * @param translationId
 	 */
 	public Optional<HtmlTagTo> findhtmltag(int translationId);
 
 	/**
-	 * 
+	 *
 	 * @param translationId
 	 */
 	public Optional<LanguageTo> findlanguage(int translationId);
 
 	/**
-	 * 
+	 *
 	 * @param translationId
 	 */
 	public Optional<TranslationTo> findtranslation(int translationId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<TranslationTo> findtranslations(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<TranslationTo> findtranslations(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param translation
 	 */
 	public TranslationTo modifytranslation(TranslationInput translation);

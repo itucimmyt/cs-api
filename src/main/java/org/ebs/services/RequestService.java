@@ -30,52 +30,52 @@ import org.springframework.data.domain.Page;
 public interface RequestService {
 
 	/**
-	 * 
+	 *
 	 * @param Request
 	 */
 	public RequestTo createrequest(RequestInput Request);
 
 	/**
-	 * 
+	 *
 	 * @param requestId
 	 */
 	public int deleterequest(int requestId);
 
 	/**
-	 * 
+	 *
 	 * @param requestId
 	 */
 	public Optional<PersonTo> findperson(int requestId);
 
- 
+
 	/**
-	 * 
+	 *
 	 * @param requestId
 	 */
 	public Optional<RequestTo> findrequest(int requestId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<RequestTo> findrequests(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<RequestTo> findrequests(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param requestId
 	 */
 	public Set<WorkflowCFValueTo> findworkflowcfvalues(int requestId);
 
 	/**
-	 * 
+	 *
 	 * @param requestId
 	 */
 	public Optional<WorkflowInstanceTo> findworkflowinstance(int requestId);
 
 	/**
-	 * 
+	 *
 	 * @param request
 	 */
 	public RequestTo modifyrequest(RequestInput request);

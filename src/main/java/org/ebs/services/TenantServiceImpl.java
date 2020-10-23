@@ -71,38 +71,38 @@ import org.ebs.services.to.EmailTemplateTo;
 	public PersonRepository personRepository;
 
 	/**
-	 * 
+	 *
 	 * @param Tenant
 	 */
 	@Override @Transactional(readOnly = false)
 	public TenantTo createtenant(TenantInput Tenant){
-		TenantModel model = converter.convert(Tenant,TenantModel.class); 
+		TenantModel model = converter.convert(Tenant,TenantModel.class);
 		 model.setId(0);
-		 OrganizationModel organizationModel = organizationRepository.findById(Tenant.getOrganization().getId()).get(); 
-		model.setOrganization(organizationModel); 
-		AuthenticationTypeModel authenticationtypeModel = authenticationtypeRepository.findById(Tenant.getAuthenticationtype().getId()).get(); 
-		model.setAuthenticationtype(authenticationtypeModel); 
-		CustomerModel customerModel = customerRepository.findById(Tenant.getCustomer().getId()).get(); 
-		model.setCustomer(customerModel); 
-		 
-		 model= tenantRepository.save(model); 
-		 return converter.convert(model, TenantTo.class); 
+		 OrganizationModel organizationModel = organizationRepository.findById(Tenant.getOrganization().getId()).get();
+		model.setOrganization(organizationModel);
+		AuthenticationTypeModel authenticationtypeModel = authenticationtypeRepository.findById(Tenant.getAuthenticationtype().getId()).get();
+		model.setAuthenticationtype(authenticationtypeModel);
+		CustomerModel customerModel = customerRepository.findById(Tenant.getCustomer().getId()).get();
+		model.setCustomer(customerModel);
+
+		 model= tenantRepository.save(model);
+		 return converter.convert(model, TenantTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param tenantId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deletetenant(int tenantId){
-		TenantModel tenant = tenantRepository.findById(tenantId).orElseThrow(() -> new RuntimeException("Tenant not found")); 
-		 tenant.setDeleted(true); 
-		  tenantRepository.save(tenant); 
+		TenantModel tenant = tenantRepository.findById(tenantId).orElseThrow(() -> new RuntimeException("Tenant not found"));
+		 tenant.setDeleted(true);
+		  tenantRepository.save(tenant);
 		 return tenantId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param tenantId
 	 */
 	public Optional<AuthenticationTypeTo> findauthenticationtype(int tenantId){
@@ -110,7 +110,7 @@ import org.ebs.services.to.EmailTemplateTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param tenantId
 	 */
 	public Optional<CustomerTo> findcustomer(int tenantId){
@@ -118,7 +118,7 @@ import org.ebs.services.to.EmailTemplateTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param tenantId
 	 */
 	public Set<EmailTemplateTo> findemailtemplates(int tenantId){
@@ -126,7 +126,7 @@ import org.ebs.services.to.EmailTemplateTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param tenantId
 	 */
 	public Set<InstanceTo> findinstances(int tenantId){
@@ -134,7 +134,7 @@ import org.ebs.services.to.EmailTemplateTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param tenantId
 	 */
 	public Set<NumberSequenceRuleTo> findnumbersequencerules(int tenantId){
@@ -142,7 +142,7 @@ import org.ebs.services.to.EmailTemplateTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param tenantId
 	 */
 	public Optional<OrganizationTo> findorganization(int tenantId){
@@ -150,7 +150,7 @@ import org.ebs.services.to.EmailTemplateTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param tenantId
 	 */
 	public Set<PersonTo> findpersons(int tenantId){
@@ -158,7 +158,7 @@ import org.ebs.services.to.EmailTemplateTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param tenantId
 	 */
 	public Set<ProgramTo> findprograms(int tenantId){
@@ -166,29 +166,29 @@ import org.ebs.services.to.EmailTemplateTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param tenantId
 	 */
 	@Override
 	public Optional<TenantTo> findtenant(int tenantId){
-		if(tenantId <1) 
-		 {return Optional.empty();} 
+		if(tenantId <1)
+		 {return Optional.empty();}
 		 return tenantRepository.findById(tenantId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,TenantTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<TenantTo> findtenants(PageInput page, SortInput sort, List<FilterInput> filters){
-		return tenantRepository.findByCriteria(TenantModel.class,filters,sort,page).map(r -> converter.convert(r,TenantTo.class));
+	public Page<TenantTo> findtenants(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return tenantRepository.findByCriteria(TenantModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,TenantTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param tenantId
 	 */
 	public Set<UserTo> findusers(int tenantId){
@@ -196,7 +196,7 @@ import org.ebs.services.to.EmailTemplateTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param tenantId
 	 */
 	public Set<WorkflowTo> findworkflows(int tenantId){
@@ -204,19 +204,19 @@ import org.ebs.services.to.EmailTemplateTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param tenant
 	 */
 	@Override @Transactional(readOnly = false)
 	public TenantTo modifytenant(TenantInput tenant){
-		TenantModel target= tenantRepository.findById(tenant.getId()).orElseThrow(() -> new RuntimeException("Tenant not found")); 
-		 TenantModel source= converter.convert(tenant,TenantModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		TenantModel target= tenantRepository.findById(tenant.getId()).orElseThrow(() -> new RuntimeException("Tenant not found"));
+		 TenantModel source= converter.convert(tenant,TenantModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(tenantRepository.save(target), TenantTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param personRepository
 	 * @param tenantRepository
 	 * @param converter
@@ -232,7 +232,7 @@ import org.ebs.services.to.EmailTemplateTo;
 	 */
 	@Autowired
 	public TenantServiceImpl(PersonRepository personRepository, TenantRepository tenantRepository, ConversionService converter, EmailTemplateRepository emailtemplateRepository, ProgramRepository programRepository, UserRepository userRepository, InstanceRepository instanceRepository, WorkflowRepository workflowRepository, OrganizationRepository organizationRepository, AuthenticationTypeRepository authenticationtypeRepository, NumberSequenceRuleRepository numbersequenceruleRepository, CustomerRepository customerRepository){
-		this.tenantRepository =tenantRepository; 
+		this.tenantRepository =tenantRepository;
 		 this.converter = converter;
 		 this.emailtemplateRepository = emailtemplateRepository;
 		 this.programRepository = programRepository;

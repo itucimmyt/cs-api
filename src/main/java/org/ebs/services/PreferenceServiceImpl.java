@@ -49,38 +49,38 @@ import org.springframework.transaction.annotation.Transactional;
 	private StyleThemeRepository stylethemeRepository;
 
 	/**
-	 * 
+	 *
 	 * @param Preference
 	 */
 	@Override @Transactional(readOnly = false)
 	public PreferenceTo createpreference(PreferenceInput Preference){
-		PreferenceModel model = converter.convert(Preference,PreferenceModel.class); 
+		PreferenceModel model = converter.convert(Preference,PreferenceModel.class);
 		 model.setId(0);
-		 UserModel userModel = userRepository.findById(Preference.getUser().getId()).get(); 
-		model.setUser(userModel); 
-		AlertModel alertModel = alertRepository.findById(Preference.getAlert().getId()).get(); 
-		model.setAlert(alertModel); 
-		StyleThemeModel stylethemeModel = stylethemeRepository.findById(Preference.getStyletheme().getId()).get(); 
-		model.setStyletheme(stylethemeModel); 
-		 
-		 model= preferenceRepository.save(model); 
-		 return converter.convert(model, PreferenceTo.class); 
+		 UserModel userModel = userRepository.findById(Preference.getUser().getId()).get();
+		model.setUser(userModel);
+		AlertModel alertModel = alertRepository.findById(Preference.getAlert().getId()).get();
+		model.setAlert(alertModel);
+		StyleThemeModel stylethemeModel = stylethemeRepository.findById(Preference.getStyletheme().getId()).get();
+		model.setStyletheme(stylethemeModel);
+
+		 model= preferenceRepository.save(model);
+		 return converter.convert(model, PreferenceTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param preferenceId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deletepreference(int preferenceId){
-		PreferenceModel preference = preferenceRepository.findById(preferenceId).orElseThrow(() -> new RuntimeException("Preference not found")); 
-		 preference.setDeleted(true); 
-		  preferenceRepository.save(preference); 
+		PreferenceModel preference = preferenceRepository.findById(preferenceId).orElseThrow(() -> new RuntimeException("Preference not found"));
+		 preference.setDeleted(true);
+		  preferenceRepository.save(preference);
 		 return preferenceId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param preferenceId
 	 */
 	public Optional<AlertTo> findalert(int preferenceId){
@@ -88,29 +88,29 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param preferenceId
 	 */
 	@Override
 	public Optional<PreferenceTo> findpreference(int preferenceId){
-		if(preferenceId <1) 
-		 {return Optional.empty();} 
+		if(preferenceId <1)
+		 {return Optional.empty();}
 		 return preferenceRepository.findById(preferenceId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,PreferenceTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<PreferenceTo> findpreferences(PageInput page, SortInput sort, List<FilterInput> filters){
-		return preferenceRepository.findByCriteria(PreferenceModel.class,filters,sort,page).map(r -> converter.convert(r,PreferenceTo.class));
+	public Page<PreferenceTo> findpreferences(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return preferenceRepository.findByCriteria(PreferenceModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,PreferenceTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param preferenceId
 	 */
 	public Optional<StyleThemeTo> findstyletheme(int preferenceId){
@@ -118,7 +118,7 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param preferenceId
 	 */
 	public Optional<UserTo> finduser(int preferenceId){
@@ -126,19 +126,19 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param preference
 	 */
 	@Override @Transactional(readOnly = false)
 	public PreferenceTo modifypreference(PreferenceInput preference){
-		PreferenceModel target= preferenceRepository.findById(preference.getId()).orElseThrow(() -> new RuntimeException("Preference not found")); 
-		 PreferenceModel source= converter.convert(preference,PreferenceModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		PreferenceModel target= preferenceRepository.findById(preference.getId()).orElseThrow(() -> new RuntimeException("Preference not found"));
+		 PreferenceModel source= converter.convert(preference,PreferenceModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(preferenceRepository.save(target), PreferenceTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param stylethemeRepository
 	 * @param alertRepository
 	 * @param userRepository
@@ -147,7 +147,7 @@ import org.springframework.transaction.annotation.Transactional;
 	 */
 	@Autowired
 	public PreferenceServiceImpl(StyleThemeRepository stylethemeRepository, AlertRepository alertRepository, UserRepository userRepository, ConversionService converter, PreferenceRepository preferenceRepository){
-		this.preferenceRepository =preferenceRepository; 
+		this.preferenceRepository =preferenceRepository;
 		 this.converter = converter;
 		 this.userRepository = userRepository;
 		 this.alertRepository = alertRepository;

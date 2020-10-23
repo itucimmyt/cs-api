@@ -71,16 +71,16 @@ import org.springframework.transaction.annotation.Transactional;
 	public WorkflowNodeCFRepository workflownodecfRepository;
 
 	/**
-	 * 
+	 *
 	 * @param workflowNode
 	 */
 	@Override @Transactional(readOnly = false)
 	public WorkflowNodeTo createworkflownode(WorkflowNodeInput workflowNode){
-		WorkflowNodeModel model = converter.convert(workflowNode,WorkflowNodeModel.class); 
+		WorkflowNodeModel model = converter.convert(workflowNode,WorkflowNodeModel.class);
 		 model.setId(0);
 		 initWorkflowNodeModel(workflowNode, model);
-		 model = workflownodeRepository.save(model); 
-		 return converter.convert(model, WorkflowNodeTo.class); 
+		 model = workflownodeRepository.save(model);
+		 return converter.convert(model, WorkflowNodeTo.class);
 	}
 
 	void initWorkflowNodeModel(WorkflowNodeInput workflowNode, WorkflowNodeModel model) {
@@ -91,15 +91,15 @@ import org.springframework.transaction.annotation.Transactional;
 			.map(w -> workflowRepository.findById(w.getId())
 				.orElseThrow(() -> new RuntimeException("workflow does not exist")))
 			.orElse(null);
-		model.setWorkflow(workflowModel); 
+		model.setWorkflow(workflowModel);
 
 		EntityReferenceModel entityreferenceModel = optWFN
 			.map(wfn -> wfn.getEntityreference())
 			.map(er -> entityreferenceRepository.findById(er.getId())
 				.orElseThrow(() -> new RuntimeException("entityreference does not exist")))
 			.orElse(null);
-		model.setEntityreference(entityreferenceModel); 
-		
+		model.setEntityreference(entityreferenceModel);
+
 		HtmlTagModel htmltagModel = optWFN
 			.map(wfn -> wfn.getHtmltag())
 			.map(ht -> htmltagRepository.findById(ht.getId())
@@ -124,19 +124,19 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteworkflownode(int workflownodeId){
-		WorkflowNodeModel workflownode = workflownodeRepository.findById(workflownodeId).orElseThrow(() -> new RuntimeException("WorkflowNode not found")); 
-		 workflownode.setDeleted(true); 
-		  workflownodeRepository.save(workflownode); 
+		WorkflowNodeModel workflownode = workflownodeRepository.findById(workflownodeId).orElseThrow(() -> new RuntimeException("WorkflowNode not found"));
+		 workflownode.setDeleted(true);
+		  workflownodeRepository.save(workflownode);
 		 return workflownodeId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeId
 	 */
 	public Set<ActionTo> findactions(int workflownodeId){
@@ -144,7 +144,7 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeId
 	 */
 	public Optional<EntityReferenceTo> findentityreference(int workflownodeId){
@@ -152,7 +152,7 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeId
 	 */
 	public Optional<HtmlTagTo> findhtmltag(int workflownodeId){
@@ -160,7 +160,7 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeId
 	 */
 	public Optional<ModuleTo> findmodule(int workflownodeId){
@@ -168,7 +168,7 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeId
 	 */
 	public Optional<ProcessTo> findprocess(int workflownodeId){
@@ -176,7 +176,7 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeId
 	 */
 	public Optional<WorkflowTo> findworkflow(int workflownodeId){
@@ -184,7 +184,7 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeId
 	 */
 	public Set<WorkflowEventTo> findworkflowevents(int workflownodeId){
@@ -192,18 +192,18 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeId
 	 */
 	@Override
 	public Optional<WorkflowNodeTo> findworkflownode(int workflownodeId){
-		if(workflownodeId <1) 
-		 {return Optional.empty();} 
+		if(workflownodeId <1)
+		 {return Optional.empty();}
 		 return workflownodeRepository.findById(workflownodeId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,WorkflowNodeTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeId
 	 */
 	public Set<WorkflowNodeCFTo> findworkflownodecfs(int workflownodeId){
@@ -211,18 +211,18 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<WorkflowNodeTo> findworkflownodes(PageInput page, SortInput sort, List<FilterInput> filters){
-		return workflownodeRepository.findByCriteria(WorkflowNodeModel.class,filters,sort,page).map(r -> converter.convert(r,WorkflowNodeTo.class));
+	public Page<WorkflowNodeTo> findworkflownodes(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return workflownodeRepository.findByCriteria(WorkflowNodeModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,WorkflowNodeTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeId
 	 */
 	public Set<WorkflowTo> findworkflows(int workflownodeId){
@@ -230,7 +230,7 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeId
 	 */
 	public Set<WorkflowStageTo> findworkflowstages(int workflownodeId){
@@ -238,21 +238,21 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownode
 	 */
 	@Override @Transactional(readOnly = false)
 	public WorkflowNodeTo modifyworkflownode(WorkflowNodeInput workflownode){
-		WorkflowNodeModel target= workflownodeRepository.findById(workflownode.getId()).orElseThrow(() -> new RuntimeException("WorkflowNode not found")); 
+		WorkflowNodeModel target= workflownodeRepository.findById(workflownode.getId()).orElseThrow(() -> new RuntimeException("WorkflowNode not found"));
 		WorkflowNodeModel source= converter.convert(workflownode,WorkflowNodeModel.class);
-		
+
 		initWorkflowNodeModel(workflownode, source);
-		Utils.copyNotNulls(source,target); 
+		Utils.copyNotNulls(source,target);
 		return converter.convert(workflownodeRepository.save(target), WorkflowNodeTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeRepository
 	 * @param workfloweventRepository
 	 * @param converter
@@ -267,7 +267,7 @@ import org.springframework.transaction.annotation.Transactional;
 	 */
 	@Autowired
 	public WorkflowNodeServiceImpl(WorkflowNodeRepository workflownodeRepository, WorkflowEventRepository workfloweventRepository, ConversionService converter, WorkflowStageRepository workflowstageRepository, WorkflowRepository workflowRepository, EntityReferenceRepository entityreferenceRepository, HtmlTagRepository htmltagRepository, ProcessRepository processRepository, ModuleRepository moduleRepository, WorkflowNodeCFRepository workflownodecfRepository, ActionRepository actionRepository){
-		this.workflownodeRepository =workflownodeRepository; 
+		this.workflownodeRepository =workflownodeRepository;
 		 this.converter = converter;
 		 this.workflowstageRepository = workflowstageRepository;
 		 this.workflowRepository = workflowRepository;

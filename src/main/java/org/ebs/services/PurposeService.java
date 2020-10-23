@@ -29,46 +29,46 @@ import org.springframework.data.domain.Page;
 public interface PurposeService {
 
 	/**
-	 * 
+	 *
 	 * @param Purpose
 	 */
 	public PurposeTo createpurpose(PurposeInput Purpose);
 
 	/**
-	 * 
+	 *
 	 * @param purposeId
 	 */
 	public int deletepurpose(int purposeId);
 
 	/**
-	 * 
+	 *
 	 * @param purposeId
 	 */
 	public Optional<PurposeTo> findpurpose(int purposeId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<PurposeTo> findpurposes(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<PurposeTo> findpurposes(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
-	 
+
 	/**
-	 * 
+	 *
 	 * @param purposeId
 	 */
 	public Set<ServiceTo> findservices(int purposeId);
 
 	/**
-	 * 
+	 *
 	 * @param purposeId
 	 */
 	public Optional<ServiceTypeTo> findservicetype(int purposeId);
 
 	/**
-	 * 
+	 *
 	 * @param purpose
 	 */
 	public PurposeTo modifypurpose(PurposeInput purpose);

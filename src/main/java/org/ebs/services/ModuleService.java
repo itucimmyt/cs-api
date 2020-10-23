@@ -31,57 +31,57 @@ import org.springframework.data.domain.Page;
 public interface ModuleService {
 
 	/**
-	 * 
+	 *
 	 * @param Module
 	 */
 	public ModuleTo createmodule(ModuleInput Module);
 
 	/**
-	 * 
+	 *
 	 * @param moduleId
 	 */
 	public int deletemodule(int moduleId);
 
 	/**
-	 * 
+	 *
 	 * @param moduleId
 	 */
 	public Set<ActionTo> findactions(int moduleId);
 
 	/**
-	 * 
+	 *
 	 * @param moduleId
 	 */
 	public Optional<ComponentTo> findcomponent(int moduleId);
 
 	/**
-	 * 
+	 *
 	 * @param moduleId
 	 */
 	public Optional<HtmlTagTo> findhtmltag(int moduleId);
 
 	/**
-	 * 
+	 *
 	 * @param moduleId
 	 */
 	public Optional<ModuleTo> findmodule(int moduleId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<ModuleTo> findmodules(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<ModuleTo> findmodules(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param moduleId
 	 */
 	public Set<WorkflowNodeTo> findworkflownodes(int moduleId);
 
 	/**
-	 * 
+	 *
 	 * @param module
 	 */
 	public ModuleTo modifymodule(ModuleInput module);

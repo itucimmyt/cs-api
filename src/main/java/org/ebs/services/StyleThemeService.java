@@ -27,39 +27,39 @@ import org.ebs.services.to.PreferenceTo;
 public interface StyleThemeService {
 
 	/**
-	 * 
+	 *
 	 * @param StyleTheme
 	 */
 	public StyleThemeTo createstyletheme(StyleThemeInput StyleTheme);
 
 	/**
-	 * 
+	 *
 	 * @param stylethemeId
 	 */
 	public int deletestyletheme(int stylethemeId);
 
 	/**
-	 * 
+	 *
 	 * @param stylethemeId
 	 */
 	public Set<PreferenceTo> findpreferences(int stylethemeId);
 
 	/**
-	 * 
+	 *
 	 * @param stylethemeId
 	 */
 	public Optional<StyleThemeTo> findstyletheme(int stylethemeId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<StyleThemeTo> findstylethemes(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<StyleThemeTo> findstylethemes(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param styletheme
 	 */
 	public StyleThemeTo modifystyletheme(StyleThemeInput styletheme);

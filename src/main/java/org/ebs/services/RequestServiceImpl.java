@@ -50,36 +50,36 @@ import org.springframework.transaction.annotation.Transactional;
 	public WorkflowCFValueRepository workflowcfvalueRepository;
 
 	/**
-	 * 
+	 *
 	 * @param Request
 	 */
 	@Override @Transactional(readOnly = false)
 	public RequestTo createrequest(RequestInput Request){
-		RequestModel model = converter.convert(Request,RequestModel.class); 
+		RequestModel model = converter.convert(Request,RequestModel.class);
 		 model.setId(0);
-		WorkflowInstanceModel workflowinstanceModel = workflowinstanceRepository.findById(Request.getWorkflowinstance().getId()).get(); 
-		model.setWorkflowinstance(workflowinstanceModel); 
-		PersonModel personModel = personRepository.findById(Request.getPerson().getId()).get(); 
-		model.setPerson(personModel); 
-		 
-		 model= requestRepository.save(model); 
-		 return converter.convert(model, RequestTo.class); 
+		WorkflowInstanceModel workflowinstanceModel = workflowinstanceRepository.findById(Request.getWorkflowinstance().getId()).get();
+		model.setWorkflowinstance(workflowinstanceModel);
+		PersonModel personModel = personRepository.findById(Request.getPerson().getId()).get();
+		model.setPerson(personModel);
+
+		 model= requestRepository.save(model);
+		 return converter.convert(model, RequestTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param requestId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleterequest(int requestId){
-		RequestModel request = requestRepository.findById(requestId).orElseThrow(() -> new RuntimeException("Request not found")); 
-		 request.setDeleted(true); 
-		  requestRepository.save(request); 
+		RequestModel request = requestRepository.findById(requestId).orElseThrow(() -> new RuntimeException("Request not found"));
+		 request.setDeleted(true);
+		  requestRepository.save(request);
 		 return requestId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param requestId
 	 */
 	public Optional<PersonTo> findperson(int requestId){
@@ -88,29 +88,29 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 	/**
-	 * 
+	 *
 	 * @param requestId
 	 */
 	@Override
 	public Optional<RequestTo> findrequest(int requestId){
-		if(requestId <1) 
-		 {return Optional.empty();} 
+		if(requestId <1)
+		 {return Optional.empty();}
 		 return requestRepository.findById(requestId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,RequestTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<RequestTo> findrequests(PageInput page, SortInput sort, List<FilterInput> filters){
-		return requestRepository.findByCriteria(RequestModel.class,filters,sort,page).map(r -> converter.convert(r,RequestTo.class));
+	public Page<RequestTo> findrequests(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return requestRepository.findByCriteria(RequestModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,RequestTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param requestId
 	 */
 	public Set<WorkflowCFValueTo> findworkflowcfvalues(int requestId){
@@ -118,7 +118,7 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param requestId
 	 */
 	public Optional<WorkflowInstanceTo> findworkflowinstance(int requestId){
@@ -126,19 +126,19 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param request
 	 */
 	@Override @Transactional(readOnly = false)
 	public RequestTo modifyrequest(RequestInput request){
-		RequestModel target= requestRepository.findById(request.getId()).orElseThrow(() -> new RuntimeException("Request not found")); 
-		 RequestModel source= converter.convert(request,RequestModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		RequestModel target= requestRepository.findById(request.getId()).orElseThrow(() -> new RuntimeException("Request not found"));
+		 RequestModel source= converter.convert(request,RequestModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(requestRepository.save(target), RequestTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param personRepository
 	 * @param requestRepository
 	 * @param converter
@@ -148,7 +148,7 @@ import org.springframework.transaction.annotation.Transactional;
 	 */
 	@Autowired
 	public RequestServiceImpl(PersonRepository personRepository, RequestRepository requestRepository, ConversionService converter, WorkflowCFValueRepository workflowcfvalueRepository, WorkflowInstanceRepository workflowinstanceRepository){
-		this.requestRepository =requestRepository; 
+		this.requestRepository =requestRepository;
 		 this.converter = converter;
 		 this.workflowcfvalueRepository = workflowcfvalueRepository;
 		 this.workflowinstanceRepository = workflowinstanceRepository;

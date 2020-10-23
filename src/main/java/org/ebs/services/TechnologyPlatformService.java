@@ -28,45 +28,45 @@ import org.ebs.services.to.VendorTo;
 public interface TechnologyPlatformService {
 
 	/**
-	 * 
+	 *
 	 * @param TechnologyPlatform
 	 */
 	public TechnologyPlatformTo createtechnologyplatform(TechnologyPlatformInput TechnologyPlatform);
 
 	/**
-	 * 
+	 *
 	 * @param technologyplatformId
 	 */
 	public int deletetechnologyplatform(int technologyplatformId);
 
 	/**
-	 * 
+	 *
 	 * @param technologyplatformId
 	 */
 	public Set<AssayclassTo> findassayclasss(int technologyplatformId);
 
 	/**
-	 * 
+	 *
 	 * @param technologyplatformId
 	 */
 	public Optional<TechnologyPlatformTo> findtechnologyplatform(int technologyplatformId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<TechnologyPlatformTo> findtechnologyplatforms(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<TechnologyPlatformTo> findtechnologyplatforms(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param technologyplatformId
 	 */
 	public Set<VendorTo> findvendors(int technologyplatformId);
 
 	/**
-	 * 
+	 *
 	 * @param technologyplatform
 	 */
 	public TechnologyPlatformTo modifytechnologyplatform(TechnologyPlatformInput technologyplatform);

@@ -224,7 +224,7 @@ public class QueryResolver implements GraphQLQueryResolver {
 	private WorkflowStatusTypeService workflowstatustypeService;
 
 	/**
-	 * 
+	 *
 	 * @param actionId
 	 */
 	public Optional<ActionTo> findaction(int actionId){
@@ -232,17 +232,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<ActionTo> findactionList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.actionService.findactions(page,sort,filters);
+	public Page<ActionTo> findactionList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.actionService.findactions(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param addressId
 	 */
 	public Optional<AddressTo> findaddress(int addressId){
@@ -250,17 +250,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<AddressTo> findaddressList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.addressService.findaddresss(page,sort,filters);
+	public Page<AddressTo> findaddressList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.addressService.findaddresss(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param alertId
 	 */
 	public Optional<AlertTo> findalert(int alertId){
@@ -268,17 +268,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<AlertTo> findalertList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.alertService.findalerts(page,sort,filters);
+	public Page<AlertTo> findalertList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.alertService.findalerts(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param alertruleId
 	 */
 	public Optional<AlertRuleTo> findalertrule(int alertruleId){
@@ -286,17 +286,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<AlertRuleTo> findalertruleList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.alertruleService.findalertrules(page,sort,filters);
+	public Page<AlertRuleTo> findalertruleList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.alertruleService.findalertrules(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param assayclassId
 	 */
 	public Optional<AssayclassTo> findassayclass(int assayclassId){
@@ -304,17 +304,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<AssayclassTo> findassayclassList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.assayclassService.findassayclasss(page,sort,filters);
+	public Page<AssayclassTo> findassayclassList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.assayclassService.findassayclasss(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param assaygeneId
 	 */
 	public Optional<AssayGeneTo> findassaygene(int assaygeneId){
@@ -322,17 +322,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<AssayGeneTo> findassaygeneList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.assaygeneService.findassaygenes(page,sort,filters);
+	public Page<AssayGeneTo> findassaygeneList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.assaygeneService.findassaygenes(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param attributesId
 	 */
 	public Optional<AttributesTo> findattributes(int attributesId){
@@ -340,17 +340,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<AttributesTo> findattributesList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.attributesService.findattributess(page,sort,filters);
+	public Page<AttributesTo> findattributesList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.attributesService.findattributess(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param auditlogsId
 	 */
 	public Optional<AuditLogsTo> findauditlogs(int auditlogsId){
@@ -358,17 +358,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<AuditLogsTo> findauditlogsList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.auditlogsService.findauditlogss(page,sort,filters);
+	public Page<AuditLogsTo> findauditlogsList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.auditlogsService.findauditlogss(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param authenticationtypeId
 	 */
 	public Optional<AuthenticationTypeTo> findauthenticationtype(int authenticationtypeId){
@@ -376,17 +376,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<AuthenticationTypeTo> findauthenticationtypeList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.authenticationtypeService.findauthenticationtypes(page,sort,filters);
+	public Page<AuthenticationTypeTo> findauthenticationtypeList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.authenticationtypeService.findauthenticationtypes(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param collaboratorId
 	 */
 	public Optional<CollaboratorTo> findcollaborator(int collaboratorId){
@@ -394,17 +394,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<CollaboratorTo> findcollaboratorList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.collaboratorService.findcollaborators(page,sort,filters);
+	public Page<CollaboratorTo> findcollaboratorList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.collaboratorService.findcollaborators(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param componentId
 	 */
 	public Optional<ComponentTo> findcomponent(int componentId){
@@ -412,17 +412,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<ComponentTo> findcomponentList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.componentService.findcomponents(page,sort,filters);
+	public Page<ComponentTo> findcomponentList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.componentService.findcomponents(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param countryId
 	 */
 	public Optional<CountryTo> findcountry(int countryId){
@@ -430,17 +430,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<CountryTo> findcountryList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.countryService.findcountrys(page,sort,filters);
+	public Page<CountryTo> findcountryList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.countryService.findcountrys(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param cropId
 	 */
 	public Optional<CropTo> findcrop(int cropId){
@@ -448,17 +448,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<CropTo> findcropList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.cropService.findcrops(page,sort,filters);
+	public Page<CropTo> findcropList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.cropService.findcrops(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param customerId
 	 */
 	public Optional<CustomerTo> findcustomer(int customerId){
@@ -466,17 +466,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<CustomerTo> findcustomerList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.customerService.findcustomers(page,sort,filters);
+	public Page<CustomerTo> findcustomerList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.customerService.findcustomers(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param dataformatId
 	 */
 	public Optional<DataFormatTo> finddataformat(int dataformatId){
@@ -484,17 +484,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<DataFormatTo> finddataformatList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.dataformatService.finddataformats(page,sort,filters);
+	public Page<DataFormatTo> finddataformatList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.dataformatService.finddataformats(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param delegationId
 	 */
 	public Optional<DelegationTo> finddelegation(int delegationId){
@@ -502,17 +502,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<DelegationTo> finddelegationList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.delegationService.finddelegations(page,sort,filters);
+	public Page<DelegationTo> finddelegationList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.delegationService.finddelegations(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param donorId
 	 */
 	public Optional<DonorTo> finddonor(int donorId){
@@ -520,17 +520,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<DonorTo> finddonorList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.donorService.finddonors(page,sort,filters);
+	public Page<DonorTo> finddonorList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.donorService.finddonors(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param emailtemplateId
 	 */
 	public Optional<EmailTemplateTo> findemailtemplate(int emailtemplateId){
@@ -538,17 +538,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<EmailTemplateTo> findemailtemplateList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.emailtemplateService.findemailtemplates(page,sort,filters);
+	public Page<EmailTemplateTo> findemailtemplateList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.emailtemplateService.findemailtemplates(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param entityreferenceId
 	 */
 	public Optional<EntityReferenceTo> findentityreference(int entityreferenceId){
@@ -556,17 +556,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<EntityReferenceTo> findentityreferenceList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.entityreferenceService.findentityreferences(page,sort,filters);
+	public Page<EntityReferenceTo> findentityreferenceList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.entityreferenceService.findentityreferences(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	public Optional<HtmlTagTo> findhtmltag(int htmltagId){
@@ -574,17 +574,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<HtmlTagTo> findhtmltagList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.htmltagService.findhtmltags(page,sort,filters);
+	public Page<HtmlTagTo> findhtmltagList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.htmltagService.findhtmltags(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param instanceId
 	 */
 	public Optional<InstanceTo> findinstance(int instanceId){
@@ -592,17 +592,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<InstanceTo> findinstanceList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.instanceService.findinstances(page,sort,filters);
+	public Page<InstanceTo> findinstanceList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.instanceService.findinstances(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param languageId
 	 */
 	public Optional<LanguageTo> findlanguage(int languageId){
@@ -610,17 +610,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<LanguageTo> findlanguageList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.languageService.findlanguages(page,sort,filters);
+	public Page<LanguageTo> findlanguageList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.languageService.findlanguages(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param markerId
 	 */
 	public Optional<MarkerTo> findmarker(int markerId){
@@ -628,17 +628,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<MarkerTo> findmarkerList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.markerService.findmarkers(page,sort,filters);
+	public Page<MarkerTo> findmarkerList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.markerService.findmarkers(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param markersynonymId
 	 */
 	public Optional<MarkerSynonymTo> findmarkersynonym(int markersynonymId){
@@ -646,17 +646,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<MarkerSynonymTo> findmarkersynonymList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.markersynonymService.findmarkersynonyms(page,sort,filters);
+	public Page<MarkerSynonymTo> findmarkersynonymList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.markersynonymService.findmarkersynonyms(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param moduleId
 	 */
 	public Optional<ModuleTo> findmodule(int moduleId){
@@ -664,17 +664,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<ModuleTo> findmoduleList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.moduleService.findmodules(page,sort,filters);
+	public Page<ModuleTo> findmoduleList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.moduleService.findmodules(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param notificationId
 	 */
 	public Optional<NotificationTo> findnotification(int notificationId){
@@ -682,17 +682,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<NotificationTo> findnotificationList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.notificationService.findnotifications(page,sort,filters);
+	public Page<NotificationTo> findnotificationList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.notificationService.findnotifications(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param numbersequenceruleId
 	 */
 	public Optional<NumberSequenceRuleTo> findnumbersequencerule(int numbersequenceruleId){
@@ -700,17 +700,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<NumberSequenceRuleTo> findnumbersequenceruleList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.numbersequenceruleService.findnumbersequencerules(page,sort,filters);
+	public Page<NumberSequenceRuleTo> findnumbersequenceruleList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.numbersequenceruleService.findnumbersequencerules(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param numbersequencerulesegmentId
 	 */
 	public Optional<NumberSequenceRuleSegmentTo> findnumbersequencerulesegment(int numbersequencerulesegmentId){
@@ -718,17 +718,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<NumberSequenceRuleSegmentTo> findnumbersequencerulesegmentList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.numbersequencerulesegmentService.findnumbersequencerulesegments(page,sort,filters);
+	public Page<NumberSequenceRuleSegmentTo> findnumbersequencerulesegmentList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.numbersequencerulesegmentService.findnumbersequencerulesegments(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param organizationId
 	 */
 	public Optional<OrganizationTo> findorganization(int organizationId){
@@ -736,17 +736,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<OrganizationTo> findorganizationList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.organizationService.findorganizations(page,sort,filters);
+	public Page<OrganizationTo> findorganizationList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.organizationService.findorganizations(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param partnerId
 	 */
 	public Optional<PartnerTo> findpartner(int partnerId){
@@ -754,17 +754,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<PartnerTo> findpartnerList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.partnerService.findpartners(page,sort,filters);
+	public Page<PartnerTo> findpartnerList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.partnerService.findpartners(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param personId
 	 */
 	public Optional<PersonTo> findperson(int personId){
@@ -772,17 +772,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<PersonTo> findpersonList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.personService.findpersons(page,sort,filters);
+	public Page<PersonTo> findpersonList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.personService.findpersons(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param preferenceId
 	 */
 	public Optional<PreferenceTo> findpreference(int preferenceId){
@@ -790,17 +790,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<PreferenceTo> findpreferenceList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.preferenceService.findpreferences(page,sort,filters);
+	public Page<PreferenceTo> findpreferenceList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.preferenceService.findpreferences(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param processId
 	 */
 	public Optional<ProcessTo> findprocess(int processId){
@@ -808,17 +808,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<ProcessTo> findprocessList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.processService.findprocesss(page,sort,filters);
+	public Page<ProcessTo> findprocessList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.processService.findprocesss(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param programId
 	 */
 	public Optional<ProgramTo> findprogram(int programId){
@@ -826,17 +826,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<ProgramTo> findprogramList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.programService.findprograms(page,sort,filters);
+	public Page<ProgramTo> findprogramList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.programService.findprograms(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param projectId
 	 */
 	public Optional<ProjectTo> findproject(int projectId){
@@ -844,17 +844,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<ProjectTo> findprojectList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.projectService.findprojects(page,sort,filters);
+	public Page<ProjectTo> findprojectList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.projectService.findprojects(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param purposeId
 	 */
 	public Optional<PurposeTo> findpurpose(int purposeId){
@@ -862,17 +862,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<PurposeTo> findpurposeList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.purposeService.findpurposes(page,sort,filters);
+	public Page<PurposeTo> findpurposeList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.purposeService.findpurposes(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param requestId
 	 */
 	public Optional<RequestTo> findrequest(int requestId){
@@ -880,17 +880,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<RequestTo> findrequestList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.requestService.findrequests(page,sort,filters);
+	public Page<RequestTo> findrequestList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.requestService.findrequests(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param roleId
 	 */
 	public Optional<RoleTo> findrole(int roleId){
@@ -898,7 +898,7 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param roleactionId
 	 */
 	public Optional<RoleActionTo> findroleaction(int roleactionId){
@@ -906,27 +906,27 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<RoleActionTo> findroleactionList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.roleactionService.findroleactions(page,sort,filters);
+	public Page<RoleActionTo> findroleactionList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.roleactionService.findroleactions(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<RoleTo> findroleList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.roleService.findroles(page,sort,filters);
+	public Page<RoleTo> findroleList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.roleService.findroles(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param seasonId
 	 */
 	public Optional<SeasonTo> findseason(int seasonId){
@@ -934,17 +934,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<SeasonTo> findseasonList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.seasonService.findseasons(page,sort,filters);
+	public Page<SeasonTo> findseasonList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.seasonService.findseasons(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param segmentId
 	 */
 	public Optional<SegmentTo> findsegment(int segmentId){
@@ -952,17 +952,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<SegmentTo> findsegmentList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.segmentService.findsegments(page,sort,filters);
+	public Page<SegmentTo> findsegmentList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.segmentService.findsegments(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param serviceId
 	 */
 	public Optional<ServiceTo> findservice(int serviceId){
@@ -970,17 +970,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<ServiceTo> findserviceList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.serviceService.findservices(page,sort,filters);
+	public Page<ServiceTo> findserviceList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.serviceService.findservices(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param serviceproviderId
 	 */
 	public Optional<ServiceProviderTo> findserviceprovider(int serviceproviderId){
@@ -988,17 +988,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<ServiceProviderTo> findserviceproviderList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.serviceproviderService.findserviceproviders(page,sort,filters);
+	public Page<ServiceProviderTo> findserviceproviderList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.serviceproviderService.findserviceproviders(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param servicetypeId
 	 */
 	public Optional<ServiceTypeTo> findservicetype(int servicetypeId){
@@ -1006,17 +1006,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<ServiceTypeTo> findservicetypeList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.servicetypeService.findservicetypes(page,sort,filters);
+	public Page<ServiceTypeTo> findservicetypeList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.servicetypeService.findservicetypes(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param sessionId
 	 */
 	public Optional<SessionTo> findsession(int sessionId){
@@ -1024,17 +1024,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<SessionTo> findsessionList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.sessionService.findsessions(page,sort,filters);
+	public Page<SessionTo> findsessionList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.sessionService.findsessions(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param stylethemeId
 	 */
 	public Optional<StyleThemeTo> findstyletheme(int stylethemeId){
@@ -1042,17 +1042,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<StyleThemeTo> findstylethemeList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.stylethemeService.findstylethemes(page,sort,filters);
+	public Page<StyleThemeTo> findstylethemeList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.stylethemeService.findstylethemes(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param teamId
 	 */
 	public Optional<TeamTo> findteam(int teamId){
@@ -1060,17 +1060,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<TeamTo> findteamList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.teamService.findteams(page,sort,filters);
+	public Page<TeamTo> findteamList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.teamService.findteams(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param technologyplatformId
 	 */
 	public Optional<TechnologyPlatformTo> findtechnologyplatform(int technologyplatformId){
@@ -1078,17 +1078,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<TechnologyPlatformTo> findtechnologyplatformList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.technologyplatformService.findtechnologyplatforms(page,sort,filters);
+	public Page<TechnologyPlatformTo> findtechnologyplatformList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.technologyplatformService.findtechnologyplatforms(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param tenantId
 	 */
 	public Optional<TenantTo> findtenant(int tenantId){
@@ -1096,17 +1096,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<TenantTo> findtenantList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.tenantService.findtenants(page,sort,filters);
+	public Page<TenantTo> findtenantList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.tenantService.findtenants(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param traitId
 	 */
 	public Optional<TraitTo> findtrait(int traitId){
@@ -1114,7 +1114,7 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param traitclassId
 	 */
 	public Optional<TraitClassTo> findtraitclass(int traitclassId){
@@ -1122,27 +1122,27 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<TraitClassTo> findtraitclassList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.traitclassService.findtraitclasss(page,sort,filters);
+	public Page<TraitClassTo> findtraitclassList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.traitclassService.findtraitclasss(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<TraitTo> findtraitList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.traitService.findtraits(page,sort,filters);
+	public Page<TraitTo> findtraitList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.traitService.findtraits(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param translationId
 	 */
 	public Optional<TranslationTo> findtranslation(int translationId){
@@ -1150,17 +1150,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<TranslationTo> findtranslationList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.translationService.findtranslations(page,sort,filters);
+	public Page<TranslationTo> findtranslationList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.translationService.findtranslations(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param userId
 	 */
 	public Optional<UserTo> finduser(int userId){
@@ -1168,17 +1168,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<UserTo> finduserList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.userService.findusers(page,sort,filters);
+	public Page<UserTo> finduserList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.userService.findusers(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param vendorId
 	 */
 	public Optional<VendorTo> findvendor(int vendorId){
@@ -1186,17 +1186,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<VendorTo> findvendorList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.vendorService.findvendors(page,sort,filters);
+	public Page<VendorTo> findvendorList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.vendorService.findvendors(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowId
 	 */
 	public Optional<WorkflowTo> findworkflow(int workflowId){
@@ -1204,7 +1204,7 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowcftypeId
 	 */
 	public Optional<WorkflowCFTypeTo> findworkflowcftype(int workflowcftypeId){
@@ -1212,17 +1212,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<WorkflowCFTypeTo> findworkflowcftypeList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.workflowcftypeService.findworkflowcftypes(page,sort,filters);
+	public Page<WorkflowCFTypeTo> findworkflowcftypeList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.workflowcftypeService.findworkflowcftypes(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowcfvalueId
 	 */
 	public Optional<WorkflowCFValueTo> findworkflowcfvalue(int workflowcfvalueId){
@@ -1230,17 +1230,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<WorkflowCFValueTo> findworkflowcfvalueList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.workflowcfvalueService.findworkflowcfvalues(page,sort,filters);
+	public Page<WorkflowCFValueTo> findworkflowcfvalueList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.workflowcfvalueService.findworkflowcfvalues(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workfloweventId
 	 */
 	public Optional<WorkflowEventTo> findworkflowevent(int workfloweventId){
@@ -1248,17 +1248,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<WorkflowEventTo> findworkfloweventList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.workfloweventService.findworkflowevents(page,sort,filters);
+	public Page<WorkflowEventTo> findworkfloweventList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.workfloweventService.findworkflowevents(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowinstanceId
 	 */
 	public Optional<WorkflowInstanceTo> findworkflowinstance(int workflowinstanceId){
@@ -1266,27 +1266,27 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<WorkflowInstanceTo> findworkflowinstanceList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.workflowinstanceService.findworkflowinstances(page,sort,filters);
+	public Page<WorkflowInstanceTo> findworkflowinstanceList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.workflowinstanceService.findworkflowinstances(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<WorkflowTo> findworkflowList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.workflowService.findworkflows(page,sort,filters);
+	public Page<WorkflowTo> findworkflowList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.workflowService.findworkflows(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeId
 	 */
 	public Optional<WorkflowNodeTo> findworkflownode(int workflownodeId){
@@ -1294,7 +1294,7 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodecfId
 	 */
 	public Optional<WorkflowNodeCFTo> findworkflownodecf(int workflownodecfId){
@@ -1302,27 +1302,27 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<WorkflowNodeCFTo> findworkflownodecfList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.workflownodecfService.findworkflownodecfs(page,sort,filters);
+	public Page<WorkflowNodeCFTo> findworkflownodecfList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.workflownodecfService.findworkflownodecfs(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<WorkflowNodeTo> findworkflownodeList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.workflownodeService.findworkflownodes(page,sort,filters);
+	public Page<WorkflowNodeTo> findworkflownodeList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.workflownodeService.findworkflownodes(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowphaseId
 	 */
 	public Optional<WorkflowPhaseTo> findworkflowphase(int workflowphaseId){
@@ -1330,17 +1330,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<WorkflowPhaseTo> findworkflowphaseList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.workflowphaseService.findworkflowphases(page,sort,filters);
+	public Page<WorkflowPhaseTo> findworkflowphaseList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.workflowphaseService.findworkflowphases(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowstageId
 	 */
 	public Optional<WorkflowStageTo> findworkflowstage(int workflowstageId){
@@ -1348,17 +1348,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<WorkflowStageTo> findworkflowstageList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.workflowstageService.findworkflowstages(page,sort,filters);
+	public Page<WorkflowStageTo> findworkflowstageList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.workflowstageService.findworkflowstages(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowstatusId
 	 */
 	public Optional<WorkflowStatusTo> findworkflowstatus(int workflowstatusId){
@@ -1366,17 +1366,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<WorkflowStatusTo> findworkflowstatusList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.workflowstatusService.findworkflowstatuss(page,sort,filters);
+	public Page<WorkflowStatusTo> findworkflowstatusList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.workflowstatusService.findworkflowstatuss(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowstatustypeId
 	 */
 	public Optional<WorkflowStatusTypeTo> findworkflowstatustype(int workflowstatustypeId){
@@ -1384,17 +1384,17 @@ public class QueryResolver implements GraphQLQueryResolver {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<WorkflowStatusTypeTo> findworkflowstatustypeList(PageInput page, SortInput sort, List<FilterInput> filters){
-		return this.workflowstatustypeService.findworkflowstatustypes(page,sort,filters);
+	public Page<WorkflowStatusTypeTo> findworkflowstatustypeList(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return this.workflowstatustypeService.findworkflowstatustypes(page,sort,filters, disjunctionFilters);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param roleService
 	 * @param partnerService
 	 * @param teamService
@@ -1463,72 +1463,72 @@ public class QueryResolver implements GraphQLQueryResolver {
 	 */
 	@Autowired
 	public QueryResolver(RoleService roleService, PartnerService partnerService, TeamService teamService, StyleThemeService stylethemeService, SessionService sessionService, SegmentService segmentService, TranslationService translationService, RoleActionService roleactionService, UserService userService, RequestService requestService, ProjectService projectService, ProgramService programService, ProcessService processService, PreferenceService preferenceService, DataFormatService dataformatService, SeasonService seasonService, WorkflowNodeService workflownodeService, AssayGeneService assaygeneService, AssayclassService assayclassService, TraitClassService traitclassService, WorkflowStatusService workflowstatusService, WorkflowStageService workflowstageService, TenantService tenantService, WorkflowNodeCFService workflownodecfService, OrganizationService organizationService, WorkflowInstanceService workflowinstanceService, WorkflowEventService workfloweventService, WorkflowCFValueService workflowcfvalueService, WorkflowCFTypeService workflowcftypeService, WorkflowService workflowService, VendorService vendorService, WorkflowPhaseService workflowphaseService, ServiceTypeService servicetypeService, PersonService personService, AlertRuleService alertruleService, AlertService alertService, AddressService addressService, ActionService actionService, AuditLogsService auditlogsService, TechnologyPlatformService technologyplatformService, AuthenticationTypeService authenticationtypeService, ServiceProviderService serviceproviderService, ServiceService serviceService, PurposeService purposeService, MarkerSynonymService markersynonymService, MarkerService markerService, TraitService traitService, WorkflowStatusTypeService workflowstatustypeService, DonorService donorService, NumberSequenceRuleSegmentService numbersequencerulesegmentService, NumberSequenceRuleService numbersequenceruleService, ModuleService moduleService, NotificationService notificationService, InstanceService instanceService, AttributesService attributesService, EmailTemplateService emailtemplateService, LanguageService languageService, DelegationService delegationService, CustomerService customerService, CropService cropService, CountryService countryService, ComponentService componentService, CollaboratorService collaboratorService, EntityReferenceService entityreferenceService, HtmlTagService htmltagService){
-		this.traitService = traitService; 
-		this.technologyplatformService = technologyplatformService; 
-		this.servicetypeService = servicetypeService; 
-		this.serviceproviderService = serviceproviderService; 
-		this.serviceService = serviceService; 
-		this.purposeService = purposeService; 
-		this.markersynonymService = markersynonymService; 
-		this.markerService = markerService; 
-		this.dataformatService = dataformatService; 
-		this.assaygeneService = assaygeneService; 
-		this.assayclassService = assayclassService; 
-		this.traitclassService = traitclassService; 
-		this.workflowstatusService = workflowstatusService; 
-		this.workflowstageService = workflowstageService; 
-		this.workflowphaseService = workflowphaseService; 
-		this.workflownodecfService = workflownodecfService; 
-		this.workflownodeService = workflownodeService; 
-		this.workflowinstanceService = workflowinstanceService; 
-		this.workfloweventService = workfloweventService; 
-		this.workflowcfvalueService = workflowcfvalueService; 
-		this.workflowcftypeService = workflowcftypeService; 
-		this.workflowService = workflowService; 
-		this.vendorService = vendorService; 
-		this.userService = userService; 
-		this.translationService = translationService; 
-		this.tenantService = tenantService; 
-		this.teamService = teamService; 
-		this.stylethemeService = stylethemeService; 
-		this.sessionService = sessionService; 
-		this.segmentService = segmentService; 
-		this.seasonService = seasonService; 
-		this.roleactionService = roleactionService; 
-		this.roleService = roleService; 
-		this.requestService = requestService; 
-		this.projectService = projectService; 
-		this.programService = programService; 
-		this.processService = processService; 
-		this.preferenceService = preferenceService; 
-		this.personService = personService; 
-		this.partnerService = partnerService; 
-		this.organizationService = organizationService; 
-		this.numbersequencerulesegmentService = numbersequencerulesegmentService; 
-		this.numbersequenceruleService = numbersequenceruleService; 
-		this.moduleService = moduleService; 
-		this.notificationService = notificationService; 
-		this.languageService = languageService; 
-		this.instanceService = instanceService; 
-		this.htmltagService = htmltagService; 
-		this.entityreferenceService = entityreferenceService; 
-		this.emailtemplateService = emailtemplateService; 
-		this.donorService = donorService; 
-		this.delegationService = delegationService; 
-		this.customerService = customerService; 
-		this.cropService = cropService; 
-		this.countryService = countryService; 
-		this.componentService = componentService; 
-		this.collaboratorService = collaboratorService; 
-		this.authenticationtypeService = authenticationtypeService; 
-		this.auditlogsService = auditlogsService; 
-		this.attributesService = attributesService; 
-		this.alertruleService = alertruleService; 
-		this.alertService = alertService; 
-		this.addressService = addressService; 
-		this.actionService = actionService; 
-		this.workflowstatustypeService = workflowstatustypeService; 
-	
+		this.traitService = traitService;
+		this.technologyplatformService = technologyplatformService;
+		this.servicetypeService = servicetypeService;
+		this.serviceproviderService = serviceproviderService;
+		this.serviceService = serviceService;
+		this.purposeService = purposeService;
+		this.markersynonymService = markersynonymService;
+		this.markerService = markerService;
+		this.dataformatService = dataformatService;
+		this.assaygeneService = assaygeneService;
+		this.assayclassService = assayclassService;
+		this.traitclassService = traitclassService;
+		this.workflowstatusService = workflowstatusService;
+		this.workflowstageService = workflowstageService;
+		this.workflowphaseService = workflowphaseService;
+		this.workflownodecfService = workflownodecfService;
+		this.workflownodeService = workflownodeService;
+		this.workflowinstanceService = workflowinstanceService;
+		this.workfloweventService = workfloweventService;
+		this.workflowcfvalueService = workflowcfvalueService;
+		this.workflowcftypeService = workflowcftypeService;
+		this.workflowService = workflowService;
+		this.vendorService = vendorService;
+		this.userService = userService;
+		this.translationService = translationService;
+		this.tenantService = tenantService;
+		this.teamService = teamService;
+		this.stylethemeService = stylethemeService;
+		this.sessionService = sessionService;
+		this.segmentService = segmentService;
+		this.seasonService = seasonService;
+		this.roleactionService = roleactionService;
+		this.roleService = roleService;
+		this.requestService = requestService;
+		this.projectService = projectService;
+		this.programService = programService;
+		this.processService = processService;
+		this.preferenceService = preferenceService;
+		this.personService = personService;
+		this.partnerService = partnerService;
+		this.organizationService = organizationService;
+		this.numbersequencerulesegmentService = numbersequencerulesegmentService;
+		this.numbersequenceruleService = numbersequenceruleService;
+		this.moduleService = moduleService;
+		this.notificationService = notificationService;
+		this.languageService = languageService;
+		this.instanceService = instanceService;
+		this.htmltagService = htmltagService;
+		this.entityreferenceService = entityreferenceService;
+		this.emailtemplateService = emailtemplateService;
+		this.donorService = donorService;
+		this.delegationService = delegationService;
+		this.customerService = customerService;
+		this.cropService = cropService;
+		this.countryService = countryService;
+		this.componentService = componentService;
+		this.collaboratorService = collaboratorService;
+		this.authenticationtypeService = authenticationtypeService;
+		this.auditlogsService = auditlogsService;
+		this.attributesService = attributesService;
+		this.alertruleService = alertruleService;
+		this.alertService = alertService;
+		this.addressService = addressService;
+		this.actionService = actionService;
+		this.workflowstatustypeService = workflowstatustypeService;
+
 	}
 
 }

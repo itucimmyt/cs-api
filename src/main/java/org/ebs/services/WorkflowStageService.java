@@ -31,63 +31,63 @@ import org.ebs.services.to.WorkflowNodeTo;
 public interface WorkflowStageService {
 
 	/**
-	 * 
+	 *
 	 * @param WorkflowStage
 	 */
 	public WorkflowStageTo createworkflowstage(WorkflowStageInput WorkflowStage);
 
 	/**
-	 * 
+	 *
 	 * @param workflowstageId
 	 */
 	public int deleteworkflowstage(int workflowstageId);
 
 	/**
-	 * 
+	 *
 	 * @param workflowstageId
 	 */
 	public Set<ActionTo> findactions(int workflowstageId);
 
 	/**
-	 * 
+	 *
 	 * @param workflowstageId
 	 */
 	public Optional<HtmlTagTo> findhtmltag(int workflowstageId);
 
 	/**
-	 * 
+	 *
 	 * @param workflowstageId
 	 */
 	public Set<WorkflowEventTo> findworkflowevents(int workflowstageId);
 
 	/**
-	 * 
+	 *
 	 * @param workflowstageId
 	 */
 	public Set<WorkflowNodeTo> findworkflownodes(int workflowstageId);
 
 	/**
-	 * 
+	 *
 	 * @param workflowstageId
 	 */
 	public Optional<WorkflowPhaseTo> findworkflowphase(int workflowstageId);
 
 	/**
-	 * 
+	 *
 	 * @param workflowstageId
 	 */
 	public Optional<WorkflowStageTo> findworkflowstage(int workflowstageId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<WorkflowStageTo> findworkflowstages(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<WorkflowStageTo> findworkflowstages(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param workflowstage
 	 */
 	public WorkflowStageTo modifyworkflowstage(WorkflowStageInput workflowstage);

@@ -29,51 +29,51 @@ import org.ebs.services.to.UserTo;
 public interface RoleService {
 
 	/**
-	 * 
+	 *
 	 * @param Role
 	 */
 	public RoleTo createrole(RoleInput Role);
 
 	/**
-	 * 
+	 *
 	 * @param roleId
 	 */
 	public int deleterole(int roleId);
 
 	/**
-	 * 
+	 *
 	 * @param roleId
 	 */
 	public Set<ActionTo> findactions(int roleId);
 
 	/**
-	 * 
+	 *
 	 * @param roleId
 	 */
 	public Optional<RoleTo> findrole(int roleId);
 
 	/**
-	 * 
+	 *
 	 * @param roleId
 	 */
 	public Set<RoleActionTo> findroleactions(int roleId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<RoleTo> findroles(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<RoleTo> findroles(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param roleId
 	 */
 	public Set<UserTo> findusers(int roleId);
 
 	/**
-	 * 
+	 *
 	 * @param role
 	 */
 	public RoleTo modifyrole(RoleInput role);

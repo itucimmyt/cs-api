@@ -48,34 +48,34 @@ import org.ebs.services.to.VendorTo;
 	public VendorRepository vendorRepository;
 
 	/**
-	 * 
+	 *
 	 * @param Marker
 	 */
 	@Override @Transactional(readOnly = false)
 	public MarkerTo createmarker(MarkerInput Marker){
-		MarkerModel model = converter.convert(Marker,MarkerModel.class); 
+		MarkerModel model = converter.convert(Marker,MarkerModel.class);
 		 model.setId(0);
-		 AssayGeneModel assaygeneModel = assaygeneRepository.findById(Marker.getAssaygene().getId()).get(); 
-		model.setAssaygene(assaygeneModel); 
-		 
-		 model= markerRepository.save(model); 
-		 return converter.convert(model, MarkerTo.class); 
+		 AssayGeneModel assaygeneModel = assaygeneRepository.findById(Marker.getAssaygene().getId()).get();
+		model.setAssaygene(assaygeneModel);
+
+		 model= markerRepository.save(model);
+		 return converter.convert(model, MarkerTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param markerId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deletemarker(int markerId){
-		MarkerModel marker = markerRepository.findById(markerId).orElseThrow(() -> new RuntimeException("Marker not found")); 
-		 marker.setDeleted(true); 
-		  markerRepository.save(marker); 
+		MarkerModel marker = markerRepository.findById(markerId).orElseThrow(() -> new RuntimeException("Marker not found"));
+		 marker.setDeleted(true);
+		  markerRepository.save(marker);
 		 return markerId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param markerId
 	 */
 	public Optional<AssayGeneTo> findassaygene(int markerId){
@@ -83,29 +83,29 @@ import org.ebs.services.to.VendorTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param markerId
 	 */
 	@Override
 	public Optional<MarkerTo> findmarker(int markerId){
-		if(markerId <1) 
-		 {return Optional.empty();} 
+		if(markerId <1)
+		 {return Optional.empty();}
 		 return markerRepository.findById(markerId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,MarkerTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<MarkerTo> findmarkers(PageInput page, SortInput sort, List<FilterInput> filters){
-		return markerRepository.findByCriteria(MarkerModel.class,filters,sort,page).map(r -> converter.convert(r,MarkerTo.class));
+	public Page<MarkerTo> findmarkers(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return markerRepository.findByCriteria(MarkerModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,MarkerTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param markerId
 	 */
 	public Set<MarkerSynonymTo> findmarkersynonyms(int markerId){
@@ -113,7 +113,7 @@ import org.ebs.services.to.VendorTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param markerId
 	 */
 	public Set<VendorTo> findvendors(int markerId){
@@ -121,7 +121,7 @@ import org.ebs.services.to.VendorTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param vendorRepository
 	 * @param assaygeneRepository
 	 * @param markersynonymRepository
@@ -130,7 +130,7 @@ import org.ebs.services.to.VendorTo;
 	 */
 	@Autowired
 	public MarkerServiceImpl(VendorRepository vendorRepository, AssayGeneRepository assaygeneRepository, MarkerSynonymRepository markersynonymRepository, ConversionService converter, MarkerRepository markerRepository){
-		this.markerRepository =markerRepository; 
+		this.markerRepository =markerRepository;
 		 this.converter = converter;
 		 this.markersynonymRepository = markersynonymRepository;
 		 this.assaygeneRepository = assaygeneRepository;
@@ -138,14 +138,14 @@ import org.ebs.services.to.VendorTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param marker
 	 */
 	@Override @Transactional(readOnly = false)
 	public MarkerTo modifymarker(MarkerInput marker){
-		MarkerModel target= markerRepository.findById(marker.getId()).orElseThrow(() -> new RuntimeException("Marker not found")); 
-		 MarkerModel source= converter.convert(marker,MarkerModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		MarkerModel target= markerRepository.findById(marker.getId()).orElseThrow(() -> new RuntimeException("Marker not found"));
+		 MarkerModel source= converter.convert(marker,MarkerModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(markerRepository.save(target), MarkerTo.class);
 	}
 

@@ -56,7 +56,7 @@ import org.ebs.services.to.ModuleTo;
 	public RoleRepository roleRepository;
 
 	/**
-	 * 
+	 *
 	 * @param moduleRepository
 	 * @param actionRepository
 	 * @param converter
@@ -67,7 +67,7 @@ import org.ebs.services.to.ModuleTo;
 	 */
 	@Autowired
 	public ActionServiceImpl(ModuleRepository moduleRepository, ActionRepository actionRepository, ConversionService converter, WorkflowStageRepository workflowstageRepository, RoleActionRepository roleactionRepository, WorkflowNodeRepository workflownodeRepository, RoleRepository roleRepository){
-		this.actionRepository =actionRepository; 
+		this.actionRepository =actionRepository;
 		 this.converter = converter;
 		 this.workflowstageRepository = workflowstageRepository;
 		 this.roleactionRepository = roleactionRepository;
@@ -77,60 +77,60 @@ import org.ebs.services.to.ModuleTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param Action
 	 */
 	@Override @Transactional(readOnly = false)
 	public ActionTo createaction(ActionInput Action){
-		ActionModel model = converter.convert(Action,ActionModel.class); 
+		ActionModel model = converter.convert(Action,ActionModel.class);
 		 model.setId(0);
-		 WorkflowStageModel workflowstageModel = workflowstageRepository.findById(Action.getWorkflowstage().getId()).get(); 
-		model.setWorkflowstage(workflowstageModel); 
-		WorkflowNodeModel workflownodeModel = workflownodeRepository.findById(Action.getWorkflownode().getId()).get(); 
-		model.setWorkflownode(workflownodeModel); 
-		ModuleModel moduleModel = moduleRepository.findById(Action.getModule().getId()).get(); 
-		model.setModule(moduleModel); 
-		 
-		 model= actionRepository.save(model); 
-		 return converter.convert(model, ActionTo.class); 
+		 WorkflowStageModel workflowstageModel = workflowstageRepository.findById(Action.getWorkflowstage().getId()).get();
+		model.setWorkflowstage(workflowstageModel);
+		WorkflowNodeModel workflownodeModel = workflownodeRepository.findById(Action.getWorkflownode().getId()).get();
+		model.setWorkflownode(workflownodeModel);
+		ModuleModel moduleModel = moduleRepository.findById(Action.getModule().getId()).get();
+		model.setModule(moduleModel);
+
+		 model= actionRepository.save(model);
+		 return converter.convert(model, ActionTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param actionId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteaction(int actionId){
-		ActionModel action = actionRepository.findById(actionId).orElseThrow(() -> new RuntimeException("Action not found")); 
-		 action.setDeleted(true); 
-		  actionRepository.save(action); 
+		ActionModel action = actionRepository.findById(actionId).orElseThrow(() -> new RuntimeException("Action not found"));
+		 action.setDeleted(true);
+		  actionRepository.save(action);
 		 return actionId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param actionId
 	 */
 	@Override
 	public Optional<ActionTo> findaction(int actionId){
-		if(actionId <1) 
-		 {return Optional.empty();} 
+		if(actionId <1)
+		 {return Optional.empty();}
 		 return actionRepository.findById(actionId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,ActionTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<ActionTo> findactions(PageInput page, SortInput sort, List<FilterInput> filters){
-		return actionRepository.findByCriteria(ActionModel.class,filters,sort,page).map(r -> converter.convert(r,ActionTo.class));
+	public Page<ActionTo> findactions(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return actionRepository.findByCriteria(ActionModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,ActionTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param actionId
 	 */
 	public Optional<ModuleTo> findmodule(int actionId){
@@ -138,7 +138,7 @@ import org.ebs.services.to.ModuleTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param actionId
 	 */
 	public Set<RoleActionTo> findroleactions(int actionId){
@@ -146,7 +146,7 @@ import org.ebs.services.to.ModuleTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param actionId
 	 */
 	public Set<RoleTo> findroles(int actionId){
@@ -154,7 +154,7 @@ import org.ebs.services.to.ModuleTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param actionId
 	 */
 	public Optional<WorkflowNodeTo> findworkflownode(int actionId){
@@ -162,7 +162,7 @@ import org.ebs.services.to.ModuleTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param actionId
 	 */
 	public Optional<WorkflowStageTo> findworkflowstage(int actionId){
@@ -170,14 +170,14 @@ import org.ebs.services.to.ModuleTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param action
 	 */
 	@Override @Transactional(readOnly = false)
 	public ActionTo modifyaction(ActionInput action){
-		ActionModel target= actionRepository.findById(action.getId()).orElseThrow(() -> new RuntimeException("Action not found")); 
-		 ActionModel source= converter.convert(action,ActionModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		ActionModel target= actionRepository.findById(action.getId()).orElseThrow(() -> new RuntimeException("Action not found"));
+		 ActionModel source= converter.convert(action,ActionModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(actionRepository.save(target), ActionTo.class);
 	}
 

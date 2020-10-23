@@ -45,7 +45,7 @@ import org.ebs.services.to.ServiceTo;
 	public TechnologyPlatformRepository technologyplatformRepository;
 
 	/**
-	 * 
+	 *
 	 * @param serviceRepository
 	 * @param technologyplatformRepository
 	 * @param converter
@@ -53,63 +53,63 @@ import org.ebs.services.to.ServiceTo;
 	 */
 	@Autowired
 	public AssayclassServiceImpl(ServiceRepository serviceRepository, TechnologyPlatformRepository technologyplatformRepository, ConversionService converter, AssayclassRepository assayclassRepository){
-		this.assayclassRepository =assayclassRepository; 
+		this.assayclassRepository =assayclassRepository;
 		 this.converter = converter;
 		 this.technologyplatformRepository = technologyplatformRepository;
 		 this.serviceRepository = serviceRepository;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param Assayclass
 	 */
 	@Override @Transactional(readOnly = false)
 	public AssayclassTo createassayclass(AssayclassInput Assayclass){
-		AssayclassModel model = converter.convert(Assayclass,AssayclassModel.class); 
+		AssayclassModel model = converter.convert(Assayclass,AssayclassModel.class);
 		 model.setId(0);
-		 ServiceModel serviceModel = serviceRepository.findById(Assayclass.getService().getId()).get(); 
-		model.setService(serviceModel); 
-		 
-		 model= assayclassRepository.save(model); 
-		 return converter.convert(model, AssayclassTo.class); 
+		 ServiceModel serviceModel = serviceRepository.findById(Assayclass.getService().getId()).get();
+		model.setService(serviceModel);
+
+		 model= assayclassRepository.save(model);
+		 return converter.convert(model, AssayclassTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param assayclassId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteassayclass(int assayclassId){
-		AssayclassModel assayclass = assayclassRepository.findById(assayclassId).orElseThrow(() -> new RuntimeException("Assayclass not found")); 
-		 assayclass.setDeleted(true); 
-		  assayclassRepository.save(assayclass); 
+		AssayclassModel assayclass = assayclassRepository.findById(assayclassId).orElseThrow(() -> new RuntimeException("Assayclass not found"));
+		 assayclass.setDeleted(true);
+		  assayclassRepository.save(assayclass);
 		 return assayclassId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param assayclassId
 	 */
 	@Override
 	public Optional<AssayclassTo> findassayclass(int assayclassId){
-		if(assayclassId <1) 
-		 {return Optional.empty();} 
+		if(assayclassId <1)
+		 {return Optional.empty();}
 		 return assayclassRepository.findById(assayclassId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,AssayclassTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<AssayclassTo> findassayclasss(PageInput page, SortInput sort, List<FilterInput> filters){
-		return assayclassRepository.findByCriteria(AssayclassModel.class,filters,sort,page).map(r -> converter.convert(r,AssayclassTo.class));
+	public Page<AssayclassTo> findassayclasss(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return assayclassRepository.findByCriteria(AssayclassModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,AssayclassTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param assayclassId
 	 */
 	public Optional<ServiceTo> findservice(int assayclassId){
@@ -117,7 +117,7 @@ import org.ebs.services.to.ServiceTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param assayclassId
 	 */
 	public Set<TechnologyPlatformTo> findtechnologyplatforms(int assayclassId){
@@ -125,14 +125,14 @@ import org.ebs.services.to.ServiceTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param assayclass
 	 */
 	@Override @Transactional(readOnly = false)
 	public AssayclassTo modifyassayclass(AssayclassInput assayclass){
-		AssayclassModel target= assayclassRepository.findById(assayclass.getId()).orElseThrow(() -> new RuntimeException("Assayclass not found")); 
-		 AssayclassModel source= converter.convert(assayclass,AssayclassModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		AssayclassModel target= assayclassRepository.findById(assayclass.getId()).orElseThrow(() -> new RuntimeException("Assayclass not found"));
+		 AssayclassModel source= converter.convert(assayclass,AssayclassModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(assayclassRepository.save(target), AssayclassTo.class);
 	}
 

@@ -47,20 +47,20 @@ import org.ebs.services.to.SeasonTo;
 	public SeasonRepository seasonRepository;
 
 	/**
-	 * 
+	 *
 	 * @param Crop
 	 */
 	@Override @Transactional(readOnly = false)
 	public CropTo createcrop(CropInput Crop){
-		CropModel model = converter.convert(Crop,CropModel.class); 
+		CropModel model = converter.convert(Crop,CropModel.class);
 		 model.setId(0);
-		  
-		 model= cropRepository.save(model); 
-		 return converter.convert(model, CropTo.class); 
+
+		 model= cropRepository.save(model);
+		 return converter.convert(model, CropTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param seasonRepository
 	 * @param serviceproviderRepository
 	 * @param programRepository
@@ -69,7 +69,7 @@ import org.ebs.services.to.SeasonTo;
 	 */
 	@Autowired
 	public CropServiceImpl(SeasonRepository seasonRepository, ServiceProviderRepository serviceproviderRepository, ProgramRepository programRepository, ConversionService converter, CropRepository cropRepository){
-		this.cropRepository =cropRepository; 
+		this.cropRepository =cropRepository;
 		 this.converter = converter;
 		 this.programRepository = programRepository;
 		 this.serviceproviderRepository = serviceproviderRepository;
@@ -77,41 +77,41 @@ import org.ebs.services.to.SeasonTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param cropId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deletecrop(int cropId){
-		CropModel crop = cropRepository.findById(cropId).orElseThrow(() -> new RuntimeException("Crop not found")); 
-		 crop.setDeleted(true); 
-		  cropRepository.save(crop); 
+		CropModel crop = cropRepository.findById(cropId).orElseThrow(() -> new RuntimeException("Crop not found"));
+		 crop.setDeleted(true);
+		  cropRepository.save(crop);
 		 return cropId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param cropId
 	 */
 	@Override
 	public Optional<CropTo> findcrop(int cropId){
-		if(cropId <1) 
-		 {return Optional.empty();} 
+		if(cropId <1)
+		 {return Optional.empty();}
 		 return cropRepository.findById(cropId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,CropTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<CropTo> findcrops(PageInput page, SortInput sort, List<FilterInput> filters){
-		return cropRepository.findByCriteria(CropModel.class,filters,sort,page).map(r -> converter.convert(r,CropTo.class));
+	public Page<CropTo> findcrops(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return cropRepository.findByCriteria(CropModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,CropTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param cropId
 	 */
 	public Set<ProgramTo> findprograms(int cropId){
@@ -119,7 +119,7 @@ import org.ebs.services.to.SeasonTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param cropId
 	 */
 	public Set<SeasonTo> findseasons(int cropId){
@@ -127,7 +127,7 @@ import org.ebs.services.to.SeasonTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param cropId
 	 */
 	public Set<ServiceProviderTo> findserviceproviders(int cropId){
@@ -135,14 +135,14 @@ import org.ebs.services.to.SeasonTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param crop
 	 */
 	@Override @Transactional(readOnly = false)
 	public CropTo modifycrop(CropInput crop){
-		CropModel target= cropRepository.findById(crop.getId()).orElseThrow(() -> new RuntimeException("Crop not found")); 
-		 CropModel source= converter.convert(crop,CropModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		CropModel target= cropRepository.findById(crop.getId()).orElseThrow(() -> new RuntimeException("Crop not found"));
+		 CropModel source= converter.convert(crop,CropModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(cropRepository.save(target), CropTo.class);
 	}
 

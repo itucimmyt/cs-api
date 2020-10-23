@@ -58,36 +58,36 @@ import org.ebs.services.to.PersonTo;
 	public RoleRepository roleRepository;
 
 	/**
-	 * 
+	 *
 	 * @param User
 	 */
 	@Override @Transactional(readOnly = false)
 	public UserTo createuser(UserInput User){
-		UserModel model = converter.convert(User,UserModel.class); 
+		UserModel model = converter.convert(User,UserModel.class);
 		 model.setId(0);
-		 TenantModel tenantModel = tenantRepository.findById(User.getTenant().getId()).get(); 
-		model.setTenant(tenantModel); 
-		PersonModel personModel = personRepository.findById(User.getPerson().getId()).get(); 
-		model.setPerson(personModel); 
-		 
-		 model= userRepository.save(model); 
-		 return converter.convert(model, UserTo.class); 
+		 TenantModel tenantModel = tenantRepository.findById(User.getTenant().getId()).get();
+		model.setTenant(tenantModel);
+		PersonModel personModel = personRepository.findById(User.getPerson().getId()).get();
+		model.setPerson(personModel);
+
+		 model= userRepository.save(model);
+		 return converter.convert(model, UserTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param userId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteuser(int userId){
-		UserModel user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found")); 
-		 user.setDeleted(true); 
-		  userRepository.save(user); 
+		UserModel user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+		 user.setDeleted(true);
+		  userRepository.save(user);
 		 return userId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param userId
 	 */
 	public Set<DelegationTo> finddelegations(int userId){
@@ -95,7 +95,7 @@ import org.ebs.services.to.PersonTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param userId
 	 */
 	public Optional<PersonTo> findperson(int userId){
@@ -103,7 +103,7 @@ import org.ebs.services.to.PersonTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param userId
 	 */
 	public Set<PreferenceTo> findpreferences(int userId){
@@ -111,7 +111,7 @@ import org.ebs.services.to.PersonTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param userId
 	 */
 	public Set<RoleTo> findroles(int userId){
@@ -119,7 +119,7 @@ import org.ebs.services.to.PersonTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param userId
 	 */
 	public Set<SessionTo> findsessions(int userId){
@@ -127,7 +127,7 @@ import org.ebs.services.to.PersonTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param userId
 	 */
 	public Optional<TenantTo> findtenant(int userId){
@@ -135,41 +135,41 @@ import org.ebs.services.to.PersonTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param userId
 	 */
 	@Override
 	public Optional<UserTo> finduser(int userId){
-		if(userId <1) 
-		 {return Optional.empty();} 
+		if(userId <1)
+		 {return Optional.empty();}
 		 return userRepository.findById(userId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,UserTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<UserTo> findusers(PageInput page, SortInput sort, List<FilterInput> filters){
-		return userRepository.findByCriteria(UserModel.class,filters,sort,page).map(r -> converter.convert(r,UserTo.class));
+	public Page<UserTo> findusers(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return userRepository.findByCriteria(UserModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,UserTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param user
 	 */
 	@Override @Transactional(readOnly = false)
 	public UserTo modifyuser(UserInput user){
-		UserModel target= userRepository.findById(user.getId()).orElseThrow(() -> new RuntimeException("User not found")); 
-		 UserModel source= converter.convert(user,UserModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		UserModel target= userRepository.findById(user.getId()).orElseThrow(() -> new RuntimeException("User not found"));
+		 UserModel source= converter.convert(user,UserModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(userRepository.save(target), UserTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param personRepository
 	 * @param userRepository
 	 * @param converter
@@ -181,7 +181,7 @@ import org.ebs.services.to.PersonTo;
 	 */
 	@Autowired
 	public UserServiceImpl(PersonRepository personRepository, UserRepository userRepository, ConversionService converter, SessionRepository sessionRepository, DelegationRepository delegationRepository, TenantRepository tenantRepository, PreferenceRepository preferenceRepository, RoleRepository roleRepository){
-		this.userRepository =userRepository; 
+		this.userRepository =userRepository;
 		 this.converter = converter;
 		 this.sessionRepository = sessionRepository;
 		 this.delegationRepository = delegationRepository;

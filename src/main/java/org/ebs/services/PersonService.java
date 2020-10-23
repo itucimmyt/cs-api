@@ -37,99 +37,99 @@ import org.ebs.services.to.TenantTo;
 public interface PersonService {
 
 	/**
-	 * 
+	 *
 	 * @param Person
 	 */
 	public PersonTo createperson(PersonInput Person);
 
 	/**
-	 * 
+	 *
 	 * @param personId
 	 */
 	public int deleteperson(int personId);
 
 	/**
-	 * 
+	 *
 	 * @param personId
 	 */
 	public Set<AddressTo> findaddresss(int personId);
 
 	/**
-	 * 
+	 *
 	 * @param personId
 	 */
 	public Set<CollaboratorTo> findcollaborators(int personId);
 
 	/**
-	 * 
+	 *
 	 * @param personId
 	 */
 	public Set<DonorTo> finddonors(int personId);
 
 	/**
-	 * 
+	 *
 	 * @param personId
 	 */
 	public Optional<LanguageTo> findlanguage(int personId);
 
 	/**
-	 * 
+	 *
 	 * @param personId
 	 */
 	public Set<PartnerTo> findpartners(int personId);
 
 	/**
-	 * 
+	 *
 	 * @param personId
 	 */
 	public Optional<PersonTo> findperson(int personId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<PersonTo> findpersons(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<PersonTo> findpersons(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param personId
 	 */
 	public Set<ProjectTo> findprojects(int personId);
 
 	/**
-	 * 
+	 *
 	 * @param personId
 	 */
 	public Set<RequestTo> findrequests(int personId);
 
 	/**
-	 * 
+	 *
 	 * @param personId
 	 */
 	public Set<TeamTo> findteams(int personId);
 
 	/**
-	 * 
+	 *
 	 * @param personId
 	 */
 	public Optional<TenantTo> findtenant(int personId);
 
 	/**
-	 * 
+	 *
 	 * @param personId
 	 */
 	public Set<UserTo> findusers(int personId);
 
 	/**
-	 * 
+	 *
 	 * @param personId
 	 */
 	public Set<VendorTo> findvendors(int personId);
 
 	/**
-	 * 
+	 *
 	 * @param person
 	 */
 	public PersonTo modifyperson(PersonInput person);

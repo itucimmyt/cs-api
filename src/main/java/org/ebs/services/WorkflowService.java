@@ -32,75 +32,75 @@ import org.ebs.services.to.HtmlTagTo;
 public interface WorkflowService {
 
 	/**
-	 * 
+	 *
 	 * @param Workflow
 	 */
 	public WorkflowTo createworkflow(WorkflowInput Workflow);
 
 	/**
-	 * 
+	 *
 	 * @param workflowId
 	 */
 	public int deleteworkflow(int workflowId);
 
 	/**
-	 * 
+	 *
 	 * @param workflowId
 	 */
 	public Optional<EntityReferenceTo> findentityreference(int workflowId);
 
 	/**
-	 * 
+	 *
 	 * @param workflowId
 	 */
 	public Optional<HtmlTagTo> findhtmltag(int workflowId);
 
 	/**
-	 * 
+	 *
 	 * @param workflowId
 	 */
 	public Optional<TenantTo> findtenant(int workflowId);
 
 	/**
-	 * 
+	 *
 	 * @param workflowId
 	 */
 	public Optional<WorkflowTo> findworkflow(int workflowId);
 
 	/**
-	 * 
+	 *
 	 * @param workflowId
 	 */
 	public Set<WorkflowInstanceTo> findworkflowinstances(int workflowId);
 
 	/**
-	 * 
+	 *
 	 * @param workflowId
 	 */
 	public Optional<WorkflowNodeTo> findworkflownode(int workflowId);
 
 	/**
-	 * 
+	 *
 	 * @param workflowId
 	 */
 	public Set<WorkflowNodeTo> findworkflownodes(int workflowId);
 
 	/**
-	 * 
+	 *
 	 * @param workflowId
 	 */
 	public Set<WorkflowPhaseTo> findworkflowphases(int workflowId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<WorkflowTo> findworkflows(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<WorkflowTo> findworkflows(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param workflow
 	 */
 	public WorkflowTo modifyworkflow(WorkflowInput workflow);

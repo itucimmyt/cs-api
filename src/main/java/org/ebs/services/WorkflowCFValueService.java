@@ -27,45 +27,45 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 public interface WorkflowCFValueService {
 
 	/**
-	 * 
+	 *
 	 * @param WorkflowCFValue
 	 */
 	public WorkflowCFValueTo createworkflowcfvalue(WorkflowCFValueInput WorkflowCFValue);
 
 	/**
-	 * 
+	 *
 	 * @param workflowcfvalueId
 	 */
 	public int deleteworkflowcfvalue(int workflowcfvalueId);
 
 	/**
-	 * 
+	 *
 	 * @param workflowcfvalueId
 	 */
 	public Optional<RequestTo> findrequest(int workflowcfvalueId);
 
 	/**
-	 * 
+	 *
 	 * @param workflowcfvalueId
 	 */
 	public Optional<WorkflowCFValueTo> findworkflowcfvalue(int workflowcfvalueId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<WorkflowCFValueTo> findworkflowcfvalues(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<WorkflowCFValueTo> findworkflowcfvalues(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param workflowcfvalueId
 	 */
 	public Optional<WorkflowNodeCFTo> findworkflownodecf(int workflowcfvalueId);
 
 	/**
-	 * 
+	 *
 	 * @param workflowcfvalue
 	 */
 	public WorkflowCFValueTo modifyworkflowcfvalue(WorkflowCFValueInput workflowcfvalue);

@@ -27,39 +27,39 @@ import org.ebs.services.to.CropTo;
 public interface SeasonService {
 
 	/**
-	 * 
+	 *
 	 * @param Season
 	 */
 	public SeasonTo createseason(SeasonInput Season);
 
 	/**
-	 * 
+	 *
 	 * @param seasonId
 	 */
 	public int deleteseason(int seasonId);
 
 	/**
-	 * 
+	 *
 	 * @param seasonId
 	 */
 	public Set<CropTo> findcrops(int seasonId);
 
 	/**
-	 * 
+	 *
 	 * @param seasonId
 	 */
 	public Optional<SeasonTo> findseason(int seasonId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<SeasonTo> findseasons(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<SeasonTo> findseasons(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param season
 	 */
 	public SeasonTo modifyseason(SeasonInput season);

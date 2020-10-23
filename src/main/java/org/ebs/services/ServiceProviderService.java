@@ -29,51 +29,51 @@ import org.ebs.services.to.CountryTo;
 public interface ServiceProviderService {
 
 	/**
-	 * 
+	 *
 	 * @param ServiceProvider
 	 */
 	public ServiceProviderTo createserviceprovider(ServiceProviderInput ServiceProvider);
 
 	/**
-	 * 
+	 *
 	 * @param serviceproviderId
 	 */
 	public int deleteserviceprovider(int serviceproviderId);
 
 	/**
-	 * 
+	 *
 	 * @param serviceproviderId
 	 */
 	public Optional<CountryTo> findcountry(int serviceproviderId);
 
 	/**
-	 * 
+	 *
 	 * @param serviceproviderId
 	 */
 	public Set<CropTo> findcrops(int serviceproviderId);
 
 	/**
-	 * 
+	 *
 	 * @param serviceproviderId
 	 */
 	public Optional<ServiceProviderTo> findserviceprovider(int serviceproviderId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<ServiceProviderTo> findserviceproviders(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<ServiceProviderTo> findserviceproviders(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param serviceproviderId
 	 */
 	public Set<ServiceTypeTo> findservicetypes(int serviceproviderId);
 
 	/**
-	 * 
+	 *
 	 * @param serviceprovider
 	 */
 	public ServiceProviderTo modifyserviceprovider(ServiceProviderInput serviceprovider);

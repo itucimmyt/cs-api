@@ -45,36 +45,36 @@ import org.springframework.transaction.annotation.Transactional;
 	private RoleRepository roleRepository;
 
 	/**
-	 * 
+	 *
 	 * @param RoleAction
 	 */
 	@Override @Transactional(readOnly = false)
 	public RoleActionTo createroleaction(RoleActionInput RoleAction){
-		RoleActionModel model = converter.convert(RoleAction,RoleActionModel.class); 
+		RoleActionModel model = converter.convert(RoleAction,RoleActionModel.class);
 		 model.setId(0);
-		 ActionModel actionModel = actionRepository.findById(RoleAction.getAction().getId()).get(); 
-		model.setAction(actionModel); 
-		RoleModel roleModel = roleRepository.findById(RoleAction.getRole().getId()).get(); 
-		model.setRole(roleModel); 
-		 
-		 model= roleactionRepository.save(model); 
-		 return converter.convert(model, RoleActionTo.class); 
+		 ActionModel actionModel = actionRepository.findById(RoleAction.getAction().getId()).get();
+		model.setAction(actionModel);
+		RoleModel roleModel = roleRepository.findById(RoleAction.getRole().getId()).get();
+		model.setRole(roleModel);
+
+		 model= roleactionRepository.save(model);
+		 return converter.convert(model, RoleActionTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param roleactionId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteroleaction(int roleactionId){
-		RoleActionModel roleaction = roleactionRepository.findById(roleactionId).orElseThrow(() -> new RuntimeException("RoleAction not found")); 
-		 roleaction.setDeleted(true); 
-		  roleactionRepository.save(roleaction); 
+		RoleActionModel roleaction = roleactionRepository.findById(roleactionId).orElseThrow(() -> new RuntimeException("RoleAction not found"));
+		 roleaction.setDeleted(true);
+		  roleactionRepository.save(roleaction);
 		 return roleactionId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param roleactionId
 	 */
 	public Optional<ActionTo> findaction(int roleactionId){
@@ -82,7 +82,7 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param roleactionId
 	 */
 	public Optional<RoleTo> findrole(int roleactionId){
@@ -90,41 +90,41 @@ import org.springframework.transaction.annotation.Transactional;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param roleactionId
 	 */
 	@Override
 	public Optional<RoleActionTo> findroleaction(int roleactionId){
-		if(roleactionId <1) 
-		 {return Optional.empty();} 
+		if(roleactionId <1)
+		 {return Optional.empty();}
 		 return roleactionRepository.findById(roleactionId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,RoleActionTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<RoleActionTo> findroleactions(PageInput page, SortInput sort, List<FilterInput> filters){
-		return roleactionRepository.findByCriteria(RoleActionModel.class,filters,sort,page).map(r -> converter.convert(r,RoleActionTo.class));
+	public Page<RoleActionTo> findroleactions(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return roleactionRepository.findByCriteria(RoleActionModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,RoleActionTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param roleaction
 	 */
 	@Override @Transactional(readOnly = false)
 	public RoleActionTo modifyroleaction(RoleActionInput roleaction){
-		RoleActionModel target= roleactionRepository.findById(roleaction.getId()).orElseThrow(() -> new RuntimeException("RoleAction not found")); 
-		 RoleActionModel source= converter.convert(roleaction,RoleActionModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		RoleActionModel target= roleactionRepository.findById(roleaction.getId()).orElseThrow(() -> new RuntimeException("RoleAction not found"));
+		 RoleActionModel source= converter.convert(roleaction,RoleActionModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(roleactionRepository.save(target), RoleActionTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param roleRepository
 	 * @param actionRepository
 	 * @param converter
@@ -132,7 +132,7 @@ import org.springframework.transaction.annotation.Transactional;
 	 */
 	@Autowired
 	public RoleActionServiceImpl(RoleRepository roleRepository, ActionRepository actionRepository, ConversionService converter, RoleActionRepository roleactionRepository){
-		this.roleactionRepository =roleactionRepository; 
+		this.roleactionRepository =roleactionRepository;
 		 this.converter = converter;
 		 this.roleRepository = roleRepository;
 	}

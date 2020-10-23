@@ -36,93 +36,93 @@ import org.ebs.services.to.ProgramTo;
 public interface TenantService {
 
 	/**
-	 * 
+	 *
 	 * @param Tenant
 	 */
 	public TenantTo createtenant(TenantInput Tenant);
 
 	/**
-	 * 
+	 *
 	 * @param tenantId
 	 */
 	public int deletetenant(int tenantId);
 
 	/**
-	 * 
+	 *
 	 * @param tenantId
 	 */
 	public Optional<AuthenticationTypeTo> findauthenticationtype(int tenantId);
 
 	/**
-	 * 
+	 *
 	 * @param tenantId
 	 */
 	public Optional<CustomerTo> findcustomer(int tenantId);
 
 	/**
-	 * 
+	 *
 	 * @param tenantId
 	 */
 	public Set<EmailTemplateTo> findemailtemplates(int tenantId);
 
 	/**
-	 * 
+	 *
 	 * @param tenantId
 	 */
 	public Set<InstanceTo> findinstances(int tenantId);
 
 	/**
-	 * 
+	 *
 	 * @param tenantId
 	 */
 	public Set<NumberSequenceRuleTo> findnumbersequencerules(int tenantId);
 
 	/**
-	 * 
+	 *
 	 * @param tenantId
 	 */
 	public Optional<OrganizationTo> findorganization(int tenantId);
 
 	/**
-	 * 
+	 *
 	 * @param tenantId
 	 */
 	public Set<PersonTo> findpersons(int tenantId);
 
 	/**
-	 * 
+	 *
 	 * @param tenantId
 	 */
 	public Set<ProgramTo> findprograms(int tenantId);
 
 	/**
-	 * 
+	 *
 	 * @param tenantId
 	 */
 	public Optional<TenantTo> findtenant(int tenantId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<TenantTo> findtenants(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<TenantTo> findtenants(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param tenantId
 	 */
 	public Set<UserTo> findusers(int tenantId);
 
 	/**
-	 * 
+	 *
 	 * @param tenantId
 	 */
 	public Set<WorkflowTo> findworkflows(int tenantId);
 
 	/**
-	 * 
+	 *
 	 * @param tenant
 	 */
 	public TenantTo modifytenant(TenantInput tenant);

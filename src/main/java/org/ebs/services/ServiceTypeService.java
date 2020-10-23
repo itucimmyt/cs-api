@@ -28,45 +28,45 @@ import org.ebs.services.to.ServiceProviderTo;
 public interface ServiceTypeService {
 
 	/**
-	 * 
+	 *
 	 * @param ServiceType
 	 */
 	public ServiceTypeTo createservicetype(ServiceTypeInput ServiceType);
 
 	/**
-	 * 
+	 *
 	 * @param servicetypeId
 	 */
 	public int deleteservicetype(int servicetypeId);
 
 	/**
-	 * 
+	 *
 	 * @param servicetypeId
 	 */
 	public Set<PurposeTo> findpurposes(int servicetypeId);
 
 	/**
-	 * 
+	 *
 	 * @param servicetypeId
 	 */
 	public Set<ServiceProviderTo> findserviceproviders(int servicetypeId);
 
 	/**
-	 * 
+	 *
 	 * @param servicetypeId
 	 */
 	public Optional<ServiceTypeTo> findservicetype(int servicetypeId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<ServiceTypeTo> findservicetypes(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<ServiceTypeTo> findservicetypes(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param servicetype
 	 */
 	public ServiceTypeTo modifyservicetype(ServiceTypeInput servicetype);

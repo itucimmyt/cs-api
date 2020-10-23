@@ -28,45 +28,45 @@ import org.ebs.services.to.TenantTo;
 public interface EmailTemplateService {
 
 	/**
-	 * 
+	 *
 	 * @param EmailTemplate
 	 */
 	public EmailTemplateTo createemailtemplate(EmailTemplateInput EmailTemplate);
 
 	/**
-	 * 
+	 *
 	 * @param emailtemplateId
 	 */
 	public int deleteemailtemplate(int emailtemplateId);
 
 	/**
-	 * 
+	 *
 	 * @param emailtemplateId
 	 */
 	public Optional<EmailTemplateTo> findemailtemplate(int emailtemplateId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<EmailTemplateTo> findemailtemplates(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<EmailTemplateTo> findemailtemplates(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param emailtemplateId
 	 */
 	public Set<EntityReferenceTo> findentityreferences(int emailtemplateId);
 
 	/**
-	 * 
+	 *
 	 * @param emailtemplateId
 	 */
 	public Optional<TenantTo> findtenant(int emailtemplateId);
 
 	/**
-	 * 
+	 *
 	 * @param emailtemplate
 	 */
 	public EmailTemplateTo modifyemailtemplate(EmailTemplateInput emailtemplate);

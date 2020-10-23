@@ -41,67 +41,67 @@ import org.ebs.services.to.TenantTo;
 	public TenantRepository tenantRepository;
 
 	/**
-	 * 
+	 *
 	 * @param tenantRepository
 	 * @param converter
 	 * @param authenticationtypeRepository
 	 */
 	@Autowired
 	public AuthenticationTypeServiceImpl(TenantRepository tenantRepository, ConversionService converter, AuthenticationTypeRepository authenticationtypeRepository){
-		this.authenticationtypeRepository =authenticationtypeRepository; 
+		this.authenticationtypeRepository =authenticationtypeRepository;
 		 this.converter = converter;
 		 this.tenantRepository = tenantRepository;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param AuthenticationType
 	 */
 	@Override @Transactional(readOnly = false)
 	public AuthenticationTypeTo createauthenticationtype(AuthenticationTypeInput AuthenticationType){
-		AuthenticationTypeModel model = converter.convert(AuthenticationType,AuthenticationTypeModel.class); 
+		AuthenticationTypeModel model = converter.convert(AuthenticationType,AuthenticationTypeModel.class);
 		 model.setId(0);
-		  
-		 model= authenticationtypeRepository.save(model); 
-		 return converter.convert(model, AuthenticationTypeTo.class); 
+
+		 model= authenticationtypeRepository.save(model);
+		 return converter.convert(model, AuthenticationTypeTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param authenticationtypeId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteauthenticationtype(int authenticationtypeId){
-		AuthenticationTypeModel authenticationtype = authenticationtypeRepository.findById(authenticationtypeId).orElseThrow(() -> new RuntimeException("AuthenticationType not found")); 
-		 authenticationtype.setDeleted(true); 
-		  authenticationtypeRepository.save(authenticationtype); 
+		AuthenticationTypeModel authenticationtype = authenticationtypeRepository.findById(authenticationtypeId).orElseThrow(() -> new RuntimeException("AuthenticationType not found"));
+		 authenticationtype.setDeleted(true);
+		  authenticationtypeRepository.save(authenticationtype);
 		 return authenticationtypeId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param authenticationtypeId
 	 */
 	@Override
 	public Optional<AuthenticationTypeTo> findauthenticationtype(int authenticationtypeId){
-		if(authenticationtypeId <1) 
-		 {return Optional.empty();} 
+		if(authenticationtypeId <1)
+		 {return Optional.empty();}
 		 return authenticationtypeRepository.findById(authenticationtypeId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,AuthenticationTypeTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<AuthenticationTypeTo> findauthenticationtypes(PageInput page, SortInput sort, List<FilterInput> filters){
-		return authenticationtypeRepository.findByCriteria(AuthenticationTypeModel.class,filters,sort,page).map(r -> converter.convert(r,AuthenticationTypeTo.class));
+	public Page<AuthenticationTypeTo> findauthenticationtypes(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return authenticationtypeRepository.findByCriteria(AuthenticationTypeModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,AuthenticationTypeTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param authenticationtypeId
 	 */
 	public Set<TenantTo> findtenants(int authenticationtypeId){
@@ -109,14 +109,14 @@ import org.ebs.services.to.TenantTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param authenticationtype
 	 */
 	@Override @Transactional(readOnly = false)
 	public AuthenticationTypeTo modifyauthenticationtype(AuthenticationTypeInput authenticationtype){
-		AuthenticationTypeModel target= authenticationtypeRepository.findById(authenticationtype.getId()).orElseThrow(() -> new RuntimeException("AuthenticationType not found")); 
-		 AuthenticationTypeModel source= converter.convert(authenticationtype,AuthenticationTypeModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		AuthenticationTypeModel target= authenticationtypeRepository.findById(authenticationtype.getId()).orElseThrow(() -> new RuntimeException("AuthenticationType not found"));
+		 AuthenticationTypeModel source= converter.convert(authenticationtype,AuthenticationTypeModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(authenticationtypeRepository.save(target), AuthenticationTypeTo.class);
 	}
 

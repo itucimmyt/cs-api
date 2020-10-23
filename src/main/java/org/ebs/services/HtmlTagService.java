@@ -38,99 +38,99 @@ import org.springframework.data.domain.Page;
 public interface HtmlTagService {
 
 	/**
-	 * 
+	 *
 	 * @param HtmlTag
 	 */
 	public HtmlTagTo createhtmltag(HtmlTagInput HtmlTag);
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	public int deletehtmltag(int htmltagId);
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	public Set<AlertTo> findalerts(int htmltagId);
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	public Set<AttributesTo> findattributess(int htmltagId);
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	public Set<ComponentTo> findcomponents(int htmltagId);
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	public Optional<HtmlTagTo> findhtmltag(int htmltagId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<HtmlTagTo> findhtmltags(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<HtmlTagTo> findhtmltags(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	public Set<ModuleTo> findmodules(int htmltagId);
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	public Set<NotificationTo> findnotifications(int htmltagId);
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	public Set<TranslationTo> findtranslations(int htmltagId);
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	public Set<WorkflowNodeCFTo> findworkflownodecfs(int htmltagId);
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	public Set<WorkflowNodeTo> findworkflownodes(int htmltagId);
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	public Set<WorkflowPhaseTo> findworkflowphases(int htmltagId);
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	public Set<WorkflowTo> findworkflows(int htmltagId);
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	public Set<WorkflowStageTo> findworkflowstages(int htmltagId);
 
 	/**
-	 * 
+	 *
 	 * @param htmltag
 	 */
 	public HtmlTagTo modifyhtmltag(HtmlTagInput htmltag);
