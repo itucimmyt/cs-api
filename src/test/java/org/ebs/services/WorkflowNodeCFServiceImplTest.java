@@ -2,6 +2,7 @@ package org.ebs.services;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -40,9 +41,9 @@ public class WorkflowNodeCFServiceImplTest {
     @Mock WorkflowCFTypeRepository mockWorkflowcftypeRepository;
     @Mock HtmlTagRepository mockHtmltagRepository;
     @Mock EntityReferenceRepository mockEntityreferenceRepository;
-    
+
     private WorkflowNodeCFServiceImpl subject;
-    
+
     @BeforeEach
     public void init() {
         subject = new WorkflowNodeCFServiceImpl(mockWorkflownodeRepository, mockWorkflownodecfRepository, mockConverter, mockWorkflowcfvalueRepository, mockWorkflowcftypeRepository, mockHtmltagRepository, mockEntityreferenceRepository);
@@ -56,10 +57,10 @@ public class WorkflowNodeCFServiceImplTest {
             .thenReturn(Optional.of(object));
         when(mockConverter.convert(any(), any()))
             .thenReturn(new WorkflowNodeCFTo());
-        
-        Optional<WorkflowNodeCFTo> result = subject.findworkflownodecf(1);
+
+        Optional<WorkflowNodeCFTo> result = subject.findWorkflowNodeCF(1);
             assertThat(result.isPresent()).isTrue();
-        
+
     }
 
     @Test
@@ -69,15 +70,15 @@ public class WorkflowNodeCFServiceImplTest {
 
         when(mockWorkflownodecfRepository.findById(anyInt()))
             .thenReturn(Optional.of(object));
-        
-        Optional<WorkflowNodeCFTo>result = subject.findworkflownodecf(1);
+
+        Optional<WorkflowNodeCFTo>result = subject.findWorkflowNodeCF(1);
         assertThat(result.isPresent()).isFalse();
 
     }
 
     @Test
     public void givenInvalidId_whenFindWorkflowNodeCF_thenReturnEmpty() {
-        Optional<WorkflowNodeCFTo> result = subject.findworkflownodecf(0);
+        Optional<WorkflowNodeCFTo> result = subject.findWorkflowNodeCF(0);
         assertThat(result.isPresent()).isFalse();
 
     }
@@ -89,21 +90,21 @@ public class WorkflowNodeCFServiceImplTest {
 
         Connection<WorkflowNodeCFModel> connection = new Connection<>(content, pageable, 2);
 
-        when(mockWorkflownodecfRepository.findByCriteria(any(), any(), any(), any()))
+        when(mockWorkflownodecfRepository.findByCriteria(any(), any(), any(), any(), anyBoolean()))
             .thenReturn(connection);
         when(mockConverter.convert(any(), any()))
             .thenReturn(new WorkflowNodeCFTo());
-            
-        Page<WorkflowNodeCFTo> result = subject.findworkflownodecfs(null, null, null,false);
+        Page<WorkflowNodeCFTo> result = subject.findWorkflowNodeCFs(null, null, null, false);
+
 
         assertThat(result).isNotNull();
         assertThat(result.getTotalElements()).isEqualTo(2);
 
         verify(mockWorkflownodecfRepository, times(1))
-            .findByCriteria(any(), any(), any(), any());
-        verify(mockConverter, times(2)) 
+            .findByCriteria(any(), any(), any(), any(), anyBoolean());
+        verify(mockConverter, times(2))
             .convert(any(), any());
-        
+
     }
 
 }

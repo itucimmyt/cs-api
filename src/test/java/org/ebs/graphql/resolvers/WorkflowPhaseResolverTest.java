@@ -29,7 +29,7 @@ public class WorkflowPhaseResolverTest {
 
     @Test
     public void givenHtmlTagExist_whenGetHtmltag_thenReturnHtmlTag() {
-        when(mockWorkflowphaseService.findhtmltag(anyInt()))
+        when(mockWorkflowphaseService.findHtmlTag(anyInt()))
             .thenReturn(Optional.of(new HtmlTagTo()));
 
         WorkflowPhaseTo object = new WorkflowPhaseTo();
@@ -40,7 +40,7 @@ public class WorkflowPhaseResolverTest {
 
     @Test
     public void givenHtmlTagNotExist_whenGetHtmltag_thenReturnNull() {
-        when(mockWorkflowphaseService.findhtmltag(anyInt()))
+        when(mockWorkflowphaseService.findHtmlTag(anyInt()))
             .thenReturn(Optional.empty());
 
         WorkflowPhaseTo object = new WorkflowPhaseTo();

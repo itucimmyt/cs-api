@@ -3,6 +3,7 @@ package org.ebs.services;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.times;
@@ -63,14 +64,15 @@ public class WorkflowNodeServiceImplTest {
     @Mock ActionRepository mockActionRepository;
 
     private WorkflowNodeServiceImpl subject;
-    
+
     @BeforeEach
     public void init() {
-        subject = new WorkflowNodeServiceImpl( mockWorkflownodeRepository, mockWorkfloweventRepository, mockConverter,
-            mockWorkflowstageRepository, mockWorkflowRepository,
-            mockEntityreferenceRepository, mockHtmltagRepository,
-            mockProcessRepository, mockModuleRepository, mockWorkflownodecfRepository, mockActionRepository);
+        subject = new WorkflowNodeServiceImpl( mockProcessRepository,
+        mockModuleRepository,mockWorkflownodecfRepository, mockWorkflownodeRepository,
+        mockConverter,mockWorkflowstageRepository, mockWorkflowRepository,
+        mockActionRepository,mockEntityreferenceRepository, mockWorkfloweventRepository,mockHtmltagRepository);
     }
+
     @Test
     public void givenNotDeletedWFNode_whenFindWorkflowNode_thenReturnTo() {
         WorkflowNodeModel object = new WorkflowNodeModel();
@@ -80,10 +82,10 @@ public class WorkflowNodeServiceImplTest {
             .thenReturn(Optional.of(object));
         when(mockConverter.convert(any(), any()))
             .thenReturn(new WorkflowNodeTo());
-        
-        Optional<WorkflowNodeTo> result = subject.findworkflownode(1);
+
+        Optional<WorkflowNodeTo> result = subject.findWorkflowNode(1);
             assertThat(result.isPresent()).isTrue();
-        
+
     }
 
     @Test
@@ -93,15 +95,15 @@ public class WorkflowNodeServiceImplTest {
 
         when(mockWorkflownodeRepository.findById(anyInt()))
             .thenReturn(Optional.of(object));
-        
-        Optional<WorkflowNodeTo>result = subject.findworkflownode(1);
+
+        Optional<WorkflowNodeTo>result = subject.findWorkflowNode(1);
         assertThat(result.isPresent()).isFalse();
 
     }
 
     @Test
     public void givenInvalidId_whenFindWorkflowNodeCF_thenReturnEmpty() {
-        Optional<WorkflowNodeTo> result = subject.findworkflownode(0);
+        Optional<WorkflowNodeTo> result = subject.findWorkflowNode(0);
         assertThat(result.isPresent()).isFalse();
 
     }
@@ -113,21 +115,20 @@ public class WorkflowNodeServiceImplTest {
 
         Connection<WorkflowNodeModel> connection = new Connection<>(content, pageable, 2);
 
-        when(mockWorkflownodeRepository.findByCriteria(any(), any(), any(), any()))
+        when(mockWorkflownodeRepository.findByCriteria(any(), any(), any(), any(), anyBoolean()))
             .thenReturn(connection);
         when(mockConverter.convert(any(), any()))
             .thenReturn(new WorkflowNodeTo());
-            
-        Page<WorkflowNodeTo> result = subject.findworkflownodes(null, null, null,false);
+        Page<WorkflowNodeTo> result = subject.findWorkflowNodes(null, null, null, false);
 
         assertThat(result).isNotNull();
         assertThat(result.getTotalElements()).isEqualTo(2);
 
         verify(mockWorkflownodeRepository, times(1))
-            .findByCriteria(any(), any(), any(), any());
-        verify(mockConverter, times(2)) 
+            .findByCriteria(any(), any(), any(), any(), anyBoolean());
+        verify(mockConverter, times(2))
             .convert(any(), any());
-        
+
     }
 
     @Test
@@ -150,7 +151,7 @@ public class WorkflowNodeServiceImplTest {
             .thenReturn(new WorkflowNodeModel());
 
         WorkflowNodeInput objectInput = initWorkflowNodeInput();
-        subject.createworkflownode(objectInput);
+        subject.createWorkflowNode(objectInput);
 
         verify(mockConverter, times(1))
             .convert(eq(objectInput), eq(WorkflowNodeModel.class));
@@ -183,8 +184,8 @@ public class WorkflowNodeServiceImplTest {
         WorkflowNodeInput objectInput = new WorkflowNodeInput();
         objectInput.setId(1);
         objectInput.setTenant(2);
-        
-        subject.createworkflownode(objectInput);
+
+        subject.createWorkflowNode(objectInput);
 
         verify(mockConverter, times(1))
             .convert(eq(objectInput), eq(WorkflowNodeModel.class));
@@ -218,15 +219,15 @@ public class WorkflowNodeServiceImplTest {
         when(mockWorkflownodeRepository.findById(anyInt()))
             .thenReturn(Optional.empty());
 
-        assertThrows("workflownode validation must fail", RuntimeException.class, () -> subject.modifyworkflownode(new WorkflowNodeInput()));
-        
+        assertThrows("workflownode validation must fail", RuntimeException.class, () -> subject.modifyWorkflowNode(new WorkflowNodeInput()));
+
     }
 
     @Test
     public void givenWorkflowNotExist_whenInitWorkflowNodeModel_thenThrowException() {
         when(mockWorkflowRepository.findById(anyInt()))
             .thenReturn(Optional.empty());
-        
+
         WorkflowNodeInput input = new WorkflowNodeInput();
         input.setWorkflow(new WorkflowInput());
 

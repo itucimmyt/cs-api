@@ -41,15 +41,15 @@ public class WorkflowStageServiceImplTest {
 
     @BeforeEach
     public void init() {
-        subject = new WorkflowStageServiceImpl(mockWorkflownodeRepository, mockWorkflowstageRepository, mockConverter
-            ,mockActionRepository, mockWorkflowphaseRepository, mockWorkfloweventRepository, mockHtmltagRepository);
+        subject = new WorkflowStageServiceImpl(mockWorkflownodeRepository, mockWorkfloweventRepository, mockWorkflowphaseRepository, mockActionRepository,
+            mockConverter, mockWorkflowstageRepository, mockHtmltagRepository);
     }
 
     @Test
     public void givenWorkflowPhaseNotExist_whenInitWorkflowStageModel_thenThrowException() {
         when(mockWorkflowphaseRepository.findById(anyInt()))
             .thenReturn(Optional.empty());
-        
+
         WorkflowStageInput input = new WorkflowStageInput();
         input.setWorkflowphase(new WorkflowPhaseInput());;
 
@@ -61,7 +61,7 @@ public class WorkflowStageServiceImplTest {
     public void givenHtmlTagNotExist_whenInitWorkflowStageModel_thenThrowException() {
         when(mockHtmltagRepository.findById(anyInt()))
             .thenReturn(Optional.empty());
-        
+
         WorkflowStageInput input = new WorkflowStageInput();
         input.setHtmltag(new HtmlTagInput());;
 
@@ -79,8 +79,8 @@ public class WorkflowStageServiceImplTest {
             .thenReturn(Optional.of(new WorkflowStageModel()));
 
         WorkflowStageInput objectInput = new WorkflowStageInput();
-        subject.modifyworkflowstage(objectInput);
-    
+        subject.modifyWorkflowStage(objectInput);
+
         verify(mockConverter)
             .convert(eq(objectInput), eq(WorkflowStageModel.class));
         verify(mockConverter)
@@ -96,8 +96,8 @@ public class WorkflowStageServiceImplTest {
             .thenReturn(Optional.empty());
 
         assertThrows("find workflowstage must fail", RuntimeException.class
-            ,() -> subject.modifyworkflowstage(new WorkflowStageInput()));
-        
+            ,() -> subject.modifyWorkflowStage(new WorkflowStageInput()));
+
         verify(mockWorkflowstageRepository).findById(anyInt());
 
     }

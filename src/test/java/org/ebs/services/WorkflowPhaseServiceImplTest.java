@@ -34,19 +34,18 @@ public class WorkflowPhaseServiceImplTest {
     @Mock HtmlTagRepository mockHtmltagRepository;
     @Mock WorkflowRepository mockWorkflowRepository;
     @Mock ConversionService mockConverter;
-    
+
 
     @BeforeEach
     public void init() {
-        subject = new WorkflowPhaseServiceImpl(mockWorkflowphaseRepository, mockConverter
-        , mockWorkflowRepository, mockHtmltagRepository, mockWorkflowstageRepository);
+        subject = new WorkflowPhaseServiceImpl(mockHtmltagRepository, mockWorkflowRepository, mockWorkflowstageRepository, mockConverter, mockWorkflowphaseRepository);
     }
 
     @Test
     public void givenWorkflowNotExist_whenInitWorkflowPhaseModel_thenThrowException() {
         when(mockWorkflowRepository.findById(anyInt()))
             .thenReturn(Optional.empty());
-        
+
         WorkflowPhaseInput input = new WorkflowPhaseInput();
         input.setWorkflow(new WorkflowInput());;
 
@@ -58,7 +57,7 @@ public class WorkflowPhaseServiceImplTest {
     public void givenHtmlTagNotExist_whenInitWorkflowPhaseModel_thenThrowException() {
         when(mockHtmltagRepository.findById(anyInt()))
             .thenReturn(Optional.empty());
-        
+
         WorkflowPhaseInput input = new WorkflowPhaseInput();
         input.setHtmltag(new HtmlTagInput());;
 
@@ -73,7 +72,7 @@ public class WorkflowPhaseServiceImplTest {
             .thenReturn(new WorkflowPhaseTo());
 
         WorkflowPhaseInput objectInput = new WorkflowPhaseInput();
-        subject.createworkflowphase(objectInput);
+        subject.createWorkflowPhase(objectInput);
 
         verify(mockConverter).convert(eq(objectInput), eq(WorkflowPhaseModel.class));
         verify(mockConverter).convert(any(), eq(WorkflowPhaseTo.class));
@@ -91,8 +90,8 @@ public class WorkflowPhaseServiceImplTest {
             .thenReturn(Optional.of(new WorkflowPhaseModel()));
 
         WorkflowPhaseInput objectInput = new WorkflowPhaseInput();
-        subject.modifyworkflowphase(objectInput);
-    
+        subject.modifyWorkflowPhase(objectInput);
+
         verify(mockConverter)
             .convert(eq(objectInput), eq(WorkflowPhaseModel.class));
         verify(mockConverter)
@@ -108,8 +107,8 @@ public class WorkflowPhaseServiceImplTest {
             .thenReturn(Optional.empty());
 
         assertThrows("find workflowphase must fail", RuntimeException.class
-            ,() -> subject.modifyworkflowphase(new WorkflowPhaseInput()));
-        
+            ,() -> subject.modifyWorkflowPhase(new WorkflowPhaseInput()));
+
         verify(mockWorkflowphaseRepository).findById(anyInt());
 
     }
