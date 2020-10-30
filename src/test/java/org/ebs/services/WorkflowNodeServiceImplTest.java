@@ -118,7 +118,7 @@ public class WorkflowNodeServiceImplTest {
         when(mockConverter.convert(any(), any()))
             .thenReturn(new WorkflowNodeTo());
             
-        Page<WorkflowNodeTo> result = subject.findworkflownodes(null, null, null);
+        Page<WorkflowNodeTo> result = subject.findworkflownodes(null, null, null,false);
 
         assertThat(result).isNotNull();
         assertThat(result.getTotalElements()).isEqualTo(2);
