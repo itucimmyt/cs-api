@@ -26,39 +26,39 @@ import org.ebs.services.to.PersonTo;
 public interface PartnerService {
 
 	/**
-	 * 
+	 *
 	 * @param Partner
 	 */
 	public PartnerTo createPartner(PartnerInput Partner);
 
 	/**
-	 * 
+	 *
 	 * @param partnerId
 	 */
 	public int deletePartner(int partnerId);
 
 	/**
-	 * 
+	 *
 	 * @param partnerId
 	 */
 	public Optional<PartnerTo> findPartner(int partnerId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<PartnerTo> findPartners(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<PartnerTo> findPartners(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param partnerId
 	 */
 	public Optional<PersonTo> findPerson(int partnerId);
 
 	/**
-	 * 
+	 *
 	 * @param partner
 	 */
 	public PartnerTo modifyPartner(PartnerInput partner);

@@ -26,39 +26,39 @@ import org.ebs.services.to.HtmlTagTo;
 public interface NotificationService {
 
 	/**
-	 * 
+	 *
 	 * @param Notification
 	 */
 	public NotificationTo createNotification(NotificationInput Notification);
 
 	/**
-	 * 
+	 *
 	 * @param notificationId
 	 */
 	public int deleteNotification(int notificationId);
 
 	/**
-	 * 
+	 *
 	 * @param notificationId
 	 */
 	public Optional<HtmlTagTo> findHtmlTag(int notificationId);
 
 	/**
-	 * 
+	 *
 	 * @param notificationId
 	 */
 	public Optional<NotificationTo> findNotification(int notificationId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<NotificationTo> findNotifications(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<NotificationTo> findNotifications(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param notification
 	 */
 	public NotificationTo modifyNotification(NotificationInput notification);

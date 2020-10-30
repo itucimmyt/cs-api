@@ -27,45 +27,45 @@ import org.ebs.services.to.WorkflowInstanceTo;
 public interface WorkflowStatusService {
 
 	/**
-	 * 
+	 *
 	 * @param WorkflowStatus
 	 */
 	public WorkflowStatusTo createWorkflowStatus(WorkflowStatusInput WorkflowStatus);
 
 	/**
-	 * 
+	 *
 	 * @param workflowStatusId
 	 */
 	public int deleteWorkflowStatus(int workflowStatusId);
 
 	/**
-	 * 
+	 *
 	 * @param workflowstatusId
 	 */
 	public Optional<WorkflowInstanceTo> findWorkflowInstance(int workflowstatusId);
 
 	/**
-	 * 
+	 *
 	 * @param workflowStatusId
 	 */
 	public Optional<WorkflowStatusTo> findWorkflowStatus(int workflowStatusId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<WorkflowStatusTo> findWorkflowStatuss(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<WorkflowStatusTo> findWorkflowStatuss(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param workflowstatusId
 	 */
 	public Optional<WorkflowStatusTypeTo> findWorkflowStatusType(int workflowstatusId);
 
 	/**
-	 * 
+	 *
 	 * @param workflowStatus
 	 */
 	public WorkflowStatusTo modifyWorkflowStatus(WorkflowStatusInput workflowStatus);

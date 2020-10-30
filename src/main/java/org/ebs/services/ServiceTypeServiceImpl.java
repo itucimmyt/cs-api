@@ -44,32 +44,32 @@ import org.ebs.services.to.ServiceProviderTo;
 	private ServiceProviderRepository serviceproviderRepository;
 
 	/**
-	 * 
+	 *
 	 * @param ServiceType
 	 */
 	@Override @Transactional(readOnly = false)
 	public ServiceTypeTo createServiceType(ServiceTypeInput ServiceType){
-		ServiceTypeModel model = converter.convert(ServiceType,ServiceTypeModel.class); 
+		ServiceTypeModel model = converter.convert(ServiceType,ServiceTypeModel.class);
 		 model.setId(0);
-		  
-		 model= servicetypeRepository.save(model); 
-		 return converter.convert(model, ServiceTypeTo.class); 
+
+		 model= servicetypeRepository.save(model);
+		 return converter.convert(model, ServiceTypeTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param serviceTypeId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteServiceType(int serviceTypeId){
-		ServiceTypeModel servicetype = servicetypeRepository.findById(serviceTypeId).orElseThrow(() -> new RuntimeException("ServiceType not found")); 
-		 servicetype.setDeleted(true); 
-		  servicetypeRepository.save(servicetype); 
+		ServiceTypeModel servicetype = servicetypeRepository.findById(serviceTypeId).orElseThrow(() -> new RuntimeException("ServiceType not found"));
+		 servicetype.setDeleted(true);
+		  servicetypeRepository.save(servicetype);
 		 return serviceTypeId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param servicetypeId
 	 */
 	public Set<PurposeTo> findPurposes(int servicetypeId){
@@ -77,7 +77,7 @@ import org.ebs.services.to.ServiceProviderTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param servicetypeId
 	 */
 	public Set<ServiceProviderTo> findServiceProviders(int servicetypeId){
@@ -85,41 +85,41 @@ import org.ebs.services.to.ServiceProviderTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param serviceTypeId
 	 */
 	@Override
 	public Optional<ServiceTypeTo> findServiceType(int serviceTypeId){
-		if(serviceTypeId <1) 
-		 {return Optional.empty();} 
+		if(serviceTypeId <1)
+		 {return Optional.empty();}
 		 return servicetypeRepository.findById(serviceTypeId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,ServiceTypeTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<ServiceTypeTo> findServiceTypes(PageInput page, SortInput sort, List<FilterInput> filters){
-		return servicetypeRepository.findByCriteria(ServiceTypeModel.class,filters,sort,page).map(r -> converter.convert(r,ServiceTypeTo.class));
+	public Page<ServiceTypeTo> findServiceTypes(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return servicetypeRepository.findByCriteria(ServiceTypeModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,ServiceTypeTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param serviceType
 	 */
 	@Override @Transactional(readOnly = false)
 	public ServiceTypeTo modifyServiceType(ServiceTypeInput serviceType){
-		ServiceTypeModel target= servicetypeRepository.findById(serviceType.getId()).orElseThrow(() -> new RuntimeException("ServiceType not found")); 
-		 ServiceTypeModel source= converter.convert(serviceType,ServiceTypeModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		ServiceTypeModel target= servicetypeRepository.findById(serviceType.getId()).orElseThrow(() -> new RuntimeException("ServiceType not found"));
+		 ServiceTypeModel source= converter.convert(serviceType,ServiceTypeModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(servicetypeRepository.save(target), ServiceTypeTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param serviceproviderRepository
 	 * @param purposeRepository
 	 * @param converter
@@ -127,7 +127,7 @@ import org.ebs.services.to.ServiceProviderTo;
 	 */
 	@Autowired
 	public ServiceTypeServiceImpl(ServiceProviderRepository serviceproviderRepository, PurposeRepository purposeRepository, ConversionService converter, ServiceTypeRepository servicetypeRepository){
-		this.servicetypeRepository =servicetypeRepository; 
+		this.servicetypeRepository =servicetypeRepository;
 		 this.converter = converter;
 		 this.purposeRepository = purposeRepository;
 		 this.serviceproviderRepository = serviceproviderRepository;

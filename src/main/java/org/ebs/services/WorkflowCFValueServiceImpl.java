@@ -46,36 +46,36 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	private WorkflowNodeCFRepository workflownodecfRepository;
 
 	/**
-	 * 
+	 *
 	 * @param WorkflowCFValue
 	 */
 	@Override @Transactional(readOnly = false)
 	public WorkflowCFValueTo createWorkflowCFValue(WorkflowCFValueInput WorkflowCFValue){
-		WorkflowCFValueModel model = converter.convert(WorkflowCFValue,WorkflowCFValueModel.class); 
+		WorkflowCFValueModel model = converter.convert(WorkflowCFValue,WorkflowCFValueModel.class);
 		 model.setId(0);
-		 RequestModel requestModel = requestRepository.findById(WorkflowCFValue.getRequest().getId()).get(); 
-		model.setRequest(requestModel); 
-		WorkflowNodeCFModel workflownodecfModel = workflownodecfRepository.findById(WorkflowCFValue.getWorkflownodecf().getId()).get(); 
-		model.setWorkflownodecf(workflownodecfModel); 
-		 
-		 model= workflowcfvalueRepository.save(model); 
-		 return converter.convert(model, WorkflowCFValueTo.class); 
+		 RequestModel requestModel = requestRepository.findById(WorkflowCFValue.getRequest().getId()).get();
+		model.setRequest(requestModel);
+		WorkflowNodeCFModel workflownodecfModel = workflownodecfRepository.findById(WorkflowCFValue.getWorkflownodecf().getId()).get();
+		model.setWorkflownodecf(workflownodecfModel);
+
+		 model= workflowcfvalueRepository.save(model);
+		 return converter.convert(model, WorkflowCFValueTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowCFValueId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteWorkflowCFValue(int workflowCFValueId){
-		WorkflowCFValueModel workflowcfvalue = workflowcfvalueRepository.findById(workflowCFValueId).orElseThrow(() -> new RuntimeException("WorkflowCFValue not found")); 
-		 workflowcfvalue.setDeleted(true); 
-		  workflowcfvalueRepository.save(workflowcfvalue); 
+		WorkflowCFValueModel workflowcfvalue = workflowcfvalueRepository.findById(workflowCFValueId).orElseThrow(() -> new RuntimeException("WorkflowCFValue not found"));
+		 workflowcfvalue.setDeleted(true);
+		  workflowcfvalueRepository.save(workflowcfvalue);
 		 return workflowCFValueId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowcfvalueId
 	 */
 	public Optional<RequestTo> findRequest(int workflowcfvalueId){
@@ -83,29 +83,29 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowCFValueId
 	 */
 	@Override
 	public Optional<WorkflowCFValueTo> findWorkflowCFValue(int workflowCFValueId){
-		if(workflowCFValueId <1) 
-		 {return Optional.empty();} 
+		if(workflowCFValueId <1)
+		 {return Optional.empty();}
 		 return workflowcfvalueRepository.findById(workflowCFValueId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,WorkflowCFValueTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<WorkflowCFValueTo> findWorkflowCFValues(PageInput page, SortInput sort, List<FilterInput> filters){
-		return workflowcfvalueRepository.findByCriteria(WorkflowCFValueModel.class,filters,sort,page).map(r -> converter.convert(r,WorkflowCFValueTo.class));
+	public Page<WorkflowCFValueTo> findWorkflowCFValues(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return workflowcfvalueRepository.findByCriteria(WorkflowCFValueModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,WorkflowCFValueTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowcfvalueId
 	 */
 	public Optional<WorkflowNodeCFTo> findWorkflowNodeCF(int workflowcfvalueId){
@@ -113,19 +113,19 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowCFValue
 	 */
 	@Override @Transactional(readOnly = false)
 	public WorkflowCFValueTo modifyWorkflowCFValue(WorkflowCFValueInput workflowCFValue){
-		WorkflowCFValueModel target= workflowcfvalueRepository.findById(workflowCFValue.getId()).orElseThrow(() -> new RuntimeException("WorkflowCFValue not found")); 
-		 WorkflowCFValueModel source= converter.convert(workflowCFValue,WorkflowCFValueModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		WorkflowCFValueModel target= workflowcfvalueRepository.findById(workflowCFValue.getId()).orElseThrow(() -> new RuntimeException("WorkflowCFValue not found"));
+		 WorkflowCFValueModel source= converter.convert(workflowCFValue,WorkflowCFValueModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(workflowcfvalueRepository.save(target), WorkflowCFValueTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodecfRepository
 	 * @param requestRepository
 	 * @param converter
@@ -133,7 +133,7 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	 */
 	@Autowired
 	public WorkflowCFValueServiceImpl(WorkflowNodeCFRepository workflownodecfRepository, RequestRepository requestRepository, ConversionService converter, WorkflowCFValueRepository workflowcfvalueRepository){
-		this.workflowcfvalueRepository =workflowcfvalueRepository; 
+		this.workflowcfvalueRepository =workflowcfvalueRepository;
 		 this.converter = converter;
 		 this.requestRepository = requestRepository;
 		 this.workflownodecfRepository = workflownodecfRepository;

@@ -41,32 +41,32 @@ import org.ebs.services.to.WorkflowStatusTo;
 	private WorkflowStatusRepository workflowstatusRepository;
 
 	/**
-	 * 
+	 *
 	 * @param WorkflowStatusType
 	 */
 	@Override @Transactional(readOnly = false)
 	public WorkflowStatusTypeTo createWorkflowStatusType(WorkflowStatusTypeInput WorkflowStatusType){
-		WorkflowStatusTypeModel model = converter.convert(WorkflowStatusType,WorkflowStatusTypeModel.class); 
+		WorkflowStatusTypeModel model = converter.convert(WorkflowStatusType,WorkflowStatusTypeModel.class);
 		 model.setId(0);
-		  
-		 model= workflowstatustypeRepository.save(model); 
-		 return converter.convert(model, WorkflowStatusTypeTo.class); 
+
+		 model= workflowstatustypeRepository.save(model);
+		 return converter.convert(model, WorkflowStatusTypeTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowStatusTypeId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteWorkflowStatusType(int workflowStatusTypeId){
-		WorkflowStatusTypeModel workflowstatustype = workflowstatustypeRepository.findById(workflowStatusTypeId).orElseThrow(() -> new RuntimeException("WorkflowStatusType not found")); 
-		 workflowstatustype.setDeleted(true); 
-		  workflowstatustypeRepository.save(workflowstatustype); 
+		WorkflowStatusTypeModel workflowstatustype = workflowstatustypeRepository.findById(workflowStatusTypeId).orElseThrow(() -> new RuntimeException("WorkflowStatusType not found"));
+		 workflowstatustype.setDeleted(true);
+		  workflowstatustypeRepository.save(workflowstatustype);
 		 return workflowStatusTypeId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowstatustypeId
 	 */
 	public Set<WorkflowStatusTo> findWorkflowStatuss(int workflowstatustypeId){
@@ -74,48 +74,48 @@ import org.ebs.services.to.WorkflowStatusTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowStatusTypeId
 	 */
 	@Override
 	public Optional<WorkflowStatusTypeTo> findWorkflowStatusType(int workflowStatusTypeId){
-		if(workflowStatusTypeId <1) 
-		 {return Optional.empty();} 
+		if(workflowStatusTypeId <1)
+		 {return Optional.empty();}
 		 return workflowstatustypeRepository.findById(workflowStatusTypeId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,WorkflowStatusTypeTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<WorkflowStatusTypeTo> findWorkflowStatusTypes(PageInput page, SortInput sort, List<FilterInput> filters){
-		return workflowstatustypeRepository.findByCriteria(WorkflowStatusTypeModel.class,filters,sort,page).map(r -> converter.convert(r,WorkflowStatusTypeTo.class));
+	public Page<WorkflowStatusTypeTo> findWorkflowStatusTypes(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return workflowstatustypeRepository.findByCriteria(WorkflowStatusTypeModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,WorkflowStatusTypeTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowStatusType
 	 */
 	@Override @Transactional(readOnly = false)
 	public WorkflowStatusTypeTo modifyWorkflowStatusType(WorkflowStatusTypeInput workflowStatusType){
-		WorkflowStatusTypeModel target= workflowstatustypeRepository.findById(workflowStatusType.getId()).orElseThrow(() -> new RuntimeException("WorkflowStatusType not found")); 
-		 WorkflowStatusTypeModel source= converter.convert(workflowStatusType,WorkflowStatusTypeModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		WorkflowStatusTypeModel target= workflowstatustypeRepository.findById(workflowStatusType.getId()).orElseThrow(() -> new RuntimeException("WorkflowStatusType not found"));
+		 WorkflowStatusTypeModel source= converter.convert(workflowStatusType,WorkflowStatusTypeModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(workflowstatustypeRepository.save(target), WorkflowStatusTypeTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowstatusRepository
 	 * @param converter
 	 * @param workflowstatustypeRepository
 	 */
 	@Autowired
 	public WorkflowStatusTypeServiceImpl(WorkflowStatusRepository workflowstatusRepository, ConversionService converter, WorkflowStatusTypeRepository workflowstatustypeRepository){
-		this.workflowstatustypeRepository =workflowstatustypeRepository; 
+		this.workflowstatustypeRepository =workflowstatustypeRepository;
 		 this.converter = converter;
 		 this.workflowstatusRepository = workflowstatusRepository;
 	}

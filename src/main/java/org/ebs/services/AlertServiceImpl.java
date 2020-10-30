@@ -48,7 +48,7 @@ import org.ebs.services.to.HtmlTagTo;
 	private PreferenceRepository preferenceRepository;
 
 	/**
-	 * 
+	 *
 	 * @param preferenceRepository
 	 * @param htmltagRepository
 	 * @param alertruleRepository
@@ -57,7 +57,7 @@ import org.ebs.services.to.HtmlTagTo;
 	 */
 	@Autowired
 	public AlertServiceImpl(PreferenceRepository preferenceRepository, HtmlTagRepository htmltagRepository, AlertRuleRepository alertruleRepository, ConversionService converter, AlertRepository alertRepository){
-		this.alertRepository =alertRepository; 
+		this.alertRepository =alertRepository;
 		 this.converter = converter;
 		 this.alertruleRepository = alertruleRepository;
 		 this.htmltagRepository = htmltagRepository;
@@ -65,45 +65,45 @@ import org.ebs.services.to.HtmlTagTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param Alert
 	 */
 	@Override @Transactional(readOnly = false)
 	public AlertTo createAlert(AlertInput Alert){
-		AlertModel model = converter.convert(Alert,AlertModel.class); 
+		AlertModel model = converter.convert(Alert,AlertModel.class);
 		 model.setId(0);
-		 HtmlTagModel htmltagModel = htmltagRepository.findById(Alert.getHtmltag().getId()).get(); 
-		model.setHtmltag(htmltagModel); 
-		 
-		 model= alertRepository.save(model); 
-		 return converter.convert(model, AlertTo.class); 
+		 HtmlTagModel htmltagModel = htmltagRepository.findById(Alert.getHtmltag().getId()).get();
+		model.setHtmltag(htmltagModel);
+
+		 model= alertRepository.save(model);
+		 return converter.convert(model, AlertTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param alertId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteAlert(int alertId){
-		AlertModel alert = alertRepository.findById(alertId).orElseThrow(() -> new RuntimeException("Alert not found")); 
-		 alert.setDeleted(true); 
-		  alertRepository.save(alert); 
+		AlertModel alert = alertRepository.findById(alertId).orElseThrow(() -> new RuntimeException("Alert not found"));
+		 alert.setDeleted(true);
+		  alertRepository.save(alert);
 		 return alertId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param alertId
 	 */
 	@Override
 	public Optional<AlertTo> findAlert(int alertId){
-		if(alertId <1) 
-		 {return Optional.empty();} 
+		if(alertId <1)
+		 {return Optional.empty();}
 		 return alertRepository.findById(alertId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,AlertTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param alertId
 	 */
 	public Set<AlertRuleTo> findAlertRules(int alertId){
@@ -111,18 +111,18 @@ import org.ebs.services.to.HtmlTagTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<AlertTo> findAlerts(PageInput page, SortInput sort, List<FilterInput> filters){
-		return alertRepository.findByCriteria(AlertModel.class,filters,sort,page).map(r -> converter.convert(r,AlertTo.class));
+	public Page<AlertTo> findAlerts(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return alertRepository.findByCriteria(AlertModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,AlertTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param alertId
 	 */
 	public Optional<HtmlTagTo> findHtmlTag(int alertId){
@@ -130,7 +130,7 @@ import org.ebs.services.to.HtmlTagTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param alertId
 	 */
 	public Set<PreferenceTo> findPreferences(int alertId){
@@ -138,14 +138,14 @@ import org.ebs.services.to.HtmlTagTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param alert
 	 */
 	@Override @Transactional(readOnly = false)
 	public AlertTo modifyAlert(AlertInput alert){
-		AlertModel target= alertRepository.findById(alert.getId()).orElseThrow(() -> new RuntimeException("Alert not found")); 
-		 AlertModel source= converter.convert(alert,AlertModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		AlertModel target= alertRepository.findById(alert.getId()).orElseThrow(() -> new RuntimeException("Alert not found"));
+		 AlertModel source= converter.convert(alert,AlertModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(alertRepository.save(target), AlertTo.class);
 	}
 

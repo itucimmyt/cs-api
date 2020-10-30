@@ -29,51 +29,51 @@ import org.ebs.services.to.PersonTo;
 public interface RequestService {
 
 	/**
-	 * 
+	 *
 	 * @param Request
 	 */
 	public RequestTo createRequest(RequestInput Request);
 
 	/**
-	 * 
+	 *
 	 * @param requestId
 	 */
 	public int deleteRequest(int requestId);
 
 	/**
-	 * 
+	 *
 	 * @param requestId
 	 */
 	public Optional<PersonTo> findPerson(int requestId);
 
 	/**
-	 * 
+	 *
 	 * @param requestId
 	 */
 	public Optional<RequestTo> findRequest(int requestId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<RequestTo> findRequests(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<RequestTo> findRequests(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param requestId
 	 */
 	public Set<WorkflowCFValueTo> findWorkflowCFValues(int requestId);
 
 	/**
-	 * 
+	 *
 	 * @param requestId
 	 */
 	public Optional<WorkflowInstanceTo> findWorkflowInstance(int requestId);
 
 	/**
-	 * 
+	 *
 	 * @param request
 	 */
 	public RequestTo modifyRequest(RequestInput request);

@@ -45,56 +45,56 @@ import org.ebs.services.to.ServiceTo;
 	private ServiceRepository serviceRepository;
 
 	/**
-	 * 
+	 *
 	 * @param Purpose
 	 */
 	@Override @Transactional(readOnly = false)
 	public PurposeTo createPurpose(PurposeInput Purpose){
-		PurposeModel model = converter.convert(Purpose,PurposeModel.class); 
+		PurposeModel model = converter.convert(Purpose,PurposeModel.class);
 		 model.setId(0);
-		 ServiceTypeModel servicetypeModel = servicetypeRepository.findById(Purpose.getServicetype().getId()).get(); 
-		model.setServicetype(servicetypeModel); 
-		 
-		 model= purposeRepository.save(model); 
-		 return converter.convert(model, PurposeTo.class); 
+		 ServiceTypeModel servicetypeModel = servicetypeRepository.findById(Purpose.getServicetype().getId()).get();
+		model.setServicetype(servicetypeModel);
+
+		 model= purposeRepository.save(model);
+		 return converter.convert(model, PurposeTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param purposeId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deletePurpose(int purposeId){
-		PurposeModel purpose = purposeRepository.findById(purposeId).orElseThrow(() -> new RuntimeException("Purpose not found")); 
-		 purpose.setDeleted(true); 
-		  purposeRepository.save(purpose); 
+		PurposeModel purpose = purposeRepository.findById(purposeId).orElseThrow(() -> new RuntimeException("Purpose not found"));
+		 purpose.setDeleted(true);
+		  purposeRepository.save(purpose);
 		 return purposeId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param purposeId
 	 */
 	@Override
 	public Optional<PurposeTo> findPurpose(int purposeId){
-		if(purposeId <1) 
-		 {return Optional.empty();} 
+		if(purposeId <1)
+		 {return Optional.empty();}
 		 return purposeRepository.findById(purposeId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,PurposeTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<PurposeTo> findPurposes(PageInput page, SortInput sort, List<FilterInput> filters){
-		return purposeRepository.findByCriteria(PurposeModel.class,filters,sort,page).map(r -> converter.convert(r,PurposeTo.class));
+	public Page<PurposeTo> findPurposes(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return purposeRepository.findByCriteria(PurposeModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,PurposeTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param purposeId
 	 */
 	public Set<ServiceTo> findServices(int purposeId){
@@ -102,7 +102,7 @@ import org.ebs.services.to.ServiceTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param purposeId
 	 */
 	public Optional<ServiceTypeTo> findServiceType(int purposeId){
@@ -110,19 +110,19 @@ import org.ebs.services.to.ServiceTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param purpose
 	 */
 	@Override @Transactional(readOnly = false)
 	public PurposeTo modifyPurpose(PurposeInput purpose){
-		PurposeModel target= purposeRepository.findById(purpose.getId()).orElseThrow(() -> new RuntimeException("Purpose not found")); 
-		 PurposeModel source= converter.convert(purpose,PurposeModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		PurposeModel target= purposeRepository.findById(purpose.getId()).orElseThrow(() -> new RuntimeException("Purpose not found"));
+		 PurposeModel source= converter.convert(purpose,PurposeModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(purposeRepository.save(target), PurposeTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param serviceRepository
 	 * @param servicetypeRepository
 	 * @param converter
@@ -130,7 +130,7 @@ import org.ebs.services.to.ServiceTo;
 	 */
 	@Autowired
 	public PurposeServiceImpl(ServiceRepository serviceRepository, ServiceTypeRepository servicetypeRepository, ConversionService converter, PurposeRepository purposeRepository){
-		this.purposeRepository =purposeRepository; 
+		this.purposeRepository =purposeRepository;
 		 this.converter = converter;
 		 this.servicetypeRepository = servicetypeRepository;
 		 this.serviceRepository = serviceRepository;

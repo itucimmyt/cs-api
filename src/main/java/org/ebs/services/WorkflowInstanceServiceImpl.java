@@ -51,34 +51,34 @@ import org.ebs.services.to.WorkflowTo;
 	private RequestRepository requestRepository;
 
 	/**
-	 * 
+	 *
 	 * @param WorkflowInstance
 	 */
 	@Override @Transactional(readOnly = false)
 	public WorkflowInstanceTo createWorkflowInstance(WorkflowInstanceInput WorkflowInstance){
-		WorkflowInstanceModel model = converter.convert(WorkflowInstance,WorkflowInstanceModel.class); 
+		WorkflowInstanceModel model = converter.convert(WorkflowInstance,WorkflowInstanceModel.class);
 		 model.setId(0);
-		 WorkflowModel workflowModel = workflowRepository.findById(WorkflowInstance.getWorkflow().getId()).get(); 
-		model.setWorkflow(workflowModel); 
-		 
-		 model= workflowinstanceRepository.save(model); 
-		 return converter.convert(model, WorkflowInstanceTo.class); 
+		 WorkflowModel workflowModel = workflowRepository.findById(WorkflowInstance.getWorkflow().getId()).get();
+		model.setWorkflow(workflowModel);
+
+		 model= workflowinstanceRepository.save(model);
+		 return converter.convert(model, WorkflowInstanceTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowInstanceId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteWorkflowInstance(int workflowInstanceId){
-		WorkflowInstanceModel workflowinstance = workflowinstanceRepository.findById(workflowInstanceId).orElseThrow(() -> new RuntimeException("WorkflowInstance not found")); 
-		 workflowinstance.setDeleted(true); 
-		  workflowinstanceRepository.save(workflowinstance); 
+		WorkflowInstanceModel workflowinstance = workflowinstanceRepository.findById(workflowInstanceId).orElseThrow(() -> new RuntimeException("WorkflowInstance not found"));
+		 workflowinstance.setDeleted(true);
+		  workflowinstanceRepository.save(workflowinstance);
 		 return workflowInstanceId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowinstanceId
 	 */
 	public Set<RequestTo> findRequests(int workflowinstanceId){
@@ -86,7 +86,7 @@ import org.ebs.services.to.WorkflowTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowinstanceId
 	 */
 	public Optional<WorkflowTo> findWorkflow(int workflowinstanceId){
@@ -94,7 +94,7 @@ import org.ebs.services.to.WorkflowTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowinstanceId
 	 */
 	public Set<WorkflowEventTo> findWorkflowEvents(int workflowinstanceId){
@@ -102,29 +102,29 @@ import org.ebs.services.to.WorkflowTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowInstanceId
 	 */
 	@Override
 	public Optional<WorkflowInstanceTo> findWorkflowInstance(int workflowInstanceId){
-		if(workflowInstanceId <1) 
-		 {return Optional.empty();} 
+		if(workflowInstanceId <1)
+		 {return Optional.empty();}
 		 return workflowinstanceRepository.findById(workflowInstanceId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,WorkflowInstanceTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<WorkflowInstanceTo> findWorkflowInstances(PageInput page, SortInput sort, List<FilterInput> filters){
-		return workflowinstanceRepository.findByCriteria(WorkflowInstanceModel.class,filters,sort,page).map(r -> converter.convert(r,WorkflowInstanceTo.class));
+	public Page<WorkflowInstanceTo> findWorkflowInstances(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return workflowinstanceRepository.findByCriteria(WorkflowInstanceModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,WorkflowInstanceTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowinstanceId
 	 */
 	public Set<WorkflowStatusTo> findWorkflowStatuss(int workflowinstanceId){
@@ -132,19 +132,19 @@ import org.ebs.services.to.WorkflowTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowInstance
 	 */
 	@Override @Transactional(readOnly = false)
 	public WorkflowInstanceTo modifyWorkflowInstance(WorkflowInstanceInput workflowInstance){
-		WorkflowInstanceModel target= workflowinstanceRepository.findById(workflowInstance.getId()).orElseThrow(() -> new RuntimeException("WorkflowInstance not found")); 
-		 WorkflowInstanceModel source= converter.convert(workflowInstance,WorkflowInstanceModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		WorkflowInstanceModel target= workflowinstanceRepository.findById(workflowInstance.getId()).orElseThrow(() -> new RuntimeException("WorkflowInstance not found"));
+		 WorkflowInstanceModel source= converter.convert(workflowInstance,WorkflowInstanceModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(workflowinstanceRepository.save(target), WorkflowInstanceTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workfloweventRepository
 	 * @param workflowinstanceRepository
 	 * @param workflowstatusRepository
@@ -154,7 +154,7 @@ import org.ebs.services.to.WorkflowTo;
 	 */
 	@Autowired
 	public WorkflowInstanceServiceImpl(WorkflowEventRepository workfloweventRepository, WorkflowInstanceRepository workflowinstanceRepository, WorkflowStatusRepository workflowstatusRepository, WorkflowRepository workflowRepository, RequestRepository requestRepository, ConversionService converter){
-		this.workflowinstanceRepository =workflowinstanceRepository; 
+		this.workflowinstanceRepository =workflowinstanceRepository;
 		 this.converter = converter;
 		 this.workflowstatusRepository = workflowstatusRepository;
 		 this.workfloweventRepository = workfloweventRepository;

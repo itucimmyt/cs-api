@@ -28,51 +28,51 @@ import org.ebs.services.to.CustomerTo;
 public interface OrganizationService {
 
 	/**
-	 * 
+	 *
 	 * @param Organization
 	 */
 	public OrganizationTo createOrganization(OrganizationInput Organization);
 
 	/**
-	 * 
+	 *
 	 * @param organizationId
 	 */
 	public int deleteOrganization(int organizationId);
 
 	/**
-	 * 
+	 *
 	 * @param organizationId
 	 */
 	public Optional<CustomerTo> findCustomer(int organizationId);
 
 	/**
-	 * 
+	 *
 	 * @param organizationId
 	 */
 	public Set<CustomerTo> findCustomers(int organizationId);
 
 	/**
-	 * 
+	 *
 	 * @param organizationId
 	 */
 	public Optional<OrganizationTo> findOrganization(int organizationId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<OrganizationTo> findOrganizations(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<OrganizationTo> findOrganizations(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param organizationId
 	 */
 	public Set<TenantTo> findTenants(int organizationId);
 
 	/**
-	 * 
+	 *
 	 * @param organization
 	 */
 	public OrganizationTo modifyOrganization(OrganizationInput organization);

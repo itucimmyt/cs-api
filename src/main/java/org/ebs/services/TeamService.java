@@ -28,45 +28,45 @@ import org.ebs.services.to.PersonTo;
 public interface TeamService {
 
 	/**
-	 * 
+	 *
 	 * @param Team
 	 */
 	public TeamTo createTeam(TeamInput Team);
 
 	/**
-	 * 
+	 *
 	 * @param teamId
 	 */
 	public int deleteTeam(int teamId);
 
 	/**
-	 * 
+	 *
 	 * @param teamId
 	 */
 	public Set<PersonTo> findPersons(int teamId);
 
 	/**
-	 * 
+	 *
 	 * @param teamId
 	 */
 	public Set<ProgramTo> findPrograms(int teamId);
 
 	/**
-	 * 
+	 *
 	 * @param teamId
 	 */
 	public Optional<TeamTo> findTeam(int teamId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<TeamTo> findTeams(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<TeamTo> findTeams(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param team
 	 */
 	public TeamTo modifyTeam(TeamInput team);

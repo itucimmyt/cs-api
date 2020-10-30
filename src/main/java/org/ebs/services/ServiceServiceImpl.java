@@ -48,34 +48,34 @@ import org.ebs.services.to.VendorTo;
 	private VendorRepository vendorRepository;
 
 	/**
-	 * 
+	 *
 	 * @param Service
 	 */
 	@Override @Transactional(readOnly = false)
 	public ServiceTo createService(ServiceInput Service){
-		ServiceModel model = converter.convert(Service,ServiceModel.class); 
+		ServiceModel model = converter.convert(Service,ServiceModel.class);
 		 model.setId(0);
-		 PurposeModel purposeModel = purposeRepository.findById(Service.getPurpose().getId()).get(); 
-		model.setPurpose(purposeModel); 
-		 
-		 model= serviceRepository.save(model); 
-		 return converter.convert(model, ServiceTo.class); 
+		 PurposeModel purposeModel = purposeRepository.findById(Service.getPurpose().getId()).get();
+		model.setPurpose(purposeModel);
+
+		 model= serviceRepository.save(model);
+		 return converter.convert(model, ServiceTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param serviceId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteService(int serviceId){
-		ServiceModel service = serviceRepository.findById(serviceId).orElseThrow(() -> new RuntimeException("Service not found")); 
-		 service.setDeleted(true); 
-		  serviceRepository.save(service); 
+		ServiceModel service = serviceRepository.findById(serviceId).orElseThrow(() -> new RuntimeException("Service not found"));
+		 service.setDeleted(true);
+		  serviceRepository.save(service);
 		 return serviceId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param serviceId
 	 */
 	public Set<AssayclassTo> findAssayclasss(int serviceId){
@@ -83,7 +83,7 @@ import org.ebs.services.to.VendorTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param serviceId
 	 */
 	public Optional<PurposeTo> findPurpose(int serviceId){
@@ -91,29 +91,29 @@ import org.ebs.services.to.VendorTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param serviceId
 	 */
 	@Override
 	public Optional<ServiceTo> findService(int serviceId){
-		if(serviceId <1) 
-		 {return Optional.empty();} 
+		if(serviceId <1)
+		 {return Optional.empty();}
 		 return serviceRepository.findById(serviceId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,ServiceTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<ServiceTo> findServices(PageInput page, SortInput sort, List<FilterInput> filters){
-		return serviceRepository.findByCriteria(ServiceModel.class,filters,sort,page).map(r -> converter.convert(r,ServiceTo.class));
+	public Page<ServiceTo> findServices(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return serviceRepository.findByCriteria(ServiceModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,ServiceTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param serviceId
 	 */
 	public Set<VendorTo> findVendors(int serviceId){
@@ -121,19 +121,19 @@ import org.ebs.services.to.VendorTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param service
 	 */
 	@Override @Transactional(readOnly = false)
 	public ServiceTo modifyService(ServiceInput service){
-		ServiceModel target= serviceRepository.findById(service.getId()).orElseThrow(() -> new RuntimeException("Service not found")); 
-		 ServiceModel source= converter.convert(service,ServiceModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		ServiceModel target= serviceRepository.findById(service.getId()).orElseThrow(() -> new RuntimeException("Service not found"));
+		 ServiceModel source= converter.convert(service,ServiceModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(serviceRepository.save(target), ServiceTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param vendorRepository
 	 * @param assayclassRepository
 	 * @param purposeRepository
@@ -142,7 +142,7 @@ import org.ebs.services.to.VendorTo;
 	 */
 	@Autowired
 	public ServiceServiceImpl(VendorRepository vendorRepository, AssayclassRepository assayclassRepository, PurposeRepository purposeRepository, ConversionService converter, ServiceRepository serviceRepository){
-		this.serviceRepository =serviceRepository; 
+		this.serviceRepository =serviceRepository;
 		 this.converter = converter;
 		 this.purposeRepository = purposeRepository;
 		 this.assayclassRepository = assayclassRepository;

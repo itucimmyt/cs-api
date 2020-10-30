@@ -52,36 +52,36 @@ import org.ebs.services.to.ProjectTo;
 	private TeamRepository teamRepository;
 
 	/**
-	 * 
+	 *
 	 * @param Program
 	 */
 	@Override @Transactional(readOnly = false)
 	public ProgramTo createProgram(ProgramInput Program){
-		ProgramModel model = converter.convert(Program,ProgramModel.class); 
+		ProgramModel model = converter.convert(Program,ProgramModel.class);
 		 model.setId(0);
-		 TenantModel tenantModel = tenantRepository.findById(Program.getTenant().getId()).get(); 
-		model.setTenant(tenantModel); 
-		CropModel cropModel = cropRepository.findById(Program.getCrop().getId()).get(); 
-		model.setCrop(cropModel); 
-		 
-		 model= programRepository.save(model); 
-		 return converter.convert(model, ProgramTo.class); 
+		 TenantModel tenantModel = tenantRepository.findById(Program.getTenant().getId()).get();
+		model.setTenant(tenantModel);
+		CropModel cropModel = cropRepository.findById(Program.getCrop().getId()).get();
+		model.setCrop(cropModel);
+
+		 model= programRepository.save(model);
+		 return converter.convert(model, ProgramTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param programId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteProgram(int programId){
-		ProgramModel program = programRepository.findById(programId).orElseThrow(() -> new RuntimeException("Program not found")); 
-		 program.setDeleted(true); 
-		  programRepository.save(program); 
+		ProgramModel program = programRepository.findById(programId).orElseThrow(() -> new RuntimeException("Program not found"));
+		 program.setDeleted(true);
+		  programRepository.save(program);
 		 return programId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param programId
 	 */
 	public Optional<CropTo> findCrop(int programId){
@@ -89,29 +89,29 @@ import org.ebs.services.to.ProjectTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param programId
 	 */
 	@Override
 	public Optional<ProgramTo> findProgram(int programId){
-		if(programId <1) 
-		 {return Optional.empty();} 
+		if(programId <1)
+		 {return Optional.empty();}
 		 return programRepository.findById(programId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,ProgramTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<ProgramTo> findPrograms(PageInput page, SortInput sort, List<FilterInput> filters){
-		return programRepository.findByCriteria(ProgramModel.class,filters,sort,page).map(r -> converter.convert(r,ProgramTo.class));
+	public Page<ProgramTo> findPrograms(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return programRepository.findByCriteria(ProgramModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,ProgramTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param programId
 	 */
 	public Set<ProjectTo> findProjects(int programId){
@@ -119,7 +119,7 @@ import org.ebs.services.to.ProjectTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param programId
 	 */
 	public Set<TeamTo> findTeams(int programId){
@@ -127,7 +127,7 @@ import org.ebs.services.to.ProjectTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param programId
 	 */
 	public Optional<TenantTo> findTenant(int programId){
@@ -135,19 +135,19 @@ import org.ebs.services.to.ProjectTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param program
 	 */
 	@Override @Transactional(readOnly = false)
 	public ProgramTo modifyProgram(ProgramInput program){
-		ProgramModel target= programRepository.findById(program.getId()).orElseThrow(() -> new RuntimeException("Program not found")); 
-		 ProgramModel source= converter.convert(program,ProgramModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		ProgramModel target= programRepository.findById(program.getId()).orElseThrow(() -> new RuntimeException("Program not found"));
+		 ProgramModel source= converter.convert(program,ProgramModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(programRepository.save(target), ProgramTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param cropRepository
 	 * @param programRepository
 	 * @param converter
@@ -157,7 +157,7 @@ import org.ebs.services.to.ProjectTo;
 	 */
 	@Autowired
 	public ProgramServiceImpl(CropRepository cropRepository, ProgramRepository programRepository, ConversionService converter, ProjectRepository projectRepository, TenantRepository tenantRepository, TeamRepository teamRepository){
-		this.programRepository =programRepository; 
+		this.programRepository =programRepository;
 		 this.converter = converter;
 		 this.projectRepository = projectRepository;
 		 this.tenantRepository = tenantRepository;

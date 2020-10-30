@@ -47,32 +47,32 @@ import org.ebs.services.to.UserTo;
 	private UserRepository userRepository;
 
 	/**
-	 * 
+	 *
 	 * @param Role
 	 */
 	@Override @Transactional(readOnly = false)
 	public RoleTo createRole(RoleInput Role){
-		RoleModel model = converter.convert(Role,RoleModel.class); 
+		RoleModel model = converter.convert(Role,RoleModel.class);
 		 model.setId(0);
-		  
-		 model= roleRepository.save(model); 
-		 return converter.convert(model, RoleTo.class); 
+
+		 model= roleRepository.save(model);
+		 return converter.convert(model, RoleTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param roleId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteRole(int roleId){
-		RoleModel role = roleRepository.findById(roleId).orElseThrow(() -> new RuntimeException("Role not found")); 
-		 role.setDeleted(true); 
-		  roleRepository.save(role); 
+		RoleModel role = roleRepository.findById(roleId).orElseThrow(() -> new RuntimeException("Role not found"));
+		 role.setDeleted(true);
+		  roleRepository.save(role);
 		 return roleId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param roleId
 	 */
 	public Set<ActionTo> findActions(int roleId){
@@ -80,18 +80,18 @@ import org.ebs.services.to.UserTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param roleId
 	 */
 	@Override
 	public Optional<RoleTo> findRole(int roleId){
-		if(roleId <1) 
-		 {return Optional.empty();} 
+		if(roleId <1)
+		 {return Optional.empty();}
 		 return roleRepository.findById(roleId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,RoleTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param roleId
 	 */
 	public Set<RoleActionTo> findRoleActions(int roleId){
@@ -99,18 +99,18 @@ import org.ebs.services.to.UserTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<RoleTo> findRoles(PageInput page, SortInput sort, List<FilterInput> filters){
-		return roleRepository.findByCriteria(RoleModel.class,filters,sort,page).map(r -> converter.convert(r,RoleTo.class));
+	public Page<RoleTo> findRoles(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return roleRepository.findByCriteria(RoleModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,RoleTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param roleId
 	 */
 	public Set<UserTo> findUsers(int roleId){
@@ -118,19 +118,19 @@ import org.ebs.services.to.UserTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param role
 	 */
 	@Override @Transactional(readOnly = false)
 	public RoleTo modifyRole(RoleInput role){
-		RoleModel target= roleRepository.findById(role.getId()).orElseThrow(() -> new RuntimeException("Role not found")); 
-		 RoleModel source= converter.convert(role,RoleModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		RoleModel target= roleRepository.findById(role.getId()).orElseThrow(() -> new RuntimeException("Role not found"));
+		 RoleModel source= converter.convert(role,RoleModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(roleRepository.save(target), RoleTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param userRepository
 	 * @param actionRepository
 	 * @param roleactionRepository
@@ -139,7 +139,7 @@ import org.ebs.services.to.UserTo;
 	 */
 	@Autowired
 	public RoleServiceImpl(UserRepository userRepository, ActionRepository actionRepository, RoleActionRepository roleactionRepository, ConversionService converter, RoleRepository roleRepository){
-		this.roleRepository =roleRepository; 
+		this.roleRepository =roleRepository;
 		 this.converter = converter;
 		 this.roleactionRepository = roleactionRepository;
 		 this.userRepository = userRepository;

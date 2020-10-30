@@ -29,51 +29,51 @@ import org.ebs.services.to.ModuleTo;
 public interface ComponentService {
 
 	/**
-	 * 
+	 *
 	 * @param Component
 	 */
 	public ComponentTo createComponent(ComponentInput Component);
 
 	/**
-	 * 
+	 *
 	 * @param componentId
 	 */
 	public int deleteComponent(int componentId);
 
 	/**
-	 * 
+	 *
 	 * @param componentId
 	 */
 	public Optional<ComponentTo> findComponent(int componentId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<ComponentTo> findComponents(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<ComponentTo> findComponents(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param componentId
 	 */
 	public Optional<HtmlTagTo> findHtmlTag(int componentId);
 
 	/**
-	 * 
+	 *
 	 * @param componentId
 	 */
 	public Set<InstanceTo> findInstances(int componentId);
 
 	/**
-	 * 
+	 *
 	 * @param componentId
 	 */
 	public Set<ModuleTo> findModules(int componentId);
 
 	/**
-	 * 
+	 *
 	 * @param component
 	 */
 	public ComponentTo modifyComponent(ComponentInput component);

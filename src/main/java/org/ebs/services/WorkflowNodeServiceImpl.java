@@ -70,42 +70,42 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	private WorkflowNodeCFRepository workflownodecfRepository;
 
 	/**
-	 * 
+	 *
 	 * @param WorkflowNode
 	 */
 	@Override @Transactional(readOnly = false)
 	public WorkflowNodeTo createWorkflowNode(WorkflowNodeInput WorkflowNode){
-		WorkflowNodeModel model = converter.convert(WorkflowNode,WorkflowNodeModel.class); 
+		WorkflowNodeModel model = converter.convert(WorkflowNode,WorkflowNodeModel.class);
 		 model.setId(0);
-		 WorkflowModel workflowModel = workflowRepository.findById(WorkflowNode.getWorkflow().getId()).get(); 
-		model.setWorkflow(workflowModel); 
-		EntityReferenceModel entityreferenceModel = entityreferenceRepository.findById(WorkflowNode.getEntityreference().getId()).get(); 
-		model.setEntityreference(entityreferenceModel); 
-		HtmlTagModel htmltagModel = htmltagRepository.findById(WorkflowNode.getHtmltag().getId()).get(); 
-		model.setHtmltag(htmltagModel); 
-		ProcessModel processModel = processRepository.findById(WorkflowNode.getProcess().getId()).get(); 
-		model.setProcess(processModel); 
-		ModuleModel moduleModel = moduleRepository.findById(WorkflowNode.getModule().getId()).get(); 
-		model.setModule(moduleModel); 
-		 
-		 model= workflownodeRepository.save(model); 
-		 return converter.convert(model, WorkflowNodeTo.class); 
+		 WorkflowModel workflowModel = workflowRepository.findById(WorkflowNode.getWorkflow().getId()).get();
+		model.setWorkflow(workflowModel);
+		EntityReferenceModel entityreferenceModel = entityreferenceRepository.findById(WorkflowNode.getEntityreference().getId()).get();
+		model.setEntityreference(entityreferenceModel);
+		HtmlTagModel htmltagModel = htmltagRepository.findById(WorkflowNode.getHtmltag().getId()).get();
+		model.setHtmltag(htmltagModel);
+		ProcessModel processModel = processRepository.findById(WorkflowNode.getProcess().getId()).get();
+		model.setProcess(processModel);
+		ModuleModel moduleModel = moduleRepository.findById(WorkflowNode.getModule().getId()).get();
+		model.setModule(moduleModel);
+
+		 model= workflownodeRepository.save(model);
+		 return converter.convert(model, WorkflowNodeTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowNodeId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteWorkflowNode(int workflowNodeId){
-		WorkflowNodeModel workflownode = workflownodeRepository.findById(workflowNodeId).orElseThrow(() -> new RuntimeException("WorkflowNode not found")); 
-		 workflownode.setDeleted(true); 
-		  workflownodeRepository.save(workflownode); 
+		WorkflowNodeModel workflownode = workflownodeRepository.findById(workflowNodeId).orElseThrow(() -> new RuntimeException("WorkflowNode not found"));
+		 workflownode.setDeleted(true);
+		  workflownodeRepository.save(workflownode);
 		 return workflowNodeId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeId
 	 */
 	public Set<ActionTo> findActions(int workflownodeId){
@@ -113,7 +113,7 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeId
 	 */
 	public Optional<EntityReferenceTo> findEntityReference(int workflownodeId){
@@ -121,7 +121,7 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeId
 	 */
 	public Optional<HtmlTagTo> findHtmlTag(int workflownodeId){
@@ -129,7 +129,7 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeId
 	 */
 	public Optional<ModuleTo> findModule(int workflownodeId){
@@ -137,7 +137,7 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeId
 	 */
 	public Optional<ProcessTo> findProcess(int workflownodeId){
@@ -145,7 +145,7 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeId
 	 */
 	public Optional<WorkflowTo> findWorkflow(int workflownodeId){
@@ -153,7 +153,7 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeId
 	 */
 	public Set<WorkflowEventTo> findWorkflowEvents(int workflownodeId){
@@ -161,18 +161,18 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowNodeId
 	 */
 	@Override
 	public Optional<WorkflowNodeTo> findWorkflowNode(int workflowNodeId){
-		if(workflowNodeId <1) 
-		 {return Optional.empty();} 
+		if(workflowNodeId <1)
+		 {return Optional.empty();}
 		 return workflownodeRepository.findById(workflowNodeId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,WorkflowNodeTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeId
 	 */
 	public Set<WorkflowNodeCFTo> findWorkflowNodeCFs(int workflownodeId){
@@ -180,18 +180,18 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<WorkflowNodeTo> findWorkflowNodes(PageInput page, SortInput sort, List<FilterInput> filters){
-		return workflownodeRepository.findByCriteria(WorkflowNodeModel.class,filters,sort,page).map(r -> converter.convert(r,WorkflowNodeTo.class));
+	public Page<WorkflowNodeTo> findWorkflowNodes(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return workflownodeRepository.findByCriteria(WorkflowNodeModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,WorkflowNodeTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeId
 	 */
 	public Set<WorkflowTo> findWorkflows(int workflownodeId){
@@ -199,7 +199,7 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeId
 	 */
 	public Set<WorkflowStageTo> findWorkflowStages(int workflownodeId){
@@ -207,19 +207,19 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowNode
 	 */
 	@Override @Transactional(readOnly = false)
 	public WorkflowNodeTo modifyWorkflowNode(WorkflowNodeInput workflowNode){
-		WorkflowNodeModel target= workflownodeRepository.findById(workflowNode.getId()).orElseThrow(() -> new RuntimeException("WorkflowNode not found")); 
-		 WorkflowNodeModel source= converter.convert(workflowNode,WorkflowNodeModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		WorkflowNodeModel target= workflownodeRepository.findById(workflowNode.getId()).orElseThrow(() -> new RuntimeException("WorkflowNode not found"));
+		 WorkflowNodeModel source= converter.convert(workflowNode,WorkflowNodeModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(workflownodeRepository.save(target), WorkflowNodeTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param processRepository
 	 * @param moduleRepository
 	 * @param workflownodecfRepository
@@ -234,7 +234,7 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	 */
 	@Autowired
 	public WorkflowNodeServiceImpl(ProcessRepository processRepository, ModuleRepository moduleRepository, WorkflowNodeCFRepository workflownodecfRepository, WorkflowNodeRepository workflownodeRepository, ConversionService converter, WorkflowStageRepository workflowstageRepository, WorkflowRepository workflowRepository, ActionRepository actionRepository, EntityReferenceRepository entityreferenceRepository, WorkflowEventRepository workfloweventRepository, HtmlTagRepository htmltagRepository){
-		this.workflownodeRepository =workflownodeRepository; 
+		this.workflownodeRepository =workflownodeRepository;
 		 this.converter = converter;
 		 this.workflowstageRepository = workflowstageRepository;
 		 this.workflowRepository = workflowRepository;

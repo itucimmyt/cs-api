@@ -45,34 +45,34 @@ import org.ebs.services.to.TenantTo;
 	private EntityReferenceRepository entityreferenceRepository;
 
 	/**
-	 * 
+	 *
 	 * @param EmailTemplate
 	 */
 	@Override @Transactional(readOnly = false)
 	public EmailTemplateTo createEmailTemplate(EmailTemplateInput EmailTemplate){
-		EmailTemplateModel model = converter.convert(EmailTemplate,EmailTemplateModel.class); 
+		EmailTemplateModel model = converter.convert(EmailTemplate,EmailTemplateModel.class);
 		 model.setId(0);
-		 TenantModel tenantModel = tenantRepository.findById(EmailTemplate.getTenant().getId()).get(); 
-		model.setTenant(tenantModel); 
-		 
-		 model= emailtemplateRepository.save(model); 
-		 return converter.convert(model, EmailTemplateTo.class); 
+		 TenantModel tenantModel = tenantRepository.findById(EmailTemplate.getTenant().getId()).get();
+		model.setTenant(tenantModel);
+
+		 model= emailtemplateRepository.save(model);
+		 return converter.convert(model, EmailTemplateTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param emailTemplateId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteEmailTemplate(int emailTemplateId){
-		EmailTemplateModel emailtemplate = emailtemplateRepository.findById(emailTemplateId).orElseThrow(() -> new RuntimeException("EmailTemplate not found")); 
-		 emailtemplate.setDeleted(true); 
-		  emailtemplateRepository.save(emailtemplate); 
+		EmailTemplateModel emailtemplate = emailtemplateRepository.findById(emailTemplateId).orElseThrow(() -> new RuntimeException("EmailTemplate not found"));
+		 emailtemplate.setDeleted(true);
+		  emailtemplateRepository.save(emailtemplate);
 		 return emailTemplateId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param tenantRepository
 	 * @param entityreferenceRepository
 	 * @param converter
@@ -80,36 +80,36 @@ import org.ebs.services.to.TenantTo;
 	 */
 	@Autowired
 	public EmailTemplateServiceImpl(TenantRepository tenantRepository, EntityReferenceRepository entityreferenceRepository, ConversionService converter, EmailTemplateRepository emailtemplateRepository){
-		this.emailtemplateRepository =emailtemplateRepository; 
+		this.emailtemplateRepository =emailtemplateRepository;
 		 this.converter = converter;
 		 this.entityreferenceRepository = entityreferenceRepository;
 		 this.tenantRepository = tenantRepository;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param emailTemplateId
 	 */
 	@Override
 	public Optional<EmailTemplateTo> findEmailTemplate(int emailTemplateId){
-		if(emailTemplateId <1) 
-		 {return Optional.empty();} 
+		if(emailTemplateId <1)
+		 {return Optional.empty();}
 		 return emailtemplateRepository.findById(emailTemplateId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,EmailTemplateTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<EmailTemplateTo> findEmailTemplates(PageInput page, SortInput sort, List<FilterInput> filters){
-		return emailtemplateRepository.findByCriteria(EmailTemplateModel.class,filters,sort,page).map(r -> converter.convert(r,EmailTemplateTo.class));
+	public Page<EmailTemplateTo> findEmailTemplates(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return emailtemplateRepository.findByCriteria(EmailTemplateModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,EmailTemplateTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param emailtemplateId
 	 */
 	public Set<EntityReferenceTo> findEntityReferences(int emailtemplateId){
@@ -117,7 +117,7 @@ import org.ebs.services.to.TenantTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param emailtemplateId
 	 */
 	public Optional<TenantTo> findTenant(int emailtemplateId){
@@ -125,14 +125,14 @@ import org.ebs.services.to.TenantTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param emailTemplate
 	 */
 	@Override @Transactional(readOnly = false)
 	public EmailTemplateTo modifyEmailTemplate(EmailTemplateInput emailTemplate){
-		EmailTemplateModel target= emailtemplateRepository.findById(emailTemplate.getId()).orElseThrow(() -> new RuntimeException("EmailTemplate not found")); 
-		 EmailTemplateModel source= converter.convert(emailTemplate,EmailTemplateModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		EmailTemplateModel target= emailtemplateRepository.findById(emailTemplate.getId()).orElseThrow(() -> new RuntimeException("EmailTemplate not found"));
+		 EmailTemplateModel source= converter.convert(emailTemplate,EmailTemplateModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(emailtemplateRepository.save(target), EmailTemplateTo.class);
 	}
 

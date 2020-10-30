@@ -73,36 +73,36 @@ import org.ebs.services.to.TeamTo;
 	private TeamRepository teamRepository;
 
 	/**
-	 * 
+	 *
 	 * @param Person
 	 */
 	@Override @Transactional(readOnly = false)
 	public PersonTo createPerson(PersonInput Person){
-		PersonModel model = converter.convert(Person,PersonModel.class); 
+		PersonModel model = converter.convert(Person,PersonModel.class);
 		 model.setId(0);
-		 TenantModel tenantModel = tenantRepository.findById(Person.getTenant().getId()).get(); 
-		model.setTenant(tenantModel); 
-		LanguageModel languageModel = languageRepository.findById(Person.getLanguage().getId()).get(); 
-		model.setLanguage(languageModel); 
-		 
-		 model= personRepository.save(model); 
-		 return converter.convert(model, PersonTo.class); 
+		 TenantModel tenantModel = tenantRepository.findById(Person.getTenant().getId()).get();
+		model.setTenant(tenantModel);
+		LanguageModel languageModel = languageRepository.findById(Person.getLanguage().getId()).get();
+		model.setLanguage(languageModel);
+
+		 model= personRepository.save(model);
+		 return converter.convert(model, PersonTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param personId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deletePerson(int personId){
-		PersonModel person = personRepository.findById(personId).orElseThrow(() -> new RuntimeException("Person not found")); 
-		 person.setDeleted(true); 
-		  personRepository.save(person); 
+		PersonModel person = personRepository.findById(personId).orElseThrow(() -> new RuntimeException("Person not found"));
+		 person.setDeleted(true);
+		  personRepository.save(person);
 		 return personId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param personId
 	 */
 	public Set<AddressTo> findAddresss(int personId){
@@ -110,7 +110,7 @@ import org.ebs.services.to.TeamTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param personId
 	 */
 	public Set<CollaboratorTo> findCollaborators(int personId){
@@ -118,7 +118,7 @@ import org.ebs.services.to.TeamTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param personId
 	 */
 	public Set<DonorTo> findDonors(int personId){
@@ -126,7 +126,7 @@ import org.ebs.services.to.TeamTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param personId
 	 */
 	public Optional<LanguageTo> findLanguage(int personId){
@@ -134,7 +134,7 @@ import org.ebs.services.to.TeamTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param personId
 	 */
 	public Set<PartnerTo> findPartners(int personId){
@@ -142,29 +142,29 @@ import org.ebs.services.to.TeamTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param personId
 	 */
 	@Override
 	public Optional<PersonTo> findPerson(int personId){
-		if(personId <1) 
-		 {return Optional.empty();} 
+		if(personId <1)
+		 {return Optional.empty();}
 		 return personRepository.findById(personId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,PersonTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<PersonTo> findPersons(PageInput page, SortInput sort, List<FilterInput> filters){
-		return personRepository.findByCriteria(PersonModel.class,filters,sort,page).map(r -> converter.convert(r,PersonTo.class));
+	public Page<PersonTo> findPersons(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return personRepository.findByCriteria(PersonModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,PersonTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param personId
 	 */
 	public Set<ProjectTo> findProjects(int personId){
@@ -172,7 +172,7 @@ import org.ebs.services.to.TeamTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param personId
 	 */
 	public Set<RequestTo> findRequests(int personId){
@@ -180,7 +180,7 @@ import org.ebs.services.to.TeamTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param personId
 	 */
 	public Set<TeamTo> findTeams(int personId){
@@ -188,7 +188,7 @@ import org.ebs.services.to.TeamTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param personId
 	 */
 	public Optional<TenantTo> findTenant(int personId){
@@ -196,7 +196,7 @@ import org.ebs.services.to.TeamTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param personId
 	 */
 	public Set<UserTo> findUsers(int personId){
@@ -204,7 +204,7 @@ import org.ebs.services.to.TeamTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param personId
 	 */
 	public Set<VendorTo> findVendors(int personId){
@@ -212,19 +212,19 @@ import org.ebs.services.to.TeamTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param person
 	 */
 	@Override @Transactional(readOnly = false)
 	public PersonTo modifyPerson(PersonInput person){
-		PersonModel target= personRepository.findById(person.getId()).orElseThrow(() -> new RuntimeException("Person not found")); 
-		 PersonModel source= converter.convert(person,PersonModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		PersonModel target= personRepository.findById(person.getId()).orElseThrow(() -> new RuntimeException("Person not found"));
+		 PersonModel source= converter.convert(person,PersonModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(personRepository.save(target), PersonTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param tenantRepository
 	 * @param userRepository
 	 * @param projectRepository
@@ -241,7 +241,7 @@ import org.ebs.services.to.TeamTo;
 	 */
 	@Autowired
 	public PersonServiceImpl(TenantRepository tenantRepository, UserRepository userRepository, ProjectRepository projectRepository, VendorRepository vendorRepository, PartnerRepository partnerRepository, DonorRepository donorRepository, CollaboratorRepository collaboratorRepository, AddressRepository addressRepository, RequestRepository requestRepository, ConversionService converter, PersonRepository personRepository, TeamRepository teamRepository, LanguageRepository languageRepository){
-		this.personRepository =personRepository; 
+		this.personRepository =personRepository;
 		 this.converter = converter;
 		 this.requestRepository = requestRepository;
 		 this.addressRepository = addressRepository;

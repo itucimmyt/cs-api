@@ -26,39 +26,39 @@ import org.ebs.services.to.AlertTo;
 public interface AlertRuleService {
 
 	/**
-	 * 
+	 *
 	 * @param AlertRule
 	 */
 	public AlertRuleTo createAlertRule(AlertRuleInput AlertRule);
 
 	/**
-	 * 
+	 *
 	 * @param alertRuleId
 	 */
 	public int deleteAlertRule(int alertRuleId);
 
 	/**
-	 * 
+	 *
 	 * @param alertruleId
 	 */
 	public Optional<AlertTo> findAlert(int alertruleId);
 
 	/**
-	 * 
+	 *
 	 * @param alertRuleId
 	 */
 	public Optional<AlertRuleTo> findAlertRule(int alertRuleId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<AlertRuleTo> findAlertRules(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<AlertRuleTo> findAlertRules(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param alertRule
 	 */
 	public AlertRuleTo modifyAlertRule(AlertRuleInput alertRule);

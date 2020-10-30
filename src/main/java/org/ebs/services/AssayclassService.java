@@ -29,45 +29,45 @@ import org.ebs.services.to.ServiceTo;
 public interface AssayclassService {
 
 	/**
-	 * 
+	 *
 	 * @param Assayclass
 	 */
 	public AssayclassTo createAssayclass(AssayclassInput Assayclass);
 
 	/**
-	 * 
+	 *
 	 * @param assayclassId
 	 */
 	public int deleteAssayclass(int assayclassId);
 
 	/**
-	 * 
+	 *
 	 * @param assayclassId
 	 */
 	public Optional<AssayclassTo> findAssayclass(int assayclassId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<AssayclassTo> findAssayclasss(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<AssayclassTo> findAssayclasss(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param assayclassId
 	 */
 	public Optional<ServiceTo> findService(int assayclassId);
 
 	/**
-	 * 
+	 *
 	 * @param assayclassId
 	 */
 	public Set<TechnologyPlatformTo> findTechnologyPlatforms(int assayclassId);
 
 	/**
-	 * 
+	 *
 	 * @param assayclass
 	 */
 	public AssayclassTo modifyAssayclass(AssayclassInput assayclass);

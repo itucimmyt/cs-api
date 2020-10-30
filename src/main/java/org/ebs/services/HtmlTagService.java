@@ -38,99 +38,99 @@ import org.ebs.services.to.TranslationTo;
 public interface HtmlTagService {
 
 	/**
-	 * 
+	 *
 	 * @param HtmlTag
 	 */
 	public HtmlTagTo createHtmlTag(HtmlTagInput HtmlTag);
 
 	/**
-	 * 
+	 *
 	 * @param htmlTagId
 	 */
 	public int deleteHtmlTag(int htmlTagId);
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	public Set<AlertTo> findAlerts(int htmltagId);
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	public Set<AttributesTo> findAttributess(int htmltagId);
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	public Set<ComponentTo> findComponents(int htmltagId);
 
 	/**
-	 * 
+	 *
 	 * @param htmlTagId
 	 */
 	public Optional<HtmlTagTo> findHtmlTag(int htmlTagId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<HtmlTagTo> findHtmlTags(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<HtmlTagTo> findHtmlTags(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	public Set<ModuleTo> findModules(int htmltagId);
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	public Set<NotificationTo> findNotifications(int htmltagId);
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	public Set<TranslationTo> findTranslations(int htmltagId);
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	public Set<WorkflowNodeCFTo> findWorkflowNodeCFs(int htmltagId);
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	public Set<WorkflowNodeTo> findWorkflowNodes(int htmltagId);
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	public Set<WorkflowPhaseTo> findWorkflowPhases(int htmltagId);
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	public Set<WorkflowTo> findWorkflows(int htmltagId);
 
 	/**
-	 * 
+	 *
 	 * @param htmltagId
 	 */
 	public Set<WorkflowStageTo> findWorkflowStages(int htmltagId);
 
 	/**
-	 * 
+	 *
 	 * @param htmlTag
 	 */
 	public HtmlTagTo modifyHtmlTag(HtmlTagInput htmlTag);

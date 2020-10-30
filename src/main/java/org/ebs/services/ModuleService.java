@@ -31,57 +31,57 @@ import org.ebs.services.to.WorkflowNodeTo;
 public interface ModuleService {
 
 	/**
-	 * 
+	 *
 	 * @param Module
 	 */
 	public ModuleTo createModule(ModuleInput Module);
 
 	/**
-	 * 
+	 *
 	 * @param moduleId
 	 */
 	public int deleteModule(int moduleId);
 
 	/**
-	 * 
+	 *
 	 * @param moduleId
 	 */
 	public Set<ActionTo> findActions(int moduleId);
 
 	/**
-	 * 
+	 *
 	 * @param moduleId
 	 */
 	public Optional<ComponentTo> findComponent(int moduleId);
 
 	/**
-	 * 
+	 *
 	 * @param moduleId
 	 */
 	public Optional<HtmlTagTo> findHtmlTag(int moduleId);
 
 	/**
-	 * 
+	 *
 	 * @param moduleId
 	 */
 	public Optional<ModuleTo> findModule(int moduleId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<ModuleTo> findModules(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<ModuleTo> findModules(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param moduleId
 	 */
 	public Set<WorkflowNodeTo> findWorkflowNodes(int moduleId);
 
 	/**
-	 * 
+	 *
 	 * @param module
 	 */
 	public ModuleTo modifyModule(ModuleInput module);

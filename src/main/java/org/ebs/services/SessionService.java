@@ -27,45 +27,45 @@ import org.ebs.services.to.InstanceTo;
 public interface SessionService {
 
 	/**
-	 * 
+	 *
 	 * @param Session
 	 */
 	public SessionTo createSession(SessionInput Session);
 
 	/**
-	 * 
+	 *
 	 * @param sessionId
 	 */
 	public int deleteSession(int sessionId);
 
 	/**
-	 * 
+	 *
 	 * @param sessionId
 	 */
 	public Optional<InstanceTo> findInstance(int sessionId);
 
 	/**
-	 * 
+	 *
 	 * @param sessionId
 	 */
 	public Optional<SessionTo> findSession(int sessionId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<SessionTo> findSessions(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<SessionTo> findSessions(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param sessionId
 	 */
 	public Optional<UserTo> findUser(int sessionId);
 
 	/**
-	 * 
+	 *
 	 * @param session
 	 */
 	public SessionTo modifySession(SessionInput session);

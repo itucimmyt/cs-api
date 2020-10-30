@@ -27,39 +27,39 @@ import org.ebs.services.to.TenantTo;
 public interface AuthenticationTypeService {
 
 	/**
-	 * 
+	 *
 	 * @param AuthenticationType
 	 */
 	public AuthenticationTypeTo createAuthenticationType(AuthenticationTypeInput AuthenticationType);
 
 	/**
-	 * 
+	 *
 	 * @param authenticationTypeId
 	 */
 	public int deleteAuthenticationType(int authenticationTypeId);
 
 	/**
-	 * 
+	 *
 	 * @param authenticationTypeId
 	 */
 	public Optional<AuthenticationTypeTo> findAuthenticationType(int authenticationTypeId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<AuthenticationTypeTo> findAuthenticationTypes(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<AuthenticationTypeTo> findAuthenticationTypes(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param authenticationtypeId
 	 */
 	public Set<TenantTo> findTenants(int authenticationtypeId);
 
 	/**
-	 * 
+	 *
 	 * @param authenticationType
 	 */
 	public AuthenticationTypeTo modifyAuthenticationType(AuthenticationTypeInput authenticationType);

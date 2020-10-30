@@ -27,45 +27,45 @@ import org.ebs.services.to.PersonTo;
 public interface ProjectService {
 
 	/**
-	 * 
+	 *
 	 * @param Project
 	 */
 	public ProjectTo createProject(ProjectInput Project);
 
 	/**
-	 * 
+	 *
 	 * @param projectId
 	 */
 	public int deleteProject(int projectId);
 
 	/**
-	 * 
+	 *
 	 * @param projectId
 	 */
 	public Optional<PersonTo> findPerson(int projectId);
 
 	/**
-	 * 
+	 *
 	 * @param projectId
 	 */
 	public Optional<ProgramTo> findProgram(int projectId);
 
 	/**
-	 * 
+	 *
 	 * @param projectId
 	 */
 	public Optional<ProjectTo> findProject(int projectId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<ProjectTo> findProjects(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<ProjectTo> findProjects(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param project
 	 */
 	public ProjectTo modifyProject(ProjectInput project);

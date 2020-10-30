@@ -35,93 +35,93 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 public interface WorkflowNodeService {
 
 	/**
-	 * 
+	 *
 	 * @param WorkflowNode
 	 */
 	public WorkflowNodeTo createWorkflowNode(WorkflowNodeInput WorkflowNode);
 
 	/**
-	 * 
+	 *
 	 * @param workflowNodeId
 	 */
 	public int deleteWorkflowNode(int workflowNodeId);
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeId
 	 */
 	public Set<ActionTo> findActions(int workflownodeId);
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeId
 	 */
 	public Optional<EntityReferenceTo> findEntityReference(int workflownodeId);
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeId
 	 */
 	public Optional<HtmlTagTo> findHtmlTag(int workflownodeId);
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeId
 	 */
 	public Optional<ModuleTo> findModule(int workflownodeId);
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeId
 	 */
 	public Optional<ProcessTo> findProcess(int workflownodeId);
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeId
 	 */
 	public Optional<WorkflowTo> findWorkflow(int workflownodeId);
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeId
 	 */
 	public Set<WorkflowEventTo> findWorkflowEvents(int workflownodeId);
 
 	/**
-	 * 
+	 *
 	 * @param workflowNodeId
 	 */
 	public Optional<WorkflowNodeTo> findWorkflowNode(int workflowNodeId);
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeId
 	 */
 	public Set<WorkflowNodeCFTo> findWorkflowNodeCFs(int workflownodeId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<WorkflowNodeTo> findWorkflowNodes(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<WorkflowNodeTo> findWorkflowNodes(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeId
 	 */
 	public Set<WorkflowTo> findWorkflows(int workflownodeId);
 
 	/**
-	 * 
+	 *
 	 * @param workflownodeId
 	 */
 	public Set<WorkflowStageTo> findWorkflowStages(int workflownodeId);
 
 	/**
-	 * 
+	 *
 	 * @param workflowNode
 	 */
 	public WorkflowNodeTo modifyWorkflowNode(WorkflowNodeInput workflowNode);

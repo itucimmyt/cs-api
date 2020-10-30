@@ -41,54 +41,54 @@ import org.ebs.services.to.TraitTo;
 	private TraitRepository traitRepository;
 
 	/**
-	 * 
+	 *
 	 * @param TraitClass
 	 */
 	@Override @Transactional(readOnly = false)
 	public TraitClassTo createTraitClass(TraitClassInput TraitClass){
-		TraitClassModel model = converter.convert(TraitClass,TraitClassModel.class); 
+		TraitClassModel model = converter.convert(TraitClass,TraitClassModel.class);
 		 model.setId(0);
-		  
-		 model= traitclassRepository.save(model); 
-		 return converter.convert(model, TraitClassTo.class); 
+
+		 model= traitclassRepository.save(model);
+		 return converter.convert(model, TraitClassTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param traitClassId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteTraitClass(int traitClassId){
-		TraitClassModel traitclass = traitclassRepository.findById(traitClassId).orElseThrow(() -> new RuntimeException("TraitClass not found")); 
-		 traitclass.setDeleted(true); 
-		  traitclassRepository.save(traitclass); 
+		TraitClassModel traitclass = traitclassRepository.findById(traitClassId).orElseThrow(() -> new RuntimeException("TraitClass not found"));
+		 traitclass.setDeleted(true);
+		  traitclassRepository.save(traitclass);
 		 return traitClassId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param traitClassId
 	 */
 	@Override
 	public Optional<TraitClassTo> findTraitClass(int traitClassId){
-		if(traitClassId <1) 
-		 {return Optional.empty();} 
+		if(traitClassId <1)
+		 {return Optional.empty();}
 		 return traitclassRepository.findById(traitClassId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,TraitClassTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<TraitClassTo> findTraitClasss(PageInput page, SortInput sort, List<FilterInput> filters){
-		return traitclassRepository.findByCriteria(TraitClassModel.class,filters,sort,page).map(r -> converter.convert(r,TraitClassTo.class));
+	public Page<TraitClassTo> findTraitClasss(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return traitclassRepository.findByCriteria(TraitClassModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,TraitClassTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param traitclassId
 	 */
 	public Set<TraitTo> findTraits(int traitclassId){
@@ -96,26 +96,26 @@ import org.ebs.services.to.TraitTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param traitClass
 	 */
 	@Override @Transactional(readOnly = false)
 	public TraitClassTo modifyTraitClass(TraitClassInput traitClass){
-		TraitClassModel target= traitclassRepository.findById(traitClass.getId()).orElseThrow(() -> new RuntimeException("TraitClass not found")); 
-		 TraitClassModel source= converter.convert(traitClass,TraitClassModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		TraitClassModel target= traitclassRepository.findById(traitClass.getId()).orElseThrow(() -> new RuntimeException("TraitClass not found"));
+		 TraitClassModel source= converter.convert(traitClass,TraitClassModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(traitclassRepository.save(target), TraitClassTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param traitRepository
 	 * @param converter
 	 * @param traitclassRepository
 	 */
 	@Autowired
 	public TraitClassServiceImpl(TraitRepository traitRepository, ConversionService converter, TraitClassRepository traitclassRepository){
-		this.traitclassRepository =traitclassRepository; 
+		this.traitclassRepository =traitclassRepository;
 		 this.converter = converter;
 		 this.traitRepository = traitRepository;
 	}

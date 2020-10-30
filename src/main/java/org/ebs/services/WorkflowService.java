@@ -32,75 +32,75 @@ import org.ebs.services.to.WorkflowInstanceTo;
 public interface WorkflowService {
 
 	/**
-	 * 
+	 *
 	 * @param Workflow
 	 */
 	public WorkflowTo createWorkflow(WorkflowInput Workflow);
 
 	/**
-	 * 
+	 *
 	 * @param workflowId
 	 */
 	public int deleteWorkflow(int workflowId);
 
 	/**
-	 * 
+	 *
 	 * @param workflowId
 	 */
 	public Optional<EntityReferenceTo> findEntityReference(int workflowId);
 
 	/**
-	 * 
+	 *
 	 * @param workflowId
 	 */
 	public Optional<HtmlTagTo> findHtmlTag(int workflowId);
 
 	/**
-	 * 
+	 *
 	 * @param workflowId
 	 */
 	public Optional<TenantTo> findTenant(int workflowId);
 
 	/**
-	 * 
+	 *
 	 * @param workflowId
 	 */
 	public Optional<WorkflowTo> findWorkflow(int workflowId);
 
 	/**
-	 * 
+	 *
 	 * @param workflowId
 	 */
 	public Set<WorkflowInstanceTo> findWorkflowInstances(int workflowId);
 
 	/**
-	 * 
+	 *
 	 * @param workflowId
 	 */
 	public Optional<WorkflowNodeTo> findWorkflowNode(int workflowId);
 
 	/**
-	 * 
+	 *
 	 * @param workflowId
 	 */
 	public Set<WorkflowNodeTo> findWorkflowNodes(int workflowId);
 
 	/**
-	 * 
+	 *
 	 * @param workflowId
 	 */
 	public Set<WorkflowPhaseTo> findWorkflowPhases(int workflowId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<WorkflowTo> findWorkflows(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<WorkflowTo> findWorkflows(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param workflow
 	 */
 	public WorkflowTo modifyWorkflow(WorkflowInput workflow);

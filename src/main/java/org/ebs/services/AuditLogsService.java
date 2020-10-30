@@ -26,39 +26,39 @@ import org.ebs.services.to.InstanceTo;
 public interface AuditLogsService {
 
 	/**
-	 * 
+	 *
 	 * @param AuditLogs
 	 */
 	public AuditLogsTo createAuditLogs(AuditLogsInput AuditLogs);
 
 	/**
-	 * 
+	 *
 	 * @param auditLogsId
 	 */
 	public int deleteAuditLogs(int auditLogsId);
 
 	/**
-	 * 
+	 *
 	 * @param auditLogsId
 	 */
 	public Optional<AuditLogsTo> findAuditLogs(int auditLogsId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<AuditLogsTo> findAuditLogss(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<AuditLogsTo> findAuditLogss(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param auditlogsId
 	 */
 	public Optional<InstanceTo> findInstance(int auditlogsId);
 
 	/**
-	 * 
+	 *
 	 * @param auditLogs
 	 */
 	public AuditLogsTo modifyAuditLogs(AuditLogsInput auditLogs);

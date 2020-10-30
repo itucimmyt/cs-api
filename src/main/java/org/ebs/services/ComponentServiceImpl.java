@@ -48,7 +48,7 @@ import org.ebs.services.to.ModuleTo;
 	private ModuleRepository moduleRepository;
 
 	/**
-	 * 
+	 *
 	 * @param moduleRepository
 	 * @param htmltagRepository
 	 * @param instanceRepository
@@ -57,7 +57,7 @@ import org.ebs.services.to.ModuleTo;
 	 */
 	@Autowired
 	public ComponentServiceImpl(ModuleRepository moduleRepository, HtmlTagRepository htmltagRepository, InstanceRepository instanceRepository, ConversionService converter, ComponentRepository componentRepository){
-		this.componentRepository =componentRepository; 
+		this.componentRepository =componentRepository;
 		 this.converter = converter;
 		 this.instanceRepository = instanceRepository;
 		 this.htmltagRepository = htmltagRepository;
@@ -65,56 +65,56 @@ import org.ebs.services.to.ModuleTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param Component
 	 */
 	@Override @Transactional(readOnly = false)
 	public ComponentTo createComponent(ComponentInput Component){
-		ComponentModel model = converter.convert(Component,ComponentModel.class); 
+		ComponentModel model = converter.convert(Component,ComponentModel.class);
 		 model.setId(0);
-		 HtmlTagModel htmltagModel = htmltagRepository.findById(Component.getHtmltag().getId()).get(); 
-		model.setHtmltag(htmltagModel); 
-		 
-		 model= componentRepository.save(model); 
-		 return converter.convert(model, ComponentTo.class); 
+		 HtmlTagModel htmltagModel = htmltagRepository.findById(Component.getHtmltag().getId()).get();
+		model.setHtmltag(htmltagModel);
+
+		 model= componentRepository.save(model);
+		 return converter.convert(model, ComponentTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param componentId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteComponent(int componentId){
-		ComponentModel component = componentRepository.findById(componentId).orElseThrow(() -> new RuntimeException("Component not found")); 
-		 component.setDeleted(true); 
-		  componentRepository.save(component); 
+		ComponentModel component = componentRepository.findById(componentId).orElseThrow(() -> new RuntimeException("Component not found"));
+		 component.setDeleted(true);
+		  componentRepository.save(component);
 		 return componentId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param componentId
 	 */
 	@Override
 	public Optional<ComponentTo> findComponent(int componentId){
-		if(componentId <1) 
-		 {return Optional.empty();} 
+		if(componentId <1)
+		 {return Optional.empty();}
 		 return componentRepository.findById(componentId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,ComponentTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<ComponentTo> findComponents(PageInput page, SortInput sort, List<FilterInput> filters){
-		return componentRepository.findByCriteria(ComponentModel.class,filters,sort,page).map(r -> converter.convert(r,ComponentTo.class));
+	public Page<ComponentTo> findComponents(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return componentRepository.findByCriteria(ComponentModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,ComponentTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param componentId
 	 */
 	public Optional<HtmlTagTo> findHtmlTag(int componentId){
@@ -122,7 +122,7 @@ import org.ebs.services.to.ModuleTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param componentId
 	 */
 	public Set<InstanceTo> findInstances(int componentId){
@@ -130,7 +130,7 @@ import org.ebs.services.to.ModuleTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param componentId
 	 */
 	public Set<ModuleTo> findModules(int componentId){
@@ -138,14 +138,14 @@ import org.ebs.services.to.ModuleTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param component
 	 */
 	@Override @Transactional(readOnly = false)
 	public ComponentTo modifyComponent(ComponentInput component){
-		ComponentModel target= componentRepository.findById(component.getId()).orElseThrow(() -> new RuntimeException("Component not found")); 
-		 ComponentModel source= converter.convert(component,ComponentModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		ComponentModel target= componentRepository.findById(component.getId()).orElseThrow(() -> new RuntimeException("Component not found"));
+		 ComponentModel source= converter.convert(component,ComponentModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(componentRepository.save(target), ComponentTo.class);
 	}
 

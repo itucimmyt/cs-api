@@ -28,45 +28,45 @@ import org.ebs.services.to.NumberSequenceRuleSegmentTo;
 public interface SegmentService {
 
 	/**
-	 * 
+	 *
 	 * @param Segment
 	 */
 	public SegmentTo createSegment(SegmentInput Segment);
 
 	/**
-	 * 
+	 *
 	 * @param segmentId
 	 */
 	public int deleteSegment(int segmentId);
 
 	/**
-	 * 
+	 *
 	 * @param segmentId
 	 */
 	public Optional<EntityReferenceTo> findEntityReference(int segmentId);
 
 	/**
-	 * 
+	 *
 	 * @param segmentId
 	 */
 	public Set<NumberSequenceRuleSegmentTo> findNumberSequenceRuleSegments(int segmentId);
 
 	/**
-	 * 
+	 *
 	 * @param segmentId
 	 */
 	public Optional<SegmentTo> findSegment(int segmentId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<SegmentTo> findSegments(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<SegmentTo> findSegments(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param segment
 	 */
 	public SegmentTo modifySegment(SegmentInput segment);

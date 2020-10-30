@@ -31,63 +31,63 @@ import org.ebs.services.to.WorkflowNodeTo;
 public interface WorkflowNodeCFService {
 
 	/**
-	 * 
+	 *
 	 * @param WorkflowNodeCF
 	 */
 	public WorkflowNodeCFTo createWorkflowNodeCF(WorkflowNodeCFInput WorkflowNodeCF);
 
 	/**
-	 * 
+	 *
 	 * @param workflowNodeCFId
 	 */
 	public int deleteWorkflowNodeCF(int workflowNodeCFId);
 
 	/**
-	 * 
+	 *
 	 * @param workflownodecfId
 	 */
 	public Optional<EntityReferenceTo> findEntityReference(int workflownodecfId);
 
 	/**
-	 * 
+	 *
 	 * @param workflownodecfId
 	 */
 	public Optional<HtmlTagTo> findHtmlTag(int workflownodecfId);
 
 	/**
-	 * 
+	 *
 	 * @param workflownodecfId
 	 */
 	public Optional<WorkflowCFTypeTo> findWorkflowCFType(int workflownodecfId);
 
 	/**
-	 * 
+	 *
 	 * @param workflownodecfId
 	 */
 	public Set<WorkflowCFValueTo> findWorkflowCFValues(int workflownodecfId);
 
 	/**
-	 * 
+	 *
 	 * @param workflownodecfId
 	 */
 	public Optional<WorkflowNodeTo> findWorkflowNode(int workflownodecfId);
 
 	/**
-	 * 
+	 *
 	 * @param workflowNodeCFId
 	 */
 	public Optional<WorkflowNodeCFTo> findWorkflowNodeCF(int workflowNodeCFId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<WorkflowNodeCFTo> findWorkflowNodeCFs(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<WorkflowNodeCFTo> findWorkflowNodeCFs(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param workflowNodeCF
 	 */
 	public WorkflowNodeCFTo modifyWorkflowNodeCF(WorkflowNodeCFInput workflowNodeCF);

@@ -45,22 +45,22 @@ import org.ebs.services.to.TenantTo;
 	private TenantRepository tenantRepository;
 
 	/**
-	 * 
+	 *
 	 * @param Customer
 	 */
 	@Override @Transactional(readOnly = false)
 	public CustomerTo createCustomer(CustomerInput Customer){
-		CustomerModel model = converter.convert(Customer,CustomerModel.class); 
+		CustomerModel model = converter.convert(Customer,CustomerModel.class);
 		 model.setId(0);
-		 OrganizationModel organizationModel = organizationRepository.findById(Customer.getOrganization().getId()).get(); 
-		model.setOrganization(organizationModel); 
-		 
-		 model= customerRepository.save(model); 
-		 return converter.convert(model, CustomerTo.class); 
+		 OrganizationModel organizationModel = organizationRepository.findById(Customer.getOrganization().getId()).get();
+		model.setOrganization(organizationModel);
+
+		 model= customerRepository.save(model);
+		 return converter.convert(model, CustomerTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param tenantRepository
 	 * @param organizationRepository
 	 * @param converter
@@ -68,48 +68,48 @@ import org.ebs.services.to.TenantTo;
 	 */
 	@Autowired
 	public CustomerServiceImpl(TenantRepository tenantRepository, OrganizationRepository organizationRepository, ConversionService converter, CustomerRepository customerRepository){
-		this.customerRepository =customerRepository; 
+		this.customerRepository =customerRepository;
 		 this.converter = converter;
 		 this.organizationRepository = organizationRepository;
 		 this.tenantRepository = tenantRepository;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param customerId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteCustomer(int customerId){
-		CustomerModel customer = customerRepository.findById(customerId).orElseThrow(() -> new RuntimeException("Customer not found")); 
-		 customer.setDeleted(true); 
-		  customerRepository.save(customer); 
+		CustomerModel customer = customerRepository.findById(customerId).orElseThrow(() -> new RuntimeException("Customer not found"));
+		 customer.setDeleted(true);
+		  customerRepository.save(customer);
 		 return customerId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param customerId
 	 */
 	@Override
 	public Optional<CustomerTo> findCustomer(int customerId){
-		if(customerId <1) 
-		 {return Optional.empty();} 
+		if(customerId <1)
+		 {return Optional.empty();}
 		 return customerRepository.findById(customerId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,CustomerTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<CustomerTo> findCustomers(PageInput page, SortInput sort, List<FilterInput> filters){
-		return customerRepository.findByCriteria(CustomerModel.class,filters,sort,page).map(r -> converter.convert(r,CustomerTo.class));
+	public Page<CustomerTo> findCustomers(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return customerRepository.findByCriteria(CustomerModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,CustomerTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param customerId
 	 */
 	public Optional<OrganizationTo> findOrganization(int customerId){
@@ -117,7 +117,7 @@ import org.ebs.services.to.TenantTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param customerId
 	 */
 	public Set<OrganizationTo> findOrganizations(int customerId){
@@ -125,7 +125,7 @@ import org.ebs.services.to.TenantTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param customerId
 	 */
 	public Set<TenantTo> findTenants(int customerId){
@@ -133,14 +133,14 @@ import org.ebs.services.to.TenantTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param customer
 	 */
 	@Override @Transactional(readOnly = false)
 	public CustomerTo modifyCustomer(CustomerInput customer){
-		CustomerModel target= customerRepository.findById(customer.getId()).orElseThrow(() -> new RuntimeException("Customer not found")); 
-		 CustomerModel source= converter.convert(customer,CustomerModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		CustomerModel target= customerRepository.findById(customer.getId()).orElseThrow(() -> new RuntimeException("Customer not found"));
+		 CustomerModel source= converter.convert(customer,CustomerModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(customerRepository.save(target), CustomerTo.class);
 	}
 

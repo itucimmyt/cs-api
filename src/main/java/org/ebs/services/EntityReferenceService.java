@@ -33,75 +33,75 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 public interface EntityReferenceService {
 
 	/**
-	 * 
+	 *
 	 * @param EntityReference
 	 */
 	public EntityReferenceTo createEntityReference(EntityReferenceInput EntityReference);
 
 	/**
-	 * 
+	 *
 	 * @param entityReferenceId
 	 */
 	public int deleteEntityReference(int entityReferenceId);
 
 	/**
-	 * 
+	 *
 	 * @param entityreferenceId
 	 */
 	public Set<AttributesTo> findAttributess(int entityreferenceId);
 
 	/**
-	 * 
+	 *
 	 * @param entityreferenceId
 	 */
 	public Set<EmailTemplateTo> findEmailTemplates(int entityreferenceId);
 
 	/**
-	 * 
+	 *
 	 * @param entityReferenceId
 	 */
 	public Optional<EntityReferenceTo> findEntityReference(int entityReferenceId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<EntityReferenceTo> findEntityReferences(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<EntityReferenceTo> findEntityReferences(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param entityreferenceId
 	 */
 	public Set<NumberSequenceRuleTo> findNumberSequenceRules(int entityreferenceId);
 
 	/**
-	 * 
+	 *
 	 * @param entityreferenceId
 	 */
 	public Set<SegmentTo> findSegments(int entityreferenceId);
 
 	/**
-	 * 
+	 *
 	 * @param entityreferenceId
 	 */
 	public Set<WorkflowNodeCFTo> findWorkflowNodeCFs(int entityreferenceId);
 
 	/**
-	 * 
+	 *
 	 * @param entityreferenceId
 	 */
 	public Set<WorkflowNodeTo> findWorkflowNodes(int entityreferenceId);
 
 	/**
-	 * 
+	 *
 	 * @param entityreferenceId
 	 */
 	public Set<WorkflowTo> findWorkflows(int entityreferenceId);
 
 	/**
-	 * 
+	 *
 	 * @param entityReference
 	 */
 	public EntityReferenceTo modifyEntityReference(EntityReferenceInput entityReference);

@@ -48,34 +48,34 @@ import org.ebs.services.to.EntityReferenceTo;
 	private EntityReferenceRepository entityreferenceRepository;
 
 	/**
-	 * 
+	 *
 	 * @param NumberSequenceRule
 	 */
 	@Override @Transactional(readOnly = false)
 	public NumberSequenceRuleTo createNumberSequenceRule(NumberSequenceRuleInput NumberSequenceRule){
-		NumberSequenceRuleModel model = converter.convert(NumberSequenceRule,NumberSequenceRuleModel.class); 
+		NumberSequenceRuleModel model = converter.convert(NumberSequenceRule,NumberSequenceRuleModel.class);
 		 model.setId(0);
-		 TenantModel tenantModel = tenantRepository.findById(NumberSequenceRule.getTenant().getId()).get(); 
-		model.setTenant(tenantModel); 
-		 
-		 model= numbersequenceruleRepository.save(model); 
-		 return converter.convert(model, NumberSequenceRuleTo.class); 
+		 TenantModel tenantModel = tenantRepository.findById(NumberSequenceRule.getTenant().getId()).get();
+		model.setTenant(tenantModel);
+
+		 model= numbersequenceruleRepository.save(model);
+		 return converter.convert(model, NumberSequenceRuleTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param numberSequenceRuleId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteNumberSequenceRule(int numberSequenceRuleId){
-		NumberSequenceRuleModel numbersequencerule = numbersequenceruleRepository.findById(numberSequenceRuleId).orElseThrow(() -> new RuntimeException("NumberSequenceRule not found")); 
-		 numbersequencerule.setDeleted(true); 
-		  numbersequenceruleRepository.save(numbersequencerule); 
+		NumberSequenceRuleModel numbersequencerule = numbersequenceruleRepository.findById(numberSequenceRuleId).orElseThrow(() -> new RuntimeException("NumberSequenceRule not found"));
+		 numbersequencerule.setDeleted(true);
+		  numbersequenceruleRepository.save(numbersequencerule);
 		 return numberSequenceRuleId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param numbersequenceruleId
 	 */
 	public Set<EntityReferenceTo> findEntityReferences(int numbersequenceruleId){
@@ -83,29 +83,29 @@ import org.ebs.services.to.EntityReferenceTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param numberSequenceRuleId
 	 */
 	@Override
 	public Optional<NumberSequenceRuleTo> findNumberSequenceRule(int numberSequenceRuleId){
-		if(numberSequenceRuleId <1) 
-		 {return Optional.empty();} 
+		if(numberSequenceRuleId <1)
+		 {return Optional.empty();}
 		 return numbersequenceruleRepository.findById(numberSequenceRuleId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,NumberSequenceRuleTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<NumberSequenceRuleTo> findNumberSequenceRules(PageInput page, SortInput sort, List<FilterInput> filters){
-		return numbersequenceruleRepository.findByCriteria(NumberSequenceRuleModel.class,filters,sort,page).map(r -> converter.convert(r,NumberSequenceRuleTo.class));
+	public Page<NumberSequenceRuleTo> findNumberSequenceRules(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return numbersequenceruleRepository.findByCriteria(NumberSequenceRuleModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,NumberSequenceRuleTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param numbersequenceruleId
 	 */
 	public Set<NumberSequenceRuleSegmentTo> findNumberSequenceRuleSegments(int numbersequenceruleId){
@@ -113,7 +113,7 @@ import org.ebs.services.to.EntityReferenceTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param numbersequenceruleId
 	 */
 	public Optional<TenantTo> findTenant(int numbersequenceruleId){
@@ -121,19 +121,19 @@ import org.ebs.services.to.EntityReferenceTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param numberSequenceRule
 	 */
 	@Override @Transactional(readOnly = false)
 	public NumberSequenceRuleTo modifyNumberSequenceRule(NumberSequenceRuleInput numberSequenceRule){
-		NumberSequenceRuleModel target= numbersequenceruleRepository.findById(numberSequenceRule.getId()).orElseThrow(() -> new RuntimeException("NumberSequenceRule not found")); 
-		 NumberSequenceRuleModel source= converter.convert(numberSequenceRule,NumberSequenceRuleModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		NumberSequenceRuleModel target= numbersequenceruleRepository.findById(numberSequenceRule.getId()).orElseThrow(() -> new RuntimeException("NumberSequenceRule not found"));
+		 NumberSequenceRuleModel source= converter.convert(numberSequenceRule,NumberSequenceRuleModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(numbersequenceruleRepository.save(target), NumberSequenceRuleTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param entityreferenceRepository
 	 * @param tenantRepository
 	 * @param numbersequencerulesegmentRepository
@@ -142,7 +142,7 @@ import org.ebs.services.to.EntityReferenceTo;
 	 */
 	@Autowired
 	public NumberSequenceRuleServiceImpl(EntityReferenceRepository entityreferenceRepository, TenantRepository tenantRepository, NumberSequenceRuleSegmentRepository numbersequencerulesegmentRepository, ConversionService converter, NumberSequenceRuleRepository numbersequenceruleRepository){
-		this.numbersequenceruleRepository =numbersequenceruleRepository; 
+		this.numbersequenceruleRepository =numbersequenceruleRepository;
 		 this.converter = converter;
 		 this.numbersequencerulesegmentRepository = numbersequencerulesegmentRepository;
 		 this.tenantRepository = tenantRepository;

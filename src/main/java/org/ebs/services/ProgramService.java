@@ -30,57 +30,57 @@ import org.ebs.services.to.TenantTo;
 public interface ProgramService {
 
 	/**
-	 * 
+	 *
 	 * @param Program
 	 */
 	public ProgramTo createProgram(ProgramInput Program);
 
 	/**
-	 * 
+	 *
 	 * @param programId
 	 */
 	public int deleteProgram(int programId);
 
 	/**
-	 * 
+	 *
 	 * @param programId
 	 */
 	public Optional<CropTo> findCrop(int programId);
 
 	/**
-	 * 
+	 *
 	 * @param programId
 	 */
 	public Optional<ProgramTo> findProgram(int programId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<ProgramTo> findPrograms(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<ProgramTo> findPrograms(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param programId
 	 */
 	public Set<ProjectTo> findProjects(int programId);
 
 	/**
-	 * 
+	 *
 	 * @param programId
 	 */
 	public Set<TeamTo> findTeams(int programId);
 
 	/**
-	 * 
+	 *
 	 * @param programId
 	 */
 	public Optional<TenantTo> findTenant(int programId);
 
 	/**
-	 * 
+	 *
 	 * @param program
 	 */
 	public ProgramTo modifyProgram(ProgramInput program);

@@ -42,69 +42,69 @@ import org.ebs.services.to.InstanceTo;
 	private InstanceRepository instanceRepository;
 
 	/**
-	 * 
+	 *
 	 * @param instanceRepository
 	 * @param converter
 	 * @param auditlogsRepository
 	 */
 	@Autowired
 	public AuditLogsServiceImpl(InstanceRepository instanceRepository, ConversionService converter, AuditLogsRepository auditlogsRepository){
-		this.auditlogsRepository =auditlogsRepository; 
+		this.auditlogsRepository =auditlogsRepository;
 		 this.converter = converter;
 		 this.instanceRepository = instanceRepository;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param AuditLogs
 	 */
 	@Override @Transactional(readOnly = false)
 	public AuditLogsTo createAuditLogs(AuditLogsInput AuditLogs){
-		AuditLogsModel model = converter.convert(AuditLogs,AuditLogsModel.class); 
+		AuditLogsModel model = converter.convert(AuditLogs,AuditLogsModel.class);
 		 model.setId(0);
-		 InstanceModel instanceModel = instanceRepository.findById(AuditLogs.getInstance().getId()).get(); 
-		model.setInstance(instanceModel); 
-		 
-		 model= auditlogsRepository.save(model); 
-		 return converter.convert(model, AuditLogsTo.class); 
+		 InstanceModel instanceModel = instanceRepository.findById(AuditLogs.getInstance().getId()).get();
+		model.setInstance(instanceModel);
+
+		 model= auditlogsRepository.save(model);
+		 return converter.convert(model, AuditLogsTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param auditLogsId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteAuditLogs(int auditLogsId){
-		AuditLogsModel auditlogs = auditlogsRepository.findById(auditLogsId).orElseThrow(() -> new RuntimeException("AuditLogs not found")); 
-		 auditlogs.setDeleted(true); 
-		  auditlogsRepository.save(auditlogs); 
+		AuditLogsModel auditlogs = auditlogsRepository.findById(auditLogsId).orElseThrow(() -> new RuntimeException("AuditLogs not found"));
+		 auditlogs.setDeleted(true);
+		  auditlogsRepository.save(auditlogs);
 		 return auditLogsId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param auditLogsId
 	 */
 	@Override
 	public Optional<AuditLogsTo> findAuditLogs(int auditLogsId){
-		if(auditLogsId <1) 
-		 {return Optional.empty();} 
+		if(auditLogsId <1)
+		 {return Optional.empty();}
 		 return auditlogsRepository.findById(auditLogsId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,AuditLogsTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<AuditLogsTo> findAuditLogss(PageInput page, SortInput sort, List<FilterInput> filters){
-		return auditlogsRepository.findByCriteria(AuditLogsModel.class,filters,sort,page).map(r -> converter.convert(r,AuditLogsTo.class));
+	public Page<AuditLogsTo> findAuditLogss(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return auditlogsRepository.findByCriteria(AuditLogsModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,AuditLogsTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param auditlogsId
 	 */
 	public Optional<InstanceTo> findInstance(int auditlogsId){
@@ -112,14 +112,14 @@ import org.ebs.services.to.InstanceTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param auditLogs
 	 */
 	@Override @Transactional(readOnly = false)
 	public AuditLogsTo modifyAuditLogs(AuditLogsInput auditLogs){
-		AuditLogsModel target= auditlogsRepository.findById(auditLogs.getId()).orElseThrow(() -> new RuntimeException("AuditLogs not found")); 
-		 AuditLogsModel source= converter.convert(auditLogs,AuditLogsModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		AuditLogsModel target= auditlogsRepository.findById(auditLogs.getId()).orElseThrow(() -> new RuntimeException("AuditLogs not found"));
+		 AuditLogsModel source= converter.convert(auditLogs,AuditLogsModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(auditlogsRepository.save(target), AuditLogsTo.class);
 	}
 

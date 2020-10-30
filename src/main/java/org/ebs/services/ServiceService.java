@@ -29,51 +29,51 @@ import org.ebs.services.to.VendorTo;
 public interface ServiceService {
 
 	/**
-	 * 
+	 *
 	 * @param Service
 	 */
 	public ServiceTo createService(ServiceInput Service);
 
 	/**
-	 * 
+	 *
 	 * @param serviceId
 	 */
 	public int deleteService(int serviceId);
 
 	/**
-	 * 
+	 *
 	 * @param serviceId
 	 */
 	public Set<AssayclassTo> findAssayclasss(int serviceId);
 
 	/**
-	 * 
+	 *
 	 * @param serviceId
 	 */
 	public Optional<PurposeTo> findPurpose(int serviceId);
 
 	/**
-	 * 
+	 *
 	 * @param serviceId
 	 */
 	public Optional<ServiceTo> findService(int serviceId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<ServiceTo> findServices(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<ServiceTo> findServices(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param serviceId
 	 */
 	public Set<VendorTo> findVendors(int serviceId);
 
 	/**
-	 * 
+	 *
 	 * @param service
 	 */
 	public ServiceTo modifyService(ServiceInput service);

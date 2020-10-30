@@ -27,39 +27,39 @@ import org.ebs.services.to.TraitTo;
 public interface TraitClassService {
 
 	/**
-	 * 
+	 *
 	 * @param TraitClass
 	 */
 	public TraitClassTo createTraitClass(TraitClassInput TraitClass);
 
 	/**
-	 * 
+	 *
 	 * @param traitClassId
 	 */
 	public int deleteTraitClass(int traitClassId);
 
 	/**
-	 * 
+	 *
 	 * @param traitClassId
 	 */
 	public Optional<TraitClassTo> findTraitClass(int traitClassId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<TraitClassTo> findTraitClasss(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<TraitClassTo> findTraitClasss(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param traitclassId
 	 */
 	public Set<TraitTo> findTraits(int traitclassId);
 
 	/**
-	 * 
+	 *
 	 * @param traitClass
 	 */
 	public TraitClassTo modifyTraitClass(TraitClassInput traitClass);

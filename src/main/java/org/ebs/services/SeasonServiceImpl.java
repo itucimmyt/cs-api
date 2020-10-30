@@ -41,32 +41,32 @@ import org.ebs.services.to.CropTo;
 	private CropRepository cropRepository;
 
 	/**
-	 * 
+	 *
 	 * @param Season
 	 */
 	@Override @Transactional(readOnly = false)
 	public SeasonTo createSeason(SeasonInput Season){
-		SeasonModel model = converter.convert(Season,SeasonModel.class); 
+		SeasonModel model = converter.convert(Season,SeasonModel.class);
 		 model.setId(0);
-		  
-		 model= seasonRepository.save(model); 
-		 return converter.convert(model, SeasonTo.class); 
+
+		 model= seasonRepository.save(model);
+		 return converter.convert(model, SeasonTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param seasonId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteSeason(int seasonId){
-		SeasonModel season = seasonRepository.findById(seasonId).orElseThrow(() -> new RuntimeException("Season not found")); 
-		 season.setDeleted(true); 
-		  seasonRepository.save(season); 
+		SeasonModel season = seasonRepository.findById(seasonId).orElseThrow(() -> new RuntimeException("Season not found"));
+		 season.setDeleted(true);
+		  seasonRepository.save(season);
 		 return seasonId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param seasonId
 	 */
 	public Set<CropTo> findCrops(int seasonId){
@@ -74,48 +74,48 @@ import org.ebs.services.to.CropTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param seasonId
 	 */
 	@Override
 	public Optional<SeasonTo> findSeason(int seasonId){
-		if(seasonId <1) 
-		 {return Optional.empty();} 
+		if(seasonId <1)
+		 {return Optional.empty();}
 		 return seasonRepository.findById(seasonId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,SeasonTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<SeasonTo> findSeasons(PageInput page, SortInput sort, List<FilterInput> filters){
-		return seasonRepository.findByCriteria(SeasonModel.class,filters,sort,page).map(r -> converter.convert(r,SeasonTo.class));
+	public Page<SeasonTo> findSeasons(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return seasonRepository.findByCriteria(SeasonModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,SeasonTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param season
 	 */
 	@Override @Transactional(readOnly = false)
 	public SeasonTo modifySeason(SeasonInput season){
-		SeasonModel target= seasonRepository.findById(season.getId()).orElseThrow(() -> new RuntimeException("Season not found")); 
-		 SeasonModel source= converter.convert(season,SeasonModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		SeasonModel target= seasonRepository.findById(season.getId()).orElseThrow(() -> new RuntimeException("Season not found"));
+		 SeasonModel source= converter.convert(season,SeasonModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(seasonRepository.save(target), SeasonTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param cropRepository
 	 * @param converter
 	 * @param seasonRepository
 	 */
 	@Autowired
 	public SeasonServiceImpl(CropRepository cropRepository, ConversionService converter, SeasonRepository seasonRepository){
-		this.seasonRepository =seasonRepository; 
+		this.seasonRepository =seasonRepository;
 		 this.converter = converter;
 		 this.cropRepository = cropRepository;
 	}

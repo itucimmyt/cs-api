@@ -28,51 +28,51 @@ import org.ebs.services.to.StyleThemeTo;
 public interface PreferenceService {
 
 	/**
-	 * 
+	 *
 	 * @param Preference
 	 */
 	public PreferenceTo createPreference(PreferenceInput Preference);
 
 	/**
-	 * 
+	 *
 	 * @param preferenceId
 	 */
 	public int deletePreference(int preferenceId);
 
 	/**
-	 * 
+	 *
 	 * @param preferenceId
 	 */
 	public Optional<AlertTo> findAlert(int preferenceId);
 
 	/**
-	 * 
+	 *
 	 * @param preferenceId
 	 */
 	public Optional<PreferenceTo> findPreference(int preferenceId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<PreferenceTo> findPreferences(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<PreferenceTo> findPreferences(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param preferenceId
 	 */
 	public Optional<StyleThemeTo> findStyleTheme(int preferenceId);
 
 	/**
-	 * 
+	 *
 	 * @param preferenceId
 	 */
 	public Optional<UserTo> findUser(int preferenceId);
 
 	/**
-	 * 
+	 *
 	 * @param preference
 	 */
 	public PreferenceTo modifyPreference(PreferenceInput preference);

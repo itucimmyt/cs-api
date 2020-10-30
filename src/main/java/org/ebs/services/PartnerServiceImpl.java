@@ -42,56 +42,56 @@ import org.ebs.services.to.PersonTo;
 	private PersonRepository personRepository;
 
 	/**
-	 * 
+	 *
 	 * @param Partner
 	 */
 	@Override @Transactional(readOnly = false)
 	public PartnerTo createPartner(PartnerInput Partner){
-		PartnerModel model = converter.convert(Partner,PartnerModel.class); 
+		PartnerModel model = converter.convert(Partner,PartnerModel.class);
 		 model.setId(0);
-		 PersonModel personModel = personRepository.findById(Partner.getPerson().getId()).get(); 
-		model.setPerson(personModel); 
-		 
-		 model= partnerRepository.save(model); 
-		 return converter.convert(model, PartnerTo.class); 
+		 PersonModel personModel = personRepository.findById(Partner.getPerson().getId()).get();
+		model.setPerson(personModel);
+
+		 model= partnerRepository.save(model);
+		 return converter.convert(model, PartnerTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param partnerId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deletePartner(int partnerId){
-		PartnerModel partner = partnerRepository.findById(partnerId).orElseThrow(() -> new RuntimeException("Partner not found")); 
-		 partner.setDeleted(true); 
-		  partnerRepository.save(partner); 
+		PartnerModel partner = partnerRepository.findById(partnerId).orElseThrow(() -> new RuntimeException("Partner not found"));
+		 partner.setDeleted(true);
+		  partnerRepository.save(partner);
 		 return partnerId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param partnerId
 	 */
 	@Override
 	public Optional<PartnerTo> findPartner(int partnerId){
-		if(partnerId <1) 
-		 {return Optional.empty();} 
+		if(partnerId <1)
+		 {return Optional.empty();}
 		 return partnerRepository.findById(partnerId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,PartnerTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<PartnerTo> findPartners(PageInput page, SortInput sort, List<FilterInput> filters){
-		return partnerRepository.findByCriteria(PartnerModel.class,filters,sort,page).map(r -> converter.convert(r,PartnerTo.class));
+	public Page<PartnerTo> findPartners(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return partnerRepository.findByCriteria(PartnerModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,PartnerTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param partnerId
 	 */
 	public Optional<PersonTo> findPerson(int partnerId){
@@ -99,26 +99,26 @@ import org.ebs.services.to.PersonTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param partner
 	 */
 	@Override @Transactional(readOnly = false)
 	public PartnerTo modifyPartner(PartnerInput partner){
-		PartnerModel target= partnerRepository.findById(partner.getId()).orElseThrow(() -> new RuntimeException("Partner not found")); 
-		 PartnerModel source= converter.convert(partner,PartnerModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		PartnerModel target= partnerRepository.findById(partner.getId()).orElseThrow(() -> new RuntimeException("Partner not found"));
+		 PartnerModel source= converter.convert(partner,PartnerModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(partnerRepository.save(target), PartnerTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param personRepository
 	 * @param converter
 	 * @param partnerRepository
 	 */
 	@Autowired
 	public PartnerServiceImpl(PersonRepository personRepository, ConversionService converter, PartnerRepository partnerRepository){
-		this.partnerRepository =partnerRepository; 
+		this.partnerRepository =partnerRepository;
 		 this.converter = converter;
 		 this.personRepository = personRepository;
 	}

@@ -46,36 +46,36 @@ import org.ebs.services.to.RoleTo;
 	private RoleRepository roleRepository;
 
 	/**
-	 * 
+	 *
 	 * @param RoleAction
 	 */
 	@Override @Transactional(readOnly = false)
 	public RoleActionTo createRoleAction(RoleActionInput RoleAction){
-		RoleActionModel model = converter.convert(RoleAction,RoleActionModel.class); 
+		RoleActionModel model = converter.convert(RoleAction,RoleActionModel.class);
 		 model.setId(0);
-		 ActionModel actionModel = actionRepository.findById(RoleAction.getAction().getId()).get(); 
-		model.setAction(actionModel); 
-		RoleModel roleModel = roleRepository.findById(RoleAction.getRole().getId()).get(); 
-		model.setRole(roleModel); 
-		 
-		 model= roleactionRepository.save(model); 
-		 return converter.convert(model, RoleActionTo.class); 
+		 ActionModel actionModel = actionRepository.findById(RoleAction.getAction().getId()).get();
+		model.setAction(actionModel);
+		RoleModel roleModel = roleRepository.findById(RoleAction.getRole().getId()).get();
+		model.setRole(roleModel);
+
+		 model= roleactionRepository.save(model);
+		 return converter.convert(model, RoleActionTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param roleActionId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteRoleAction(int roleActionId){
-		RoleActionModel roleaction = roleactionRepository.findById(roleActionId).orElseThrow(() -> new RuntimeException("RoleAction not found")); 
-		 roleaction.setDeleted(true); 
-		  roleactionRepository.save(roleaction); 
+		RoleActionModel roleaction = roleactionRepository.findById(roleActionId).orElseThrow(() -> new RuntimeException("RoleAction not found"));
+		 roleaction.setDeleted(true);
+		  roleactionRepository.save(roleaction);
 		 return roleActionId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param roleactionId
 	 */
 	public Optional<ActionTo> findAction(int roleactionId){
@@ -83,7 +83,7 @@ import org.ebs.services.to.RoleTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param roleactionId
 	 */
 	public Optional<RoleTo> findRole(int roleactionId){
@@ -91,41 +91,41 @@ import org.ebs.services.to.RoleTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param roleActionId
 	 */
 	@Override
 	public Optional<RoleActionTo> findRoleAction(int roleActionId){
-		if(roleActionId <1) 
-		 {return Optional.empty();} 
+		if(roleActionId <1)
+		 {return Optional.empty();}
 		 return roleactionRepository.findById(roleActionId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,RoleActionTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<RoleActionTo> findRoleActions(PageInput page, SortInput sort, List<FilterInput> filters){
-		return roleactionRepository.findByCriteria(RoleActionModel.class,filters,sort,page).map(r -> converter.convert(r,RoleActionTo.class));
+	public Page<RoleActionTo> findRoleActions(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return roleactionRepository.findByCriteria(RoleActionModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,RoleActionTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param roleAction
 	 */
 	@Override @Transactional(readOnly = false)
 	public RoleActionTo modifyRoleAction(RoleActionInput roleAction){
-		RoleActionModel target= roleactionRepository.findById(roleAction.getId()).orElseThrow(() -> new RuntimeException("RoleAction not found")); 
-		 RoleActionModel source= converter.convert(roleAction,RoleActionModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		RoleActionModel target= roleactionRepository.findById(roleAction.getId()).orElseThrow(() -> new RuntimeException("RoleAction not found"));
+		 RoleActionModel source= converter.convert(roleAction,RoleActionModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(roleactionRepository.save(target), RoleActionTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param roleRepository
 	 * @param actionRepository
 	 * @param converter
@@ -133,7 +133,7 @@ import org.ebs.services.to.RoleTo;
 	 */
 	@Autowired
 	public RoleActionServiceImpl(RoleRepository roleRepository, ActionRepository actionRepository, ConversionService converter, RoleActionRepository roleactionRepository){
-		this.roleactionRepository =roleactionRepository; 
+		this.roleactionRepository =roleactionRepository;
 		 this.converter = converter;
 		 this.roleRepository = roleRepository;
 	}

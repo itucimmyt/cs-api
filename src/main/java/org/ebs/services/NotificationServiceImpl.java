@@ -41,32 +41,32 @@ import org.ebs.services.to.HtmlTagTo;
 	private HtmlTagRepository htmltagRepository;
 
 	/**
-	 * 
+	 *
 	 * @param Notification
 	 */
 	@Override @Transactional(readOnly = false)
 	public NotificationTo createNotification(NotificationInput Notification){
-		NotificationModel model = converter.convert(Notification,NotificationModel.class); 
+		NotificationModel model = converter.convert(Notification,NotificationModel.class);
 		 model.setId(0);
-		  
-		 model= notificationRepository.save(model); 
-		 return converter.convert(model, NotificationTo.class); 
+
+		 model= notificationRepository.save(model);
+		 return converter.convert(model, NotificationTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param notificationId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteNotification(int notificationId){
-		NotificationModel notification = notificationRepository.findById(notificationId).orElseThrow(() -> new RuntimeException("Notification not found")); 
-		 notification.setDeleted(true); 
-		  notificationRepository.save(notification); 
+		NotificationModel notification = notificationRepository.findById(notificationId).orElseThrow(() -> new RuntimeException("Notification not found"));
+		 notification.setDeleted(true);
+		  notificationRepository.save(notification);
 		 return notificationId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param notificationId
 	 */
 	public Optional<HtmlTagTo> findHtmlTag(int notificationId){
@@ -74,48 +74,48 @@ import org.ebs.services.to.HtmlTagTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param notificationId
 	 */
 	@Override
 	public Optional<NotificationTo> findNotification(int notificationId){
-		if(notificationId <1) 
-		 {return Optional.empty();} 
+		if(notificationId <1)
+		 {return Optional.empty();}
 		 return notificationRepository.findById(notificationId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,NotificationTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<NotificationTo> findNotifications(PageInput page, SortInput sort, List<FilterInput> filters){
-		return notificationRepository.findByCriteria(NotificationModel.class,filters,sort,page).map(r -> converter.convert(r,NotificationTo.class));
+	public Page<NotificationTo> findNotifications(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return notificationRepository.findByCriteria(NotificationModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,NotificationTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param notification
 	 */
 	@Override @Transactional(readOnly = false)
 	public NotificationTo modifyNotification(NotificationInput notification){
-		NotificationModel target= notificationRepository.findById(notification.getId()).orElseThrow(() -> new RuntimeException("Notification not found")); 
-		 NotificationModel source= converter.convert(notification,NotificationModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		NotificationModel target= notificationRepository.findById(notification.getId()).orElseThrow(() -> new RuntimeException("Notification not found"));
+		 NotificationModel source= converter.convert(notification,NotificationModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(notificationRepository.save(target), NotificationTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param htmltagRepository
 	 * @param converter
 	 * @param notificationRepository
 	 */
 	@Autowired
 	public NotificationServiceImpl(HtmlTagRepository htmltagRepository, ConversionService converter, NotificationRepository notificationRepository){
-		this.notificationRepository =notificationRepository; 
+		this.notificationRepository =notificationRepository;
 		 this.converter = converter;
 		 this.htmltagRepository = htmltagRepository;
 	}

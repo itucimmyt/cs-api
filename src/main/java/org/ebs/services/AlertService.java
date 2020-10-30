@@ -29,51 +29,51 @@ import org.ebs.services.to.PreferenceTo;
 public interface AlertService {
 
 	/**
-	 * 
+	 *
 	 * @param Alert
 	 */
 	public AlertTo createAlert(AlertInput Alert);
 
 	/**
-	 * 
+	 *
 	 * @param alertId
 	 */
 	public int deleteAlert(int alertId);
 
 	/**
-	 * 
+	 *
 	 * @param alertId
 	 */
 	public Optional<AlertTo> findAlert(int alertId);
 
 	/**
-	 * 
+	 *
 	 * @param alertId
 	 */
 	public Set<AlertRuleTo> findAlertRules(int alertId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<AlertTo> findAlerts(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<AlertTo> findAlerts(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param alertId
 	 */
 	public Optional<HtmlTagTo> findHtmlTag(int alertId);
 
 	/**
-	 * 
+	 *
 	 * @param alertId
 	 */
 	public Set<PreferenceTo> findPreferences(int alertId);
 
 	/**
-	 * 
+	 *
 	 * @param alert
 	 */
 	public AlertTo modifyAlert(AlertInput alert);

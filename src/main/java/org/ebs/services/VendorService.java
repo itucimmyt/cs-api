@@ -32,63 +32,63 @@ import org.ebs.services.to.PersonTo;
 public interface VendorService {
 
 	/**
-	 * 
+	 *
 	 * @param Vendor
 	 */
 	public VendorTo createVendor(VendorInput Vendor);
 
 	/**
-	 * 
+	 *
 	 * @param vendorId
 	 */
 	public int deleteVendor(int vendorId);
 
 	/**
-	 * 
+	 *
 	 * @param vendorId
 	 */
 	public Optional<DataFormatTo> findDataFormat(int vendorId);
 
 	/**
-	 * 
+	 *
 	 * @param vendorId
 	 */
 	public Set<MarkerTo> findMarkers(int vendorId);
 
 	/**
-	 * 
+	 *
 	 * @param vendorId
 	 */
 	public Optional<PersonTo> findPerson(int vendorId);
 
 	/**
-	 * 
+	 *
 	 * @param vendorId
 	 */
 	public Set<ServiceTo> findServices(int vendorId);
 
 	/**
-	 * 
+	 *
 	 * @param vendorId
 	 */
 	public Optional<TechnologyPlatformTo> findTechnologyPlatform(int vendorId);
 
 	/**
-	 * 
+	 *
 	 * @param vendorId
 	 */
 	public Optional<VendorTo> findVendor(int vendorId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<VendorTo> findVendors(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<VendorTo> findVendors(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param vendor
 	 */
 	public VendorTo modifyVendor(VendorInput vendor);

@@ -51,34 +51,34 @@ import org.ebs.services.to.TenantTo;
 	private ComponentRepository componentRepository;
 
 	/**
-	 * 
+	 *
 	 * @param Instance
 	 */
 	@Override @Transactional(readOnly = false)
 	public InstanceTo createInstance(InstanceInput Instance){
-		InstanceModel model = converter.convert(Instance,InstanceModel.class); 
+		InstanceModel model = converter.convert(Instance,InstanceModel.class);
 		 model.setId(0);
-		 TenantModel tenantModel = tenantRepository.findById(Instance.getTenant().getId()).get(); 
-		model.setTenant(tenantModel); 
-		 
-		 model= instanceRepository.save(model); 
-		 return converter.convert(model, InstanceTo.class); 
+		 TenantModel tenantModel = tenantRepository.findById(Instance.getTenant().getId()).get();
+		model.setTenant(tenantModel);
+
+		 model= instanceRepository.save(model);
+		 return converter.convert(model, InstanceTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param instanceId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteInstance(int instanceId){
-		InstanceModel instance = instanceRepository.findById(instanceId).orElseThrow(() -> new RuntimeException("Instance not found")); 
-		 instance.setDeleted(true); 
-		  instanceRepository.save(instance); 
+		InstanceModel instance = instanceRepository.findById(instanceId).orElseThrow(() -> new RuntimeException("Instance not found"));
+		 instance.setDeleted(true);
+		  instanceRepository.save(instance);
 		 return instanceId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param instanceId
 	 */
 	public Set<AuditLogsTo> findAuditLogss(int instanceId){
@@ -86,7 +86,7 @@ import org.ebs.services.to.TenantTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param instanceId
 	 */
 	public Set<ComponentTo> findComponents(int instanceId){
@@ -94,29 +94,29 @@ import org.ebs.services.to.TenantTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param instanceId
 	 */
 	@Override
 	public Optional<InstanceTo> findInstance(int instanceId){
-		if(instanceId <1) 
-		 {return Optional.empty();} 
+		if(instanceId <1)
+		 {return Optional.empty();}
 		 return instanceRepository.findById(instanceId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,InstanceTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<InstanceTo> findInstances(PageInput page, SortInput sort, List<FilterInput> filters){
-		return instanceRepository.findByCriteria(InstanceModel.class,filters,sort,page).map(r -> converter.convert(r,InstanceTo.class));
+	public Page<InstanceTo> findInstances(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return instanceRepository.findByCriteria(InstanceModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,InstanceTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param instanceId
 	 */
 	public Set<SessionTo> findSessions(int instanceId){
@@ -124,7 +124,7 @@ import org.ebs.services.to.TenantTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param instanceId
 	 */
 	public Optional<TenantTo> findTenant(int instanceId){
@@ -132,7 +132,7 @@ import org.ebs.services.to.TenantTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param tenantRepository
 	 * @param instanceRepository
 	 * @param converter
@@ -142,7 +142,7 @@ import org.ebs.services.to.TenantTo;
 	 */
 	@Autowired
 	public InstanceServiceImpl(TenantRepository tenantRepository, InstanceRepository instanceRepository, ConversionService converter, SessionRepository sessionRepository, AuditLogsRepository auditlogsRepository, ComponentRepository componentRepository){
-		this.instanceRepository =instanceRepository; 
+		this.instanceRepository =instanceRepository;
 		 this.converter = converter;
 		 this.sessionRepository = sessionRepository;
 		 this.auditlogsRepository = auditlogsRepository;
@@ -151,14 +151,14 @@ import org.ebs.services.to.TenantTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param instance
 	 */
 	@Override @Transactional(readOnly = false)
 	public InstanceTo modifyInstance(InstanceInput instance){
-		InstanceModel target= instanceRepository.findById(instance.getId()).orElseThrow(() -> new RuntimeException("Instance not found")); 
-		 InstanceModel source= converter.convert(instance,InstanceModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		InstanceModel target= instanceRepository.findById(instance.getId()).orElseThrow(() -> new RuntimeException("Instance not found"));
+		 InstanceModel source= converter.convert(instance,InstanceModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(instanceRepository.save(target), InstanceTo.class);
 	}
 

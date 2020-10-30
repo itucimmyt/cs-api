@@ -28,45 +28,45 @@ import org.ebs.services.to.MarkerTo;
 public interface AssayGeneService {
 
 	/**
-	 * 
+	 *
 	 * @param AssayGene
 	 */
 	public AssayGeneTo createAssayGene(AssayGeneInput AssayGene);
 
 	/**
-	 * 
+	 *
 	 * @param assayGeneId
 	 */
 	public int deleteAssayGene(int assayGeneId);
 
 	/**
-	 * 
+	 *
 	 * @param assayGeneId
 	 */
 	public Optional<AssayGeneTo> findAssayGene(int assayGeneId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<AssayGeneTo> findAssayGenes(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<AssayGeneTo> findAssayGenes(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param assaygeneId
 	 */
 	public Set<MarkerTo> findMarkers(int assaygeneId);
 
 	/**
-	 * 
+	 *
 	 * @param assaygeneId
 	 */
 	public Optional<TraitTo> findTrait(int assaygeneId);
 
 	/**
-	 * 
+	 *
 	 * @param assayGene
 	 */
 	public AssayGeneTo modifyAssayGene(AssayGeneInput assayGene);

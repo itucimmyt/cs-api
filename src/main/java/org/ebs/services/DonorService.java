@@ -26,39 +26,39 @@ import org.ebs.services.to.PersonTo;
 public interface DonorService {
 
 	/**
-	 * 
+	 *
 	 * @param Donor
 	 */
 	public DonorTo createDonor(DonorInput Donor);
 
 	/**
-	 * 
+	 *
 	 * @param donorId
 	 */
 	public int deleteDonor(int donorId);
 
 	/**
-	 * 
+	 *
 	 * @param donorId
 	 */
 	public Optional<DonorTo> findDonor(int donorId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<DonorTo> findDonors(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<DonorTo> findDonors(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param donorId
 	 */
 	public Optional<PersonTo> findPerson(int donorId);
 
 	/**
-	 * 
+	 *
 	 * @param donor
 	 */
 	public DonorTo modifyDonor(DonorInput donor);

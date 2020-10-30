@@ -29,51 +29,51 @@ import org.ebs.services.to.CropTo;
 public interface ServiceProviderService {
 
 	/**
-	 * 
+	 *
 	 * @param ServiceProvider
 	 */
 	public ServiceProviderTo createServiceProvider(ServiceProviderInput ServiceProvider);
 
 	/**
-	 * 
+	 *
 	 * @param serviceProviderId
 	 */
 	public int deleteServiceProvider(int serviceProviderId);
 
 	/**
-	 * 
+	 *
 	 * @param serviceproviderId
 	 */
 	public Optional<CountryTo> findCountry(int serviceproviderId);
 
 	/**
-	 * 
+	 *
 	 * @param serviceproviderId
 	 */
 	public Set<CropTo> findCrops(int serviceproviderId);
 
 	/**
-	 * 
+	 *
 	 * @param serviceProviderId
 	 */
 	public Optional<ServiceProviderTo> findServiceProvider(int serviceProviderId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<ServiceProviderTo> findServiceProviders(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<ServiceProviderTo> findServiceProviders(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param serviceproviderId
 	 */
 	public Set<ServiceTypeTo> findServiceTypes(int serviceproviderId);
 
 	/**
-	 * 
+	 *
 	 * @param serviceProvider
 	 */
 	public ServiceProviderTo modifyServiceProvider(ServiceProviderInput serviceProvider);

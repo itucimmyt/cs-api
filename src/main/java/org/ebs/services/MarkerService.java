@@ -29,51 +29,51 @@ import org.ebs.services.to.VendorTo;
 public interface MarkerService {
 
 	/**
-	 * 
+	 *
 	 * @param Marker
 	 */
 	public MarkerTo createMarker(MarkerInput Marker);
 
 	/**
-	 * 
+	 *
 	 * @param markerId
 	 */
 	public int deleteMarker(int markerId);
 
 	/**
-	 * 
+	 *
 	 * @param markerId
 	 */
 	public Optional<AssayGeneTo> findAssayGene(int markerId);
 
 	/**
-	 * 
+	 *
 	 * @param markerId
 	 */
 	public Optional<MarkerTo> findMarker(int markerId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<MarkerTo> findMarkers(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<MarkerTo> findMarkers(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param markerId
 	 */
 	public Set<MarkerSynonymTo> findMarkerSynonyms(int markerId);
 
 	/**
-	 * 
+	 *
 	 * @param markerId
 	 */
 	public Set<VendorTo> findVendors(int markerId);
 
 	/**
-	 * 
+	 *
 	 * @param marker
 	 */
 	public MarkerTo modifyMarker(MarkerInput marker);

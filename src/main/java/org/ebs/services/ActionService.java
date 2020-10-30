@@ -31,63 +31,63 @@ import org.ebs.services.to.ModuleTo;
 public interface ActionService {
 
 	/**
-	 * 
+	 *
 	 * @param Action
 	 */
 	public ActionTo createAction(ActionInput Action);
 
 	/**
-	 * 
+	 *
 	 * @param actionId
 	 */
 	public int deleteAction(int actionId);
 
 	/**
-	 * 
+	 *
 	 * @param actionId
 	 */
 	public Optional<ActionTo> findAction(int actionId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<ActionTo> findActions(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<ActionTo> findActions(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param actionId
 	 */
 	public Optional<ModuleTo> findModule(int actionId);
 
 	/**
-	 * 
+	 *
 	 * @param actionId
 	 */
 	public Set<RoleActionTo> findRoleActions(int actionId);
 
 	/**
-	 * 
+	 *
 	 * @param actionId
 	 */
 	public Set<RoleTo> findRoles(int actionId);
 
 	/**
-	 * 
+	 *
 	 * @param actionId
 	 */
 	public Optional<WorkflowNodeTo> findWorkflowNode(int actionId);
 
 	/**
-	 * 
+	 *
 	 * @param actionId
 	 */
 	public Optional<WorkflowStageTo> findWorkflowStage(int actionId);
 
 	/**
-	 * 
+	 *
 	 * @param action
 	 */
 	public ActionTo modifyAction(ActionInput action);

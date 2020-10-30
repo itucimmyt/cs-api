@@ -31,57 +31,57 @@ import org.ebs.services.to.SessionTo;
 public interface InstanceService {
 
 	/**
-	 * 
+	 *
 	 * @param Instance
 	 */
 	public InstanceTo createInstance(InstanceInput Instance);
 
 	/**
-	 * 
+	 *
 	 * @param instanceId
 	 */
 	public int deleteInstance(int instanceId);
 
 	/**
-	 * 
+	 *
 	 * @param instanceId
 	 */
 	public Set<AuditLogsTo> findAuditLogss(int instanceId);
 
 	/**
-	 * 
+	 *
 	 * @param instanceId
 	 */
 	public Set<ComponentTo> findComponents(int instanceId);
 
 	/**
-	 * 
+	 *
 	 * @param instanceId
 	 */
 	public Optional<InstanceTo> findInstance(int instanceId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<InstanceTo> findInstances(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<InstanceTo> findInstances(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param instanceId
 	 */
 	public Set<SessionTo> findSessions(int instanceId);
 
 	/**
-	 * 
+	 *
 	 * @param instanceId
 	 */
 	public Optional<TenantTo> findTenant(int instanceId);
 
 	/**
-	 * 
+	 *
 	 * @param instance
 	 */
 	public InstanceTo modifyInstance(InstanceInput instance);

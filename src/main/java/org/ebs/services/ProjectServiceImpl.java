@@ -46,36 +46,36 @@ import org.ebs.services.to.PersonTo;
 	private PersonRepository personRepository;
 
 	/**
-	 * 
+	 *
 	 * @param Project
 	 */
 	@Override @Transactional(readOnly = false)
 	public ProjectTo createProject(ProjectInput Project){
-		ProjectModel model = converter.convert(Project,ProjectModel.class); 
+		ProjectModel model = converter.convert(Project,ProjectModel.class);
 		 model.setId(0);
-		 ProgramModel programModel = programRepository.findById(Project.getProgram().getId()).get(); 
-		model.setProgram(programModel); 
-		PersonModel personModel = personRepository.findById(Project.getPerson().getId()).get(); 
-		model.setPerson(personModel); 
-		 
-		 model= projectRepository.save(model); 
-		 return converter.convert(model, ProjectTo.class); 
+		 ProgramModel programModel = programRepository.findById(Project.getProgram().getId()).get();
+		model.setProgram(programModel);
+		PersonModel personModel = personRepository.findById(Project.getPerson().getId()).get();
+		model.setPerson(personModel);
+
+		 model= projectRepository.save(model);
+		 return converter.convert(model, ProjectTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param projectId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteProject(int projectId){
-		ProjectModel project = projectRepository.findById(projectId).orElseThrow(() -> new RuntimeException("Project not found")); 
-		 project.setDeleted(true); 
-		  projectRepository.save(project); 
+		ProjectModel project = projectRepository.findById(projectId).orElseThrow(() -> new RuntimeException("Project not found"));
+		 project.setDeleted(true);
+		  projectRepository.save(project);
 		 return projectId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param projectId
 	 */
 	public Optional<PersonTo> findPerson(int projectId){
@@ -83,7 +83,7 @@ import org.ebs.services.to.PersonTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param projectId
 	 */
 	public Optional<ProgramTo> findProgram(int projectId){
@@ -91,41 +91,41 @@ import org.ebs.services.to.PersonTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param projectId
 	 */
 	@Override
 	public Optional<ProjectTo> findProject(int projectId){
-		if(projectId <1) 
-		 {return Optional.empty();} 
+		if(projectId <1)
+		 {return Optional.empty();}
 		 return projectRepository.findById(projectId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,ProjectTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<ProjectTo> findProjects(PageInput page, SortInput sort, List<FilterInput> filters){
-		return projectRepository.findByCriteria(ProjectModel.class,filters,sort,page).map(r -> converter.convert(r,ProjectTo.class));
+	public Page<ProjectTo> findProjects(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return projectRepository.findByCriteria(ProjectModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,ProjectTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param project
 	 */
 	@Override @Transactional(readOnly = false)
 	public ProjectTo modifyProject(ProjectInput project){
-		ProjectModel target= projectRepository.findById(project.getId()).orElseThrow(() -> new RuntimeException("Project not found")); 
-		 ProjectModel source= converter.convert(project,ProjectModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		ProjectModel target= projectRepository.findById(project.getId()).orElseThrow(() -> new RuntimeException("Project not found"));
+		 ProjectModel source= converter.convert(project,ProjectModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(projectRepository.save(target), ProjectTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param personRepository
 	 * @param programRepository
 	 * @param converter
@@ -133,7 +133,7 @@ import org.ebs.services.to.PersonTo;
 	 */
 	@Autowired
 	public ProjectServiceImpl(PersonRepository personRepository, ProgramRepository programRepository, ConversionService converter, ProjectRepository projectRepository){
-		this.projectRepository =projectRepository; 
+		this.projectRepository =projectRepository;
 		 this.converter = converter;
 		 this.programRepository = programRepository;
 		 this.personRepository = personRepository;

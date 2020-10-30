@@ -48,34 +48,34 @@ import org.ebs.services.to.CropTo;
 	private CropRepository cropRepository;
 
 	/**
-	 * 
+	 *
 	 * @param ServiceProvider
 	 */
 	@Override @Transactional(readOnly = false)
 	public ServiceProviderTo createServiceProvider(ServiceProviderInput ServiceProvider){
-		ServiceProviderModel model = converter.convert(ServiceProvider,ServiceProviderModel.class); 
+		ServiceProviderModel model = converter.convert(ServiceProvider,ServiceProviderModel.class);
 		 model.setId(0);
-		 CountryModel countryModel = countryRepository.findById(ServiceProvider.getCountry().getId()).get(); 
-		model.setCountry(countryModel); 
-		 
-		 model= serviceproviderRepository.save(model); 
-		 return converter.convert(model, ServiceProviderTo.class); 
+		 CountryModel countryModel = countryRepository.findById(ServiceProvider.getCountry().getId()).get();
+		model.setCountry(countryModel);
+
+		 model= serviceproviderRepository.save(model);
+		 return converter.convert(model, ServiceProviderTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param serviceProviderId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteServiceProvider(int serviceProviderId){
-		ServiceProviderModel serviceprovider = serviceproviderRepository.findById(serviceProviderId).orElseThrow(() -> new RuntimeException("ServiceProvider not found")); 
-		 serviceprovider.setDeleted(true); 
-		  serviceproviderRepository.save(serviceprovider); 
+		ServiceProviderModel serviceprovider = serviceproviderRepository.findById(serviceProviderId).orElseThrow(() -> new RuntimeException("ServiceProvider not found"));
+		 serviceprovider.setDeleted(true);
+		  serviceproviderRepository.save(serviceprovider);
 		 return serviceProviderId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param serviceproviderId
 	 */
 	public Optional<CountryTo> findCountry(int serviceproviderId){
@@ -83,7 +83,7 @@ import org.ebs.services.to.CropTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param serviceproviderId
 	 */
 	public Set<CropTo> findCrops(int serviceproviderId){
@@ -91,29 +91,29 @@ import org.ebs.services.to.CropTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param serviceProviderId
 	 */
 	@Override
 	public Optional<ServiceProviderTo> findServiceProvider(int serviceProviderId){
-		if(serviceProviderId <1) 
-		 {return Optional.empty();} 
+		if(serviceProviderId <1)
+		 {return Optional.empty();}
 		 return serviceproviderRepository.findById(serviceProviderId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,ServiceProviderTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<ServiceProviderTo> findServiceProviders(PageInput page, SortInput sort, List<FilterInput> filters){
-		return serviceproviderRepository.findByCriteria(ServiceProviderModel.class,filters,sort,page).map(r -> converter.convert(r,ServiceProviderTo.class));
+	public Page<ServiceProviderTo> findServiceProviders(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return serviceproviderRepository.findByCriteria(ServiceProviderModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,ServiceProviderTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param serviceproviderId
 	 */
 	public Set<ServiceTypeTo> findServiceTypes(int serviceproviderId){
@@ -121,19 +121,19 @@ import org.ebs.services.to.CropTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param serviceProvider
 	 */
 	@Override @Transactional(readOnly = false)
 	public ServiceProviderTo modifyServiceProvider(ServiceProviderInput serviceProvider){
-		ServiceProviderModel target= serviceproviderRepository.findById(serviceProvider.getId()).orElseThrow(() -> new RuntimeException("ServiceProvider not found")); 
-		 ServiceProviderModel source= converter.convert(serviceProvider,ServiceProviderModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		ServiceProviderModel target= serviceproviderRepository.findById(serviceProvider.getId()).orElseThrow(() -> new RuntimeException("ServiceProvider not found"));
+		 ServiceProviderModel source= converter.convert(serviceProvider,ServiceProviderModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(serviceproviderRepository.save(target), ServiceProviderTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param cropRepository
 	 * @param countryRepository
 	 * @param servicetypeRepository
@@ -142,7 +142,7 @@ import org.ebs.services.to.CropTo;
 	 */
 	@Autowired
 	public ServiceProviderServiceImpl(CropRepository cropRepository, CountryRepository countryRepository, ServiceTypeRepository servicetypeRepository, ConversionService converter, ServiceProviderRepository serviceproviderRepository){
-		this.serviceproviderRepository =serviceproviderRepository; 
+		this.serviceproviderRepository =serviceproviderRepository;
 		 this.converter = converter;
 		 this.servicetypeRepository = servicetypeRepository;
 		 this.countryRepository = countryRepository;

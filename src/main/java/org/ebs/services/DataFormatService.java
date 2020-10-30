@@ -27,39 +27,39 @@ import org.ebs.services.to.VendorTo;
 public interface DataFormatService {
 
 	/**
-	 * 
+	 *
 	 * @param DataFormat
 	 */
 	public DataFormatTo createDataFormat(DataFormatInput DataFormat);
 
 	/**
-	 * 
+	 *
 	 * @param dataFormatId
 	 */
 	public int deleteDataFormat(int dataFormatId);
 
 	/**
-	 * 
+	 *
 	 * @param dataFormatId
 	 */
 	public Optional<DataFormatTo> findDataFormat(int dataFormatId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<DataFormatTo> findDataFormats(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<DataFormatTo> findDataFormats(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param dataformatId
 	 */
 	public Set<VendorTo> findVendors(int dataformatId);
 
 	/**
-	 * 
+	 *
 	 * @param dataFormat
 	 */
 	public DataFormatTo modifyDataFormat(DataFormatInput dataFormat);

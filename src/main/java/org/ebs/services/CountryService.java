@@ -28,45 +28,45 @@ import org.ebs.services.to.AddressTo;
 public interface CountryService {
 
 	/**
-	 * 
+	 *
 	 * @param Country
 	 */
 	public CountryTo createCountry(CountryInput Country);
 
 	/**
-	 * 
+	 *
 	 * @param countryId
 	 */
 	public int deleteCountry(int countryId);
 
 	/**
-	 * 
+	 *
 	 * @param countryId
 	 */
 	public Set<AddressTo> findAddresss(int countryId);
 
 	/**
-	 * 
+	 *
 	 * @param countryId
 	 */
 	public Optional<CountryTo> findCountry(int countryId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<CountryTo> findCountrys(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<CountryTo> findCountrys(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param countryId
 	 */
 	public Set<ServiceProviderTo> findServiceProviders(int countryId);
 
 	/**
-	 * 
+	 *
 	 * @param country
 	 */
 	public CountryTo modifyCountry(CountryInput country);

@@ -27,45 +27,45 @@ import org.ebs.services.to.NumberSequenceRuleTo;
 public interface NumberSequenceRuleSegmentService {
 
 	/**
-	 * 
+	 *
 	 * @param NumberSequenceRuleSegment
 	 */
 	public NumberSequenceRuleSegmentTo createNumberSequenceRuleSegment(NumberSequenceRuleSegmentInput NumberSequenceRuleSegment);
 
 	/**
-	 * 
+	 *
 	 * @param numberSequenceRuleSegmentId
 	 */
 	public int deleteNumberSequenceRuleSegment(int numberSequenceRuleSegmentId);
 
 	/**
-	 * 
+	 *
 	 * @param numbersequencerulesegmentId
 	 */
 	public Optional<NumberSequenceRuleTo> findNumberSequenceRule(int numbersequencerulesegmentId);
 
 	/**
-	 * 
+	 *
 	 * @param numberSequenceRuleSegmentId
 	 */
 	public Optional<NumberSequenceRuleSegmentTo> findNumberSequenceRuleSegment(int numberSequenceRuleSegmentId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<NumberSequenceRuleSegmentTo> findNumberSequenceRuleSegments(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<NumberSequenceRuleSegmentTo> findNumberSequenceRuleSegments(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param numbersequencerulesegmentId
 	 */
 	public Optional<SegmentTo> findSegment(int numbersequencerulesegmentId);
 
 	/**
-	 * 
+	 *
 	 * @param numberSequenceRuleSegment
 	 */
 	public NumberSequenceRuleSegmentTo modifyNumberSequenceRuleSegment(NumberSequenceRuleSegmentInput numberSequenceRuleSegment);

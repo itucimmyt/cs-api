@@ -45,34 +45,34 @@ import org.ebs.services.to.NumberSequenceRuleSegmentTo;
 	private NumberSequenceRuleSegmentRepository numbersequencerulesegmentRepository;
 
 	/**
-	 * 
+	 *
 	 * @param Segment
 	 */
 	@Override @Transactional(readOnly = false)
 	public SegmentTo createSegment(SegmentInput Segment){
-		SegmentModel model = converter.convert(Segment,SegmentModel.class); 
+		SegmentModel model = converter.convert(Segment,SegmentModel.class);
 		 model.setId(0);
-		 EntityReferenceModel entityreferenceModel = entityreferenceRepository.findById(Segment.getEntityreference().getId()).get(); 
-		model.setEntityreference(entityreferenceModel); 
-		 
-		 model= segmentRepository.save(model); 
-		 return converter.convert(model, SegmentTo.class); 
+		 EntityReferenceModel entityreferenceModel = entityreferenceRepository.findById(Segment.getEntityreference().getId()).get();
+		model.setEntityreference(entityreferenceModel);
+
+		 model= segmentRepository.save(model);
+		 return converter.convert(model, SegmentTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param segmentId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteSegment(int segmentId){
-		SegmentModel segment = segmentRepository.findById(segmentId).orElseThrow(() -> new RuntimeException("Segment not found")); 
-		 segment.setDeleted(true); 
-		  segmentRepository.save(segment); 
+		SegmentModel segment = segmentRepository.findById(segmentId).orElseThrow(() -> new RuntimeException("Segment not found"));
+		 segment.setDeleted(true);
+		  segmentRepository.save(segment);
 		 return segmentId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param segmentId
 	 */
 	public Optional<EntityReferenceTo> findEntityReference(int segmentId){
@@ -80,7 +80,7 @@ import org.ebs.services.to.NumberSequenceRuleSegmentTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param segmentId
 	 */
 	public Set<NumberSequenceRuleSegmentTo> findNumberSequenceRuleSegments(int segmentId){
@@ -88,41 +88,41 @@ import org.ebs.services.to.NumberSequenceRuleSegmentTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param segmentId
 	 */
 	@Override
 	public Optional<SegmentTo> findSegment(int segmentId){
-		if(segmentId <1) 
-		 {return Optional.empty();} 
+		if(segmentId <1)
+		 {return Optional.empty();}
 		 return segmentRepository.findById(segmentId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,SegmentTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<SegmentTo> findSegments(PageInput page, SortInput sort, List<FilterInput> filters){
-		return segmentRepository.findByCriteria(SegmentModel.class,filters,sort,page).map(r -> converter.convert(r,SegmentTo.class));
+	public Page<SegmentTo> findSegments(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return segmentRepository.findByCriteria(SegmentModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,SegmentTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param segment
 	 */
 	@Override @Transactional(readOnly = false)
 	public SegmentTo modifySegment(SegmentInput segment){
-		SegmentModel target= segmentRepository.findById(segment.getId()).orElseThrow(() -> new RuntimeException("Segment not found")); 
-		 SegmentModel source= converter.convert(segment,SegmentModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		SegmentModel target= segmentRepository.findById(segment.getId()).orElseThrow(() -> new RuntimeException("Segment not found"));
+		 SegmentModel source= converter.convert(segment,SegmentModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(segmentRepository.save(target), SegmentTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param numbersequencerulesegmentRepository
 	 * @param entityreferenceRepository
 	 * @param converter
@@ -130,7 +130,7 @@ import org.ebs.services.to.NumberSequenceRuleSegmentTo;
 	 */
 	@Autowired
 	public SegmentServiceImpl(NumberSequenceRuleSegmentRepository numbersequencerulesegmentRepository, EntityReferenceRepository entityreferenceRepository, ConversionService converter, SegmentRepository segmentRepository){
-		this.segmentRepository =segmentRepository; 
+		this.segmentRepository =segmentRepository;
 		 this.converter = converter;
 		 this.entityreferenceRepository = entityreferenceRepository;
 		 this.numbersequencerulesegmentRepository = numbersequencerulesegmentRepository;

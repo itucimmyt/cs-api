@@ -26,39 +26,39 @@ import org.ebs.services.to.PersonTo;
 public interface CollaboratorService {
 
 	/**
-	 * 
+	 *
 	 * @param Collaborator
 	 */
 	public CollaboratorTo createCollaborator(CollaboratorInput Collaborator);
 
 	/**
-	 * 
+	 *
 	 * @param collaboratorId
 	 */
 	public int deleteCollaborator(int collaboratorId);
 
 	/**
-	 * 
+	 *
 	 * @param collaboratorId
 	 */
 	public Optional<CollaboratorTo> findCollaborator(int collaboratorId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<CollaboratorTo> findCollaborators(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<CollaboratorTo> findCollaborators(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param collaboratorId
 	 */
 	public Optional<PersonTo> findPerson(int collaboratorId);
 
 	/**
-	 * 
+	 *
 	 * @param collaborator
 	 */
 	public CollaboratorTo modifyCollaborator(CollaboratorInput collaborator);

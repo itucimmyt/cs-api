@@ -59,32 +59,32 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	private WorkflowNodeCFRepository workflownodecfRepository;
 
 	/**
-	 * 
+	 *
 	 * @param EntityReference
 	 */
 	@Override @Transactional(readOnly = false)
 	public EntityReferenceTo createEntityReference(EntityReferenceInput EntityReference){
-		EntityReferenceModel model = converter.convert(EntityReference,EntityReferenceModel.class); 
+		EntityReferenceModel model = converter.convert(EntityReference,EntityReferenceModel.class);
 		 model.setId(0);
-		  
-		 model= entityreferenceRepository.save(model); 
-		 return converter.convert(model, EntityReferenceTo.class); 
+
+		 model= entityreferenceRepository.save(model);
+		 return converter.convert(model, EntityReferenceTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param entityReferenceId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteEntityReference(int entityReferenceId){
-		EntityReferenceModel entityreference = entityreferenceRepository.findById(entityReferenceId).orElseThrow(() -> new RuntimeException("EntityReference not found")); 
-		 entityreference.setDeleted(true); 
-		  entityreferenceRepository.save(entityreference); 
+		EntityReferenceModel entityreference = entityreferenceRepository.findById(entityReferenceId).orElseThrow(() -> new RuntimeException("EntityReference not found"));
+		 entityreference.setDeleted(true);
+		  entityreferenceRepository.save(entityreference);
 		 return entityReferenceId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflownodecfRepository
 	 * @param entityreferenceRepository
 	 * @param converter
@@ -97,7 +97,7 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	 */
 	@Autowired
 	public EntityReferenceServiceImpl(WorkflowNodeCFRepository workflownodecfRepository, EntityReferenceRepository entityreferenceRepository, ConversionService converter, AttributesRepository attributesRepository, EmailTemplateRepository emailtemplateRepository, WorkflowRepository workflowRepository, SegmentRepository segmentRepository, WorkflowNodeRepository workflownodeRepository, NumberSequenceRuleRepository numbersequenceruleRepository){
-		this.entityreferenceRepository =entityreferenceRepository; 
+		this.entityreferenceRepository =entityreferenceRepository;
 		 this.converter = converter;
 		 this.attributesRepository = attributesRepository;
 		 this.emailtemplateRepository = emailtemplateRepository;
@@ -109,7 +109,7 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param entityreferenceId
 	 */
 	public Set<AttributesTo> findAttributess(int entityreferenceId){
@@ -117,7 +117,7 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param entityreferenceId
 	 */
 	public Set<EmailTemplateTo> findEmailTemplates(int entityreferenceId){
@@ -125,29 +125,29 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param entityReferenceId
 	 */
 	@Override
 	public Optional<EntityReferenceTo> findEntityReference(int entityReferenceId){
-		if(entityReferenceId <1) 
-		 {return Optional.empty();} 
+		if(entityReferenceId <1)
+		 {return Optional.empty();}
 		 return entityreferenceRepository.findById(entityReferenceId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,EntityReferenceTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<EntityReferenceTo> findEntityReferences(PageInput page, SortInput sort, List<FilterInput> filters){
-		return entityreferenceRepository.findByCriteria(EntityReferenceModel.class,filters,sort,page).map(r -> converter.convert(r,EntityReferenceTo.class));
+	public Page<EntityReferenceTo> findEntityReferences(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return entityreferenceRepository.findByCriteria(EntityReferenceModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,EntityReferenceTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param entityreferenceId
 	 */
 	public Set<NumberSequenceRuleTo> findNumberSequenceRules(int entityreferenceId){
@@ -155,7 +155,7 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param entityreferenceId
 	 */
 	public Set<SegmentTo> findSegments(int entityreferenceId){
@@ -163,7 +163,7 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param entityreferenceId
 	 */
 	public Set<WorkflowNodeCFTo> findWorkflowNodeCFs(int entityreferenceId){
@@ -171,7 +171,7 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param entityreferenceId
 	 */
 	public Set<WorkflowNodeTo> findWorkflowNodes(int entityreferenceId){
@@ -179,7 +179,7 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param entityreferenceId
 	 */
 	public Set<WorkflowTo> findWorkflows(int entityreferenceId){
@@ -187,14 +187,14 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param entityReference
 	 */
 	@Override @Transactional(readOnly = false)
 	public EntityReferenceTo modifyEntityReference(EntityReferenceInput entityReference){
-		EntityReferenceModel target= entityreferenceRepository.findById(entityReference.getId()).orElseThrow(() -> new RuntimeException("EntityReference not found")); 
-		 EntityReferenceModel source= converter.convert(entityReference,EntityReferenceModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		EntityReferenceModel target= entityreferenceRepository.findById(entityReference.getId()).orElseThrow(() -> new RuntimeException("EntityReference not found"));
+		 EntityReferenceModel source= converter.convert(entityReference,EntityReferenceModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(entityreferenceRepository.save(target), EntityReferenceTo.class);
 	}
 

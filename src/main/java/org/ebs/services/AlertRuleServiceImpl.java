@@ -42,47 +42,47 @@ import org.ebs.services.to.AlertTo;
 	private AlertRepository alertRepository;
 
 	/**
-	 * 
+	 *
 	 * @param alertRepository
 	 * @param converter
 	 * @param alertruleRepository
 	 */
 	@Autowired
 	public AlertRuleServiceImpl(AlertRepository alertRepository, ConversionService converter, AlertRuleRepository alertruleRepository){
-		this.alertruleRepository =alertruleRepository; 
+		this.alertruleRepository =alertruleRepository;
 		 this.converter = converter;
 		 this.alertRepository = alertRepository;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param AlertRule
 	 */
 	@Override @Transactional(readOnly = false)
 	public AlertRuleTo createAlertRule(AlertRuleInput AlertRule){
-		AlertRuleModel model = converter.convert(AlertRule,AlertRuleModel.class); 
+		AlertRuleModel model = converter.convert(AlertRule,AlertRuleModel.class);
 		 model.setId(0);
-		 AlertModel alertModel = alertRepository.findById(AlertRule.getAlert().getId()).get(); 
-		model.setAlert(alertModel); 
-		 
-		 model= alertruleRepository.save(model); 
-		 return converter.convert(model, AlertRuleTo.class); 
+		 AlertModel alertModel = alertRepository.findById(AlertRule.getAlert().getId()).get();
+		model.setAlert(alertModel);
+
+		 model= alertruleRepository.save(model);
+		 return converter.convert(model, AlertRuleTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param alertRuleId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteAlertRule(int alertRuleId){
-		AlertRuleModel alertrule = alertruleRepository.findById(alertRuleId).orElseThrow(() -> new RuntimeException("AlertRule not found")); 
-		 alertrule.setDeleted(true); 
-		  alertruleRepository.save(alertrule); 
+		AlertRuleModel alertrule = alertruleRepository.findById(alertRuleId).orElseThrow(() -> new RuntimeException("AlertRule not found"));
+		 alertrule.setDeleted(true);
+		  alertruleRepository.save(alertrule);
 		 return alertRuleId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param alertruleId
 	 */
 	public Optional<AlertTo> findAlert(int alertruleId){
@@ -90,36 +90,36 @@ import org.ebs.services.to.AlertTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param alertRuleId
 	 */
 	@Override
 	public Optional<AlertRuleTo> findAlertRule(int alertRuleId){
-		if(alertRuleId <1) 
-		 {return Optional.empty();} 
+		if(alertRuleId <1)
+		 {return Optional.empty();}
 		 return alertruleRepository.findById(alertRuleId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,AlertRuleTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<AlertRuleTo> findAlertRules(PageInput page, SortInput sort, List<FilterInput> filters){
-		return alertruleRepository.findByCriteria(AlertRuleModel.class,filters,sort,page).map(r -> converter.convert(r,AlertRuleTo.class));
+	public Page<AlertRuleTo> findAlertRules(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return alertruleRepository.findByCriteria(AlertRuleModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,AlertRuleTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param alertRule
 	 */
 	@Override @Transactional(readOnly = false)
 	public AlertRuleTo modifyAlertRule(AlertRuleInput alertRule){
-		AlertRuleModel target= alertruleRepository.findById(alertRule.getId()).orElseThrow(() -> new RuntimeException("AlertRule not found")); 
-		 AlertRuleModel source= converter.convert(alertRule,AlertRuleModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		AlertRuleModel target= alertruleRepository.findById(alertRule.getId()).orElseThrow(() -> new RuntimeException("AlertRule not found"));
+		 AlertRuleModel source= converter.convert(alertRule,AlertRuleModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(alertruleRepository.save(target), AlertRuleTo.class);
 	}
 

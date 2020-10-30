@@ -29,51 +29,51 @@ import org.ebs.services.to.EntityReferenceTo;
 public interface NumberSequenceRuleService {
 
 	/**
-	 * 
+	 *
 	 * @param NumberSequenceRule
 	 */
 	public NumberSequenceRuleTo createNumberSequenceRule(NumberSequenceRuleInput NumberSequenceRule);
 
 	/**
-	 * 
+	 *
 	 * @param numberSequenceRuleId
 	 */
 	public int deleteNumberSequenceRule(int numberSequenceRuleId);
 
 	/**
-	 * 
+	 *
 	 * @param numbersequenceruleId
 	 */
 	public Set<EntityReferenceTo> findEntityReferences(int numbersequenceruleId);
 
 	/**
-	 * 
+	 *
 	 * @param numberSequenceRuleId
 	 */
 	public Optional<NumberSequenceRuleTo> findNumberSequenceRule(int numberSequenceRuleId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<NumberSequenceRuleTo> findNumberSequenceRules(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<NumberSequenceRuleTo> findNumberSequenceRules(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param numbersequenceruleId
 	 */
 	public Set<NumberSequenceRuleSegmentTo> findNumberSequenceRuleSegments(int numbersequenceruleId);
 
 	/**
-	 * 
+	 *
 	 * @param numbersequenceruleId
 	 */
 	public Optional<TenantTo> findTenant(int numbersequenceruleId);
 
 	/**
-	 * 
+	 *
 	 * @param numberSequenceRule
 	 */
 	public NumberSequenceRuleTo modifyNumberSequenceRule(NumberSequenceRuleInput numberSequenceRule);

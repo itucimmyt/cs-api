@@ -45,34 +45,34 @@ import org.ebs.services.to.WorkflowInstanceTo;
 	private WorkflowStatusTypeRepository workflowstatustypeRepository;
 
 	/**
-	 * 
+	 *
 	 * @param WorkflowStatus
 	 */
 	@Override @Transactional(readOnly = false)
 	public WorkflowStatusTo createWorkflowStatus(WorkflowStatusInput WorkflowStatus){
-		WorkflowStatusModel model = converter.convert(WorkflowStatus,WorkflowStatusModel.class); 
+		WorkflowStatusModel model = converter.convert(WorkflowStatus,WorkflowStatusModel.class);
 		 model.setId(0);
-		 WorkflowInstanceModel workflowinstanceModel = workflowinstanceRepository.findById(WorkflowStatus.getWorkflowinstance().getId()).get(); 
-		model.setWorkflowinstance(workflowinstanceModel); 
-		 
-		 model= workflowstatusRepository.save(model); 
-		 return converter.convert(model, WorkflowStatusTo.class); 
+		 WorkflowInstanceModel workflowinstanceModel = workflowinstanceRepository.findById(WorkflowStatus.getWorkflowinstance().getId()).get();
+		model.setWorkflowinstance(workflowinstanceModel);
+
+		 model= workflowstatusRepository.save(model);
+		 return converter.convert(model, WorkflowStatusTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowStatusId
 	 */
 	@Override @Transactional(readOnly = false)
 	public int deleteWorkflowStatus(int workflowStatusId){
-		WorkflowStatusModel workflowstatus = workflowstatusRepository.findById(workflowStatusId).orElseThrow(() -> new RuntimeException("WorkflowStatus not found")); 
-		 workflowstatus.setDeleted(true); 
-		  workflowstatusRepository.save(workflowstatus); 
+		WorkflowStatusModel workflowstatus = workflowstatusRepository.findById(workflowStatusId).orElseThrow(() -> new RuntimeException("WorkflowStatus not found"));
+		 workflowstatus.setDeleted(true);
+		  workflowstatusRepository.save(workflowstatus);
 		 return workflowStatusId;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowstatusId
 	 */
 	public Optional<WorkflowInstanceTo> findWorkflowInstance(int workflowstatusId){
@@ -80,29 +80,29 @@ import org.ebs.services.to.WorkflowInstanceTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowStatusId
 	 */
 	@Override
 	public Optional<WorkflowStatusTo> findWorkflowStatus(int workflowStatusId){
-		if(workflowStatusId <1) 
-		 {return Optional.empty();} 
+		if(workflowStatusId <1)
+		 {return Optional.empty();}
 		 return workflowstatusRepository.findById(workflowStatusId).filter(r -> !r.getDeleted().booleanValue()).map(r -> converter.convert(r,WorkflowStatusTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
 	@Override
-	public Page<WorkflowStatusTo> findWorkflowStatuss(PageInput page, SortInput sort, List<FilterInput> filters){
-		return workflowstatusRepository.findByCriteria(WorkflowStatusModel.class,filters,sort,page).map(r -> converter.convert(r,WorkflowStatusTo.class));
+	public Page<WorkflowStatusTo> findWorkflowStatuss(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters){
+		return workflowstatusRepository.findByCriteria(WorkflowStatusModel.class,filters,sort,page,disjunctionFilters).map(r -> converter.convert(r,WorkflowStatusTo.class));
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowstatusId
 	 */
 	public Optional<WorkflowStatusTypeTo> findWorkflowStatusType(int workflowstatusId){
@@ -110,19 +110,19 @@ import org.ebs.services.to.WorkflowInstanceTo;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowStatus
 	 */
 	@Override @Transactional(readOnly = false)
 	public WorkflowStatusTo modifyWorkflowStatus(WorkflowStatusInput workflowStatus){
-		WorkflowStatusModel target= workflowstatusRepository.findById(workflowStatus.getId()).orElseThrow(() -> new RuntimeException("WorkflowStatus not found")); 
-		 WorkflowStatusModel source= converter.convert(workflowStatus,WorkflowStatusModel.class); 
-		 Utils.copyNotNulls(source,target); 
+		WorkflowStatusModel target= workflowstatusRepository.findById(workflowStatus.getId()).orElseThrow(() -> new RuntimeException("WorkflowStatus not found"));
+		 WorkflowStatusModel source= converter.convert(workflowStatus,WorkflowStatusModel.class);
+		 Utils.copyNotNulls(source,target);
 		 return converter.convert(workflowstatusRepository.save(target), WorkflowStatusTo.class);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowinstanceRepository
 	 * @param workflowstatustypeRepository
 	 * @param converter
@@ -130,7 +130,7 @@ import org.ebs.services.to.WorkflowInstanceTo;
 	 */
 	@Autowired
 	public WorkflowStatusServiceImpl(WorkflowInstanceRepository workflowinstanceRepository, WorkflowStatusTypeRepository workflowstatustypeRepository, ConversionService converter, WorkflowStatusRepository workflowstatusRepository){
-		this.workflowstatusRepository =workflowstatusRepository; 
+		this.workflowstatusRepository =workflowstatusRepository;
 		 this.converter = converter;
 		 this.workflowstatustypeRepository = workflowstatustypeRepository;
 		 this.workflowinstanceRepository = workflowinstanceRepository;

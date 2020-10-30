@@ -98,7 +98,7 @@ class RepositoryExtImpl<T> implements RepositoryExt<T> {
         Predicate allFiltersPredicate = disjuntionFilters ? builder.or(predicates) : builder.and(predicates)
             ,notDeletedPredicate = builder.equal(queryRoot.get("deleted"), false);
 
-        return builder.and(allFiltersPredicate, notDeletedPredicate);
+        return predicates.length == 0 ? notDeletedPredicate : builder.and(allFiltersPredicate, notDeletedPredicate);
     }
 
     private Path<String> createFilterPath(FilterInput f, Root<T> root) {

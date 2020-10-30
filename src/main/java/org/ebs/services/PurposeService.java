@@ -29,45 +29,45 @@ import org.ebs.services.to.ServiceTo;
 public interface PurposeService {
 
 	/**
-	 * 
+	 *
 	 * @param Purpose
 	 */
 	public PurposeTo createPurpose(PurposeInput Purpose);
 
 	/**
-	 * 
+	 *
 	 * @param purposeId
 	 */
 	public int deletePurpose(int purposeId);
 
 	/**
-	 * 
+	 *
 	 * @param purposeId
 	 */
 	public Optional<PurposeTo> findPurpose(int purposeId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<PurposeTo> findPurposes(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<PurposeTo> findPurposes(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param purposeId
 	 */
 	public Set<ServiceTo> findServices(int purposeId);
 
 	/**
-	 * 
+	 *
 	 * @param purposeId
 	 */
 	public Optional<ServiceTypeTo> findServiceType(int purposeId);
 
 	/**
-	 * 
+	 *
 	 * @param purpose
 	 */
 	public PurposeTo modifyPurpose(PurposeInput purpose);

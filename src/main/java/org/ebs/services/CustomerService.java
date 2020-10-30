@@ -28,51 +28,51 @@ import org.ebs.services.to.TenantTo;
 public interface CustomerService {
 
 	/**
-	 * 
+	 *
 	 * @param Customer
 	 */
 	public CustomerTo createCustomer(CustomerInput Customer);
 
 	/**
-	 * 
+	 *
 	 * @param customerId
 	 */
 	public int deleteCustomer(int customerId);
 
 	/**
-	 * 
+	 *
 	 * @param customerId
 	 */
 	public Optional<CustomerTo> findCustomer(int customerId);
 
 	/**
-	 * 
+	 *
 	 * @param page
 	 * @param sort
 	 * @param filters
 	 */
-	public Page<CustomerTo> findCustomers(PageInput page, SortInput sort, List<FilterInput> filters);
+	public Page<CustomerTo> findCustomers(PageInput page, SortInput sort, List<FilterInput> filters, boolean disjunctionFilters);
 
 	/**
-	 * 
+	 *
 	 * @param customerId
 	 */
 	public Optional<OrganizationTo> findOrganization(int customerId);
 
 	/**
-	 * 
+	 *
 	 * @param customerId
 	 */
 	public Set<OrganizationTo> findOrganizations(int customerId);
 
 	/**
-	 * 
+	 *
 	 * @param customerId
 	 */
 	public Set<TenantTo> findTenants(int customerId);
 
 	/**
-	 * 
+	 *
 	 * @param customer
 	 */
 	public CustomerTo modifyCustomer(CustomerInput customer);
