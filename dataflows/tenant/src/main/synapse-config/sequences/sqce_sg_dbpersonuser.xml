@@ -125,7 +125,7 @@ Welcome to EBS application, your user is pending to approval by the power user. 
         <target>
             <sequence>
                 <payloadFactory description="Body mail to power user" media-type="text">
-                    <format>&lt;div&gt;Dear Juan&lt;br/&gt;&#xd;
+                    <format>&lt;div&gt;Dear Juan Sosa&lt;br/&gt;&#xd;
 &#xd;
 &lt;p&gt;You have a new pending approval registration for $1 account&lt;/p&gt;&lt;br/&gt;&#xd;
 &#xd;
@@ -146,7 +146,7 @@ System automation process&lt;/p&gt;&#xd;
                     <property name="ContentType" scope="axis2" type="STRING" value="text/html"/>
                     <property name="OUT_ONLY" scope="default" type="STRING" value="true"/>
                 </propertyGroup>
-                <header expression="fn:concat('mailto:', 'garciagabriel.ar@gmail.com')" name="To" scope="default"/>
+                <header expression="fn:concat('mailto:', 'j.s.sosa@cimmyt.org')" name="To" scope="default"/>
                 <call/>
             </sequence>
         </target>
