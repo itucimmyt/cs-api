@@ -11,13 +11,13 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 public class WorkflowInputConverterTest {
 
-    private final WorkflowInputConverter subject = new WorkflowInputConverter();
+    private final WorkflowConverterInput subject = new WorkflowConverterInput();
 
     @Test
     public void givenNotNullSource_whenConvert_thenReturnToObject() {
         WorkflowInput object = initWorkflowInput();
         WorkflowModel result = subject.convert(object);
-        
+
         assertThat(result).extracting("id", "definition", "description", "help", "icon", "name", "sortno", "title")
             .containsExactly(123, "a definition", "a description", "a help", "an icon", "a name", 12, "a title");
     }
