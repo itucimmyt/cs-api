@@ -20,7 +20,7 @@
         <property name="language_id" scope="default" type="STRING" value="1"/>
     </propertyGroup>
     <payloadFactory media-type="json">
-        <format>{"query":"mutation{createperson(PersonTo: { id: 0 givename:\"$1\" familyname: \"$2\" email: \"$3\" officialemail: \"$4\" hascredential: true jobtitle: \"$5\" knowsabout: \"$6\"  phone: \"$7\" status: \"Pending\" language: { id: 1} tenant: { id: 1} }) {id}}" }</format>
+        <format>{"query":"mutation{createPerson(PersonTo: { id: 0 giveName:\"$1\" familyName: \"$2\" email: \"$3\" officialEmail: \"$4\" hasCredential: true jobTitle: \"$5\" knowsAbout: \"$6\"  phone: \"$7\" status: \"Pending\" language: { id: 1} tenant: { id: 1} }) {id}}" }</format>
         <args>
             <arg evaluator="xml" expression="get-property('givename')"/>
             <arg evaluator="xml" expression="get-property('familyname')"/>
@@ -36,7 +36,7 @@
     </log>
     <call>
         <endpoint>
-            <http method="post" uri-template="http://localhost:8081/graphql">
+            <http method="post" uri-template="http://localhost:8080/graphql">
                 <suspendOnFailure>
                     <initialDuration>-1</initialDuration>
                     <progressionFactor>1</progressionFactor>
@@ -47,9 +47,9 @@
             </http>
         </endpoint>
     </call>
-    <property expression="json-eval($.data.createperson.id)" name="_personID" scope="default" type="STRING"/>
+    <property expression="json-eval($.data.createPerson.id)" name="_personID" scope="default" type="STRING"/>
     <payloadFactory media-type="json">
-        <format>{"query":"mutation{createuser(UserTo:{id:0 username:\"$1\" userpassword:\"NA\" defaultrole:2 isis:1 tenant:{id:1} person:{id:$2}}){id}}"}</format>
+        <format>{"query":"mutation{createUser(UserTo:{userName:\"$1\" userPassword:\"NA\" defaultRole:2 id:0 tenant:{id:1} person:{id:$2} isIS:1}){id}}"}</format>
         <args>
             <arg evaluator="xml" expression="get-property('officialemail')"/>
             <arg evaluator="xml" expression="get-property('_personID')"/>
@@ -60,7 +60,7 @@
     </log>
     <call>
         <endpoint>
-            <http method="post" uri-template="http://localhost:8081/graphql">
+            <http method="post" uri-template="http://localhost:8080/graphql">
                 <suspendOnFailure>
                     <initialDuration>-1</initialDuration>
                     <progressionFactor>1</progressionFactor>
@@ -71,14 +71,14 @@
             </http>
         </endpoint>
     </call>
-    <property expression="json-eval($.data.createuser.id)" name="_userID" scope="default" type="STRING"/>
+    <property expression="json-eval($.data.createUser.id)" name="_userID" scope="default" type="STRING"/>
     <dbreport>
         <connection>
             <pool>
                 <driver>org.postgresql.Driver</driver>
-                <url>jdbc:postgresql://localhost:5432/cimmyt-ebs</url>
-                <user>postgres</user>
-                <password>12345</password>
+                <url>$SYSTEM:spring.datasource.url</url>
+                <user>$SYSTEM:spring.datasource.username</user>
+                <password>$SYSTEM:spring.datasource.password</password>
             </pool>
         </connection>
         <statement>

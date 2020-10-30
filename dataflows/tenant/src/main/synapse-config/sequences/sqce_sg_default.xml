@@ -5,9 +5,9 @@
         <connection>
             <pool>
                 <driver>org.postgresql.Driver</driver>
-                <url>jdbc:postgresql://localhost:5432/cimmyt-ebs</url>
-                <user>postgres</user>
-                <password>12345</password>
+                <url>$SYSTEM:spring.datasource.url</url>
+                <user>$SYSTEM:spring.datasource.username</user>
+                <password>$SYSTEM:spring.datasource.password</password>
             </pool>
         </connection>
         <statement>

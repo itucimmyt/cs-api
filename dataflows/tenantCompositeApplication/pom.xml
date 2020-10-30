@@ -9,13 +9,15 @@
   <name>tenantCompositeApplication</name>
   <description>tenantCompositeApplication</description>
   <properties>
-    <org.ebs.tenant.api_._tenant>capp/EnterpriseServiceBus</org.ebs.tenant.api_._tenant>
     <org.ebs.tenant.sequence_._sqce_sg_default>capp/EnterpriseServiceBus</org.ebs.tenant.sequence_._sqce_sg_default>
-    <org.ebs.tenant.sequence_._sqce_sg_dbpersonuser>capp/EnterpriseServiceBus</org.ebs.tenant.sequence_._sqce_sg_dbpersonuser>
-    <org.ebs.tenant.sequence_._sqce_sg_syncuser>capp/EnterpriseServiceBus</org.ebs.tenant.sequence_._sqce_sg_syncuser>
-    <org.ebs.tenant.api_._api_sg_emailprocess>capp/EnterpriseServiceBus</org.ebs.tenant.api_._api_sg_emailprocess>
     <org.ebs.tenant.sequence_._sqce_sg_sendmail>capp/EnterpriseServiceBus</org.ebs.tenant.sequence_._sqce_sg_sendmail>
     <artifact.types>jaggery/app=zip,synapse/priority-executor=xml,synapse/inbound-endpoint=xml,service/rule=aar,synapse/message-store=xml,event/stream=json,service/meta=xml,datasource/datasource=xml,synapse/proxy-service=xml,bpel/workflow=zip,synapse/sequence=xml,synapse/endpointTemplate=xml,carbon/application=car,wso2/gadget=dar,synapse/api=xml,synapse/event-source=xml,synapse/message-processors=xml,event/receiver=xml,lib/dataservice/validator=jar,synapse/template=xml,synapse/endpoint=xml,lib/carbon/ui=jar,lib/synapse/mediator=jar,event/publisher=xml,synapse/local-entry=xml,synapse/task=xml,webapp/jaxws=war,registry/resource=zip,synapse/configuration=xml,service/axis2=aar,synapse/lib=zip,synapse/sequenceTemplate=xml,event/execution-plan=siddhiql,service/dataservice=dbs,web/application=war,lib/library/bundle=jar</artifact.types>
+    <org.ebs.tenant.sequence_._sqce_sg_syncuser>capp/EnterpriseServiceBus</org.ebs.tenant.sequence_._sqce_sg_syncuser>
+    <org.ebs.tenant.endpoint_._AnalyticalSampling>capp/EnterpriseServiceBus</org.ebs.tenant.endpoint_._AnalyticalSampling>
+    <org.ebs.tenant.sequence_._sqce_sg_dbpersonuser>capp/EnterpriseServiceBus</org.ebs.tenant.sequence_._sqce_sg_dbpersonuser>
+    <org.ebs.tenant.endpoint_._Tenant>capp/EnterpriseServiceBus</org.ebs.tenant.endpoint_._Tenant>
+    <org.ebs.tenant.api_._tenant>capp/EnterpriseServiceBus</org.ebs.tenant.api_._tenant>
+    <org.ebs.tenant.api_._api_sg_emailprocess>capp/EnterpriseServiceBus</org.ebs.tenant.api_._api_sg_emailprocess>
   </properties>
   <dependencies>
     <dependency>
@@ -43,8 +45,20 @@
       <type>xml</type>
     </dependency>
     <dependency>
+      <groupId>org.ebs.tenant.endpoint</groupId>
+      <artifactId>Tenant</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
       <groupId>org.ebs.tenant.api</groupId>
       <artifactId>api_sg_emailprocess</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>org.ebs.tenant.endpoint</groupId>
+      <artifactId>AnalyticalSampling</artifactId>
       <version>1.0.0</version>
       <type>xml</type>
     </dependency>
