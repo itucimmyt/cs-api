@@ -11,23 +11,22 @@
             </pool>
         </connection>
         <statement>
-            <sql><![CDATA[SELECT givename, familyname FROM tenant.person WHERE officialemail ='?');]]></sql>
-            <parameter expression="$ctx:emailAccount" type="INTEGER"/>
-            <result column="givname" name="_givename"/>
+            <sql><![CDATA[SELECT givename, familyname FROM tenant.person WHERE officialemail =?;]]></sql>
+            <parameter expression="$ctx:emailAccount" type="CHAR"/>
+            <result column="givename" name="_givename"/>
             <result column="familyname" name="_familyname"/>
         </statement>
     </dblookup>
     <payloadFactory media-type="text">
         <format>&lt;div&gt;Dear $1 $2&lt;br/&gt;&#xd;
 &#xd;
-&lt;p&gt;You have a new request&lt;/p&gt;&lt;br/&gt;&#xd;
-&#xd;
+&lt;p&gt;You have a new request.&lt;/p&gt;&lt;br/&gt;&#xd;
 &lt;p&gt;Please take an action to complete the EBS process flow.&lt;/p&gt;&lt;br/&gt;&#xd;
 &#xd;
 &lt;p&gt;This message does not need response,&lt;/p&gt;&lt;br/&gt;&#xd;
 &#xd;
-&lt;p&gt;Regards&#xd;
-System automation process&lt;/p&gt;&#xd;
+&lt;p&gt;Regards&lt;/p&gt;&#xd;
+&lt;p&gt;System automation process&lt;/p&gt;&#xd;
 &lt;/div&gt;</format>
         <args>
             <arg evaluator="xml" expression="$ctx:_givename"/>
