@@ -30,15 +30,15 @@ public class WorkflowPhaseResolver implements GraphQLResolver<WorkflowPhaseTo> {
 	private WorkflowPhaseService workflowphaseService;
 
 	/**
-	 * 
+	 *
 	 * @param workflowphaseTo
 	 */
 	public HtmlTagTo getHtmltag(WorkflowPhaseTo workflowphaseTo){
-		return workflowphaseService.findHtmlTag(workflowphaseTo.getId()).get();
+		return workflowphaseService.findHtmlTag(workflowphaseTo.getId()).orElse(null);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowphaseTo
 	 */
 	public WorkflowTo getWorkflow(WorkflowPhaseTo workflowphaseTo){
@@ -46,7 +46,7 @@ public class WorkflowPhaseResolver implements GraphQLResolver<WorkflowPhaseTo> {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowphase
 	 */
 	public Set<WorkflowStageTo> getWorkflowstages(WorkflowPhaseTo workflowphase){
@@ -54,13 +54,13 @@ public class WorkflowPhaseResolver implements GraphQLResolver<WorkflowPhaseTo> {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param workflowphaseService
 	 */
 	@Autowired
 	public WorkflowPhaseResolver(WorkflowPhaseService workflowphaseService){
-		this.workflowphaseService = workflowphaseService; 
-	
+		this.workflowphaseService = workflowphaseService;
+
 	}
 
 }

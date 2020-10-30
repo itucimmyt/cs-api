@@ -77,20 +77,53 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	public WorkflowNodeTo createWorkflowNode(WorkflowNodeInput WorkflowNode){
 		WorkflowNodeModel model = converter.convert(WorkflowNode,WorkflowNodeModel.class);
 		 model.setId(0);
-		 WorkflowModel workflowModel = workflowRepository.findById(WorkflowNode.getWorkflow().getId()).get();
-		model.setWorkflow(workflowModel);
-		EntityReferenceModel entityreferenceModel = entityreferenceRepository.findById(WorkflowNode.getEntityreference().getId()).get();
-		model.setEntityreference(entityreferenceModel);
-		HtmlTagModel htmltagModel = htmltagRepository.findById(WorkflowNode.getHtmltag().getId()).get();
-		model.setHtmltag(htmltagModel);
-		ProcessModel processModel = processRepository.findById(WorkflowNode.getProcess().getId()).get();
-		model.setProcess(processModel);
-		ModuleModel moduleModel = moduleRepository.findById(WorkflowNode.getModule().getId()).get();
-		model.setModule(moduleModel);
+		initWorkflowNodeModel(WorkflowNode, model);
 
 		 model= workflownodeRepository.save(model);
 		 return converter.convert(model, WorkflowNodeTo.class);
 	}
+
+	void initWorkflowNodeModel(WorkflowNodeInput workflowNode, WorkflowNodeModel model) {
+		Optional<WorkflowNodeInput> optWFN = Optional.of(workflowNode);
+
+		WorkflowModel workflowModel = optWFN
+			.map(wfn -> wfn.getWorkflow())
+			.map(w -> workflowRepository.findById(w.getId())
+				.orElseThrow(() -> new RuntimeException("workflow does not exist")))
+			.orElse(null);
+		model.setWorkflow(workflowModel);
+
+		EntityReferenceModel entityreferenceModel = optWFN
+			.map(wfn -> wfn.getEntityreference())
+			.map(er -> entityreferenceRepository.findById(er.getId())
+				.orElseThrow(() -> new RuntimeException("entityreference does not exist")))
+			.orElse(null);
+		model.setEntityreference(entityreferenceModel);
+
+		HtmlTagModel htmltagModel = optWFN
+			.map(wfn -> wfn.getHtmltag())
+			.map(ht -> htmltagRepository.findById(ht.getId())
+				.orElseThrow(() -> new RuntimeException("htmltag does not exist")))
+			.orElse(null);
+		model.setHtmltag(htmltagModel);
+
+		ProcessModel processModel = optWFN
+			.map(wfn -> wfn.getProcess())
+			.map(p -> processRepository.findById(p.getId())
+				.orElseThrow(() -> new RuntimeException("process does not exist")))
+			.orElse(null);
+		model.setProcess(processModel);
+
+		ModuleModel moduleModel = optWFN
+			.map(wfn -> wfn.getModule())
+			.map(m -> moduleRepository.findById(m.getId())
+				.orElseThrow(()-> new RuntimeException("module does not exist")))
+			.orElse(null);
+		model.setModule(moduleModel);
+
+	}
+
+
 
 	/**
 	 *
@@ -214,6 +247,7 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	public WorkflowNodeTo modifyWorkflowNode(WorkflowNodeInput workflowNode){
 		WorkflowNodeModel target= workflownodeRepository.findById(workflowNode.getId()).orElseThrow(() -> new RuntimeException("WorkflowNode not found"));
 		 WorkflowNodeModel source= converter.convert(workflowNode,WorkflowNodeModel.class);
+		 initWorkflowNodeModel(workflowNode, source);
 		 Utils.copyNotNulls(source,target);
 		 return converter.convert(workflownodeRepository.save(target), WorkflowNodeTo.class);
 	}

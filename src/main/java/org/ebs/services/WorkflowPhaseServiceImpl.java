@@ -55,14 +55,27 @@ import org.ebs.services.to.HtmlTagTo;
 	@Override @Transactional(readOnly = false)
 	public WorkflowPhaseTo createWorkflowPhase(WorkflowPhaseInput WorkflowPhase){
 		WorkflowPhaseModel model = converter.convert(WorkflowPhase,WorkflowPhaseModel.class);
-		 model.setId(0);
-		 WorkflowModel workflowModel = workflowRepository.findById(WorkflowPhase.getWorkflow().getId()).get();
-		model.setWorkflow(workflowModel);
-		HtmlTagModel htmltagModel = htmltagRepository.findById(WorkflowPhase.getHtmltag().getId()).get();
-		model.setHtmltag(htmltagModel);
+		model.setId(0);
+		initWorkflowPhaseModel(WorkflowPhase, model);
 
 		 model= workflowphaseRepository.save(model);
 		 return converter.convert(model, WorkflowPhaseTo.class);
+	}
+
+	void initWorkflowPhaseModel(WorkflowPhaseInput input, WorkflowPhaseModel model) {
+		Optional<WorkflowPhaseInput> optInput = Optional.of(input);
+
+		WorkflowModel workflowModel = optInput.map(i -> i.getWorkflow())
+			.map(w -> workflowRepository.findById(w.getId())
+				.orElseThrow(() -> new RuntimeException("workflow does not exist")))
+			.orElse(null);
+		model.setWorkflow(workflowModel);
+
+		HtmlTagModel htmltagModel = optInput.map(i -> i.getHtmltag())
+			.map(w -> htmltagRepository.findById(w.getId())
+				.orElseThrow(() -> new RuntimeException("htmltag does not exist")))
+			.orElse(null);
+		model.setHtmltag(htmltagModel);
 	}
 
 	/**
@@ -130,9 +143,10 @@ import org.ebs.services.to.HtmlTagTo;
 	@Override @Transactional(readOnly = false)
 	public WorkflowPhaseTo modifyWorkflowPhase(WorkflowPhaseInput workflowPhase){
 		WorkflowPhaseModel target= workflowphaseRepository.findById(workflowPhase.getId()).orElseThrow(() -> new RuntimeException("WorkflowPhase not found"));
-		 WorkflowPhaseModel source= converter.convert(workflowPhase,WorkflowPhaseModel.class);
-		 Utils.copyNotNulls(source,target);
-		 return converter.convert(workflowphaseRepository.save(target), WorkflowPhaseTo.class);
+		WorkflowPhaseModel source= converter.convert(workflowPhase,WorkflowPhaseModel.class);
+		initWorkflowPhaseModel(workflowPhase, source);
+		Utils.copyNotNulls(source,target);
+		return converter.convert(workflowphaseRepository.save(target), WorkflowPhaseTo.class);
 	}
 
 	/**

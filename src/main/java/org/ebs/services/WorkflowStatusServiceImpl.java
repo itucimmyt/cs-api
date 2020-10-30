@@ -28,6 +28,7 @@ import java.util.Set;
 import org.ebs.services.to.WorkflowStatusTo;
 import org.ebs.services.to.Input.WorkflowStatusInput;
 import org.ebs.model.WorkflowStatusModel;
+import org.ebs.model.WorkflowStatusTypeModel;
 import org.ebs.services.to.WorkflowStatusTypeTo;
 import org.ebs.services.to.WorkflowInstanceTo;
 
@@ -52,12 +53,28 @@ import org.ebs.services.to.WorkflowInstanceTo;
 	public WorkflowStatusTo createWorkflowStatus(WorkflowStatusInput WorkflowStatus){
 		WorkflowStatusModel model = converter.convert(WorkflowStatus,WorkflowStatusModel.class);
 		 model.setId(0);
-		 WorkflowInstanceModel workflowinstanceModel = workflowinstanceRepository.findById(WorkflowStatus.getWorkflowinstance().getId()).get();
-		model.setWorkflowinstance(workflowinstanceModel);
+
+		 initWorkflowStatus(WorkflowStatus, model);
 
 		 model= workflowstatusRepository.save(model);
 		 return converter.convert(model, WorkflowStatusTo.class);
 	}
+
+	void initWorkflowStatus(WorkflowStatusInput input, WorkflowStatusModel model) {
+		Optional<WorkflowStatusInput> optInput = Optional.of(input);
+		WorkflowInstanceModel wfInstance = optInput.map(i -> i.getWorkflowinstance())
+			.map(i -> workflowinstanceRepository.findById(i.getId())
+				.orElseThrow(() -> new RuntimeException("workflowinstance does not exist")))
+			.orElse(null);
+		model.setWorkflowinstance(wfInstance);
+
+		WorkflowStatusTypeModel wfStatusType = optInput.map(i -> i.getWorkflowstatustype())
+			.map(i -> workflowstatustypeRepository.findById(i.getId())
+				.orElseThrow(() -> new RuntimeException("workflowstatustype does not exist")))
+			.orElse(null);
+		model.setWorkflowstatustype(wfStatusType);
+	}
+
 
 	/**
 	 *
@@ -117,6 +134,8 @@ import org.ebs.services.to.WorkflowInstanceTo;
 	public WorkflowStatusTo modifyWorkflowStatus(WorkflowStatusInput workflowStatus){
 		WorkflowStatusModel target= workflowstatusRepository.findById(workflowStatus.getId()).orElseThrow(() -> new RuntimeException("WorkflowStatus not found"));
 		 WorkflowStatusModel source= converter.convert(workflowStatus,WorkflowStatusModel.class);
+
+		 initWorkflowStatus(workflowStatus, source);
 		 Utils.copyNotNulls(source,target);
 		 return converter.convert(workflowstatusRepository.save(target), WorkflowStatusTo.class);
 	}

@@ -2,6 +2,7 @@ package org.ebs.services;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -89,7 +90,7 @@ public class WorkflowNodeCFServiceImplTest {
 
         Connection<WorkflowNodeCFModel> connection = new Connection<>(content, pageable, 2);
 
-        when(mockWorkflownodecfRepository.findByCriteria(any(), any(), any(), any()))
+        when(mockWorkflownodecfRepository.findByCriteria(any(), any(), any(), any(), anyBoolean()))
             .thenReturn(connection);
         when(mockConverter.convert(any(), any()))
             .thenReturn(new WorkflowNodeCFTo());
@@ -100,7 +101,7 @@ public class WorkflowNodeCFServiceImplTest {
         assertThat(result.getTotalElements()).isEqualTo(2);
 
         verify(mockWorkflownodecfRepository, times(1))
-            .findByCriteria(any(), any(), any(), any());
+            .findByCriteria(any(), any(), any(), any(), anyBoolean());
         verify(mockConverter, times(2))
             .convert(any(), any());
 

@@ -52,14 +52,26 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	@Override @Transactional(readOnly = false)
 	public WorkflowCFValueTo createWorkflowCFValue(WorkflowCFValueInput WorkflowCFValue){
 		WorkflowCFValueModel model = converter.convert(WorkflowCFValue,WorkflowCFValueModel.class);
-		 model.setId(0);
-		 RequestModel requestModel = requestRepository.findById(WorkflowCFValue.getRequest().getId()).get();
+		model.setId(0);
+
+		initWorkflowCFValue(WorkflowCFValue, model);
+		model= workflowcfvalueRepository.save(model);
+		return converter.convert(model, WorkflowCFValueTo.class);
+	}
+
+	void initWorkflowCFValue(WorkflowCFValueInput workflowCFValue, WorkflowCFValueModel model){
+		RequestModel requestModel = Optional.of(workflowCFValue)
+			.map(w -> w.getRequest())
+			.map(r -> requestRepository.findById(r.getId()).orElseThrow(() -> new RuntimeException("request does not exist")))
+			.orElse(null);
 		model.setRequest(requestModel);
-		WorkflowNodeCFModel workflownodecfModel = workflownodecfRepository.findById(WorkflowCFValue.getWorkflownodecf().getId()).get();
+
+		WorkflowNodeCFModel workflownodecfModel = Optional.of(workflowCFValue)
+			.map(w -> w.getWorkflownodecf())
+			.map(w -> workflownodecfRepository.findById(w.getId()).orElseThrow(() -> new RuntimeException("workflowNodeCF does not exist")))
+			.orElse(null);
 		model.setWorkflownodecf(workflownodecfModel);
 
-		 model= workflowcfvalueRepository.save(model);
-		 return converter.convert(model, WorkflowCFValueTo.class);
 	}
 
 	/**
@@ -120,7 +132,10 @@ import org.ebs.services.to.WorkflowNodeCFTo;
 	public WorkflowCFValueTo modifyWorkflowCFValue(WorkflowCFValueInput workflowCFValue){
 		WorkflowCFValueModel target= workflowcfvalueRepository.findById(workflowCFValue.getId()).orElseThrow(() -> new RuntimeException("WorkflowCFValue not found"));
 		 WorkflowCFValueModel source= converter.convert(workflowCFValue,WorkflowCFValueModel.class);
+
+		 initWorkflowCFValue(workflowCFValue, source);
 		 Utils.copyNotNulls(source,target);
+
 		 return converter.convert(workflowcfvalueRepository.save(target), WorkflowCFValueTo.class);
 	}
 

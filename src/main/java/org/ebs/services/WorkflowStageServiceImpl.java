@@ -8,9 +8,12 @@
 
 package org.ebs.services;
 
+import static java.util.stream.Collectors.toSet;
+
 import org.ebs.model.WorkflowPhaseModel;
 import org.ebs.model.repos.WorkflowPhaseRepository;
 import org.ebs.model.HtmlTagModel;
+import org.ebs.model.WorkflowNodeModel;
 import org.ebs.model.repos.HtmlTagRepository;
 import org.ebs.model.repos.WorkflowStageRepository;
 import org.ebs.model.repos.ActionRepository;
@@ -20,6 +23,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import org.ebs.util.FilterInput;
@@ -62,14 +68,37 @@ import org.ebs.services.to.WorkflowEventTo;
 	public WorkflowStageTo createWorkflowStage(WorkflowStageInput WorkflowStage){
 		WorkflowStageModel model = converter.convert(WorkflowStage,WorkflowStageModel.class);
 		 model.setId(0);
-		 WorkflowPhaseModel workflowphaseModel = workflowphaseRepository.findById(WorkflowStage.getWorkflowphase().getId()).get();
-		model.setWorkflowphase(workflowphaseModel);
-		HtmlTagModel htmltagModel = htmltagRepository.findById(WorkflowStage.getHtmltag().getId()).get();
-		model.setHtmltag(htmltagModel);
 
+		 initWorkflowStage(WorkflowStage, model);
 		 model= workflowstageRepository.save(model);
 		 return converter.convert(model, WorkflowStageTo.class);
 	}
+
+	void initWorkflowStage(WorkflowStageInput input, WorkflowStageModel model) {
+		Optional<WorkflowStageInput> optInput = Optional.of(input);
+		WorkflowPhaseModel wfPhase = optInput.map(i -> i.getWorkflowphase())
+			.map(i -> workflowphaseRepository.findById(i.getId())
+				.orElseThrow(() -> new RuntimeException("workflowphase does not exist")))
+			.orElse(null);
+		model.setWorkflowphase(wfPhase);
+
+		HtmlTagModel htmltag = optInput.map(i -> i.getHtmltag())
+			.map(i -> htmltagRepository.findById(i.getId())
+				.orElseThrow(() -> new RuntimeException("htmltag does not exist")))
+			.orElse(null);
+		model.setHtmltag(htmltag);
+
+		List<WorkflowNodeModel> wfNodes = optInput
+			.map(i -> i.getWorkflownodes())
+			.map(n -> n.stream()
+				.map(i -> i.getId())
+				.collect(toSet()))
+			.map(l -> workflownodeRepository.findAllById(l))
+			.orElse(Collections.emptyList());
+
+		model.setWorkflownodes(new HashSet<>(wfNodes));
+	}
+
 
 	/**
 	 *
@@ -153,6 +182,8 @@ import org.ebs.services.to.WorkflowEventTo;
 	public WorkflowStageTo modifyWorkflowStage(WorkflowStageInput workflowStage){
 		WorkflowStageModel target= workflowstageRepository.findById(workflowStage.getId()).orElseThrow(() -> new RuntimeException("WorkflowStage not found"));
 		 WorkflowStageModel source= converter.convert(workflowStage,WorkflowStageModel.class);
+
+		 initWorkflowStage(workflowStage, source);
 		 Utils.copyNotNulls(source,target);
 		 return converter.convert(workflowstageRepository.save(target), WorkflowStageTo.class);
 	}
