@@ -5,9 +5,9 @@
         <connection>
             <pool>
                 <driver>org.postgresql.Driver</driver>
-                <url>$SYSTEM:spring.datasource.url</url>
-                <user>$SYSTEM:spring.datasource.username</user>
-                <password>$SYSTEM:spring.datasource.password</password>
+                <url>$SYSTEM:spring_datasource_url</url>
+                <user>$SYSTEM:spring_datasource_username</user>
+                <password>$SYSTEM:spring_datasource_password</password>
             </pool>
         </connection>
         <statement>
