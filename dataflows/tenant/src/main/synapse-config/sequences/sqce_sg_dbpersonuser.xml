@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="sqce_sg_dbpersonuser" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <log description="Insert Data PersonUser" level="custom">
+        <property name="Status DB" value="Insert data in person and user tables beguins"/>
+    </log>
+    <propertyGroup description="Active Directory">
+        <property expression="json-eval($.givenName)" name="givename" scope="default" type="STRING"/>
+        <property expression="json-eval($.surname)" name="familyname" scope="default" type="STRING"/>
+        <property expression="json-eval($.mail)" name="email" scope="default" type="STRING"/>
+        <property expression="json-eval($.mail)" name="officialemail" scope="default" type="STRING"/>
+        <property name="hascredential" scope="default" type="STRING" value="true"/>
+        <property expression="json-eval($.jobTitle)" name="jobtitle" scope="default" type="STRING"/>
+        <property expression="json-eval($.department)" name="knowsabout" scope="default" type="STRING"/>
+        <property expression="json-eval($.mobilePhone)" name="phone" scope="default" type="STRING"/>
+        <property name="status" scope="default" type="STRING" value="Pending"/>
+        <property name="creation_timestamp" scope="default" type="STRING" value="current_timestamp"/>
+        <property name="creator_id" scope="default" type="STRING" value="System"/>
+        <property name="is_void" scope="default" type="STRING" value="false"/>
+        <property name="tenant_id" scope="default" type="STRING" value="1"/>
+        <property name="language_id" scope="default" type="STRING" value="1"/>
+    </propertyGroup>
+    <payloadFactory media-type="json">
+        <format>{"query":"mutation{createperson(PersonTo: { id: 0 givename:\"$1\" familyname: \"$2\" email: \"$3\" officialemail: \"$4\" hascredential: true jobtitle: \"$5\" knowsabout: \"$6\"  phone: \"$7\" status: \"Pending\" language: { id: 1} tenant: { id: 1} }) {id}}" }</format>
+        <args>
+            <arg evaluator="xml" expression="get-property('givename')"/>
+            <arg evaluator="xml" expression="get-property('familyname')"/>
+            <arg evaluator="xml" expression="get-property('email')"/>
+            <arg evaluator="xml" expression="get-property('officialemail')"/>
+            <arg evaluator="xml" expression="get-property('jobtitle')"/>
+            <arg evaluator="xml" expression="get-property('knowsabout')"/>
+            <arg evaluator="xml" expression="get-property('phone')"/>
+        </args>
+    </payloadFactory>
+    <log description="Body" level="custom">
+        <property expression="$body" name="Body to call"/>
+    </log>
+    <call>
+        <endpoint>
+            <http method="post" uri-template="http://localhost:8081/graphql">
+                <suspendOnFailure>
+                    <initialDuration>-1</initialDuration>
+                    <progressionFactor>1</progressionFactor>
+                </suspendOnFailure>
+                <markForSuspension>
+                    <retriesBeforeSuspension>0</retriesBeforeSuspension>
+                </markForSuspension>
+            </http>
+        </endpoint>
+    </call>
+    <property expression="json-eval($.data.createperson.id)" name="_personID" scope="default" type="STRING"/>
+    <payloadFactory media-type="json">
+        <format>{"query":"mutation{createuser(UserTo:{id:0 username:\"$1\" userpassword:\"NA\" defaultrole:2 isis:1 tenant:{id:1} person:{id:$2}}){id}}"}</format>
+        <args>
+            <arg evaluator="xml" expression="get-property('officialemail')"/>
+            <arg evaluator="xml" expression="get-property('_personID')"/>
+        </args>
+    </payloadFactory>
+    <log description="Body" level="custom">
+        <property expression="$body" name="Body to call"/>
+    </log>
+    <call>
+        <endpoint>
+            <http method="post" uri-template="http://localhost:8081/graphql">
+                <suspendOnFailure>
+                    <initialDuration>-1</initialDuration>
+                    <progressionFactor>1</progressionFactor>
+                </suspendOnFailure>
+                <markForSuspension>
+                    <retriesBeforeSuspension>0</retriesBeforeSuspension>
+                </markForSuspension>
+            </http>
+        </endpoint>
+    </call>
+    <property expression="json-eval($.data.createuser.id)" name="_userID" scope="default" type="STRING"/>
+    <dbreport>
+        <connection>
+            <pool>
+                <driver>org.postgresql.Driver</driver>
+                <url>jdbc:postgresql://localhost:5432/cimmyt-ebs</url>
+                <user>postgres</user>
+                <password>12345</password>
+            </pool>
+        </connection>
+        <statement>
+            <sql><![CDATA[INSERT INTO tenant.user_role (role_id, user_id) VALUES(2, ?);]]></sql>
+            <parameter expression="$ctx:_userID" type="INTEGER"/>
+        </statement>
+    </dbreport>
+    <clone continueParent="true">
+        <target>
+            <sequence>
+                <payloadFactory description="Body mail to send" media-type="text">
+                    <format>&lt;div&gt;Dear $1 $2&lt;br/&gt;&#xd;
+&lt;br/&gt;&#xd;
+&lt;p&gt;&#xd;
+Welcome to EBS application, your user is pending to approval by the power user. When the account be activated you will receive a notification email,&lt;/p&gt;&#xd;
+&lt;br/&gt;&#xd;
+ &#xd;
+&lt;p&gt;Best Regards&lt;/p&gt;&#xd;
+&lt;br/&gt;&#xd;
+&lt;p&gt;System automation process&lt;/p&gt;&#xd;
+&#xd;
+                                                               &#xd;
+&#xd;
+ &#xd;
+&#xd;
+&lt;p&gt;Please do not response to this mail&lt;/p&gt;&#xd;
+&lt;/div&gt;&#xd;
+</format>
+                    <args>
+                        <arg evaluator="xml" expression="get-property('givename')"/>
+                        <arg evaluator="xml" expression="get-property('familyname')"/>
+                    </args>
+                </payloadFactory>
+                <propertyGroup>
+                    <property name="Subject" scope="transport" type="STRING" value="Notify EBS Application"/>
+                    <property name="messageType" scope="axis2" type="STRING" value="text/html"/>
+                    <property name="ContentType" scope="axis2" type="STRING" value="text/html"/>
+                    <property name="OUT_ONLY" scope="default" type="STRING" value="true"/>
+                </propertyGroup>
+                <header expression="fn:concat('mailto:', get-property('officialemail'))" name="To" scope="default"/>
+                <call/>
+            </sequence>
+        </target>
+        <target>
+            <sequence>
+                <payloadFactory description="Body mail to power user" media-type="text">
+                    <format>&lt;div&gt;Dear Juan&lt;br/&gt;&#xd;
+&#xd;
+&lt;p&gt;You have a new pending approval registration for $1 account&lt;/p&gt;&lt;br/&gt;&#xd;
+&#xd;
+&lt;p&gt;Please take an action to complete the approval EBS process.&lt;/p&gt;&lt;br/&gt;&#xd;
+&#xd;
+&lt;p&gt;This message does not need response,&lt;/p&gt;&lt;br/&gt;&#xd;
+&#xd;
+&lt;p&gt;Regards&#xd;
+System automation process&lt;/p&gt;&#xd;
+&lt;/div&gt;</format>
+                    <args>
+                        <arg evaluator="xml" expression="get-property('officialemail')"/>
+                    </args>
+                </payloadFactory>
+                <propertyGroup>
+                    <property name="Subject" scope="transport" type="STRING" value="Notify EBS Application"/>
+                    <property name="messageType" scope="axis2" type="STRING" value="text/html"/>
+                    <property name="ContentType" scope="axis2" type="STRING" value="text/html"/>
+                    <property name="OUT_ONLY" scope="default" type="STRING" value="true"/>
+                </propertyGroup>
+                <header expression="fn:concat('mailto:', 'garciagabriel.ar@gmail.com')" name="To" scope="default"/>
+                <call/>
+            </sequence>
+        </target>
+    </clone>
+</sequence>

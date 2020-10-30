@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/email_process" name="api_sg_emailprocess" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST GET" uri-template="/send_email">
+        <inSequence>
+            <log description="DecitionProcessFlow">
+                <property name="Status" value="Process Decition flow beguin"/>
+            </log>
+            <filter xpath="//NodeProcess=&quot;sync user&quot;">
+                <then>
+                    <sequence key="sqce_sg_syncuser"/>
+                    <log level="custom">
+                        <property name="Status" value="Is passing "/>
+                    </log>
+                    <payloadFactory description="User processed" media-type="json">
+                        <format>{"Status":"User processed by sync user"}</format>
+                        <args/>
+                    </payloadFactory>
+                </then>
+                <else>
+                    <filter xpath="//NodeProcess=&quot;default&quot;">
+                        <then>
+                            <sequence key="sqce_sg_default"/>
+                            <payloadFactory media-type="json">
+                                <format>{"Status":"User processed by default user"}</format>
+                                <args/>
+                            </payloadFactory>
+                        </then>
+                        <else>
+                            <payloadFactory media-type="text">
+                                <format>Is not a valid process, pleas verify the NodeProcess value</format>
+                                <args/>
+                            </payloadFactory>
+                        </else>
+                    </filter>
+                </else>
+            </filter>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>
