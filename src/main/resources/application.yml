@@ -35,7 +35,8 @@ spring:
   datasource:
     initialization-mode: never
     continue-on-error: false
-    url: jdbc:postgresql://localhost:5432/irri
+
+    url: jdbc:postgresql://localhost:5432/tntdb
     username: postgres
     password: 12345
     dbcp2:

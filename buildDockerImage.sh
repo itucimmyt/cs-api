@@ -10,5 +10,5 @@ mvn clean install && \
 mvn clean -f dataflows/tenant -Dmaven.test.skip=true install && \
 mvn -f dataflows/tenantCompositeApplication -Dmaven.test.skip=true clean package
 
-echo "building image: ebs-sg-tnt:20.07 ..."
-docker build -t ebs-sg-tnt:20.07 .
+echo "building image: ebs-sg-tnt:20.11 ..."
+docker build -t ebs-sg-tnt:20.11 .

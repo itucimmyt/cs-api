@@ -119,7 +119,6 @@ public class WorkflowNodeServiceImplTest {
             .thenReturn(connection);
         when(mockConverter.convert(any(), any()))
             .thenReturn(new WorkflowNodeTo());
-
         Page<WorkflowNodeTo> result = subject.findWorkflowNodes(null, null, null, false);
 
         assertThat(result).isNotNull();

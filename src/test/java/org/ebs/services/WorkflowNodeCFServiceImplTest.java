@@ -94,8 +94,8 @@ public class WorkflowNodeCFServiceImplTest {
             .thenReturn(connection);
         when(mockConverter.convert(any(), any()))
             .thenReturn(new WorkflowNodeCFTo());
-
         Page<WorkflowNodeCFTo> result = subject.findWorkflowNodeCFs(null, null, null, false);
+
 
         assertThat(result).isNotNull();
         assertThat(result.getTotalElements()).isEqualTo(2);

@@ -5,4 +5,19 @@
     <artifact name="AnalyticalSampling" groupId="org.ebs.tenant.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/endpoints/AnalyticalSampling.xml</file>
     </artifact>
+    <artifact name="api_sg_emailprocess" groupId="org.ebs.tenant.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/api_sg_emailprocess.xml</file>
+    </artifact>
+    <artifact name="sqce_sg_syncuser" groupId="org.ebs.tenant.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/sqce_sg_syncuser.xml</file>
+    </artifact>
+    <artifact name="sqce_sg_default" groupId="org.ebs.tenant.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/sqce_sg_default.xml</file>
+    </artifact>
+    <artifact name="sqce_sg_sendmail" groupId="org.ebs.tenant.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/sqce_sg_sendmail.xml</file>
+    </artifact>
+    <artifact name="sqce_sg_dbpersonuser" groupId="org.ebs.tenant.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/sqce_sg_dbpersonuser.xml</file>
+    </artifact>
 </artifacts>
