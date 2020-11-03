@@ -3,7 +3,8 @@
 This project is the core of a micro service by domain, so it can be added into Service Gateway Platform
 
 ## Considerations
-
+ - IMPORTANT: Change the encoding of buildDockerImage.sh and entrypoint.sh with "dos2unix NameFile.sh"
+ - IMPORTANT: Review the 8080 port for the service and the 8290 for dataflows artifact OR get into the docker network.
  - The micro service can connect to a DB, which is not managed in this project.
  - There should be an API manager component which will manage the microservice access.
  - The main configuration item is the data source, found in `` src/main/resources/application.yml `` under ``spring.datasource``. The default database configuration follows the standard naming: _ebs-{domain}-db:port/{domaindatabase}_. Example: ``jdbc:postgresql://ebs-ex-db:5432/exdb``. username and password default both to **postgres**

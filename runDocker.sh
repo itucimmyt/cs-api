@@ -4,4 +4,4 @@ docker run -dit \
 --network ebs-sg-net \
 -p 18083:8080 \
 -p 18293:8290 \
-ebs-sg-tnt:0.1
+ebs-sg-tnt:20.11
