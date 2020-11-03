@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="sqce_sg_default" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <property expression="json-eval($.email)" name="emailAccount" scope="default" type="STRING"/>
+    <dblookup>
+        <connection>
+            <pool>
+                <driver>org.postgresql.Driver</driver>
+                <url>$SYSTEM:spring_datasource_url</url>
+                <user>$SYSTEM:spring_datasource_username</user>
+                <password>$SYSTEM:spring_datasource_password</password>
+            </pool>
+        </connection>
+        <statement>
+            <sql><![CDATA[SELECT givename, familyname FROM tenant.person WHERE officialemail =?;]]></sql>
+            <parameter expression="$ctx:emailAccount" type="CHAR"/>
+            <result column="givename" name="_givename"/>
+            <result column="familyname" name="_familyname"/>
+        </statement>
+    </dblookup>
+    <payloadFactory media-type="text">
+        <format>&lt;div&gt;Dear $1 $2&lt;br/&gt;&#xd;
+&#xd;
+&lt;p&gt;You have a new request.&lt;/p&gt;&lt;br/&gt;&#xd;
+&lt;p&gt;Please take an action to complete the EBS process flow.&lt;/p&gt;&lt;br/&gt;&#xd;
+&#xd;
+&lt;p&gt;This message does not need response,&lt;/p&gt;&lt;br/&gt;&#xd;
+&#xd;
+&lt;p&gt;Regards&lt;/p&gt;&#xd;
+&lt;p&gt;System automation process&lt;/p&gt;&#xd;
+&lt;/div&gt;</format>
+        <args>
+            <arg evaluator="xml" expression="$ctx:_givename"/>
+            <arg evaluator="xml" expression="$ctx:_familyname"/>
+        </args>
+    </payloadFactory>
+    <propertyGroup>
+        <property name="Subject" scope="transport" type="STRING" value="Notify EBS Application"/>
+        <property name="messageType" scope="axis2" type="STRING" value="text/html"/>
+        <property name="ContentType" scope="axis2" type="STRING" value="text/html"/>
+        <property name="OUT_ONLY" scope="default" type="STRING" value="true"/>
+    </propertyGroup>
+    <header expression="fn:concat('mailto:', get-property('emailAccount'))" name="To" scope="default"/>
+    <call/>
+</sequence>

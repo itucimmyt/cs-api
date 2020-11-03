@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <endpoint name="AnalyticalSampling" xmlns="http://ws.apache.org/ns/synapse">
-    <address uri="http://localhost:18080/graphql"/>
+    <address uri="http://localhost:18080/graphql">
+        <suspendOnFailure>
+            <initialDuration>-1</initialDuration>
+            <progressionFactor>1</progressionFactor>
+        </suspendOnFailure>
+        <markForSuspension>
+            <retriesBeforeSuspension>0</retriesBeforeSuspension>
+        </markForSuspension>
+    </address>
 </endpoint>
