@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <api context="/email_process" name="api_sg_emailprocess" xmlns="http://ws.apache.org/ns/synapse">
-    <resource methods="POST GET" uri-template="/send_email">
+    <resource methods="POST" url-mapping="/send_email">
         <inSequence>
             <log description="DecitionProcessFlow">
                 <property name="Status" value="Process Decition flow beguin"/>

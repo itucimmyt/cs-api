@@ -6,7 +6,7 @@
     <propertyGroup description="Active Directory">
         <property expression="json-eval($.givenName)" name="givename" scope="default" type="STRING"/>
         <property expression="json-eval($.surname)" name="familyname" scope="default" type="STRING"/>
-        <property expression="json-eval($.mail)" name="email" scope="default" type="STRING"/>
+        <property expression="fn:lower-case(json-eval($.userPrincipalName))" name="email" scope="default" type="STRING"/>
         <property expression="json-eval($.mail)" name="officialemail" scope="default" type="STRING"/>
         <property name="hascredential" scope="default" type="STRING" value="true"/>
         <property expression="json-eval($.jobTitle)" name="jobtitle" scope="default" type="STRING"/>
