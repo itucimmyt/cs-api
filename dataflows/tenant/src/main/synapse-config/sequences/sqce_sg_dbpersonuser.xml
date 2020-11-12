@@ -6,8 +6,8 @@
     <propertyGroup description="Active Directory">
         <property expression="json-eval($.givenName)" name="givename" scope="default" type="STRING"/>
         <property expression="json-eval($.surname)" name="familyname" scope="default" type="STRING"/>
-        <property expression="fn:lower-case(json-eval($.userPrincipalName))" name="email" scope="default" type="STRING"/>
-        <property expression="json-eval($.mail)" name="officialemail" scope="default" type="STRING"/>
+        <property expression="json-eval($.userPrincipalName)" name="email" scope="default" type="STRING"/>
+        <property expression="json-eval($.userPrincipalName)" name="officialemail" scope="default" type="STRING"/>
         <property name="hascredential" scope="default" type="STRING" value="true"/>
         <property expression="json-eval($.jobTitle)" name="jobtitle" scope="default" type="STRING"/>
         <property expression="json-eval($.department)" name="knowsabout" scope="default" type="STRING"/>
@@ -24,8 +24,8 @@
         <args>
             <arg evaluator="xml" expression="get-property('givename')"/>
             <arg evaluator="xml" expression="get-property('familyname')"/>
-            <arg evaluator="xml" expression="get-property('email')"/>
-            <arg evaluator="xml" expression="get-property('officialemail')"/>
+            <arg evaluator="xml" expression="fn:lower-case(get-property('email'))"/>
+            <arg evaluator="xml" expression="fn:lower-case(get-property('officialemail'))"/>
             <arg evaluator="xml" expression="get-property('jobtitle')"/>
             <arg evaluator="xml" expression="get-property('knowsabout')"/>
             <arg evaluator="xml" expression="get-property('phone')"/>
