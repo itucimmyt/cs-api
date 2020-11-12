@@ -30,13 +30,13 @@ enable = false
 
 [[transport.mail.sender]]
 name = "mailto"
-parameter.hostname = "$env{spring_email_hostname}"
-parameter.port = "$env{spring_email_port}"
-parameter.enable_tls = $env{spring_email_enable_tls}
-parameter.auth = $env{spring_email_auth}
-parameter.username = "$env{spring_email_username}"
-parameter.password = "$env{spring_email_password}"
-parameter.from = "$env{spring_email_from}"
+parameter.hostname = "$env{integrator_email_hostname}"
+parameter.port = "$env{integrator_email_port}"
+parameter.enable_tls = $env{integrator_email_enable_tls}
+parameter.auth = $env{integrator_email_auth}
+parameter.username = "$env{integrator_email_username}"
+parameter.password = "$env{integrator_email_password}"
+parameter.from = "$env{integrator_email_from}"
 
 [transport.local.sender.nonblocking]
 enable = true
