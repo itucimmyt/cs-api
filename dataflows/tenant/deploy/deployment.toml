@@ -30,13 +30,13 @@ enable = false
 
 [[transport.mail.sender]]
 name = "mailto"
-parameter.hostname = "$env{integrator_email_hostname}"
-parameter.port = "$env{integrator_email_port}"
-parameter.enable_tls = $env{integrator_email_enable_tls}
-parameter.auth = $env{integrator_email_auth}
-parameter.username = "$env{integrator_email_username}"
-parameter.password = "$env{integrator_email_password}"
-parameter.from = "$env{integrator_email_from}"
+parameter.hostname = "smtp.office365.com"
+parameter.port = "25"
+parameter.enable_tls = true
+parameter.auth = true
+parameter.username = "breedingapplications@cgiar.org"
+parameter.password = "Africa&amp;2017"
+parameter.from = "breedingapplications@cgiar.org"
 
 [transport.local.sender.nonblocking]
 enable = true

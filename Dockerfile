@@ -5,7 +5,6 @@ ENV spring_datasource_url=jdbc:postgresql://{localhost}:{port}/{db}
 ENV spring_datasource_username={username}
 ENV spring_datasource_password={password}
 
-ENV integrator_email_account={email_account}
 ENV integrator_email_hostname={hostname}
 ENV integrator_email_port={port}
 ENV integrator_email_enable_tls={enable_tls}
