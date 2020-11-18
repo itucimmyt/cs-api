@@ -35,7 +35,7 @@ parameter.port = "25"
 parameter.enable_tls = true
 parameter.auth = true
 parameter.username = "breedingapplications@cgiar.org"
-parameter.password = "Africa&amp;2017"
+parameter.password = "Afric@5451!#"
 parameter.from = "breedingapplications@cgiar.org"
 
 [transport.local.sender.nonblocking]

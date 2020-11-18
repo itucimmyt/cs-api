@@ -3,7 +3,11 @@
     <log level="custom">
         <property name="Status1" value="The email process workflow has begun"/>
     </log>
-    <property description="uri.var.mailAccount" expression="json-eval($.email)" name="uri.var.mailAccount" scope="default" type="STRING"/>
+    <property expression="$ctx:email" group="0" name="name_bfore@" pattern="^[_a-z0-9-]+(.[_a-z0-9-]+)*@" scope="default" type="STRING"/>
+    <property description="uri.var.mailAccount" expression="fn:concat($ctx:name_bfore@,'cimmyt.org')" name="uri.var.mailAccount" scope="default" type="STRING"/>
+    <log description="CorrectEmail" level="custom">
+        <property expression="$ctx:uri.var.mailAccount" name="Este es el correo correcto:"/>
+    </log>
     <log description="Body" level="custom">
         <property expression="$body" name="Body"/>
     </log>
@@ -21,42 +25,4 @@
     <log description="body befor Token" level="custom">
         <property expression="$body" name="Body before Token"/>
     </log>
-    <property name="messageType" scope="axis2" type="STRING" value="application/x-www-form-urlencoded"/>
-    <property name="DISABLE_CHUNKING" scope="axis2" type="STRING" value="true"/>
-    <call>
-        <endpoint>
-            <http method="post" uri-template="https://login.microsoftonline.com/da1068b1-9955-40c3-a728-451a21599bb3/oauth2/v2.0/token">
-                <suspendOnFailure>
-                    <initialDuration>-1</initialDuration>
-                    <progressionFactor>-1</progressionFactor>
-                    <maximumDuration>0</maximumDuration>
-                </suspendOnFailure>
-                <markForSuspension>
-                    <retriesBeforeSuspension>0</retriesBeforeSuspension>
-                </markForSuspension>
-            </http>
-        </endpoint>
-    </call>
-    <log description="body Token" level="custom">
-        <property expression="$body" name="Respuesta del Token"/>
-    </log>
-    <property description="Access Token" expression="json-eval($.access_token)" name="Token" scope="default" type="STRING"/>
-    <property description="Setear Aauth" expression="fn:concat(&quot;Bearer &quot;,$ctx:Token)" name="Authorization" scope="transport" type="STRING"/>
-    <log level="custom">
-        <property expression="get-property('transport','Authorization')" name="Authorization"/>
-    </log>
-    <call>
-        <endpoint>
-            <http method="get" uri-template="https://graph.microsoft.com/beta/users/{uri.var.mailAccount}">
-                <suspendOnFailure>
-                    <initialDuration>-1</initialDuration>
-                    <progressionFactor>1</progressionFactor>
-                </suspendOnFailure>
-                <markForSuspension>
-                    <retriesBeforeSuspension>0</retriesBeforeSuspension>
-                </markForSuspension>
-            </http>
-        </endpoint>
-    </call>
-    <sequence key="sqce_sg_dbpersonuser"/>
 </sequence>
