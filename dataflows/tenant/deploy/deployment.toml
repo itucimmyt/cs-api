@@ -34,9 +34,9 @@ parameter.hostname = "smtp.office365.com"
 parameter.port = "25"
 parameter.enable_tls = true
 parameter.auth = true
-parameter.username = "breedingapplications@cgiar.org"
+parameter.username = "breedingapplications@CIMMYT.ORG"
 parameter.password = "Afric@5451!#"
-parameter.from = "breedingapplications@cgiar.org"
+parameter.from = "breedingapplications@CIMMYT.ORG"
 
 [transport.local.sender.nonblocking]
 enable = true

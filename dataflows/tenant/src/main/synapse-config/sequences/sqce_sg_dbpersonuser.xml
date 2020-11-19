@@ -19,7 +19,7 @@
         <property name="tenant_id" scope="default" type="STRING" value="1"/>
         <property name="language_id" scope="default" type="STRING" value="1"/>
     </propertyGroup>
-    <dblookup>
+    <dblookup description="Verify is exists">
         <connection>
             <pool>
                 <driver>org.postgresql.Driver</driver>
@@ -92,6 +92,9 @@
                 </endpoint>
             </call>
             <property expression="json-eval($.data.createUser.id)" name="_userID" scope="default" type="STRING"/>
+            <log level="custom">
+                <property expression="$ctx:_userID" name="This is the user id"/>
+            </log>
             <dbreport>
                 <connection>
                     <pool>
