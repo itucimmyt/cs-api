@@ -57,5 +57,18 @@
             </http>
         </endpoint>
     </call>
-    <sequence key="sqce_sg_dbpersonuser"/>
+    <filter description="Request_ResourceNotFound" xpath="//error">
+        <then>
+            <payloadFactory media-type="json">
+                <format>{"Status":"$1"}</format>
+                <args>
+                    <arg evaluator="xml" expression="//error/message"/>
+                </args>
+            </payloadFactory>
+            <respond/>
+        </then>
+        <else>
+            <sequence key="sqce_sg_dbpersonuser"/>
+        </else>
+    </filter>
 </sequence>

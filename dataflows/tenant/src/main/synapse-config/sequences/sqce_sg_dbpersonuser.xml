@@ -105,7 +105,7 @@
                     </pool>
                 </connection>
                 <statement>
-                    <sql><![CDATA[INSERT INTO tenant.user_role (role_id, user_id) VALUES(3, ?);]]></sql>
+                    <sql><![CDATA[INSERT INTO tenant.user_role (role_id, user_id) VALUES(5, ?);]]></sql>
                     <parameter expression="$ctx:_userID" type="INTEGER"/>
                 </statement>
             </dbreport>
