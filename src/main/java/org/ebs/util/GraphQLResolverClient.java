@@ -1,7 +1,6 @@
 package org.ebs.util;
 
 import static org.ebs.Application.REQUEST_TOKEN;
-import static java.util.Collections.singletonList;
 import java.net.URI;
 import java.util.Map;
 
@@ -27,21 +26,22 @@ public class GraphQLResolverClient {
     public GraphQLResolverClient(URI endpoint) {
         plantilla = new RestTemplate();
         headers = new LinkedMultiValueMap<>();
-        headers.add(HttpHeaders.AUTHORIZATION, "Bearer ");
-            headers.add(HttpHeaders.CONTENT_TYPE,"application/json");
+        headers.add(HttpHeaders.AUTHORIZATION, "Bearer "+ REQUEST_TOKEN.get());
+        headers.add(HttpHeaders.CONTENT_TYPE,"application/json");
         this.endpoint = endpoint;
     }
-    
+
 
     public <T> T findOneEntity(String query, ParameterizedTypeReference<Map<String,Map<String,T>>> responseType) {
         T result = null;
         try {
             log.trace("Calling {} from external service: {}", query, endpoint);
             String body = String.format("{\"query\":\"{%s}\"}", query);
-    
+            HttpEntity<String> req = new HttpEntity<>(body,headers);
+
             ResponseEntity<Map<String,Map<String,T>>> response = plantilla.exchange(endpoint,
-                HttpMethod.POST, requestFor(body), responseType);
-    
+                HttpMethod.POST, req, responseType);
+
             String queryName = query.split("\\(|\\{",2)[0];
             return response.getBody().get("data").get(queryName);
         } catch(Exception e) {
@@ -50,8 +50,4 @@ public class GraphQLResolverClient {
         return result;
     }
 
-    private HttpEntity<String> requestFor(String body) {
-        headers.replace(HttpHeaders.AUTHORIZATION, singletonList("Bearer " + REQUEST_TOKEN.get()));
-        return new HttpEntity<>(body,headers);
-    }
 }

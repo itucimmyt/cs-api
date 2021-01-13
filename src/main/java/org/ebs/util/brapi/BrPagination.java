@@ -20,4 +20,10 @@ class BrPagination {
 	private long totalCount;
 	private int totalPages;
 
+	@Override
+	public String toString() {
+		
+		return String.format("BrPagination [pageSize=%s, currentPage=%s, totalCount=%s, totalPages=%s]", pageSize, currentPage, totalCount, totalPages);
+	}
+
 }

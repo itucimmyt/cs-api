@@ -21,4 +21,9 @@ class BrMetadata {
 	private List<BrStatus> status;
 	private List<String> dataFiles;
 
+	@Override
+	public String toString() {
+		return String.format("BrMetadata [%s, %s]", pagination, status);
+	}
+
 }

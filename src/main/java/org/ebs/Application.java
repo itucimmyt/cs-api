@@ -1,6 +1,8 @@
 package org.ebs;
 
 import java.net.URI;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.ebs.util.DateCoercing;
 import org.ebs.util.DateTimeCoercing;
@@ -22,6 +24,7 @@ public class Application {
 	}
 
 	public static ThreadLocal<String> REQUEST_TOKEN = new ThreadLocal<>();
+	public static Map<String,String> TOKEN_MAP = new ConcurrentHashMap<>();
 
 	@Value("${ebs.sg.tenant.endpoint}")
 	private String tenantEndpoint;
@@ -56,7 +59,7 @@ public class Application {
 			.build();
 	}
 
-	@Bean 
+	@Bean
 	@Autowired
 	BrapiClient b4rApiClient(B4RapiTokenGenerator b4rTokenGenerator) {
 		return new BrapiClient(URI.create(b4rapiEndpoint), b4rTokenGenerator);

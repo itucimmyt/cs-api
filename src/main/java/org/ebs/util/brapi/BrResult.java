@@ -19,4 +19,9 @@ public class BrResult<T> {
 
 	private List<T> data;
 
+	@Override
+	public String toString() {
+		return String.format("data [%s]", data);
+	}
+
 }

@@ -5,6 +5,7 @@ import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
 
 import java.net.URI;
+import java.util.Collections;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -27,6 +28,8 @@ public class BrapiClient {
     private final URI brEndpoint;
     private final B4RapiTokenGenerator tokenGenerator;
 
+    private String user;
+
     public BrapiClient(URI brEndpoint, B4RapiTokenGenerator tokenGenerator) {
         template = new RestTemplate();
         headers = new LinkedMultiValueMap<>();
@@ -37,17 +40,25 @@ public class BrapiClient {
         this.tokenGenerator = tokenGenerator;
     }
     
-    public <T> BrResponse<T> post(String resourcePath, List<T> body, Class<T> returnedClass) {
-        ResponseEntity<BrResponse<T>> response = null;
+    public <T> BrPagedResponse<T> post(String resourcePath, List<T> body, Class<T> returnedClass) {
+        return doPost( resourcePath, body, returnedClass, false);
+    }
+    public <T> BrPagedResponse<T> postRecords(String resourcePath, List<T> body, Class<T> returnedClass) {
+        return doPost( resourcePath, body, returnedClass, true);
+    }
+
+    <T> BrPagedResponse<T> doPost(String resourcePath, List<T> body, Class<T> returnedClass, boolean recordsBody) {
+        ResponseEntity<BrPagedResponse<T>> response = null;
         try {
             log.trace("Calling {}{}", brEndpoint, resourcePath);
             
-            ResolvableType resolvableType = ResolvableType.forClassWithGenerics(BrResponse.class, returnedClass);
-            ParameterizedTypeReference<BrResponse<T>> typeRef = ParameterizedTypeReference.forType(resolvableType.getType());
-            response = template.exchange(brEndpoint, HttpMethod.POST, requestFor(body), typeRef);
-    
+            ResolvableType resolvableType = ResolvableType.forClassWithGenerics(BrPagedResponse.class, returnedClass);
+            ParameterizedTypeReference<BrPagedResponse<T>> typeRef = ParameterizedTypeReference.forType(resolvableType.getType());
+            response = template.exchange(brEndpoint + resourcePath, HttpMethod.POST, requestFor(body, recordsBody), typeRef);
+            log.trace("response object: {}", response);
+
         } catch(Exception e) {
-            log.error("Could not invoke service: {}. Cause: ", resourcePath, e.getMessage());
+            log.error("Could not invoke service: {}. Cause: ", brEndpoint + resourcePath, e.getMessage());
             return null;
         }
         return response.getBody();
@@ -67,10 +78,10 @@ public class BrapiClient {
             
             ResolvableType resolvableType = ResolvableType.forClassWithGenerics(BrResponse.class, returnedClass);
             ParameterizedTypeReference<BrResponse<T>> typeRef = ParameterizedTypeReference.forType(resolvableType.getType());
-            response = template.exchange(brEndpoint + resourcePath, HttpMethod.GET, requestFor(null), typeRef);
+            response = template.exchange(brEndpoint + resourcePath, HttpMethod.GET, requestFor(null, false), typeRef);
 
         } catch(Exception e) {
-            log.error("Could not invoke service: {}. Cause: ", resourcePath, e.getMessage());
+            log.error("Could not invoke service: {}. Cause: ", brEndpoint + resourcePath, e.getMessage());
             return null;
         }
         return response.getBody();
@@ -90,7 +101,7 @@ public class BrapiClient {
 
             ResolvableType resolvableType = ResolvableType.forClassWithGenerics(BrPagedResponse.class, returnedClass);
             ParameterizedTypeReference<BrPagedResponse<T>> typeRef = ParameterizedTypeReference.forType(resolvableType.getType());
-            response = template.exchange(brEndpoint + resourcePath, HttpMethod.GET, requestFor(null), typeRef);
+            response = template.exchange(brEndpoint + resourcePath, HttpMethod.GET, requestFor(null, false), typeRef);
 
         } catch(Exception e) {
             log.error("Could not invoke service: {}. Cause: ", resourcePath, e.getMessage());
@@ -99,10 +110,21 @@ public class BrapiClient {
         return response.getBody();
     }
 
+    public BrapiClient withUser(String user) {
+        this.user = user;
+        return this;
+    }
 
-    private HttpEntity<Object> requestFor(Object body) {
-        headers.replace(AUTHORIZATION, singletonList("Bearer " + tokenGenerator.getToken()));
-        return new HttpEntity<>(body,headers);
+    /**
+     * 
+     * @param body of the request
+     * @param recordsBody flat indicating is the body must be wrapped in a "records" attribute
+     * @return
+     */
+    private HttpEntity<Object> requestFor(Object body, boolean recordsBody) {
+        log.debug("making request with token: {}", tokenGenerator.getToken(user));
+        headers.replace(AUTHORIZATION, singletonList("Bearer " + tokenGenerator.getToken(user)));
+        return new HttpEntity<>(recordsBody ? Collections.singletonMap("records", body) :body,headers);
     }
 
 }

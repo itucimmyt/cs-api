@@ -21,4 +21,9 @@ class BrStatus {
 	private int code;
 	private String message;
 
+	@Override
+	public String toString() {
+		return String.format("BrStatus [code=%s, message=%s]", code, message);
+	}
+
 }
