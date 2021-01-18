@@ -6,18 +6,23 @@ import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
+
 import graphql.language.StringValue;
 import graphql.schema.Coercing;
 import graphql.schema.CoercingParseLiteralException;
 import graphql.schema.CoercingParseValueException;
 import graphql.schema.CoercingSerializeException;
 
+@Component @Primary
 public class DateCoercing implements Coercing<Date, String> {
-
-    protected DateTimeFormatter dateFormat = DateTimeFormatter.ISO_LOCAL_DATE.withZone(ZoneOffset.UTC);
+    public static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ISO_LOCAL_DATE.withZone(ZoneOffset.UTC);
+    public DateTimeFormatter dateFormat = DATE_FORMAT;
 
     @Override
     public String serialize(Object dataFetcherResult) throws CoercingSerializeException {
+        if (dataFetcherResult == null) return null;
         if(dataFetcherResult instanceof Date) {
             try{
                 return  dateFormat.format(((Date)dataFetcherResult).toInstant());
@@ -30,6 +35,8 @@ public class DateCoercing implements Coercing<Date, String> {
 
     @Override
     public Date parseValue(Object input) throws CoercingParseValueException {
+        if (input == null) return null;
+
         if (input instanceof String){
             LocalDate o = LocalDate.parse((String)input, dateFormat);
             try{
@@ -44,6 +51,8 @@ public class DateCoercing implements Coercing<Date, String> {
 
     @Override
     public Date parseLiteral(Object input) throws CoercingParseLiteralException {
+        if (input == null) return null;
+
         if (input instanceof StringValue) {
             String s = ((StringValue)input).getValue();
             LocalDate o = LocalDate.parse(s, dateFormat);

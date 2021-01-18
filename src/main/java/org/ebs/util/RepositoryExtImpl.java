@@ -161,4 +161,16 @@ class RepositoryExtImpl<T> implements RepositoryExt<T> {
 
         return entityManager.createQuery(delete).executeUpdate();
     }
+
+    @Override
+    public Connection<T> findByCriteria(Class<T> entityClass, List<FilterInput> filters, SortInput sort,
+            Pageable page) {
+        return findByCriteria(entityClass, filters, sort, new PageInput(page.getPageNumber(), page.getPageSize()));
+    }
+
+    @Override
+    public Connection<T> findByCriteria(Class<T> entityClass, List<FilterInput> filters, SortInput sort, Pageable page,
+            boolean disjuntionFilters) {
+        return findByCriteria(entityClass, filters, sort, new PageInput(page.getPageNumber(), page.getPageSize()), disjuntionFilters);
+    }
 }
