@@ -5,7 +5,7 @@ logging:
       hibernate: INFO
       ebs: INFO
 server:
-  port: 8080
+  port: 18080
 spring:
   application:
     name: ebs-sg-ex
@@ -36,9 +36,9 @@ spring:
     initialization-mode: never
     continue-on-error: false
 
-    url: jdbc:postgresql://localhost:5432/tntdb
+    url: jdbc:postgresql://localhost:5432/tenant
     username: postgres
-    password: 12345
+    password: London@281
     dbcp2:
       test-while-idle: true
       test-on-borrow: true
