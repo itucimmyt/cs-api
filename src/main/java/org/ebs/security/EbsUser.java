@@ -5,42 +5,24 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
+
+@RequiredArgsConstructor
+@ToString @Getter
 public class EbsUser implements UserDetails {
 
     private static final long serialVersionUID = 4307744603889763661L;
 
-    private String username;
-    private Collection<? extends GrantedAuthority> authorities;
-    private boolean enabled;
-
-    public EbsUser() {
-	}
-    
-    public EbsUser(
-          String username,
-          Collection<? extends GrantedAuthority> authorities,
-          boolean enabled
-    ) {
-        this.username = username;
-        this.authorities = authorities;
-        this.enabled = enabled;
-    }
-
-
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
-    }
+    private final int id;
+    private final String username;
+    private final Collection<? extends GrantedAuthority> authorities;
+    private final boolean enabled;
 
     @Override
     public String getPassword() {
         return null;
-    }
-
-    @Override
-    public String getUsername() {
-        return username;
     }
 
     @Override
@@ -61,11 +43,6 @@ public class EbsUser implements UserDetails {
     @Override
     public boolean isEnabled() {
         return enabled;
-    }
-
-    @Override
-    public String toString() {
-        return "EbsUser [authorities=" + authorities + ", enabled=" + enabled + ", username=" + username + "]";
     }
 
 }

@@ -10,7 +10,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
+import lombok.extern.log4j.Log4j2;
 
 /**
  * Service required by Spring Security to obtain additional information about
@@ -20,14 +21,15 @@ import org.springframework.transaction.annotation.Transactional;
  *
  */
 @Service
-@Transactional(readOnly=true)
-@Profile({"default", "prod"})
-class UserDetailsServiceImpl implements UserDetailsService {
+@Profile({"dev", "test"})
+@Log4j2
+class DevUserDetailsServiceImpl implements UserDetailsService {
+    public DevUserDetailsServiceImpl() {
+        log.info("Creating UserDetailsService filter for DEVELOPMENT/TESTING");
+    }
 
 	@Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
-        //TODO connect here Tenant services to retrieve details and grants for a specific user
         List<GrantedAuthority> auths = Arrays.asList(
             new SimpleGrantedAuthority("VOID_GRANT"),
             new SimpleGrantedAuthority("EMPTY_GRANT"));

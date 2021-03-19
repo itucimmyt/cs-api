@@ -86,6 +86,14 @@ class RepositoryExtImpl<T> implements RepositoryExt<T> {
                         predicateList.add(
                             builder.like( filterPath, "%"+f.getVal()+"%"));
                         break;
+                    case NULL:
+                        predicateList.add(
+                            builder.isNull(filterPath));
+                        break;
+                    case NOTNULL:
+                        predicateList.add(
+                            builder.isNotNull(filterPath));
+                        break;
                     case EQ:
                     default: //default is equals
                     	predicateList.add(

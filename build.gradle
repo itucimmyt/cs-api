@@ -20,6 +20,7 @@ ext {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	runtimeOnly 'org.postgresql:postgresql'
@@ -57,6 +58,10 @@ dependencyManagement {
 
 bootJar {
 	archiveName = 'ebs-sg-{domain}.jar'
+	manifest {
+        attributes('Implementation-Title':   '{Domain} API',
+                   'Implementation-Version': version)
+    }
 }
 
 test {

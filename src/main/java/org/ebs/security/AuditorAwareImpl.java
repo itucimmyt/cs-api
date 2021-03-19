@@ -11,12 +11,12 @@ import org.springframework.stereotype.Component;
  * Provides user information from Security Context to Auditable entities
  */
 @Component
-class AuditorAwareImpl implements AuditorAware<String> {
+class AuditorAwareImpl implements AuditorAware<Integer> {
 
     @Override
-    public Optional<String> getCurrentAuditor() {
+    public Optional<Integer> getCurrentAuditor() {
         Authentication auth= SecurityContextHolder.getContext().getAuthentication();
-        return Optional.of(auth.getName());
+        return Optional.of(((EbsUser)auth.getPrincipal()).getId());
     }
 
 }

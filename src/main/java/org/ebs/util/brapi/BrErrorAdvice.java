@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolationException;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * be grouped in different methods inside this class. For example all Business
  * Logic Exceptions can be returned with code 505, and all Validation Exceptions
  * with code 400 <br/>
- * 
+ *
  * @author jarojas
  *
  */
@@ -35,6 +36,12 @@ public class BrErrorAdvice {
 		return BrapiResponseBuilder.forError(exception.getMessage());
     }
 
+	@ExceptionHandler(AccessDeniedException.class)
+	@ResponseStatus(code=HttpStatus.FORBIDDEN)
+	public BrResponse<?> dispatchAccessDenied(HttpServletRequest request, Object handler, Exception exception) {
+		return BrapiResponseBuilder.forError(exception.getMessage());
+	}
+
 	/**
 	 * Method to catch all exceptions extending {@link Exception}. Responds with code 500.
 	 * Further specializations may come along with new features.
@@ -48,5 +55,5 @@ public class BrErrorAdvice {
 	public BrResponse<?> dispatchServerError(HttpServletRequest request, Object handler, Exception exception) {
 		return BrapiResponseBuilder.forError(exception.getMessage());
     }
-    
+
 }

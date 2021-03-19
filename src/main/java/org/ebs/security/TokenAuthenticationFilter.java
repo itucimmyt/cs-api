@@ -20,12 +20,12 @@ import org.springframework.stereotype.Component;
  * Helper Filter for authentication. If a valid token is found in the request, a
  * valid Authentication is set in Spring Security Context during the life of
  * this request.
- * 
+ *
  * @author jarojas
  *
  */
 @Component
-@Profile("default")
+@Profile({"default", "prod"})
 class TokenAuthenticationFilter extends AbstractAuthenticationFilter {
 
     private final static Logger LOG = LoggerFactory.getLogger(TokenAuthenticationFilter.class);

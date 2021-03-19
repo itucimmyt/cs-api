@@ -6,14 +6,17 @@ ebs:
       endpoint: http://ebs-test.cimmyt.org:3000/api-bc-wheat/20.01/
       jwt-secret: Vu3L8QoDPhrRYJ0cDCoVhVxMWvfzakiR
       jwt-expiry: 60
-logging: 
-  level: 
+logging:
+  level:
     org:
       springframework: INFO
       hibernate: INFO
-      ebs: TRACE
+      ebs: INFO
 server:
   port: 8080
+  compression:
+    enabled: true
+    min-response-size: 10KB
 spring:
   application:
     name: ebs-sg-ex
@@ -28,18 +31,6 @@ spring:
   cache:
     jcache:
       config: classpath:ehcache.xml
-  boot:
-    admin:
-      client:
-        url:
-        - http://ebs-sg-admin:8080
-        username: admin
-        password: admin
-        instance:
-          metadata:
-            user:
-              name: ${spring.security.user.name}
-              password: ${spring.security.user.password}
   datasource:
     initialization-mode: never
     continue-on-error: false
@@ -72,9 +63,14 @@ spring:
 
 management:
   endpoints:
+    jmx:
+      exposure:
+        exclude:  "*"
     web:
       exposure:
-        include: "*"
+        include:
+          - health
+          - env
   endpoint:
     health:
       show-details: always

@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.ebs.sg</groupId>
-	<artifactId>exservices</artifactId>
+	<artifactId>{domain}</artifactId>
 	<version>0.1</version>
-	<name>ebs-sg-exservices</name>
+	<name>ebs-sg-{domain}</name>
 	<description>Services for ex module</description>
 
 	<properties>
@@ -26,6 +26,10 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
 		<dependency>
