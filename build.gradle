@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.2.4.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
+    id 'jacoco'
 }
 
 group = 'org.ebs.sg'
@@ -57,13 +58,17 @@ dependencyManagement {
 }
 
 bootJar {
-	archiveName = 'ebs-sg-{domain}.jar'
+	archiveFileName = 'ebs-sg-{domain}.jar'
 	manifest {
         attributes('Implementation-Title':   '{Domain} API',
-                   'Implementation-Version': version)
+                   'Implementation-Version': archiveVersion)
     }
 }
 
 test {
 	useJUnitPlatform()
+	finalizedBy jacocoTestReport
+}
+jacocoTestReport {
+    dependsOn test
 }
