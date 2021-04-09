@@ -32,10 +32,10 @@ How to compile and run the services for local dev & testing
 
     #run with default values
     mvn spring-boot:run
-    
+
     #run overriding values
     mvn spring-boot:run -D"spring-boot.run.arguments=--spring.datasource.url=jdbc:postgresql://my-new-host:5432/mydb --server.port=8081"
-    
+
 #### Gradle
 
 	#run with default values
@@ -74,9 +74,40 @@ You can run the artifact as a regular java executable:
     java -jar {project-home}/{artifact-path}/ebs-sg-{domain}.jar
 
 To override default configuration values:
-     
+
     java -jar build/libs/ebs-sg-ex.jar --spring.datasource.url=jdbc:postgresql://172.17.61.4:5434/mydb --server.port=8083
-     
+
+### Testing
+
+Unit tests are executed always during build phase. For the build to succeed 100% of tests must pass. Results of testing can be checked in:
+
+- maven: target/site/jacoco/index.html
+- gradle: build/reports/jacoco/test/html/index.html and
+          build/reports/tests/test/index.html
+
+#### Runing tests (maven)
+All tests
+    mvn test
+    mvn test jacoco:report (to generate coverage report)
+
+Individual tests
+    mvn test -Dtest=path/to/test/MyTest
+
+Examples:
+    mvn test -Dtest=org/ebs/graphql/QueryResolverTest
+    mvn test -Dtest=org/ebs/model/repository/*
+
+#### Running individual tests (gradle)
+All tests
+    gradle test
+
+Individual tests
+    gradle test --tests path.to.test.MyTest
+
+Examples:
+    gradle test --tests org.ebs.graphql.QueryResolverTest
+    gradle test --tests org.ebs.model.repository.*
+
 
 # EBS Service Gateway - Deploy Micro Service
 
@@ -85,7 +116,7 @@ This method has been tested in Linux (CentOS) environment. Testing under windows
 ## Build Docker image
 
 Check _Dockerfile_ and modify ENV variables to access the appropriate database:
-    
+
     ENV spring.datasource.url=jdbc:postgresql://{hostname}:{port}/{databasename}
     ENV spring.datasource.username=username
     ENV spring.datasource.password=password
@@ -101,4 +132,3 @@ The host running this script just needs docker to be installed, maven and java a
 Run an image based on this generated image. Example:
 
     docker run --rm -dt -p 8080:8080 --name ebs-sg-ex-0.1 --network ebs-sg-net ebs-sg-ex:0.1
-
