@@ -43,7 +43,8 @@ class TokenAuthenticationFilter extends AbstractAuthenticationFilter {
         try {
             REQUEST_TOKEN.set(extractToken(request));
             DecodedJWT jwt = JWT.decode(REQUEST_TOKEN.get());
-            username = jwt.getClaim("http://wso2.org/claims/displayName").asString();
+            username = jwt.getClaim("http://wso2.org/claims/emailaddress").asString();
+            
         } catch (Exception e) {
             LOG.error("Error reading username from token", e);
             REQUEST_TOKEN.set(null);
