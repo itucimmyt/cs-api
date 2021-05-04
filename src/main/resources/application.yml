@@ -34,9 +34,9 @@ spring:
   datasource:
     initialization-mode: never
     continue-on-error: false
-    url: jdbc:postgresql://localhost:5432/exampledb
-    username: user
-    password: password
+    url: jdbc:postgresql://localhost:5432/ebs_core
+    username: postgres
+    password: 12345
     dbcp2:
       test-while-idle: true
       test-on-borrow: true

@@ -1,44 +1,1642 @@
-scalar Uuid;
-scalar Date
-scalar Datetime
-
-type Query {
-
+type Query {findTranslation(id:ID!):Translation
+findTranslationList( page: PageInput, sort:SortInput,filters:[FilterInput]):TranslationConnection
+findType(id:ID!):Type
+findTypeList( page: PageInput, sort:SortInput,filters:[FilterInput]):TypeConnection
+findUser(id:ID!):User
+findUserList( page: PageInput, sort:SortInput,filters:[FilterInput]):UserConnection
+findNumberSequenceRuleSegment(id:ID!):NumberSequenceRuleSegment
+findNumberSequenceRuleSegmentList( page: PageInput, sort:SortInput,filters:[FilterInput]):NumberSequenceRuleSegmentConnection
+findBreedingCycle(id:ID!):BreedingCycle
+findBreedingCycleList( page: PageInput, sort:SortInput,filters:[FilterInput]):BreedingCycleConnection
+findCrop(id:ID!):Crop
+findCropList( page: PageInput, sort:SortInput,filters:[FilterInput]):CropConnection
+findDomainInstance(id:ID!):DomainInstance
+findDomainInstanceList( page: PageInput, sort:SortInput,filters:[FilterInput]):DomainInstanceConnection
+findProgram(id:ID!):Program
+findProgramList( page: PageInput, sort:SortInput,filters:[FilterInput]):ProgramConnection
+findProject(id:ID!):Project
+findProjectList( page: PageInput, sort:SortInput,filters:[FilterInput]):ProjectConnection
+findReport(id:ID!):Report
+findReportList( page: PageInput, sort:SortInput,filters:[FilterInput]):ReportConnection
+findAddress(id:ID!):Address
+findAddressList( page: PageInput, sort:SortInput,filters:[FilterInput]):AddressConnection
+findProductFunction(id:ID!):ProductFunction
+findProductFunctionList( page: PageInput, sort:SortInput,filters:[FilterInput]):ProductFunctionConnection
+findAlert(id:ID!):Alert
+findAlertList( page: PageInput, sort:SortInput,filters:[FilterInput]):AlertConnection
+findAlertRule(id:ID!):AlertRule
+findAlertRuleList( page: PageInput, sort:SortInput,filters:[FilterInput]):AlertRuleConnection
+findAttributes(id:ID!):Attributes
+findAttributesList( page: PageInput, sort:SortInput,filters:[FilterInput]):AttributesConnection
+findAuditLogs(id:ID!):AuditLogs
+findAuditLogsList( page: PageInput, sort:SortInput,filters:[FilterInput]):AuditLogsConnection
+findDomain(id:ID!):Domain
+findDomainList( page: PageInput, sort:SortInput,filters:[FilterInput]):DomainConnection
+findCustomer(id:ID!):Customer
+findCustomerList( page: PageInput, sort:SortInput,filters:[FilterInput]):CustomerConnection
+findDelegation(id:ID!):Delegation
+findDelegationList( page: PageInput, sort:SortInput,filters:[FilterInput]):DelegationConnection
+findEmailTemplate(id:ID!):EmailTemplate
+findEmailTemplateList( page: PageInput, sort:SortInput,filters:[FilterInput]):EmailTemplateConnection
+findEntityReference(id:ID!):EntityReference
+findEntityReferenceList( page: PageInput, sort:SortInput,filters:[FilterInput]):EntityReferenceConnection
+findFormulaType(id:ID!):FormulaType
+findFormulaTypeList( page: PageInput, sort:SortInput,filters:[FilterInput]):FormulaTypeConnection
+findHtmlTag(id:ID!):HtmlTag
+findHtmlTagList( page: PageInput, sort:SortInput,filters:[FilterInput]):HtmlTagConnection
+findInstance(id:ID!):Instance
+findInstanceList( page: PageInput, sort:SortInput,filters:[FilterInput]):InstanceConnection
+findLanguage(id:ID!):Language
+findLanguageList( page: PageInput, sort:SortInput,filters:[FilterInput]):LanguageConnection
+findMessage(id:ID!):Message
+findMessageList( page: PageInput, sort:SortInput,filters:[FilterInput]):MessageConnection
+findProduct(id:ID!):Product
+findProductList( page: PageInput, sort:SortInput,filters:[FilterInput]):ProductConnection
+findNumberSequenceRule(id:ID!):NumberSequenceRule
+findNumberSequenceRuleList( page: PageInput, sort:SortInput,filters:[FilterInput]):NumberSequenceRuleConnection
+findOrganization(id:ID!):Organization
+findOrganizationList( page: PageInput, sort:SortInput,filters:[FilterInput]):OrganizationConnection
+findPerson(id:ID!):Person
+findPersonList( page: PageInput, sort:SortInput,filters:[FilterInput]):PersonConnection
+findPersonStatus(id:ID!):PersonStatus
+findPersonStatusList( page: PageInput, sort:SortInput,filters:[FilterInput]):PersonStatusConnection
+findPreference(id:ID!):Preference
+findPreferenceList( page: PageInput, sort:SortInput,filters:[FilterInput]):PreferenceConnection
+findProcess(id:ID!):Process
+findProcessList( page: PageInput, sort:SortInput,filters:[FilterInput]):ProcessConnection
+findRole(id:ID!):Role
+findRoleList( page: PageInput, sort:SortInput,filters:[FilterInput]):RoleConnection
+findSegment(id:ID!):Segment
+findSegmentList( page: PageInput, sort:SortInput,filters:[FilterInput]):SegmentConnection
+findStyleTheme(id:ID!):StyleTheme
+findStyleThemeList( page: PageInput, sort:SortInput,filters:[FilterInput]):StyleThemeConnection
+findFunctionalUnit(id:ID!):FunctionalUnit
+findFunctionalUnitList( page: PageInput, sort:SortInput,filters:[FilterInput]):FunctionalUnitConnection
+findTenant(id:ID!):Tenant
+findTenantList( page: PageInput, sort:SortInput,filters:[FilterInput]):TenantConnection
+}
+type Mutation {createTranslation(TranslationTo:TranslationInput!):Translation
+modifyTranslation(TranslationTo:TranslationInput!):Translation
+deleteTranslation(idtranslation:Int!):Int
+createType(TypeTo:TypeInput!):Type
+modifyType(TypeTo:TypeInput!):Type
+deleteType(idtype:Int!):Int
+createUser(UserTo:UserInput!):User
+modifyUser(UserTo:UserInput!):User
+deleteUser(iduser:Int!):Int
+createNumberSequenceRuleSegment(NumberSequenceRuleSegmentTo:NumberSequenceRuleSegmentInput!):NumberSequenceRuleSegment
+modifyNumberSequenceRuleSegment(NumberSequenceRuleSegmentTo:NumberSequenceRuleSegmentInput!):NumberSequenceRuleSegment
+deleteNumberSequenceRuleSegment(idnumbersequencerulesegment:Int!):Int
+createBreedingCycle(BreedingCycleTo:BreedingCycleInput!):BreedingCycle
+modifyBreedingCycle(BreedingCycleTo:BreedingCycleInput!):BreedingCycle
+deleteBreedingCycle(idbreedingcycle:Int!):Int
+createCrop(CropTo:CropInput!):Crop
+modifyCrop(CropTo:CropInput!):Crop
+deleteCrop(idcrop:Int!):Int
+createDomainInstance(DomainInstanceTo:DomainInstanceInput!):DomainInstance
+modifyDomainInstance(DomainInstanceTo:DomainInstanceInput!):DomainInstance
+deleteDomainInstance(iddomaininstance:Int!):Int
+createProgram(ProgramTo:ProgramInput!):Program
+modifyProgram(ProgramTo:ProgramInput!):Program
+deleteProgram(idprogram:Int!):Int
+createProject(ProjectTo:ProjectInput!):Project
+modifyProject(ProjectTo:ProjectInput!):Project
+deleteProject(idproject:Int!):Int
+createReport(ReportTo:ReportInput!):Report
+modifyReport(ReportTo:ReportInput!):Report
+deleteReport(idreport:Int!):Int
+createAddress(AddressTo:AddressInput!):Address
+modifyAddress(AddressTo:AddressInput!):Address
+deleteAddress(idaddress:Int!):Int
+createProductFunction(ProductFunctionTo:ProductFunctionInput!):ProductFunction
+modifyProductFunction(ProductFunctionTo:ProductFunctionInput!):ProductFunction
+deleteProductFunction(idproductfunction:Int!):Int
+createAlert(AlertTo:AlertInput!):Alert
+modifyAlert(AlertTo:AlertInput!):Alert
+deleteAlert(idalert:Int!):Int
+createAlertRule(AlertRuleTo:AlertRuleInput!):AlertRule
+modifyAlertRule(AlertRuleTo:AlertRuleInput!):AlertRule
+deleteAlertRule(idalertrule:Int!):Int
+createAttributes(AttributesTo:AttributesInput!):Attributes
+modifyAttributes(AttributesTo:AttributesInput!):Attributes
+deleteAttributes(idattributes:Int!):Int
+createAuditLogs(AuditLogsTo:AuditLogsInput!):AuditLogs
+modifyAuditLogs(AuditLogsTo:AuditLogsInput!):AuditLogs
+deleteAuditLogs(idauditlogs:Int!):Int
+createDomain(DomainTo:DomainInput!):Domain
+modifyDomain(DomainTo:DomainInput!):Domain
+deleteDomain(iddomain:Int!):Int
+createCustomer(CustomerTo:CustomerInput!):Customer
+modifyCustomer(CustomerTo:CustomerInput!):Customer
+deleteCustomer(idcustomer:Int!):Int
+createDelegation(DelegationTo:DelegationInput!):Delegation
+modifyDelegation(DelegationTo:DelegationInput!):Delegation
+deleteDelegation(iddelegation:Int!):Int
+createEmailTemplate(EmailTemplateTo:EmailTemplateInput!):EmailTemplate
+modifyEmailTemplate(EmailTemplateTo:EmailTemplateInput!):EmailTemplate
+deleteEmailTemplate(idemailtemplate:Int!):Int
+createEntityReference(EntityReferenceTo:EntityReferenceInput!):EntityReference
+modifyEntityReference(EntityReferenceTo:EntityReferenceInput!):EntityReference
+deleteEntityReference(identityreference:Int!):Int
+createFormulaType(FormulaTypeTo:FormulaTypeInput!):FormulaType
+modifyFormulaType(FormulaTypeTo:FormulaTypeInput!):FormulaType
+deleteFormulaType(idformulatype:Int!):Int
+createHtmlTag(HtmlTagTo:HtmlTagInput!):HtmlTag
+modifyHtmlTag(HtmlTagTo:HtmlTagInput!):HtmlTag
+deleteHtmlTag(idhtmltag:Int!):Int
+createInstance(InstanceTo:InstanceInput!):Instance
+modifyInstance(InstanceTo:InstanceInput!):Instance
+deleteInstance(idinstance:Int!):Int
+createLanguage(LanguageTo:LanguageInput!):Language
+modifyLanguage(LanguageTo:LanguageInput!):Language
+deleteLanguage(idlanguage:Int!):Int
+createMessage(MessageTo:MessageInput!):Message
+modifyMessage(MessageTo:MessageInput!):Message
+deleteMessage(idmessage:Int!):Int
+createProduct(ProductTo:ProductInput!):Product
+modifyProduct(ProductTo:ProductInput!):Product
+deleteProduct(idproduct:Int!):Int
+createNumberSequenceRule(NumberSequenceRuleTo:NumberSequenceRuleInput!):NumberSequenceRule
+modifyNumberSequenceRule(NumberSequenceRuleTo:NumberSequenceRuleInput!):NumberSequenceRule
+deleteNumberSequenceRule(idnumbersequencerule:Int!):Int
+createOrganization(OrganizationTo:OrganizationInput!):Organization
+modifyOrganization(OrganizationTo:OrganizationInput!):Organization
+deleteOrganization(idorganization:Int!):Int
+createPerson(PersonTo:PersonInput!):Person
+modifyPerson(PersonTo:PersonInput!):Person
+deletePerson(idperson:Int!):Int
+createPersonStatus(PersonStatusTo:PersonStatusInput!):PersonStatus
+modifyPersonStatus(PersonStatusTo:PersonStatusInput!):PersonStatus
+deletePersonStatus(idpersonstatus:Int!):Int
+createPreference(PreferenceTo:PreferenceInput!):Preference
+modifyPreference(PreferenceTo:PreferenceInput!):Preference
+deletePreference(idpreference:Int!):Int
+createProcess(ProcessTo:ProcessInput!):Process
+modifyProcess(ProcessTo:ProcessInput!):Process
+deleteProcess(idprocess:Int!):Int
+createRole(RoleTo:RoleInput!):Role
+modifyRole(RoleTo:RoleInput!):Role
+deleteRole(idrole:Int!):Int
+createSegment(SegmentTo:SegmentInput!):Segment
+modifySegment(SegmentTo:SegmentInput!):Segment
+deleteSegment(idsegment:Int!):Int
+createStyleTheme(StyleThemeTo:StyleThemeInput!):StyleTheme
+modifyStyleTheme(StyleThemeTo:StyleThemeInput!):StyleTheme
+deleteStyleTheme(idstyletheme:Int!):Int
+createFunctionalUnit(FunctionalUnitTo:FunctionalUnitInput!):FunctionalUnit
+modifyFunctionalUnit(FunctionalUnitTo:FunctionalUnitInput!):FunctionalUnit
+deleteFunctionalUnit(idfunctionalunit:Int!):Int
+createTenant(TenantTo:TenantInput!):Tenant
+modifyTenant(TenantTo:TenantInput!):Tenant
+deleteTenant(idtenant:Int!):Int
 }
 
-input FilterInput {
-  #mode of comparison
-  mod: FilterMod = EQ
-  #column to use for filtering
-  col: String!
-  #value to compare against in the filter
-  val: String!
-} 
+type TranslationConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Translation]
+}
+#Manages the translation options of the system.
+type Translation {
+#Sentence or word translated.
+translation: String
+#Language of the translation.
+languageTo: Int
+id: ID!
+language:Language
+htmltag:HtmlTag
+}
+type TypeConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Type]
+}
+#Stores all the person defined as collaborators certain projects.
+type Type {
+#Institution/Organization where the collaborator belongs to.
+type: String
+#Person to contact who represents the donor.
+contactPoint: String
+#Unique code identifier of the collaborator.
+remarks: String
+tenant: Int
+id: ID!
+persons:[Person]
+}
+type UserConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [User]
+}
+#User management 
+type User {
+#Name of the ser
+userName: String
+#Date of the latest access of the user.
+lastAccess: Date
+#
+userPassword: String
+#Default role of the user
+defaultRole: Int
+#Specifies if its IS or not.
+isIs: Int
+id: ID!
+delegations:[Delegation]
+programs:[Program]
+tenants:[Tenant]
+preferences:[Preference]
+functionalunits:[FunctionalUnit]
+roles:[Role]
+person:Person
+}
+type NumberSequenceRuleSegmentConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [NumberSequenceRuleSegment]
+}
+#Contains the relation between the rule and the segments used to create a particular code.
+type NumberSequenceRuleSegment {
+#Length of the segment part od the code.
+length: Int
+#Field that affects the origin of the sequence.
+customField: String
+#Position of the segment within the code.
+position: Int
+#Formula applied in the segment to get the required data.
+formula: String
+tenant: Int
+id: ID!
+segment:Segment
+numbersequencerule:NumberSequenceRule
+}
+type BreedingCycleConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [BreedingCycle]
+}
+#
+type BreedingCycle {
+#
+code: String
+#
+name: String
+#
+description: String
+#
+notes: String
+tenant: Int
+id: ID!
+}
+type CropConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Crop]
+}
+#
+type Crop {
+#
+code: String
+#
+name: String
+#
+description: String
+#
+notes: String
+id: ID!
+programs:[Program]
+}
+type DomainInstanceConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [DomainInstance]
+}
+#
+type DomainInstance {
+#It can be Core Breeding, SM, AF.
+context: String
+#URL Security Certificate
+isSsl: Boolean
+#
+sgContext: String
+tenant: Int
+id: ID!
+instance:Instance
+domain:Domain
+}
+type ProgramConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Program]
+}
+#
+type Program {
+#
+code: String
+#
+name: String
+#
+type: String
+#
+status: String
+#
+description: String
+#
+notes: String
+id: ID!
+user:User
+crop:Crop
+projects:[Project]
+tenant:Tenant
+functionalunits:[FunctionalUnit]
+}
+type ProjectConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Project]
+}
+#
+type Project {
+#
+code: String
+#
+name: String
+#
+status: String
+#
+description: String
+#
+notes: String
+tenant: Int
+id: ID!
+program:Program
+person:Person
+}
+type ReportConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Report]
+}
+#
+type Report {
+#
+description: String
+#
+name: String
+#
+printer: String
+#
+reportXml: String
+#
+zplCode: String
+#
+dataSource: String
+tenant: Int
+id: ID!
+product:Product
+}
+type AddressConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Address]
+}
+#Stores the physical address of users, clients, persons.
+type Address {
+#Location of the address
+location: String
+#Region of the address
+region: String
+#Zip code
+zipCode: String
+#Street name
+streetAddress: String
+tenant: Int
+id: ID!
+persons:[Person]
+}
+type ProductFunctionConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [ProductFunction]
+}
+#Stores specific actions of the different modules of the system.
+type ProductFunction {
+#description/Additional information about the action.
+description: String
+#Type of the action, it can be a human task or a system action.
+systemType: Boolean
+#Name of the action, it can be an option module. e.g. Request module action: Create request.
+action: String
+id: ID!
+roles:[Role]
+product:Product
+
+}
+type AlertConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Alert]
+}
+#Management of the user alerts set to users.
+type Alert {
+#Description of the alert.
+description: String
+tenant: Int
+id: ID!
+alertrules:[AlertRule]
+htmltag:HtmlTag
+preferences:[Preference]
+}
+type AlertRuleConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [AlertRule]
+}
+#Manages the alert rules and how they are created.
+type AlertRule {
+#Name of the rule.
+name: String
+#Sentence to be executed to verify if the user has alerts.
+sql: String
+#Filter applied in the select statement.
+filterClause: String
+tenant: Int
+id: ID!
+alert:Alert
+}
+type AttributesConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Attributes]
+}
+#Contains all the attributes of the database tables.
+type Attributes {
+#Name od the attribute.
+name: String
+#Description of the attribute
+description: String
+#Additional information about the attribute.
+help: String
+#sort number of the attribute within its table.
+sortNo: Int
+#Specifies the component of material UI.
+attComponent: String
+#Specifies if the field is a long text.
+isMultiline: Boolean
+#Determine if the attribute is required or not.
+isRequired: Boolean
+#Specifies if the attribute has a default value.
+defaultValue: String
+#Small size grids use columns that scale and resize content
+sm: Int
+#Medium size grids use columns that scale and resize content
+md: Int
+#Large size grids use columns that scale and resize content
+lg: Int
+id: ID!
+entityreference:EntityReference
+htmltag:HtmlTag
+}
+type AuditLogsConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [AuditLogs]
+}
+#Register events of the users, applications and components of the tenant.
+type AuditLogs {
+#Identifier of the log of a specific component.
+correlationId: String
+#Message of the log.
+message: String
+tenant: Int
+id: ID!
+instance:Instance
+}
+type DomainConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Domain]
+}
+#Registers all components or microservices available for the user
+type Domain {
+#Name of the component.
+name: String
+#Additional information about the component.
+info: String
+#Icon displayed in the side bar.
+icon: String
+id: ID!
+entityreferences:[EntityReference]
+htmltag:HtmlTag
+domaininstances:[DomainInstance]
+products:[Product]
+}
+type CustomerConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Customer]
+}
+#Registered client of the application, that client can be a individual or a company
+type Customer {
+#Name of the customer
+name: String
+#Phone number of the customer
+phone: String
+#Institution/Official email of the customer
+officialEmail: String
+#Additional email of the customer
+alternateEmail: String
+#Job title/ Position of the customer within his/her institution
+jobTitle: String
+#Preferred language to display system option
+languagePreference: String
+#Extension number of the customer within his/her Organization.
+phoneExtension: String
+#Status of the customer, it can be active or not.
+isActive: Boolean
+#
+logo: String
+id: ID!
+organizations:[Organization]
+organization:Organization
+tenants:[Tenant]
+}
+type DelegationConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Delegation]
+}
+#Stores delegation information when a users assign certain privileges to a member of his team.
+type Delegation {
+#Date when the delegation of activities starts.
+startDate: Date
+#Date when the delegation of activities is over.
+endDate: Date
+#Person to whom the activities were delegated.
+delegateTo: String
+tenant: Int
+id: ID!
+user:User
+}
+type EmailTemplateConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [EmailTemplate]
+}
+#Stores the different email templates of the system.
+type EmailTemplate {
+#Name of the email template
+name: String
+#Subject of the email template.
+subject: String
+#COntent of the template
+template: String
+id: ID!
+entityreferences:[EntityReference]
+tenant:Tenant
+person:Person
+}
+type EntityReferenceConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [EntityReference]
+}
+#Stores all the existing entities/tables of the system.
+type EntityReference {
+#Name of the entity.
+entity: String
+#Main column name of the entity.
+textfield: String
+#Column used to get the register number (id)
+valuefield: String
+#
+storefield: String
+#Schema where the entity belongs to.
+entitySchema: String
+tenant: Int
+id: ID!
+attributess:[Attributes]
+emailtemplates:[EmailTemplate]
+domains:[Domain]
+segments:[Segment]
+numbersequencerules:[NumberSequenceRule]
+}
+type FormulaTypeConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [FormulaType]
+}
+#
+type FormulaType {
+#
+name: String
+#
+description: String
+tenant: Int
+id: ID!
+segments:[Segment]
+}
+type HtmlTagConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [HtmlTag]
+}
+#Stores the html tags of each concept of the system.
+type HtmlTag {
+#Name of the tag.
+tagName: String
+id: ID!
+attributess:[Attributes]
+messages:[Message]
+domains:[Domain]
+alerts:[Alert]
+translations:[Translation]
+products:[Product]
+}
+type InstanceConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Instance]
+}
+#instance management of all services liked with the client
+type Instance {
+#
+name: String
+#
+server: String
+#
+port: String
+#
+notes: String
+id: ID!
+auditlogss:[AuditLogs]
+tenant:Tenant
+domaininstances:[DomainInstance]
+}
+type LanguageConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Language]
+}
+#Manages the globalization of the application
+type Language {
+#Language name
+name: String
+#Unique code identifier of the language.
+codeIso: String
+#Determines if the language is base or not.
+isBase: String
+id: ID!
+translations:[Translation]
+persons:[Person]
+}
+type MessageConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Message]
+}
+#Manages the text message that the user receives from the  application.
+type Message {
+#Description of the message.
+description: String
+#sql script
+sql: String
+#Filter clause
+filterClause: String
+id: ID!
+htmltag:HtmlTag
+}
+type ProductConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Product]
+}
+#Stores the menu of each component or service. It depends on the registered components.
+type Product {
+#Name of the module.
+name: String
+#Description or additional information of the module.
+description: String
+#Additional information about the product.
+help: String
+#Principal entity of each module, e.g. Module:Sample Manager; Main entity: Sample.
+mainEntity: String
+#Icon displayed in the side bar.
+icon: String
+#Show the order in the UI
+menuOrder: Int
+#
+path: String
+ productfunctions:[ProductFunction]
+id: ID!
+}
+type NumberSequenceRuleConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [NumberSequenceRule]
+}
+#Stores all the different rules used to generate string codes.
+type NumberSequenceRule {
+#Name of the rule.
+name: String
+#Specifies the initial sequential number.
+lowest: Int
+#The last code plus one to create the next sequential number.
+nextRec: Int
+#Format of the string code.
+format: String
+#Shows the last number generated by the rule.
+lastCode: String
+id: ID!
+numbersequencerulesegments:[NumberSequenceRuleSegment]
+tenant:Tenant
+entityreferences:[EntityReference]
+}
+type OrganizationConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Organization]
+}
+#Stores all the information of the different Organizations related to the system.
+type Organization {
+#Official name of the Organization.
+legalName: String
+#Official phone number of the organization.
+
+phone: String
+#Official web site of the Organization.
+webPage: String
+#Slogan of the Organization.
+slogan: String
+#Short name of the organization.
+name: String
+#Tax ID of the Organization.
+taxId: String
+#Logo of the Organization.
+logo: String
+#Specifies the status of the Organization within the system, it can be active or not.
+isActive: Boolean
+#Type of authentication used to login into the System.
+defaultAuthentication: Int
+#Default theme preferred by the Organization
+defaultTheme: Int
+#Unique identifier code for the Organization.
+code: String
+id: ID!
+tenants:[Tenant]
+customer:Customer
+customers:[Customer]
+}
+type PersonConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Person]
+}
+#Stores the information of individuals that are part or are related to the System.
+type Person {
+#First name of the person
+familyName: String
+#Last name of the person.
+givenName: String
+#Second name of the person if its the case.
+additionalName: String
+#Additional email of the person different that the official.
+email: String
+#Official or institutional email of the person.
+officialEmail: String
+#Gender of the person. Male/Female.
+gender: String
+#Specifies if the person has or not credentials in the System.
+hasCredential: Boolean
+#Position or job title of the person.
+jobTitle: String
+#Expertise of the person.
+knowsAbout: String
+#Phone number of the person.
+phone: String
+id: ID!
+addresss:[Address]
+tenant:Tenant
+types:[Type]
+language:Language
+emailtemplates:[EmailTemplate]
+projects:[Project]
+users:[User]
+personstatus:PersonStatus
+}
+type PersonStatusConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [PersonStatus]
+}
+#
+type PersonStatus {
+#
+name: String
+#
+description: String
+tenant: Int
+id: ID!
+persons:[Person]
+}
+type PreferenceConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Preference]
+}
+#Stores the preferences of the user: style, language, etc.
+type Preference {
+#User comments about the system.
+comment: String
+tenant: Int
+id: ID!
+user:User
+alert:Alert
+styletheme:StyleTheme
+}
+type ProcessConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Process]
+}
+#Register all process that can be executed by any component or workflow.
+type Process {
+#Name of the process. e.g. import germplasm.
+name: String
+#Additional information about the process.
+description: String
+#Javascript Code to be executed when isBackground = false
+code: String
+#Specifies if the process exists in the EBS sg.
+isBackground: Boolean
+#DB function to be executed when isBackground = true.
+dbFunction: String
+#Specific report to call when tisBackground = true.
+callReport: Boolean
+#url, path where the process is located.
+path: String
+tenant: Int
+id: ID!
+}
+type RoleConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Role]
+}
+#Manages the different positions or purposes that someone has in an , organization as well as the set of privileges granted.
+type Role {
+#Description of the role.
+description: String
+#Security group where user belongs to.
+securityGroup: String
+#
+name: String
+tenant: Int
+id: ID!
+productfunctions:[ProductFunction]
+users:[User]
+}
+type SegmentConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Segment]
+}
+#Manages the sections of the codes used in the sequence rules.
+type Segment {
+#Descriptive name of the segment.
+name: String
+#Short name identifier of the segment.
+tag: String
+#Specifies if the segment is obtained by calling an API.
+isAPI: Boolean
+#Specifies if the segment is an sequence number value.
+isAutoNum: Boolean
+#Specifies if the segment is an static value such as prefix, separator symbol, etc.
+isStatic: Boolean
+tenant: Int
+id: ID!
+entityreference:EntityReference
+numbersequencerulesegments:[NumberSequenceRuleSegment]
+formulatype:FormulaType
+}
+type StyleThemeConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [StyleTheme]
+}
+#Manages the different styles them used in the system.
+type StyleTheme {
+#Description of the theme.
+description: String
+#Physical path were the theme is stored.
+path: String
+#Full name of the Style theme.
+physicalName: String
+#Specifies if the theme is the default one to use in the system.
+isDefault: Boolean
+tenant: Int
+id: ID!
+preferences:[Preference]
+}
+type FunctionalUnitConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [FunctionalUnit]
+}
+#Group of persons within the program.
+type FunctionalUnit {
+#Textual identifier of the functional unit.
+code: String
+#Full name of the functional unit.
+name: String
+#Additional information about the functional unit.
+description: String
+#Technical details about the record.
+notes: String
+#It can be unit, sub-unit, teams, group
+type: String
+tenant: Int
+id: ID!
+program:Program
+users:[User]
+ 
+}
+type TenantConnection {
+totalPages: Int
+totalElements: Int
+numberOfElements: Int
+size: Int
+number: Int
+content: [Tenant]
+}
+#Manages EBS Instance by customer and organization.
+type Tenant {
+#
+name: String
+#Expiration date of the instance by user.
+expiration: Date
+#Specifies if the tenant instance is expired or not.
+expired: Boolean
+id: ID!
+emailtemplates:[EmailTemplate]
+programs:[Program]
+users:[User]
+instances:[Instance]
+organization:Organization
+numbersequencerules:[NumberSequenceRule]
+customer:Customer
+}
+
+input TranslationInput {
+#Sentence or word translated.
+translation: String
+#Language of the translation.
+languageTo: Int
+id: ID!
+language:LanguageInput
+htmltag:HtmlTagInput
+}
+input TypeInput {
+#Institution/Organization where the collaborator belongs to.
+type: String
+#Person to contact who represents the donor.
+contactPoint: String
+#Unique code identifier of the collaborator.
+remarks: String
+tenant: Int
+id: ID!
+persons:[PersonInput]
+}
+input UserInput {
+#Name of the ser
+userName: String
+#Date of the latest access of the user.
+lastAccess: Date
+#
+userPassword: String
+#Default role of the user
+defaultRole: Int
+#Specifies if its IS or not.
+isIs: Int
+id: ID!
+tenants:[TenantInput]
+functionalunits:[FunctionalUnitInput]
+person:PersonInput
+}
+input NumberSequenceRuleSegmentInput {
+#Length of the segment part od the code.
+length: Int
+#Field that affects the origin of the sequence.
+customField: String
+#Position of the segment within the code.
+position: Int
+#Formula applied in the segment to get the required data.
+formula: String
+tenant: Int
+id: ID!
+segment:SegmentInput
+numbersequencerule:NumberSequenceRuleInput
+}
+input BreedingCycleInput {
+#
+code: String
+#
+name: String
+#
+description: String
+#
+notes: String
+tenant: Int
+id: ID!
+}
+input CropInput {
+#
+code: String
+#
+name: String
+#
+description: String
+#
+notes: String
+id: ID!
+}
+input DomainInstanceInput {
+#It can be Core Breeding, SM, AF.
+context: String
+#URL Security Certificate
+isSsl: Boolean
+#
+sgContext: String
+tenant: Int
+id: ID!
+instance:InstanceInput
+domain:DomainInput
+}
+input ProgramInput {
+#
+code: String
+#
+name: String
+#
+type: String
+#
+status: String
+#
+description: String
+#
+notes: String
+id: ID!
+user:UserInput
+crop:CropInput
+tenant:TenantInput
+}
+input ProjectInput {
+#
+code: String
+#
+name: String
+#
+status: String
+#
+description: String
+#
+notes: String
+tenant: Int
+id: ID!
+program:ProgramInput
+person:PersonInput
+}
+input ReportInput {
+#
+description: String
+#
+name: String
+#
+printer: String
+#
+reportXml: String
+#
+zplCode: String
+#
+dataSource: String
+tenant: Int
+id: ID!
+product:ProductInput
+}
+input AddressInput {
+#Location of the address
+location: String
+#Region of the address
+region: String
+#Zip code
+zipCode: String
+#Street name
+streetAddress: String
+tenant: Int
+id: ID!
+}
+input ProductFunctionInput {
+#description/Additional information about the action.
+description: String
+#Type of the action, it can be a human task or a system action.
+systemType: Boolean
+#Name of the action, it can be an option module. e.g. Request module action: Create request.
+action: String
+id: ID!
+roles:[RoleInput]
+product:ProductInput
+}
+input AlertInput {
+#Description of the alert.
+description: String
+tenant: Int
+id: ID!
+htmltag:HtmlTagInput
+}
+input AlertRuleInput {
+#Name of the rule.
+name: String
+#Sentence to be executed to verify if the user has alerts.
+sql: String
+#Filter applied in the select statement.
+filterClause: String
+tenant: Int
+id: ID!
+alert:AlertInput
+}
+input AttributesInput {
+#Name od the attribute.
+name: String
+#Description of the attribute
+description: String
+#Additional information about the attribute.
+help: String
+#sort number of the attribute within its table.
+sortNo: Int
+#Specifies the component of material UI.
+attComponent: String
+#Specifies if the field is a long text.
+isMultiline: Boolean
+#Determine if the attribute is required or not.
+isRequired: Boolean
+#Specifies if the attribute has a default value.
+defaultValue: String
+#Small size grids use columns that scale and resize content
+sm: Int
+#Medium size grids use columns that scale and resize content
+md: Int
+#Large size grids use columns that scale and resize content
+lg: Int
+id: ID!
+entityreference:EntityReferenceInput
+htmltag:HtmlTagInput
+}
+input AuditLogsInput {
+#Identifier of the log of a specific component.
+correlationId: String
+#Message of the log.
+message: String
+tenant: Int
+id: ID!
+instance:InstanceInput
+}
+input DomainInput {
+#Name of the component.
+name: String
+#Additional information about the component.
+info: String
+#Icon displayed in the side bar.
+icon: String
+id: ID!
+htmltag:HtmlTagInput
+}
+input CustomerInput {
+#Name of the customer
+name: String
+#Phone number of the customer
+phone: String
+#Institution/Official email of the customer
+officialEmail: String
+#Additional email of the customer
+alternateEmail: String
+#Job title/ Position of the customer within his/her institution
+jobTitle: String
+#Preferred language to display system option
+languagePreference: String
+#Extension number of the customer within his/her Organization.
+phoneExtension: String
+#Status of the customer, it can be active or not.
+isActive: Boolean
+#
+logo: String
+id: ID!
+organization:OrganizationInput
+}
+input DelegationInput {
+#Date when the delegation of activities starts.
+startDate: Date
+#Date when the delegation of activities is over.
+endDate: Date
+#Person to whom the activities were delegated.
+delegateTo: String
+tenant: Int
+id: ID!
+user:UserInput
+}
+input EmailTemplateInput {
+#Name of the email template
+name: String
+#Subject of the email template.
+subject: String
+#COntent of the template
+template: String
+id: ID!
+tenant:TenantInput
+person:PersonInput
+}
+input EntityReferenceInput {
+#Name of the entity.
+entity: String
+#Main column name of the entity.
+textfield: String
+#Column used to get the register number (id)
+valuefield: String
+#
+storefield: String
+#Schema where the entity belongs to.
+entitySchema: String
+tenant: Int
+id: ID!
+emailtemplates:[EmailTemplateInput]
+domains:[DomainInput]
+numbersequencerules:[NumberSequenceRuleInput]
+}
+input FormulaTypeInput {
+#
+name: String
+#
+description: String
+tenant: Int
+id: ID!
+}
+input HtmlTagInput {
+#Name of the tag.
+tagName: String
+id: ID!
+}
+input InstanceInput {
+#
+name: String
+#
+server: String
+#
+port: String
+#
+notes: String
+id: ID!
+tenant:TenantInput
+}
+input LanguageInput {
+#Language name
+name: String
+#Unique code identifier of the language.
+codeIso: String
+#Determines if the language is base or not.
+isBase: String
+id: ID!
+}
+input MessageInput {
+#Description of the message.
+description: String
+#sql script
+sql: String
+#Filter clause
+filterClause: String
+id: ID!
+htmltag:HtmlTagInput
+}
+input ProductInput {
+#Name of the module.
+name: String
+#Description or additional information of the module.
+description: String
+#Additional information about the product.
+help: String
+#Principal entity of each module, e.g. Module:Sample Manager; Main entity: Sample.
+mainEntity: String
+#Icon displayed in the side bar.
+icon: String
+#Show the order in the UI
+menuOrder: Int
+#
+path: String
+ 
+id: ID!
+}
+input NumberSequenceRuleInput {
+#Name of the rule.
+name: String
+#Specifies the initial sequential number.
+lowest: Int
+#The last code plus one to create the next sequential number.
+nextRec: Int
+#Format of the string code.
+format: String
+#Shows the last number generated by the rule.
+lastCode: String
+id: ID!
+tenant:TenantInput
+}
+input OrganizationInput {
+#Official name of the Organization.
+legalName: String
+#Official phone number of the organization.
+
+phone: String
+#Official web site of the Organization.
+webPage: String
+#Slogan of the Organization.
+slogan: String
+#Short name of the organization.
+name: String
+#Tax ID of the Organization.
+taxId: String
+#Logo of the Organization.
+logo: String
+#Specifies the status of the Organization within the system, it can be active or not.
+isActive: Boolean
+#Type of authentication used to login into the System.
+defaultAuthentication: Int
+#Default theme preferred by the Organization
+defaultTheme: Int
+#Unique identifier code for the Organization.
+code: String
+id: ID!
+customer:CustomerInput
+}
+input PersonInput {
+#First name of the person
+familyName: String
+#Last name of the person.
+givenName: String
+#Second name of the person if its the case.
+additionalName: String
+#Additional email of the person different that the official.
+email: String
+#Official or institutional email of the person.
+officialEmail: String
+#Gender of the person. Male/Female.
+gender: String
+#Specifies if the person has or not credentials in the System.
+hasCredential: Boolean
+#Position or job title of the person.
+jobTitle: String
+#Expertise of the person.
+knowsAbout: String
+#Phone number of the person.
+phone: String
+id: ID!
+addresss:[AddressInput]
+tenant:TenantInput
+language:LanguageInput
+personstatus:PersonStatusInput
+}
+input PersonStatusInput {
+#
+name: String
+#
+description: String
+tenant: Int
+id: ID!
+}
+input PreferenceInput {
+#User comments about the system.
+comment: String
+tenant: Int
+id: ID!
+user:UserInput
+alert:AlertInput
+styletheme:StyleThemeInput
+}
+input ProcessInput {
+#Name of the process. e.g. import germplasm.
+name: String
+#Additional information about the process.
+description: String
+#Javascript Code to be executed when isBackground = false
+code: String
+#Specifies if the process exists in the EBS sg.
+isBackground: Boolean
+#DB function to be executed when isBackground = true.
+dbFunction: String
+#Specific report to call when tisBackground = true.
+callReport: Boolean
+#url, path where the process is located.
+path: String
+tenant: Int
+id: ID!
+}
+input RoleInput {
+#Description of the role.
+description: String
+#Security group where user belongs to.
+securityGroup: String
+#
+name: String
+tenant: Int
+id: ID!
+users:[UserInput]
+}
+input SegmentInput {
+#Descriptive name of the segment.
+name: String
+#Short name identifier of the segment.
+tag: String
+#Specifies if the segment is obtained by calling an API.
+isAPI: Boolean
+#Specifies if the segment is an sequence number value.
+isAutoNum: Boolean
+#Specifies if the segment is an static value such as prefix, separator symbol, etc.
+isStatic: Boolean
+tenant: Int
+id: ID!
+entityreference:EntityReferenceInput
+formulatype:FormulaTypeInput
+}
+input StyleThemeInput {
+#Description of the theme.
+description: String
+#Physical path were the theme is stored.
+path: String
+#Full name of the Style theme.
+physicalName: String
+#Specifies if the theme is the default one to use in the system.
+isDefault: Boolean
+tenant: Int
+id: ID!
+}
+input FunctionalUnitInput {
+#Textual identifier of the functional unit.
+code: String
+#Full name of the functional unit.
+name: String
+#Additional information about the functional unit.
+description: String
+#Technical details about the record.
+notes: String
+#It can be unit, sub-unit, teams, group
+type: String
+tenant: Int
+id: ID!
+program:ProgramInput
+}
+input TenantInput {
+#
+name: String
+#Expiration date of the instance by user.
+expiration: Date
+#Specifies if the tenant instance is expired or not.
+expired: Boolean
+id: ID!
+organization:OrganizationInput
+customer:CustomerInput
+}
+
+input FilterInput { 
+mod: FilterMod = EQ
+col: String!
+val: String!
+}
 
 input SortInput {
-  #column to use for sorting
-  col: String!
-  #mode of sorting
-  mod: SortMod = ASC
+col: String!
+mod: SortMod = ASC
 }
 
 input PageInput {
-  #number of page, starting in 0
-  number: Int! = 0
-  #size of the page
-  size: Int! = 1
+number: Int! = 0
+size: Int!=1
 }
 
 enum FilterMod {
-  #equals filter mode
-  EQ
-  #like filter mode
-  LK
+EQ
+LK
 }
 
 enum SortMod {
-  # ascendant sort mode
-  ASC
-  # descendant sort mode
-  DES
+ASC
+DES
 }
+
+scalar Date
+

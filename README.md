@@ -6,8 +6,8 @@ This project is the core of a micro service by domain, so it can be added into S
 
  - The micro service can connect to a DB, which is not managed in this project.
  - There should be an API manager component which will manage the microservice access.
- - The main configuration item is the data source, found in `` src/main/resources/application.yml `` under ``spring.datasource``. The default database configuration follows the standard naming: _ebs-{domain}-db:port/{domaindatabase}_. Example: ``jdbc:postgresql://ebs-ex-db:5432/exdb``. username and password default both to **postgres**
- - Endpoints in dataflows connecting with other microservices _must_ point to standard container names: ebs-sg-{domain}, protocol (http) and port (8080). Example: http://ebs-sg-ex:8080
+ - The main configuration item is the data source, found in `` src/main/resources/application.yml `` under ``spring.datasource``. The default database configuration follows the standard naming: _ebs-cs-api-db:port/{domaindatabase}_. Example: ``jdbc:postgresql://ebs-ex-db:5432/exdb``. username and password default both to **postgres**
+ - Endpoints in dataflows connecting with other microservices _must_ point to standard container names: ebs-sg-cs-api, protocol (http) and port (8080). Example: http://ebs-sg-ex:8080
  - Communication over HTTPS will be managed by the upper layer of API Manager
 
 ### Building tools
@@ -61,17 +61,17 @@ Rest Services will be published as defined in the Resource classes: ``http://loc
 #### Maven
 
     mvn package
-The artifact will be created in path ``{project-home}/target/ebs-sg-{domain}.jar``
+The artifact will be created in path ``{project-home}/target/ebs-sg-cs-api.jar``
 #### Gradle
 
     gradle bootJar
-The artifact will be created in path ``{project-home}/build/libs/ebs-sg-{domain}.jar``
+The artifact will be created in path ``{project-home}/build/libs/ebs-sg-cs-api.jar``
 
 #### After build
 
 You can run the artifact as a regular java executable:
 
-    java -jar {project-home}/{artifact-path}/ebs-sg-{domain}.jar
+    java -jar {project-home}/{artifact-path}/ebs-sg-cs-api.jar
 
 To override default configuration values:
 
@@ -125,7 +125,7 @@ Run the following script to generate a docker image for the project:
 
     ./buildDockerImage.sh
 
-This will generate an image named _ebs-sg-{domain}:{version-tag}_. Example: _ebs-sg-ex:0.1_
+This will generate an image named _ebs-sg-cs-api:0.1.0_. Example: _ebs-sg-ex:0.1_
 The host running this script just needs docker to be installed, maven and java are not necessary.
 
 ## Deploy container

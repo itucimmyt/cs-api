@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.ebs.sg</groupId>
-	<artifactId>{domain}</artifactId>
+	<artifactId>cs-api</artifactId>
 	<version>0.1</version>
-	<name>ebs-sg-{domain}</name>
+	<name>ebs-sg-cs-api</name>
 	<description>Services for ex module</description>
 
 	<properties>
@@ -140,7 +140,7 @@
 				</executions>
 			</plugin>
 		</plugins>
-		<finalName>ebs-sg-{domain}</finalName>
+		<finalName>ebs-sg-cs-api</finalName>
 	</build>
 
 </project>

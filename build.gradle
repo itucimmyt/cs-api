@@ -58,9 +58,9 @@ dependencyManagement {
 }
 
 bootJar {
-	archiveFileName = 'ebs-sg-{domain}.jar'
+	archiveFileName = 'ebs-sg-cs-api.jar'
 	manifest {
-        attributes('Implementation-Title':   '{Domain} API',
+        attributes('Implementation-Title':   'cs-api API',
                    'Implementation-Version': archiveVersion)
     }
 }

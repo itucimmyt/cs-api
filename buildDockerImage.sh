@@ -10,5 +10,5 @@ mvn clean install && \
 mvn clean -f dataflows/integrator -Dmaven.test.skip=true install && \
 mvn -f dataflows/integratorCompositeApplication -Dmaven.test.skip=true clean package
 
-echo "building image: ebs-sg-{domain}:{version-tag} ..."
-docker build -t ebs-sg-{domain}:{version-tag} .
+echo "building image: ebs-sg-cs-api:0.1.0 ..."
+docker build -t ebs-sg-cs-api:0.1.0 .
